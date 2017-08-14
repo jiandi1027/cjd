@@ -1,0 +1,51 @@
+blockquote,body,button,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,hr,input,legend,li,ol,p,pre,td,textarea,th,ul {
+    margin: 0;
+    padding: 0
+}
+body,button,input,select,textarea {
+    font: 14px/1 Microsoft Yahei,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-size: 100%
+}
+address,cite,dfn,em,var {
+    font-style: normal
+}
+code,kbd,pre,samp {
+    font-family: courier new,courier,monospace
+}
+small {
+    font-size: 12px
+}
+ol,ul {
+    list-style: none
+}
+a,a:hover,a:active,a:visited,a:link,a:focus,button,button:focus,input,input:focus,textarea,textarea:focus,span,span:focus{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    text-decoration: none;
+}
+sup {
+    vertical-align: text-top
+}
+sub {
+    vertical-align: text-bottom
+}
+legend {
+}
+fieldset,img {
+    border: 0;
+    display: block;
+}
+button,input,select,textarea {
+    font-size: 100%
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+.clearfix:before, :after{display: table; content:"";}
+.clearfix:after{clear: both;}
+a:hover{ color: #0068B7;}
