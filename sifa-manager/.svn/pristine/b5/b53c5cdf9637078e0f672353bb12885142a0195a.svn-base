@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.sys.MxCheckMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.sys.MxCheck">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="INFO_TYPE" jdbcType="VARCHAR" property="infoType" />
+    <result column="DIC_CHECKTYPE_ID" jdbcType="VARCHAR" property="dicChecktypeId" />
+    <result column="DEDUCTION" jdbcType="VARCHAR" property="deduction" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="DETAIL_REASON" jdbcType="VARCHAR" property="detailReason" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="IS_USE" jdbcType="DECIMAL" property="isUse" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, AMOUNT, INFO_TYPE, DIC_CHECKTYPE_ID, DEDUCTION, CREATED, UPDATED, PROCESS_INSTANCE_ID, 
+    DETAIL_REASON, CREATER, UPDATER, IS_USE, DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_MX_CHECK
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_MX_CHECK
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.sys.MxCheck">
+    insert into SF_MX_CHECK (ID, AMOUNT, INFO_TYPE, 
+      DIC_CHECKTYPE_ID, DEDUCTION, CREATED, 
+      UPDATED, PROCESS_INSTANCE_ID, DETAIL_REASON, 
+      CREATER, UPDATER, IS_USE, 
+      DEL_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{infoType,jdbcType=VARCHAR}, 
+      #{dicChecktypeId,jdbcType=VARCHAR}, #{deduction,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{updated,jdbcType=TIMESTAMP}, #{processInstanceId,jdbcType=VARCHAR}, #{detailReason,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{updater,jdbcType=VARCHAR}, #{isUse,jdbcType=DECIMAL}, 
+      #{delFlag,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.sys.MxCheck">
+    insert into SF_MX_CHECK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="infoType != null">
+        INFO_TYPE,
+      </if>
+      <if test="dicChecktypeId != null">
+        DIC_CHECKTYPE_ID,
+      </if>
+      <if test="deduction != null">
+        DEDUCTION,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="detailReason != null">
+        DETAIL_REASON,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="isUse != null">
+        IS_USE,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="infoType != null">
+        #{infoType,jdbcType=VARCHAR},
+      </if>
+      <if test="dicChecktypeId != null">
+        #{dicChecktypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="deduction != null">
+        #{deduction,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailReason != null">
+        #{detailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null">
+        #{isUse,jdbcType=DECIMAL},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.sys.MxCheck">
+    update SF_MX_CHECK
+    <set>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="infoType != null">
+        INFO_TYPE = #{infoType,jdbcType=VARCHAR},
+      </if>
+      <if test="dicChecktypeId != null">
+        DIC_CHECKTYPE_ID = #{dicChecktypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="deduction != null">
+        DEDUCTION = #{deduction,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailReason != null">
+        DETAIL_REASON = #{detailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null">
+        IS_USE = #{isUse,jdbcType=DECIMAL},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.sys.MxCheck">
+    update SF_MX_CHECK
+    set AMOUNT = #{amount,jdbcType=DECIMAL},
+      INFO_TYPE = #{infoType,jdbcType=VARCHAR},
+      DIC_CHECKTYPE_ID = #{dicChecktypeId,jdbcType=VARCHAR},
+      DEDUCTION = #{deduction,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      DETAIL_REASON = #{detailReason,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      IS_USE = #{isUse,jdbcType=DECIMAL},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.sys.MxCheck" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_MX_CHECK t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="amount != null">
+      AND AMOUNT = #{amount,jdbcType=DECIMAL}
+    </if>
+    <if test="infoType != null and infoType!=''">
+      AND INFO_TYPE = #{infoType,jdbcType=VARCHAR}
+    </if>
+    <if test="dicChecktypeId != null and dicChecktypeId!=''">
+      AND DIC_CHECKTYPE_ID = #{dicChecktypeId,jdbcType=VARCHAR}
+    </if>
+    <if test="deduction != null and deduction!=''">
+      AND DEDUCTION = #{deduction,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="processInstanceId != null">
+      AND PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+    </if>
+    <if test="detailReason != null and detailReason!=''">
+      AND DETAIL_REASON = #{detailReason,jdbcType=VARCHAR}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="isUse != null">
+      AND IS_USE = #{isUse,jdbcType=DECIMAL}
+    </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+  </sql>
+  <update id="updateIsUse2" parameterType="com.rowell.sifa.pojo.sys.MxCheck">
+    update SF_MX_CHECK
+    <set>
+        IS_USE = 1,
+    </set>
+    <![CDATA[
+    	where PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR} and INFO_TYPE in (#{infoType,jdbcType=VARCHAR})
+      ]]>
+  </update>
+  
+   <select id="updateIsUse" parameterType="com.rowell.sifa.pojo.sys.MxCheck">
+    update SF_MX_CHECK
+    set IS_USE = #{isUse,jdbcType=DECIMAL}
+    where PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR} and INFO_TYPE =#{infoType,jdbcType=VARCHAR}
+  </select>
+</mapper>

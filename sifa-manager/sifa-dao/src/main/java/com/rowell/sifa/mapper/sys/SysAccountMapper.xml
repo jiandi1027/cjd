@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.sys.SysAccountMapper">
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.sys.SysAccount">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="ACCOUNTNAME" jdbcType="VARCHAR" property="accountname" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="AREA" jdbcType="VARCHAR" property="area" />
+    <result column="DIC_IM_TYPE_KEY" jdbcType="VARCHAR" property="dicImTypeKey" />
+    <result column="DOG_STR" jdbcType="VARCHAR" property="dogStr" />
+    <result column="PERMISSION_KEY" jdbcType="VARCHAR" property="permissionKey" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PERSON_ID" jdbcType="VARCHAR" property="personId" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.GROUP_ID, t.ROLE_ID, t.ACCOUNT, t.ACCOUNTNAME, t.PASSWORD, t.MOBILE, t.REMARK, t.AREA, t.DIC_IM_TYPE_KEY, t.
+    DOG_STR, t.PERMISSION_KEY, t.CREATED, t.CREATER, t.UPDATED, t.UPDATER, t.DEL_FLAG, t.PERSON_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />, g.name as "group_name",t2.name as ROLE_NAME
+    from SYS_ACCOUNT t left join sys_group g on (g.id = t.group_id) left join sys_role t2 on (t.role_id=t2.id)
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+   <select id="selectByAccountAndPassword" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />, g.name as "group_name"
+    from SYS_ACCOUNT t left join sys_group g on g.id = t.group_id
+    where t.ACCOUNT = #{account,jdbcType=VARCHAR} and t.PASSWORD=#{password}
+  </select>
+  
+  <select id="selectByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_ACCOUNT t
+    where t.ACCOUNT = #{account,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SYS_ACCOUNT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.sys.SysAccount">
+    insert into SYS_ACCOUNT (ID, GROUP_ID, ROLE_ID, 
+      ACCOUNT, ACCOUNTNAME, PASSWORD, 
+      MOBILE, REMARK, AREA, 
+      DIC_IM_TYPE_KEY, DOG_STR, PERMISSION_KEY, 
+      CREATED, CREATER, UPDATED, 
+      UPDATER, DEL_FLAG, PERSON_ID)
+    values (#{id,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{accountname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{dicImTypeKey,jdbcType=VARCHAR}, #{dogStr,jdbcType=VARCHAR}, #{permissionKey,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL}, #{personId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.sys.SysAccount">
+    insert into SYS_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="account != null">
+        ACCOUNT,
+      </if>
+      <if test="accountname != null">
+        ACCOUNTNAME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="area != null">
+        AREA,
+      </if>
+      <if test="dicImTypeKey != null">
+        DIC_IM_TYPE_KEY,
+      </if>
+      <if test="dogStr != null">
+        DOG_STR,
+      </if>
+      <if test="permissionKey != null">
+        PERMISSION_KEY,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="personId != null">
+        PERSON_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="accountname != null">
+        #{accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="dicImTypeKey != null">
+        #{dicImTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dogStr != null">
+        #{dogStr,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionKey != null">
+        #{permissionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.sys.SysAccount">
+    update SYS_ACCOUNT
+    <set>
+      <if test="groupId != null">
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="accountname != null">
+        ACCOUNTNAME = #{accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="dicImTypeKey != null">
+        DIC_IM_TYPE_KEY = #{dicImTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dogStr != null">
+        DOG_STR = #{dogStr,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionKey != null">
+        PERMISSION_KEY = #{permissionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.sys.SysAccount">
+    update SYS_ACCOUNT
+    set GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      ACCOUNTNAME = #{accountname,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      DIC_IM_TYPE_KEY = #{dicImTypeKey,jdbcType=VARCHAR},
+      DOG_STR = #{dogStr,jdbcType=VARCHAR},
+      PERMISSION_KEY = #{permissionKey,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+      PERSON_ID = #{personId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.sys.SysAccount" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />, g.name as "group_name"
+    from SYS_ACCOUNT t left join sys_group g on g.id = t.group_id
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="groupId != null">
+      AND t.GROUP_ID = #{groupId,jdbcType=VARCHAR}
+    </if>
+    <if test="groupName != null and groupName != ''">
+      AND t.GROUP_NAME = #{groupName,jdbcType=VARCHAR}
+    </if>
+    <if test="roleId != null and roleId!=''">
+      AND t.ROLE_ID = #{roleId,jdbcType=VARCHAR}
+    </if>
+    <if test="account != null and account!=''">
+      AND t.ACCOUNT like '%'||#{account,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="accountname != null and accountname!=''">
+      AND t.ACCOUNTNAME like '%'|| #{accountname,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="password != null and password!=''">
+      AND t.PASSWORD = #{password,jdbcType=VARCHAR}
+    </if>
+    <if test="mobile != null and mobile!=''">
+      AND t.MOBILE = #{mobile,jdbcType=VARCHAR}
+    </if>
+    <if test="remark != null and remark!=''">
+      AND t.REMARK = #{remark,jdbcType=VARCHAR}
+    </if>
+    <if test="area != null and area!=''">
+      AND t.AREA = #{area,jdbcType=VARCHAR}
+    </if>
+    <if test="dicImTypeKey != null and dicImTypeKey!=''">
+      AND t.DIC_IM_TYPE_KEY = #{dicImTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dogStr != null and dogStr!=''">
+      AND t.DOG_STR = #{dogStr,jdbcType=VARCHAR}
+    </if>
+    <if test="permissionKey != null and permissionKey!=''">
+      AND t.PERMISSION_KEY = #{permissionKey,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND t.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="personId != null and personId!=''">
+      AND t.PERSON_ID = #{personId,jdbcType=VARCHAR}
+    </if>
+  </sql>
+</mapper>

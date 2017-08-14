@@ -1,0 +1,115 @@
+/* 头部 */
+.header{ /*background-color:#3176B1;*/ background:url(../images/hd_bg.png) repeat-x; height:70px; line-height:70px;}
+.header .logo{ float:left; margin:7px 0 0 15px;}
+.header .hr{ float:right; margin-right:15px; margin-top:15px; color:#FFF; line-height:normal;}
+.header .hr span{ display:block; height:40px; line-height:40px; cursor:pointer;}
+.header .hr span i{ display:inline-block; font-size:16px; vertical-align:middle; margin:-7px 0 0 5px;}
+.header .hr .l-btn-left .l-btn-icon{ font-size:18px; color:#ffffff; display:inline-block; vertical-align:middle; margin-right:5px; margin-top:-9px;height: 20px;}
+.header .hr li i{ font-size:16px; display:inline-block; vertical-align:middle; width:20px; text-align:center; margin: 0 5px 0 0;}
+.header .hr ul{
+	width: 120px;
+	background-color: #FFF;
+	float: right;
+	border: 1px solid #dddddd;
+	border-bottom: none;
+	z-index: 2000;
+	position: absolute;
+	top: 40px;
+	right: 15px;
+	padding: 0;
+	list-style:none;
+}
+.header .hr li{
+	text-align: right;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #dddddd;
+	text-align: left;
+	list-style:none;
+}
+.header .hr li a {
+    color: #000;
+    display: block;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+
+/* 首页主体部分 */
+.home-mt ul{ display:block; margin:8px; height:100px;}
+.home-mt li{ float:left; width:20%;}
+.home-mt li div{ height:84px; margin:7px; padding-left:90px; position:relative;}
+.home-mt li div span{ display:block; width:60px; height:60px; line-height:70px; overflow:hidden; position:absolute; left:10px; top:10px; border-radius:32px; border:2px solid #ffffff; text-align:center;}
+.home-mt li div span i{ font-size:36px; color:#FFF;}
+.home-mt .hm-01 div{ background-color:#F4C046;}
+.home-mt .hm-02 div{ background-color:#F89657;}
+.home-mt .hm-03 div{ background-color:#F5797B;}
+.home-mt .hm-04 div{ background-color:#8770C0;}
+.home-mt .hm-05 div{ background-color:#69BDE1;}
+.home-mt li div h4{ font-size:18px; font-weight:normal; color:#FFF; padding:20px 0 10px 0;}
+.home-mt li div p{ display:block; font-size:14px; color:#FFF;}
+
+.home-main ul{ display:block; margin:8px;}
+.home-main li{ width:50%; float:left;}
+.home-main .home-sb{ margin:7px; border:1px solid #dddddd;}
+.home-main .home-sb .home-title{ height:40px; line-height:40px; border-bottom:1px solid #dddddd; position:relative;}
+.home-main .home-sb .home-title h3{ font-size:16px; font-weight:normal; margin-left:15px;}
+.home-main .home-sb .home-title .home-set{ position:absolute; top:0; right:0;}
+.home-main .home-sb .home-title i{ display:block; text-align:center; width:40px; height:40px; line-height:40px; right:15px; font-size:16px; color:#ccc; cursor:pointer;}
+.home-main .home-sb .home-set{}
+.home-main .home-sb .home-set div{ display:none; position:absolute; top:40px; right:-1px; width:300px; border:1px solid #dddddd; background-color:#FFF; z-index:100;}
+.home-main .home-sb .home-set ul{ width:300px; margin:0; padding:10px 0 0 0;}
+.home-main .home-sb .home-set li{ float:inherit; width:auto; padding:0 10px; height:30px; line-height:30px;}
+.home-main .home-sb .home-set li input{ vertical-align:middle; margin:0 5px 0 0;}
+.home-main .home-sb .home-set div.on{ display:block;}
+.home-main .home-sb .home-set button{ margin:0 0 10px 10px; height:30px; padding:0 15px; background-color:#CCC; border:none; cursor:pointer;}
+.home-main .home-sb .home-cb{ min-width:300px; height:300px; max-width:600px; margin:0 auto; padding:10px;}
+
+/* 閹兼粎鍌ㄩ弽锟� */
+.sb-box{}
+.sb-box ul{ display:block;}
+.sb-box ul:before, .sb-box ul:after{ display:table; content:"";}
+.sb-box ul:after{ clear:both;}
+.sb-box li{ float:left; height:30px; line-height:30px;}
+.sb-box li span{ display:block; float:left;}
+.sb-box li div{ float:left;}
+.sb-box li.fc label, .sb-box li.fr label{ margin-right:20px;}
+.search-form{background-color:#E6E6FA;padding-top: 10px;}
+.search-form .search-title{text-align: right;width: 75px;}
+.search-form input{width: 140px;}
+.search-form select{width: 144px;}
+
+table{table-layout:fixed}
+
+/*登录*/
+.page-login{ position: relative; z-index: 100}
+.page-login .login-bb{ width: 100%; min-width: 1200px; height: 549px; padding-top: 219px; background: url("../images/logo_bg.png") repeat-x;}
+.page-login .login-box{ width: 100%; height: 330px; background: url("../images/logo_bb.png") no-repeat center;}
+.page-login .login-wrap{ width: 1200px; height: 330px; margin: 0 auto; position: relative;}
+.page-login .login-wrap .login-logo{ position: absolute; top: 125px; right: 615px;}
+.page-login .login-wrap .logo-bp{ position: absolute; top: -109px; right: 587px;}
+.page-login .login-wrap .login-form{ display: block; width: 300px; height: 372px; position: absolute; top: -42px; left: 713px; background: url("../images/logo_box.png") no-repeat;}
+.page-login .login-wrap .login-form ul{ display: block; width: 300px; height: 200px; position: absolute; top: 42px; right: 0; padding-top: 130px;}
+.page-login .login-wrap .login-form .ft{ margin-bottom: 31px; text-align: center;}
+.page-login .login-wrap .login-form .ft input{ width: 205px; height: 36px; margin: 0 auto; border: none; background: none; padding-left: 35px; color: #FFF;}
+.page-login .login-wrap .login-form .btn{ text-align: center;}
+.page-login .login-wrap .login-form .btn input{ width: 120px; height: 36px; margin: 0 auto; cursor: pointer; border: none; background: #0069B7; font-size: 16px; color: white; border-radius: 5px;}
+.tbg{ position:absolute; top: 0; left: 0; right: 0; width: 100%; min-width: 1200px; height: 50%; background-color: #0069B7; z-index: 99;}
+.bbg{ position:absolute; bottom: 0; left: 0; right: 0; width: 100%; min-width: 1200px; height: 50%; background-color: #79B0D9; z-index: 99;}
+
+.textarea-numberbar {
+	/* position: absolute;
+	right: 20px; */
+	bottom: 5px;
+	z-index: 1;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.textarea-total-num .textarea-length {
+	font-style: normal;
+	color: red;
+}
+
+
+

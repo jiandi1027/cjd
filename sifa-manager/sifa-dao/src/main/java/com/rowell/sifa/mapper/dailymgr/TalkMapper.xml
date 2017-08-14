@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.dailymgr.TalkMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.dailymgr.Talk">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="TALKOR" jdbcType="VARCHAR" property="talkor" />
+    <result column="PLACE" jdbcType="VARCHAR" property="place" />
+    <result column="TALK_TIME" jdbcType="TIMESTAMP" property="talkTime" />
+    <result column="RECORD" jdbcType="CLOB" property="record" />
+    <result column="DOCUMENT_ID" jdbcType="VARCHAR" property="documentId" />
+    <result column="RECORDER" jdbcType="VARCHAR" property="recorder" />
+    <result column="NOTE" jdbcType="CLOB" property="note" />
+    <result column="FILE_PATH" jdbcType="VARCHAR" property="filePath" />
+    <result column="FILE_PATH_NAME" jdbcType="VARCHAR" property="filePathName" />
+    <result column="TALK_START_TIME" jdbcType="TIMESTAMP" property="talkStartTime" />
+    <result column="TALK_END_TIME" jdbcType="TIMESTAMP" property="talkEndTime" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="IS_FIRST_TALK" jdbcType="VARCHAR" property="isFirstTalk" />
+    <result column="CULPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    <result column="ADDRESS_PRO" jdbcType="VARCHAR" property="addressPro" />
+	<result column="ADDRESS_CITY" jdbcType="VARCHAR" property="addressCity" />
+	<result column="ADDRESS_COUNTRY" jdbcType="VARCHAR" property="addressCountry" />
+	<result column="ADDRESS_STREET" jdbcType="VARCHAR" property="addressStreet" />
+	<result column="ADDRESS_DETAIL" jdbcType="VARCHAR" property="addressDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.NAME, t.PATH, t.CULPRIT_ID, t.TALKOR, t.PLACE, t.TALK_TIME, t.RECORD, t.DOCUMENT_ID, t.RECORDER, 
+    t.NOTE,t.FILE_PATH, t.FILE_PATH_NAME, t.TALK_START_TIME, t.TALK_END_TIME, t.CREATED, t.CREATER, 
+    t.UPDATED, t.UPDATER, t.DEL_FLAG,t.IS_FIRST_TALK,
+		t.ADDRESS_PRO,t.ADDRESS_CITY,t.ADDRESS_COUNTRY,t.ADDRESS_STREET,t.ADDRESS_DETAIL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_TALK t
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_TALK
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.dailymgr.Talk">
+    insert into SF_TALK (ID, NAME, PATH, 
+      CULPRIT_ID, TALKOR, PLACE, 
+      TALK_TIME, RECORD, DOCUMENT_ID, 
+      RECORDER, NOTE, FILE_PATH, 
+      FILE_PATH_NAME, TALK_START_TIME, TALK_END_TIME, 
+      CREATED, CREATER, UPDATED, 
+      UPDATER, DEL_FLAG,IS_FIRST_TALK,
+		ADDRESS_PRO,ADDRESS_CITY,ADDRESS_COUNTRY,ADDRESS_STREET,ADDRESS_DETAIL)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{culpritId,jdbcType=VARCHAR}, #{talkor,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, 
+      #{talkTime,jdbcType=TIMESTAMP}, #{record,jdbcType=CLOB}, #{documentId,jdbcType=VARCHAR}, 
+      #{recorder,jdbcType=VARCHAR}, #{note,jdbcType=CLOB}, #{filePath,jdbcType=VARCHAR}, 
+      #{filePathName,jdbcType=VARCHAR}, #{talkStartTime,jdbcType=TIMESTAMP}, #{talkEndTime,jdbcType=TIMESTAMP}, 
+      #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL},#{isFirstTalk,jdbcType=VARCHAR},
+		#{addressPro,jdbcType=VARCHAR},#{addressCity,jdbcType=VARCHAR},#{addressCountry,jdbcType=VARCHAR},#{addressStreet,jdbcType=VARCHAR},#{addressDetail,jdbcType=VARCHAR}
+		)
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.dailymgr.Talk">
+    insert into SF_TALK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="talkor != null">
+        TALKOR,
+      </if>
+      <if test="place != null">
+        PLACE,
+      </if>
+      <if test="talkTime != null">
+        TALK_TIME,
+      </if>
+      <if test="record != null">
+        RECORD,
+      </if>
+      <if test="documentId != null">
+        DOCUMENT_ID,
+      </if>
+      <if test="recorder != null">
+        RECORDER,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="filePath != null">
+        FILE_PATH,
+      </if>
+      <if test="filePathName != null">
+        FILE_PATH_NAME,
+      </if>
+      <if test="talkStartTime != null">
+        TALK_START_TIME,
+      </if>
+      <if test="talkEndTime != null">
+        TALK_END_TIME,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+       <if test="delFlag != null">
+        IS_FIRST_TALK,
+      </if>
+      <if test="addressPro != null">
+				ADDRESS_PRO,
+			</if>
+			<if test="addressCity != null">
+				ADDRESS_CITY,
+			</if>
+			<if test="addressCountry != null">
+				ADDRESS_COUNTRY,
+			</if>
+			<if test="addressStreet != null">
+				ADDRESS_STREET,
+			</if>
+			<if test="addressDetail != null">
+				ADDRESS_DETAIL,
+			</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="talkor != null">
+        #{talkor,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="talkTime != null">
+        #{talkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record != null">
+        #{record,jdbcType=CLOB},
+      </if>
+      <if test="documentId != null">
+        #{documentId,jdbcType=VARCHAR},
+      </if>
+      <if test="recorder != null">
+        #{recorder,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=CLOB},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="filePathName != null">
+        #{filePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="talkStartTime != null">
+        #{talkStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="talkEndTime != null">
+        #{talkEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="isFirstTalk != null">
+        #{isFirstTalk,jdbcType=VARCHAR},
+      </if>
+			<if test="addressPro != null">
+				#{addressPro,jdbcType=VARCHAR},
+			</if>
+			<if test="addressCity != null">
+				#{addressCity,jdbcType=VARCHAR},
+			</if>
+			<if test="addressCountry != null">
+				#{addressCountry,jdbcType=VARCHAR},
+			</if>
+			<if test="addressStreet != null">
+				#{addressStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="addressDetail != null">
+				#{addressDetail,jdbcType=VARCHAR},
+			</if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.dailymgr.Talk">
+    update SF_TALK
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="talkor != null">
+        TALKOR = #{talkor,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        PLACE = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="talkTime != null">
+        TALK_TIME = #{talkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record != null">
+        RECORD = #{record,jdbcType=CLOB},
+      </if>
+      <if test="documentId != null">
+        DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},
+      </if>
+      <if test="recorder != null">
+        RECORDER = #{recorder,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=CLOB},
+      </if>
+      <if test="filePath != null">
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="filePathName != null">
+        FILE_PATH_NAME = #{filePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="talkStartTime != null">
+        TALK_START_TIME = #{talkStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="talkEndTime != null">
+        TALK_END_TIME = #{talkEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="isFirstTalk != null">
+        IS_FIRST_TALK=#{isFirstTalk,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPro != null">
+				ADDRESS_PRO=#{addressPro,jdbcType=VARCHAR},
+			</if>
+			<if test="addressCity != null">
+				ADDRESS_CITY=#{addressCity,jdbcType=VARCHAR},
+			</if>
+			<if test="addressCountry != null">
+				ADDRESS_COUNTRY=#{addressCountry,jdbcType=VARCHAR},
+			</if>
+			<if test="addressStreet != null">
+				ADDRESS_STREET=#{addressStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="addressDetail != null">
+				ADDRESS_DETAIL=#{addressDetail,jdbcType=VARCHAR},
+			</if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.dailymgr.Talk">
+    update SF_TALK
+    set NAME = #{name,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      TALKOR = #{talkor,jdbcType=VARCHAR},
+      PLACE = #{place,jdbcType=VARCHAR},
+      TALK_TIME = #{talkTime,jdbcType=TIMESTAMP},
+      RECORD = #{record,jdbcType=CLOB},
+      DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},
+      RECORDER = #{recorder,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=CLOB},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      FILE_PATH_NAME = #{filePathName,jdbcType=VARCHAR},
+      TALK_START_TIME = #{talkStartTime,jdbcType=TIMESTAMP},
+      TALK_END_TIME = #{talkEndTime,jdbcType=TIMESTAMP},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      IS_FIRST_TALK=#{isFirstTalk,jdbcType=VARCHAR},
+		ADDRESS_PRO = #{addressPro,jdbcType=VARCHAR},
+		ADDRESS_CITY = #{addressCity,jdbcType=VARCHAR},
+		ADDRESS_COUNTRY = #{addressCountry,jdbcType=VARCHAR},
+		ADDRESS_STREET = #{addressStreet,jdbcType=VARCHAR},
+		ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.dailymgr.Talk" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    c.name as culprit_name,g.name as group_name
+    from SF_TALK t left join SF_CULPRIT c on (t.CULPRIT_ID=c.id) left join sys_group g on (c.group_id=g.id)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="name != null and name!=''">
+      AND t.NAME = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="path != null and path!=''">
+      AND t.PATH = #{path,jdbcType=VARCHAR}
+    </if>
+    <if test="culpritId != null and culpritId!=''">
+      AND t.CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="talkor != null and talkor!=''">
+      AND t.TALKOR = #{talkor,jdbcType=VARCHAR}
+    </if>
+    <if test="place != null and place!=''">
+      AND t.PLACE = #{place,jdbcType=VARCHAR}
+    </if>
+    <if test="talkTime != null">
+      AND t.TALK_TIME = #{talkTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="record != null and record!=''">
+      AND t.RECORD = #{record,jdbcType=CLOB}
+    </if>
+    <if test="documentId != null and documentId!=''">
+      AND t.DOCUMENT_ID = #{documentId,jdbcType=VARCHAR}
+    </if>
+    <if test="recorder != null and recorder!=''">
+      AND t.RECORDER = #{recorder,jdbcType=VARCHAR}
+    </if>
+    <if test="note != null and note!=''">
+      AND t.NOTE = #{note,jdbcType=CLOB}
+    </if>
+    <if test="filePath != null and filePath!=''">
+      AND t.FILE_PATH = #{filePath,jdbcType=VARCHAR}
+    </if>
+    <if test="filePathName != null and filePathName!=''">
+      AND t.FILE_PATH_NAME = #{filePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="talkStartTime != null">
+      AND t.TALK_START_TIME = #{talkStartTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="talkEndTime != null">
+      AND t.TALK_END_TIME = #{talkEndTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="created != null">
+      AND t.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="isFirstTalk != null and isFirstTalk!=''">
+       AND t.IS_FIRST_TALK=#{isFirstTalk,jdbcType=VARCHAR}
+     </if>
+        <if test="culpritName != null and culpritName!= ''">
+       AND c.name = #{culpritName,jdbcType=VARCHAR}
+     </if>
+      <if test="groupId != null and groupId!=''">
+     <![CDATA[  
+     	 AND  exists ( select t3.id from (select * from sys_group start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) t3 where c.GROUP_ID=t3.id)
+     ]]> 
+    </if>
+      <if test="searchStartDate != null">
+       <![CDATA[  
+      AND TALK_START_TIME >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND TALK_START_TIME <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+  </sql>
+</mapper>

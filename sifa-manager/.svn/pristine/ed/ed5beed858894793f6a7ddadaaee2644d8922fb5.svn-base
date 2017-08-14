@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.sys.IfaceMachineMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.sys.IfaceMachine">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="MAC_SN" jdbcType="VARCHAR" property="macSn" />
+    <result column="MAC_NAME" jdbcType="VARCHAR" property="macName" />
+    <result column="MAC_NUMBER" jdbcType="VARCHAR" property="macNumber" />
+    <result column="STAMP" jdbcType="VARCHAR" property="stamp" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="OP_STAMP" jdbcType="VARCHAR" property="opStamp" />
+    <result column="PHOTO_STAMP" jdbcType="VARCHAR" property="photoStamp" />
+    <result column="ERROR_DELAY" jdbcType="VARCHAR" property="errorDelay" />
+    <result column="DELAY" jdbcType="VARCHAR" property="delay" />
+    <result column="TRANS_TIMES" jdbcType="VARCHAR" property="transTimes" />
+    <result column="TRANS_INTERVAL" jdbcType="VARCHAR" property="transInterval" />
+    <result column="TRANS_FLAG" jdbcType="VARCHAR" property="transFlag" />
+    <result column="REAL_TIME" jdbcType="VARCHAR" property="realTime" />
+    <result column="ENCRYPT" jdbcType="VARCHAR" property="encrypt" />
+    <result column="SERVER_VER" jdbcType="VARCHAR" property="serverVer" />
+    <result column="TABLE_NAME_STAMP" jdbcType="VARCHAR" property="tableNameStamp" />
+    <result column="ATT_COUNT" jdbcType="VARCHAR" property="attCount" />
+    <result column="USER_COUNT" jdbcType="VARCHAR" property="userCount" />
+    <result column="IP_ADDRESS" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="MAC_VER" jdbcType="VARCHAR" property="macVer" />
+    <result column="MAC_SOFT_NUM" jdbcType="VARCHAR" property="macSoftNum" />
+    <result column="MAX_USER_COUNT" jdbcType="VARCHAR" property="maxUserCount" />
+    <result column="TMP_COUNT" jdbcType="VARCHAR" property="tmpCount" />
+    <result column="NEW_TIME" jdbcType="TIMESTAMP" property="newTime" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.MAC_SN, t.MAC_NAME, t.MAC_NUMBER, t.STAMP, t.GROUP_ID, t.OP_STAMP, t.PHOTO_STAMP, t.ERROR_DELAY, 
+    t.DELAY, t.TRANS_TIMES, t.TRANS_INTERVAL, t.TRANS_FLAG, t.REAL_TIME, t.ENCRYPT, t.SERVER_VER, t.TABLE_NAME_STAMP, 
+    t.ATT_COUNT, t.USER_COUNT, t.IP_ADDRESS, t.MAC_VER, t.MAC_SOFT_NUM, t.MAX_USER_COUNT, t.TMP_COUNT, t.NEW_TIME, 
+    t.CREATED, t.CREATER, t.UPDATED, t.UPDATER, t.DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />, g.name as group_name
+    from SYS_IFACE_MACHINE t left join sys_group g on g.id = t.group_id
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SYS_IFACE_MACHINE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.sys.IfaceMachine">
+    insert into SYS_IFACE_MACHINE (ID, MAC_SN, MAC_NAME, 
+      MAC_NUMBER, STAMP, GROUP_ID, 
+      OP_STAMP, PHOTO_STAMP, ERROR_DELAY, 
+      DELAY, TRANS_TIMES, TRANS_INTERVAL, 
+      TRANS_FLAG, REAL_TIME, ENCRYPT, 
+      SERVER_VER, TABLE_NAME_STAMP, ATT_COUNT, 
+      USER_COUNT, IP_ADDRESS, MAC_VER, 
+      MAC_SOFT_NUM, MAX_USER_COUNT, TMP_COUNT, 
+      NEW_TIME, CREATED, CREATER, 
+      UPDATED, UPDATER, DEL_FLAG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{macSn,jdbcType=VARCHAR}, #{macName,jdbcType=VARCHAR}, 
+      #{macNumber,jdbcType=VARCHAR}, #{stamp,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, 
+      #{opStamp,jdbcType=VARCHAR}, #{photoStamp,jdbcType=VARCHAR}, #{errorDelay,jdbcType=VARCHAR}, 
+      #{delay,jdbcType=VARCHAR}, #{transTimes,jdbcType=VARCHAR}, #{transInterval,jdbcType=VARCHAR}, 
+      #{transFlag,jdbcType=VARCHAR}, #{realTime,jdbcType=VARCHAR}, #{encrypt,jdbcType=VARCHAR}, 
+      #{serverVer,jdbcType=VARCHAR}, #{tableNameStamp,jdbcType=VARCHAR}, #{attCount,jdbcType=VARCHAR}, 
+      #{userCount,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, #{macVer,jdbcType=VARCHAR}, 
+      #{macSoftNum,jdbcType=VARCHAR}, #{maxUserCount,jdbcType=VARCHAR}, #{tmpCount,jdbcType=VARCHAR}, 
+      #{newTime,jdbcType=TIMESTAMP}, #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+      #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.sys.IfaceMachine">
+    insert into SYS_IFACE_MACHINE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="macSn != null">
+        MAC_SN,
+      </if>
+      <if test="macName != null">
+        MAC_NAME,
+      </if>
+      <if test="macNumber != null">
+        MAC_NUMBER,
+      </if>
+      <if test="stamp != null">
+        STAMP,
+      </if>
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="opStamp != null">
+        OP_STAMP,
+      </if>
+      <if test="photoStamp != null">
+        PHOTO_STAMP,
+      </if>
+      <if test="errorDelay != null">
+        ERROR_DELAY,
+      </if>
+      <if test="delay != null">
+        DELAY,
+      </if>
+      <if test="transTimes != null">
+        TRANS_TIMES,
+      </if>
+      <if test="transInterval != null">
+        TRANS_INTERVAL,
+      </if>
+      <if test="transFlag != null">
+        TRANS_FLAG,
+      </if>
+      <if test="realTime != null">
+        REAL_TIME,
+      </if>
+      <if test="encrypt != null">
+        ENCRYPT,
+      </if>
+      <if test="serverVer != null">
+        SERVER_VER,
+      </if>
+      <if test="tableNameStamp != null">
+        TABLE_NAME_STAMP,
+      </if>
+      <if test="attCount != null">
+        ATT_COUNT,
+      </if>
+      <if test="userCount != null">
+        USER_COUNT,
+      </if>
+      <if test="ipAddress != null">
+        IP_ADDRESS,
+      </if>
+      <if test="macVer != null">
+        MAC_VER,
+      </if>
+      <if test="macSoftNum != null">
+        MAC_SOFT_NUM,
+      </if>
+      <if test="maxUserCount != null">
+        MAX_USER_COUNT,
+      </if>
+      <if test="tmpCount != null">
+        TMP_COUNT,
+      </if>
+      <if test="newTime != null">
+        NEW_TIME,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="macSn != null">
+        #{macSn,jdbcType=VARCHAR},
+      </if>
+      <if test="macName != null">
+        #{macName,jdbcType=VARCHAR},
+      </if>
+      <if test="macNumber != null">
+        #{macNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="stamp != null">
+        #{stamp,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStamp != null">
+        #{opStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="photoStamp != null">
+        #{photoStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDelay != null">
+        #{errorDelay,jdbcType=VARCHAR},
+      </if>
+      <if test="delay != null">
+        #{delay,jdbcType=VARCHAR},
+      </if>
+      <if test="transTimes != null">
+        #{transTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="transInterval != null">
+        #{transInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="transFlag != null">
+        #{transFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="realTime != null">
+        #{realTime,jdbcType=VARCHAR},
+      </if>
+      <if test="encrypt != null">
+        #{encrypt,jdbcType=VARCHAR},
+      </if>
+      <if test="serverVer != null">
+        #{serverVer,jdbcType=VARCHAR},
+      </if>
+      <if test="tableNameStamp != null">
+        #{tableNameStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="attCount != null">
+        #{attCount,jdbcType=VARCHAR},
+      </if>
+      <if test="userCount != null">
+        #{userCount,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="macVer != null">
+        #{macVer,jdbcType=VARCHAR},
+      </if>
+      <if test="macSoftNum != null">
+        #{macSoftNum,jdbcType=VARCHAR},
+      </if>
+      <if test="maxUserCount != null">
+        #{maxUserCount,jdbcType=VARCHAR},
+      </if>
+      <if test="tmpCount != null">
+        #{tmpCount,jdbcType=VARCHAR},
+      </if>
+      <if test="newTime != null">
+        #{newTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.sys.IfaceMachine">
+    update SYS_IFACE_MACHINE
+    <set>
+      <if test="macSn != null">
+        MAC_SN = #{macSn,jdbcType=VARCHAR},
+      </if>
+      <if test="macName != null">
+        MAC_NAME = #{macName,jdbcType=VARCHAR},
+      </if>
+      <if test="macNumber != null">
+        MAC_NUMBER = #{macNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="stamp != null">
+        STAMP = #{stamp,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="opStamp != null">
+        OP_STAMP = #{opStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="photoStamp != null">
+        PHOTO_STAMP = #{photoStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDelay != null">
+        ERROR_DELAY = #{errorDelay,jdbcType=VARCHAR},
+      </if>
+      <if test="delay != null">
+        DELAY = #{delay,jdbcType=VARCHAR},
+      </if>
+      <if test="transTimes != null">
+        TRANS_TIMES = #{transTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="transInterval != null">
+        TRANS_INTERVAL = #{transInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="transFlag != null">
+        TRANS_FLAG = #{transFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="realTime != null">
+        REAL_TIME = #{realTime,jdbcType=VARCHAR},
+      </if>
+      <if test="encrypt != null">
+        ENCRYPT = #{encrypt,jdbcType=VARCHAR},
+      </if>
+      <if test="serverVer != null">
+        SERVER_VER = #{serverVer,jdbcType=VARCHAR},
+      </if>
+      <if test="tableNameStamp != null">
+        TABLE_NAME_STAMP = #{tableNameStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="attCount != null">
+        ATT_COUNT = #{attCount,jdbcType=VARCHAR},
+      </if>
+      <if test="userCount != null">
+        USER_COUNT = #{userCount,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="macVer != null">
+        MAC_VER = #{macVer,jdbcType=VARCHAR},
+      </if>
+      <if test="macSoftNum != null">
+        MAC_SOFT_NUM = #{macSoftNum,jdbcType=VARCHAR},
+      </if>
+      <if test="maxUserCount != null">
+        MAX_USER_COUNT = #{maxUserCount,jdbcType=VARCHAR},
+      </if>
+      <if test="tmpCount != null">
+        TMP_COUNT = #{tmpCount,jdbcType=VARCHAR},
+      </if>
+      <if test="newTime != null">
+        NEW_TIME = #{newTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.sys.IfaceMachine">
+    update SYS_IFACE_MACHINE
+    set MAC_SN = #{macSn,jdbcType=VARCHAR},
+      MAC_NAME = #{macName,jdbcType=VARCHAR},
+      MAC_NUMBER = #{macNumber,jdbcType=VARCHAR},
+      STAMP = #{stamp,jdbcType=VARCHAR},
+      GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      OP_STAMP = #{opStamp,jdbcType=VARCHAR},
+      PHOTO_STAMP = #{photoStamp,jdbcType=VARCHAR},
+      ERROR_DELAY = #{errorDelay,jdbcType=VARCHAR},
+      DELAY = #{delay,jdbcType=VARCHAR},
+      TRANS_TIMES = #{transTimes,jdbcType=VARCHAR},
+      TRANS_INTERVAL = #{transInterval,jdbcType=VARCHAR},
+      TRANS_FLAG = #{transFlag,jdbcType=VARCHAR},
+      REAL_TIME = #{realTime,jdbcType=VARCHAR},
+      ENCRYPT = #{encrypt,jdbcType=VARCHAR},
+      SERVER_VER = #{serverVer,jdbcType=VARCHAR},
+      TABLE_NAME_STAMP = #{tableNameStamp,jdbcType=VARCHAR},
+      ATT_COUNT = #{attCount,jdbcType=VARCHAR},
+      USER_COUNT = #{userCount,jdbcType=VARCHAR},
+      IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR},
+      MAC_VER = #{macVer,jdbcType=VARCHAR},
+      MAC_SOFT_NUM = #{macSoftNum,jdbcType=VARCHAR},
+      MAX_USER_COUNT = #{maxUserCount,jdbcType=VARCHAR},
+      TMP_COUNT = #{tmpCount,jdbcType=VARCHAR},
+      NEW_TIME = #{newTime,jdbcType=TIMESTAMP},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.sys.IfaceMachine" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />, g.name as group_name
+    from SYS_IFACE_MACHINE t left join sys_group g on g.id = t.group_id
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="groupName != null and groupName !=''">
+      AND g.group_name = #{groupName,jdbcType=VARCHAR}
+    </if>
+    <if test="searchStartDate != null">
+      AND t.newTime <![CDATA[ >= ]]> #{searchStartDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="searchEndDate != null">
+      AND t.newTime <![CDATA[ <= ]]> #{searchEndDate,jdbcType=TIMESTAMP}
+    </if>
+    
+    <if test="macSn != null and macSn!=''">
+      AND t.MAC_SN = #{macSn,jdbcType=VARCHAR}
+    </if>
+    <if test="macName != null and macName!=''">
+      AND t.MAC_NAME = #{macName,jdbcType=VARCHAR}
+    </if>
+    <if test="macNumber != null and macNumber!=''">
+      AND t.MAC_NUMBER = #{macNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="stamp != null and stamp!=''">
+      AND t.STAMP = #{stamp,jdbcType=VARCHAR}
+    </if>
+    <if test="groupId != null and groupId!=''">
+       <![CDATA[  
+     	 AND  exists ( select t3.id from (select * from sys_group start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) t3 where t.GROUP_ID=t3.id)
+     	]]> 
+    </if>
+    <if test="opStamp != null and opStamp!=''">
+      AND t.OP_STAMP = #{opStamp,jdbcType=VARCHAR}
+    </if>
+    <if test="photoStamp != null and photoStamp!=''">
+      AND t.PHOTO_STAMP = #{photoStamp,jdbcType=VARCHAR}
+    </if>
+    <if test="errorDelay != null and errorDelay!=''">
+      AND t.ERROR_DELAY = #{errorDelay,jdbcType=VARCHAR}
+    </if>
+    <if test="delay != null and delay!=''">
+      AND t.DELAY = #{delay,jdbcType=VARCHAR}
+    </if>
+    <if test="transTimes != null and transTimes!=''">
+      AND t.TRANS_TIMES = #{transTimes,jdbcType=VARCHAR}
+    </if>
+    <if test="transInterval != null and transInterval!=''">
+      AND t.TRANS_INTERVAL = #{transInterval,jdbcType=VARCHAR}
+    </if>
+    <if test="transFlag != null and transFlag!=''">
+      AND t.TRANS_FLAG = #{transFlag,jdbcType=VARCHAR}
+    </if>
+    <if test="realTime != null and realTime!=''">
+      AND t.REAL_TIME = #{realTime,jdbcType=VARCHAR}
+    </if>
+    <if test="encrypt != null and encrypt!=''">
+      AND t.ENCRYPT = #{encrypt,jdbcType=VARCHAR}
+    </if>
+    <if test="serverVer != null and serverVer!=''">
+      AND t.SERVER_VER = #{serverVer,jdbcType=VARCHAR}
+    </if>
+    <if test="tableNameStamp != null and tableNameStamp!=''">
+      AND t.TABLE_NAME_STAMP = #{tableNameStamp,jdbcType=VARCHAR}
+    </if>
+    <if test="attCount != null and attCount!=''">
+      AND t.ATT_COUNT = #{attCount,jdbcType=VARCHAR}
+    </if>
+    <if test="userCount != null and userCount!=''">
+      AND t.USER_COUNT = #{userCount,jdbcType=VARCHAR}
+    </if>
+    <if test="ipAddress != null and ipAddress!=''">
+      AND t.IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR}
+    </if>
+    <if test="macVer != null and macVer!=''">
+      AND t.MAC_VER = #{macVer,jdbcType=VARCHAR}
+    </if>
+    <if test="macSoftNum != null and macSoftNum!=''">
+      AND t.MAC_SOFT_NUM = #{macSoftNum,jdbcType=VARCHAR}
+    </if>
+    <if test="maxUserCount != null and maxUserCount!=''">
+      AND t.MAX_USER_COUNT = #{maxUserCount,jdbcType=VARCHAR}
+    </if>
+    <if test="tmpCount != null and tmpCount!=''">
+      AND t.TMP_COUNT = #{tmpCount,jdbcType=VARCHAR}
+    </if>
+    <if test="newTime != null">
+      AND t.NEW_TIME = #{newTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="created != null">
+      AND t.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+  </sql>
+</mapper>

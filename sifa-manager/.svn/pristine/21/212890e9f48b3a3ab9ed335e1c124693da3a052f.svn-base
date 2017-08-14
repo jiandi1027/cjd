@@ -1,0 +1,2063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.investigate.InvestigateMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.investigate.Investigate">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ENTRUST_UNIT" jdbcType="VARCHAR" property="entrustUnit" />
+    <result column="DIC_ENTRUST_UNIT_TYPE_KEY" jdbcType="VARCHAR" property="dicEntrustUnitTypeKey" />
+    <result column="ACCEPTED_ENTRUST_TIME" jdbcType="TIMESTAMP" property="acceptedEntrustTime" />
+    <result column="BEG_TIME" jdbcType="TIMESTAMP" property="begTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="SFS_GROUP_ID" jdbcType="VARCHAR" property="sfsGroupId" />
+    <result column="SFS_GROUP_NAME" jdbcType="VARCHAR" property="sfsGroupName" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ALIAS" jdbcType="VARCHAR" property="alias" />
+    <result column="OLD_NAME" jdbcType="VARCHAR" property="oldName" />
+    <result column="ORIGIN" jdbcType="VARCHAR" property="origin" />
+    <result column="NATION" jdbcType="VARCHAR" property="nation" />
+    <result column="IDENTIFICATION" jdbcType="VARCHAR" property="identification" />
+    <result column="BORN_DATE" jdbcType="TIMESTAMP" property="bornDate" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="CONTACT_PHONE" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="JOB" jdbcType="VARCHAR" property="job" />
+    <result column="ENTRUST_NO" jdbcType="VARCHAR" property="entrustNo" />
+    <result column="WORK_UNITS" jdbcType="VARCHAR" property="workUnits" />
+    <result column="CRIME" jdbcType="VARCHAR" property="crime" />
+    <result column="PLACE" jdbcType="VARCHAR" property="place" />
+    <result column="INVESTIGATE_MATTERS" jdbcType="VARCHAR" property="investigateMatters" />
+    <result column="ADOPTION" jdbcType="VARCHAR" property="adoption" />
+    <result column="CRIME_PERSON_NAME" jdbcType="VARCHAR" property="crimePersonName" />
+    <result column="ADJUDGE_PERIOD" jdbcType="VARCHAR" property="adjudgePeriod" />
+    <result column="ADJUDGE_START_TIME" jdbcType="TIMESTAMP" property="adjudgeStartTime" />
+    <result column="ADJUDGE_END_TIME" jdbcType="TIMESTAMP" property="adjudgeEndTime" />
+    <result column="ADJUDGE_ADDED" jdbcType="VARCHAR" property="adjudgeAdded" />
+    <result column="ADJUDGE_ORG" jdbcType="VARCHAR" property="adjudgeOrg" />
+    <result column="ADJUDGE_DATE" jdbcType="VARCHAR" property="adjudgeDate" />
+    <result column="RELATION_ID" jdbcType="VARCHAR" property="relationId" />
+    <result column="DIC_APPLY_TYPE_KEY" jdbcType="VARCHAR" property="dicApplyTypeKey" />
+    <result column="MOBILE_NUMBER" jdbcType="VARCHAR" property="mobileNumber" />
+    <result column="HABITUAL_RESIDENCE" jdbcType="VARCHAR" property="habitualResidence" />
+    <result column="CRIME_REASON" jdbcType="VARCHAR" property="crimeReason" />
+    <result column="FAMILY_SITUATION" jdbcType="VARCHAR" property="familySituation" />
+    <result column="ECONOMIC_STATUS" jdbcType="VARCHAR" property="economicStatus" />
+    <result column="MINOR_OTHER_CASES" jdbcType="VARCHAR" property="minorOtherCases" />
+    <result column="PHYSI_CONDITIONS" jdbcType="VARCHAR" property="physiConditions" />
+    <result column="PSYCH_FEATURE" jdbcType="VARCHAR" property="psychFeature" />
+    <result column="METTLE_TYPE" jdbcType="VARCHAR" property="mettleType" />
+    <result column="HOBBIES" jdbcType="VARCHAR" property="hobbies" />
+    <result column="DISPLAY" jdbcType="VARCHAR" property="display" />
+    <result column="AMATEUR_LIFE" jdbcType="VARCHAR" property="amateurLife" />
+    <result column="NEIGHBORHOOD_RELATIONS" jdbcType="VARCHAR" property="neighborhoodRelations" />
+    <result column="SOCIAL_INTERACTION" jdbcType="VARCHAR" property="socialInteraction" />
+    <result column="BAD_FACT" jdbcType="VARCHAR" property="badFact" />
+    <result column="CRIME_ACQUAINT" jdbcType="VARCHAR" property="crimeAcquaint" />
+    <result column="REPENTANT_ATTITUDE" jdbcType="VARCHAR" property="repentantAttitude" />
+    <result column="FINE_FULFILL_ABILITY" jdbcType="VARCHAR" property="fineFulfillAbility" />
+    <result column="REPARATION_FULFILL_ABILITY" jdbcType="VARCHAR" property="reparationFulfillAbility" />
+    <result column="VICTIM_ATTITUDE" jdbcType="VARCHAR" property="victimAttitude" />
+    <result column="PUBLIC_ATTITUDE" jdbcType="VARCHAR" property="publicAttitude" />
+    <result column="FAMILY_ATTITUDE" jdbcType="VARCHAR" property="familyAttitude" />
+    <result column="LIFE_ENVIRONMENT" jdbcType="VARCHAR" property="lifeEnvironment" />
+    <result column="BASIC_VIEWS" jdbcType="VARCHAR" property="basicViews" />
+    <result column="BASIC_VIEW" jdbcType="CLOB" property="basicView" />
+    <result column="POLICE_VIEWS" jdbcType="VARCHAR" property="policeViews" />
+    <result column="POLICE_VIEW" jdbcType="CLOB" property="policeView" />
+    <result column="PRE_RECORD" jdbcType="VARCHAR" property="preRecord" />
+    <result column="COUNTY_VIEWS" jdbcType="VARCHAR" property="countyViews" />
+    <result column="WTDCH_PATH_NAME" jdbcType="VARCHAR" property="wtdchPathName" />
+    <result column="ENTRUST_TYPE_ID" jdbcType="VARCHAR" property="entrustTypeId" />
+    <result column="DIC_SEX_KEY" jdbcType="VARCHAR" property="dicSexKey" />
+    <result column="INVESTIGATOR1" jdbcType="VARCHAR" property="investigator1" />
+    <result column="INVESTIGATOR_ID1" jdbcType="VARCHAR" property="investigatorId1" />
+    <result column="INVESTIGATOR2" jdbcType="VARCHAR" property="investigator2" />
+    <result column="INVESTIGATOR_ID2" jdbcType="VARCHAR" property="investigatorId2" />
+    <result column="ASSISTOR1" jdbcType="VARCHAR" property="assistor1" />
+    <result column="ASSISTOR_ID1" jdbcType="VARCHAR" property="assistorId1" />
+    <result column="ASSISTOR2" jdbcType="VARCHAR" property="assistor2" />
+    <result column="ASSISTOR_ID2" jdbcType="VARCHAR" property="assistorId2" />
+    <result column="POSITION1" jdbcType="VARCHAR" property="position1" />
+    <result column="POSITION2" jdbcType="VARCHAR" property="position2" />
+    <result column="POSITION3" jdbcType="VARCHAR" property="position3" />
+    <result column="POSITION4" jdbcType="VARCHAR" property="position4" />
+    <result column="PER_ACCOUNTS" jdbcType="VARCHAR" property="perAccounts" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="ACCOUNT_ID" jdbcType="VARCHAR" property="accountId" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="PRE_START_TIME" jdbcType="TIMESTAMP" property="preStartTime" />
+    <result column="LOCK_TIME" jdbcType="TIMESTAMP" property="lockTime" />
+    <result column="PRE_END_TIME" jdbcType="TIMESTAMP" property="preEndTime" />
+    <result column="COUNT" jdbcType="VARCHAR" property="count" />
+    <result column="APPLY_UN_LOCK" jdbcType="DECIMAL" property="applyUnLock" />
+    <result column="FLAG" jdbcType="DECIMAL" property="flag" />
+    <result column="SAVE_RECORD" jdbcType="DECIMAL" property="saveRecord" />
+    <result column="WRIT_NUM" jdbcType="VARCHAR" property="writNum" />
+    <result column="SITUATION" jdbcType="CLOB" property="situation" />
+    <result column="DIC_EVALUE_VIEW_KEY" jdbcType="VARCHAR" property="dicEvalueViewKey" />
+    <result column="DRAFT_PEOPLE" jdbcType="VARCHAR" property="draftPeople" />
+    <result column="RELEVANT_NUMBER" jdbcType="VARCHAR" property="relevantNumber" />
+    <result column="HAND_ON" jdbcType="DECIMAL" property="handOn" />
+    <result column="DIC_RESUDENCE_KEY" jdbcType="VARCHAR" property="dicResudenceKey" />
+    <result column="REG_RESUDENCE" jdbcType="VARCHAR" property="regResudence" />
+    <result column="DIC_CHECK_KEY" jdbcType="VARCHAR" property="dicCheckKey" />
+    <result column="OPRATORS" jdbcType="VARCHAR" property="oprators" />
+    <result column="RECOMMEND_STATUS" jdbcType="VARCHAR" property="recommendStatus" />
+    <result column="EVALUE_VIEWS_BAK" jdbcType="VARCHAR" property="evalueViewsBak" />
+    <result column="EVALUE_VIEWS" jdbcType="CLOB" property="evalueViews" />
+    <result column="WTDCH_PATH_BAK" jdbcType="VARCHAR" property="wtdchPathBak" />
+    <result column="WTDCH_PATH" jdbcType="CLOB" property="wtdchPath" />
+    <result column="POLICE_VIEWS_PATH_BAK" jdbcType="VARCHAR" property="policeViewsPathBak" />
+    <result column="POLICE_VIEWS_PATH" jdbcType="CLOB" property="policeViewsPath" />
+    <result column="PRE_RECORD_PATH_BAK" jdbcType="VARCHAR" property="preRecordPathBak" />
+    <result column="PRE_RECORD_PATH" jdbcType="CLOB" property="preRecordPath" />
+    <result column="BASIC_VIEWS_PATH_BAK" jdbcType="VARCHAR" property="basicViewsPathBak" />
+    <result column="BASIC_VIEWS_PATH" jdbcType="CLOB" property="basicViewsPath" />
+    <result column="EMAIL_NO" jdbcType="VARCHAR" property="emailNo" />
+    <result column="EMAIL_PERSON" jdbcType="VARCHAR" property="emailPerson" />
+    <result column="EMAIL_NAME" jdbcType="VARCHAR" property="emailName" />
+    <result column="CITY_FACTION_QUALITY_GOAL" jdbcType="FLOAT" property="cityFactionQualityGoal" />
+    <result column="XFG_EDIT_REASON" jdbcType="VARCHAR" property="xfgEditReason" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="REG_RESIDENCE_PRO_ID" jdbcType="VARCHAR" property="regResidenceProId" />
+    <result column="REG_RESIDENCE_CITY_ID" jdbcType="VARCHAR" property="regResidenceCityId" />
+    <result column="REG_RESIDENCE_COUNTRY_ID" jdbcType="VARCHAR" property="regResidenceCountryId" />
+    <result column="REG_RESIDENCE_STREET" jdbcType="VARCHAR" property="regResidenceStreet" />
+    <result column="REG_RESIDENCE_DETAIL" jdbcType="VARCHAR" property="regResidenceDetail" />
+    <result column="HABITUAL_RESIDENCE_PRO_ID" jdbcType="VARCHAR" property="habitualResidenceProId" />
+    <result column="HABITUAL_RESIDENCE_CITY_ID" jdbcType="VARCHAR" property="habitualResidenceCityId" />
+    <result column="HABITUAL_RESIDENCE_COUNTRY_ID" jdbcType="VARCHAR" property="habitualResidenceCountryId" />
+    <result column="HABITUAL_RESIDENCE_STREET" jdbcType="VARCHAR" property="habitualResidenceStreet" />
+    <result column="HABITUAL_RESIDENCE_DETAIL" jdbcType="VARCHAR" property="habitualResidenceDetail" />
+    <result column="origin_PRO_ID" jdbcType="VARCHAR" property="originProId" />
+    <result column="origin_CITY_ID" jdbcType="VARCHAR" property="originCityId" />
+    <result column="origin_COUNTRY_ID" jdbcType="VARCHAR" property="originCountryId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.ENTRUST_UNIT, t.DIC_ENTRUST_UNIT_TYPE_KEY, t.ACCEPTED_ENTRUST_TIME, t.BEG_TIME, t.END_TIME, t.
+    GROUP_ID, t.SFS_GROUP_ID, t.SFS_GROUP_NAME, t.NAME, t.ALIAS, t.OLD_NAME, t.ORIGIN, t.NATION, t.IDENTIFICATION, 
+    t.BORN_DATE, t.ADDRESS, t.CONTACT_PHONE, t.JOB, t.ENTRUST_NO, t.WORK_UNITS, t.CRIME, t.PLACE, t.INVESTIGATE_MATTERS, t.
+    ADOPTION, t.CRIME_PERSON_NAME, t.ADJUDGE_PERIOD, t.ADJUDGE_START_TIME, t.ADJUDGE_END_TIME, t.
+    ADJUDGE_ADDED, t.ADJUDGE_ORG, t.ADJUDGE_DATE, t.RELATION_ID, t.DIC_APPLY_TYPE_KEY, t.MOBILE_NUMBER, t.
+    HABITUAL_RESIDENCE, t.CRIME_REASON, t.FAMILY_SITUATION, t.ECONOMIC_STATUS, t.MINOR_OTHER_CASES, t.
+    PHYSI_CONDITIONS, t.PSYCH_FEATURE, t.METTLE_TYPE, t.HOBBIES, t.DISPLAY, t.AMATEUR_LIFE, t.NEIGHBORHOOD_RELATIONS, t.
+    SOCIAL_INTERACTION, t.BAD_FACT, t.CRIME_ACQUAINT, t.REPENTANT_ATTITUDE, t.FINE_FULFILL_ABILITY, t.
+    REPARATION_FULFILL_ABILITY, t.VICTIM_ATTITUDE, t.PUBLIC_ATTITUDE, t.FAMILY_ATTITUDE, t.LIFE_ENVIRONMENT, t.
+    BASIC_VIEWS, t.BASIC_VIEW, t.POLICE_VIEWS, t.POLICE_VIEW, t.PRE_RECORD, t.COUNTY_VIEWS, t.WTDCH_PATH_NAME, t.
+    ENTRUST_TYPE_ID, t.DIC_SEX_KEY, t.INVESTIGATOR1, t.INVESTIGATOR_ID1, t.INVESTIGATOR2, t.INVESTIGATOR_ID2, t.
+    ASSISTOR1, t.ASSISTOR_ID1, t.ASSISTOR2, t.ASSISTOR_ID2, t.POSITION1, t.POSITION2, t.POSITION3, t.
+    POSITION4, t.PER_ACCOUNTS, t.CREATED_TIME, t.MODIFIED_TIME, t.ACCOUNT_ID, t.PATH, t.PRE_START_TIME, t.
+    LOCK_TIME, t.PRE_END_TIME, t.COUNT, t.APPLY_UN_LOCK, t.FLAG, t.SAVE_RECORD, t.WRIT_NUM, t.SITUATION, t.
+    DIC_EVALUE_VIEW_KEY, t.DRAFT_PEOPLE, t.RELEVANT_NUMBER, t.HAND_ON, t.DIC_RESUDENCE_KEY, t.REG_RESUDENCE, t.
+    DIC_CHECK_KEY, t.OPRATORS, t.RECOMMEND_STATUS, t.EVALUE_VIEWS_BAK, t.EVALUE_VIEWS, t.WTDCH_PATH_BAK, t.
+    WTDCH_PATH, t.POLICE_VIEWS_PATH_BAK, t.POLICE_VIEWS_PATH, t.PRE_RECORD_PATH_BAK, t.PRE_RECORD_PATH, t.
+    BASIC_VIEWS_PATH_BAK, t.BASIC_VIEWS_PATH, t.EMAIL_NO, t.EMAIL_PERSON, t.EMAIL_NAME, t.CITY_FACTION_QUALITY_GOAL, t.
+    XFG_EDIT_REASON, t.CREATED, t.CREATER, t.UPDATED, t.UPDATER, t.DEL_FLAG,PROCESS_INSTANCE_ID,t.REG_RESIDENCE_PRO_ID,
+    t.REG_RESIDENCE_CITY_ID,t.REG_RESIDENCE_COUNTRY_ID,t.REG_RESIDENCE_STREET,t.REG_RESIDENCE_DETAIL,t.HABITUAL_RESIDENCE_PRO_ID,
+    t.HABITUAL_RESIDENCE_CITY_ID,t.HABITUAL_RESIDENCE_COUNTRY_ID,t.HABITUAL_RESIDENCE_STREET,t.HABITUAL_RESIDENCE_DETAIL,
+    t.origin_PRO_ID,t.origin_CITY_ID,t.origin_COUNTRY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" /> 
+    from SF_INVESTIGATE t 
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_INVESTIGATE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.investigate.Investigate">
+    insert into SF_INVESTIGATE (ID, ENTRUST_UNIT, DIC_ENTRUST_UNIT_TYPE_KEY, 
+      ACCEPTED_ENTRUST_TIME, BEG_TIME, END_TIME, 
+      GROUP_ID, SFS_GROUP_ID, SFS_GROUP_NAME, 
+      NAME, ALIAS, OLD_NAME, 
+      ORIGIN, NATION, IDENTIFICATION, 
+      BORN_DATE, ADDRESS, CONTACT_PHONE, 
+      JOB, ENTRUST_NO, WORK_UNITS, 
+      CRIME, PLACE, INVESTIGATE_MATTERS, 
+      ADOPTION, CRIME_PERSON_NAME, ADJUDGE_PERIOD, 
+      ADJUDGE_START_TIME, ADJUDGE_END_TIME, ADJUDGE_ADDED, 
+      ADJUDGE_ORG, ADJUDGE_DATE, RELATION_ID, 
+      DIC_APPLY_TYPE_KEY, MOBILE_NUMBER, HABITUAL_RESIDENCE, 
+      CRIME_REASON, FAMILY_SITUATION, ECONOMIC_STATUS, 
+      MINOR_OTHER_CASES, PHYSI_CONDITIONS, PSYCH_FEATURE, 
+      METTLE_TYPE, HOBBIES, DISPLAY, 
+      AMATEUR_LIFE, NEIGHBORHOOD_RELATIONS, SOCIAL_INTERACTION, 
+      BAD_FACT, CRIME_ACQUAINT, REPENTANT_ATTITUDE, 
+      FINE_FULFILL_ABILITY, REPARATION_FULFILL_ABILITY, 
+      VICTIM_ATTITUDE, PUBLIC_ATTITUDE, FAMILY_ATTITUDE, 
+      LIFE_ENVIRONMENT, BASIC_VIEWS, BASIC_VIEW, 
+      POLICE_VIEWS, POLICE_VIEW, PRE_RECORD, 
+      COUNTY_VIEWS, WTDCH_PATH_NAME, ENTRUST_TYPE_ID, 
+      DIC_SEX_KEY, INVESTIGATOR1, INVESTIGATOR_ID1, 
+      INVESTIGATOR2, INVESTIGATOR_ID2, ASSISTOR1, 
+      ASSISTOR_ID1, ASSISTOR2, ASSISTOR_ID2, 
+      POSITION1, POSITION2, POSITION3, 
+      POSITION4, PER_ACCOUNTS, CREATED_TIME, 
+      MODIFIED_TIME, ACCOUNT_ID, PATH, 
+      PRE_START_TIME, LOCK_TIME, PRE_END_TIME, 
+      COUNT, APPLY_UN_LOCK, FLAG, 
+      SAVE_RECORD, WRIT_NUM, SITUATION, 
+      DIC_EVALUE_VIEW_KEY, DRAFT_PEOPLE, RELEVANT_NUMBER, 
+      HAND_ON, DIC_RESUDENCE_KEY, REG_RESUDENCE, 
+      DIC_CHECK_KEY, OPRATORS, RECOMMEND_STATUS, 
+      EVALUE_VIEWS_BAK, EVALUE_VIEWS, WTDCH_PATH_BAK, 
+      WTDCH_PATH, POLICE_VIEWS_PATH_BAK, POLICE_VIEWS_PATH, 
+      PRE_RECORD_PATH_BAK, PRE_RECORD_PATH, BASIC_VIEWS_PATH_BAK, 
+      BASIC_VIEWS_PATH, EMAIL_NO, EMAIL_PERSON, 
+      EMAIL_NAME, CITY_FACTION_QUALITY_GOAL, XFG_EDIT_REASON, 
+      CREATED, CREATER, UPDATED, 
+      UPDATER, DEL_FLAG,PROCESS_INSTANCE_ID,REG_RESIDENCE_PRO_ID,
+      REG_RESIDENCE_CITY_ID,REG_RESIDENCE_COUNTRY_ID,REG_RESIDENCE_STREET,
+      REG_RESIDENCE_DETAIL,HABITUAL_RESIDENCE_PRO_ID,HABITUAL_RESIDENCE_CITY_ID,
+      HABITUAL_RESIDENCE_COUNTRY_ID,HABITUAL_RESIDENCE_STREET,HABITUAL_RESIDENCE_DETAIL,
+      origin_PRO_ID,origin_CITY_ID,origin_COUNTRY_ID)
+    values (#{id,jdbcType=VARCHAR}, #{entrustUnit,jdbcType=VARCHAR}, #{dicEntrustUnitTypeKey,jdbcType=VARCHAR}, 
+      #{acceptedEntrustTime,jdbcType=TIMESTAMP}, #{begTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{groupId,jdbcType=VARCHAR}, #{sfsGroupId,jdbcType=VARCHAR}, #{sfsGroupName,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{oldName,jdbcType=VARCHAR}, 
+      #{origin,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{identification,jdbcType=VARCHAR}, 
+      #{bornDate,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{entrustNo,jdbcType=VARCHAR}, #{workUnits,jdbcType=VARCHAR}, 
+      #{crime,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, #{investigateMatters,jdbcType=VARCHAR}, 
+      #{adoption,jdbcType=VARCHAR}, #{crimePersonName,jdbcType=VARCHAR}, #{adjudgePeriod,jdbcType=VARCHAR}, 
+      #{adjudgeStartTime,jdbcType=TIMESTAMP}, #{adjudgeEndTime,jdbcType=TIMESTAMP}, #{adjudgeAdded,jdbcType=VARCHAR}, 
+      #{adjudgeOrg,jdbcType=VARCHAR}, #{adjudgeDate,jdbcType=VARCHAR}, #{relationId,jdbcType=VARCHAR}, 
+      #{dicApplyTypeKey,jdbcType=VARCHAR}, #{mobileNumber,jdbcType=VARCHAR}, #{habitualResidence,jdbcType=VARCHAR}, 
+      #{crimeReason,jdbcType=VARCHAR}, #{familySituation,jdbcType=VARCHAR}, #{economicStatus,jdbcType=VARCHAR}, 
+      #{minorOtherCases,jdbcType=VARCHAR}, #{physiConditions,jdbcType=VARCHAR}, #{psychFeature,jdbcType=VARCHAR}, 
+      #{mettleType,jdbcType=VARCHAR}, #{hobbies,jdbcType=VARCHAR}, #{display,jdbcType=VARCHAR}, 
+      #{amateurLife,jdbcType=VARCHAR}, #{neighborhoodRelations,jdbcType=VARCHAR}, #{socialInteraction,jdbcType=VARCHAR}, 
+      #{badFact,jdbcType=VARCHAR}, #{crimeAcquaint,jdbcType=VARCHAR}, #{repentantAttitude,jdbcType=VARCHAR}, 
+      #{fineFulfillAbility,jdbcType=VARCHAR}, #{reparationFulfillAbility,jdbcType=VARCHAR}, 
+      #{victimAttitude,jdbcType=VARCHAR}, #{publicAttitude,jdbcType=VARCHAR}, #{familyAttitude,jdbcType=VARCHAR}, 
+      #{lifeEnvironment,jdbcType=VARCHAR}, #{basicViews,jdbcType=VARCHAR}, #{basicView,jdbcType=CLOB}, 
+      #{policeViews,jdbcType=VARCHAR}, #{policeView,jdbcType=CLOB}, #{preRecord,jdbcType=VARCHAR}, 
+      #{countyViews,jdbcType=VARCHAR}, #{wtdchPathName,jdbcType=VARCHAR}, #{entrustTypeId,jdbcType=VARCHAR}, 
+      #{dicSexKey,jdbcType=VARCHAR}, #{investigator1,jdbcType=VARCHAR}, #{investigatorId1,jdbcType=VARCHAR}, 
+      #{investigator2,jdbcType=VARCHAR}, #{investigatorId2,jdbcType=VARCHAR}, #{assistor1,jdbcType=VARCHAR}, 
+      #{assistorId1,jdbcType=VARCHAR}, #{assistor2,jdbcType=VARCHAR}, #{assistorId2,jdbcType=VARCHAR}, 
+      #{position1,jdbcType=VARCHAR}, #{position2,jdbcType=VARCHAR}, #{position3,jdbcType=VARCHAR}, 
+      #{position4,jdbcType=VARCHAR}, #{perAccounts,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{accountId,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{preStartTime,jdbcType=TIMESTAMP}, #{lockTime,jdbcType=TIMESTAMP}, #{preEndTime,jdbcType=TIMESTAMP}, 
+      #{count,jdbcType=VARCHAR}, #{applyUnLock,jdbcType=DECIMAL}, #{flag,jdbcType=DECIMAL}, 
+      #{saveRecord,jdbcType=DECIMAL}, #{writNum,jdbcType=VARCHAR}, #{situation,jdbcType=CLOB}, 
+      #{dicEvalueViewKey,jdbcType=VARCHAR}, #{draftPeople,jdbcType=VARCHAR}, #{relevantNumber,jdbcType=VARCHAR}, 
+      #{handOn,jdbcType=DECIMAL}, #{dicResudenceKey,jdbcType=VARCHAR}, #{regResudence,jdbcType=VARCHAR}, 
+      #{dicCheckKey,jdbcType=VARCHAR}, #{oprators,jdbcType=VARCHAR}, #{recommendStatus,jdbcType=VARCHAR}, 
+      #{evalueViewsBak,jdbcType=VARCHAR}, #{evalueViews,jdbcType=CLOB}, #{wtdchPathBak,jdbcType=VARCHAR}, 
+      #{wtdchPath,jdbcType=CLOB}, #{policeViewsPathBak,jdbcType=VARCHAR}, #{policeViewsPath,jdbcType=CLOB}, 
+      #{preRecordPathBak,jdbcType=VARCHAR}, #{preRecordPath,jdbcType=CLOB}, #{basicViewsPathBak,jdbcType=VARCHAR}, 
+      #{basicViewsPath,jdbcType=CLOB}, #{emailNo,jdbcType=VARCHAR}, #{emailPerson,jdbcType=VARCHAR}, 
+      #{emailName,jdbcType=VARCHAR}, #{cityFactionQualityGoal,jdbcType=FLOAT}, #{xfgEditReason,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL}, #{processInstanceId,jdbcType=VARCHAR}, 
+      #{regResidenceProId,jdbcType=VARCHAR}, #{regResidenceCityId,jdbcType=VARCHAR}, #{regResidenceCountryId,jdbcType=VARCHAR}, 
+      #{regResidenceStreet,jdbcType=VARCHAR}, #{regResidenceDetail,jdbcType=VARCHAR}, #{habitualResidenceProId,jdbcType=VARCHAR}, 
+      #{habitualResidenceCityId,jdbcType=VARCHAR}, #{habitualResidenceCountryId,jdbcType=VARCHAR}, #{habitualResidenceStreet,jdbcType=VARCHAR}, 
+      #{habitualResidenceDetail,jdbcType=VARCHAR}, #{originProId,jdbcType=VARCHAR}, 
+      #{originCityId,jdbcType=VARCHAR}, #{originCountryId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.investigate.Investigate">
+    insert into SF_INVESTIGATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="entrustUnit != null">
+        ENTRUST_UNIT,
+      </if>
+      <if test="dicEntrustUnitTypeKey != null">
+        DIC_ENTRUST_UNIT_TYPE_KEY,
+      </if>
+      <if test="acceptedEntrustTime != null">
+        ACCEPTED_ENTRUST_TIME,
+      </if>
+      <if test="begTime != null">
+        BEG_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="sfsGroupId != null">
+        SFS_GROUP_ID,
+      </if>
+      <if test="sfsGroupName != null">
+        SFS_GROUP_NAME,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="alias != null">
+        ALIAS,
+      </if>
+      <if test="oldName != null">
+        OLD_NAME,
+      </if>
+      <if test="origin != null">
+        ORIGIN,
+      </if>
+      <if test="nation != null">
+        NATION,
+      </if>
+      <if test="identification != null">
+        IDENTIFICATION,
+      </if>
+      <if test="bornDate != null">
+        BORN_DATE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="contactPhone != null">
+        CONTACT_PHONE,
+      </if>
+      <if test="job != null">
+        JOB,
+      </if>
+      <if test="entrustNo != null">
+        ENTRUST_NO,
+      </if>
+      <if test="workUnits != null">
+        WORK_UNITS,
+      </if>
+      <if test="crime != null">
+        CRIME,
+      </if>
+      <if test="place != null">
+        PLACE,
+      </if>
+      <if test="investigateMatters != null">
+        INVESTIGATE_MATTERS,
+      </if>
+      <if test="adoption != null">
+        ADOPTION,
+      </if>
+      <if test="crimePersonName != null">
+        CRIME_PERSON_NAME,
+      </if>
+      <if test="adjudgePeriod != null">
+        ADJUDGE_PERIOD,
+      </if>
+      <if test="adjudgeStartTime != null">
+        ADJUDGE_START_TIME,
+      </if>
+      <if test="adjudgeEndTime != null">
+        ADJUDGE_END_TIME,
+      </if>
+      <if test="adjudgeAdded != null">
+        ADJUDGE_ADDED,
+      </if>
+      <if test="adjudgeOrg != null">
+        ADJUDGE_ORG,
+      </if>
+      <if test="adjudgeDate != null">
+        ADJUDGE_DATE,
+      </if>
+      <if test="relationId != null">
+        RELATION_ID,
+      </if>
+      <if test="dicApplyTypeKey != null">
+        DIC_APPLY_TYPE_KEY,
+      </if>
+      <if test="mobileNumber != null">
+        MOBILE_NUMBER,
+      </if>
+      <if test="habitualResidence != null">
+        HABITUAL_RESIDENCE,
+      </if>
+      <if test="crimeReason != null">
+        CRIME_REASON,
+      </if>
+      <if test="familySituation != null">
+        FAMILY_SITUATION,
+      </if>
+      <if test="economicStatus != null">
+        ECONOMIC_STATUS,
+      </if>
+      <if test="minorOtherCases != null">
+        MINOR_OTHER_CASES,
+      </if>
+      <if test="physiConditions != null">
+        PHYSI_CONDITIONS,
+      </if>
+      <if test="psychFeature != null">
+        PSYCH_FEATURE,
+      </if>
+      <if test="mettleType != null">
+        METTLE_TYPE,
+      </if>
+      <if test="hobbies != null">
+        HOBBIES,
+      </if>
+      <if test="display != null">
+        DISPLAY,
+      </if>
+      <if test="amateurLife != null">
+        AMATEUR_LIFE,
+      </if>
+      <if test="neighborhoodRelations != null">
+        NEIGHBORHOOD_RELATIONS,
+      </if>
+      <if test="socialInteraction != null">
+        SOCIAL_INTERACTION,
+      </if>
+      <if test="badFact != null">
+        BAD_FACT,
+      </if>
+      <if test="crimeAcquaint != null">
+        CRIME_ACQUAINT,
+      </if>
+      <if test="repentantAttitude != null">
+        REPENTANT_ATTITUDE,
+      </if>
+      <if test="fineFulfillAbility != null">
+        FINE_FULFILL_ABILITY,
+      </if>
+      <if test="reparationFulfillAbility != null">
+        REPARATION_FULFILL_ABILITY,
+      </if>
+      <if test="victimAttitude != null">
+        VICTIM_ATTITUDE,
+      </if>
+      <if test="publicAttitude != null">
+        PUBLIC_ATTITUDE,
+      </if>
+      <if test="familyAttitude != null">
+        FAMILY_ATTITUDE,
+      </if>
+      <if test="lifeEnvironment != null">
+        LIFE_ENVIRONMENT,
+      </if>
+      <if test="basicViews != null">
+        BASIC_VIEWS,
+      </if>
+      <if test="basicView != null">
+        BASIC_VIEW,
+      </if>
+      <if test="policeViews != null">
+        POLICE_VIEWS,
+      </if>
+      <if test="policeView != null">
+        POLICE_VIEW,
+      </if>
+      <if test="preRecord != null">
+        PRE_RECORD,
+      </if>
+      <if test="countyViews != null">
+        COUNTY_VIEWS,
+      </if>
+      <if test="wtdchPathName != null">
+        WTDCH_PATH_NAME,
+      </if>
+      <if test="entrustTypeId != null">
+        ENTRUST_TYPE_ID,
+      </if>
+      <if test="dicSexKey != null">
+        DIC_SEX_KEY,
+      </if>
+      <if test="investigator1 != null">
+        INVESTIGATOR1,
+      </if>
+      <if test="investigatorId1 != null">
+        INVESTIGATOR_ID1,
+      </if>
+      <if test="investigator2 != null">
+        INVESTIGATOR2,
+      </if>
+      <if test="investigatorId2 != null">
+        INVESTIGATOR_ID2,
+      </if>
+      <if test="assistor1 != null">
+        ASSISTOR1,
+      </if>
+      <if test="assistorId1 != null">
+        ASSISTOR_ID1,
+      </if>
+      <if test="assistor2 != null">
+        ASSISTOR2,
+      </if>
+      <if test="assistorId2 != null">
+        ASSISTOR_ID2,
+      </if>
+      <if test="position1 != null">
+        POSITION1,
+      </if>
+      <if test="position2 != null">
+        POSITION2,
+      </if>
+      <if test="position3 != null">
+        POSITION3,
+      </if>
+      <if test="position4 != null">
+        POSITION4,
+      </if>
+      <if test="perAccounts != null">
+        PER_ACCOUNTS,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="preStartTime != null">
+        PRE_START_TIME,
+      </if>
+      <if test="lockTime != null">
+        LOCK_TIME,
+      </if>
+      <if test="preEndTime != null">
+        PRE_END_TIME,
+      </if>
+      <if test="count != null">
+        COUNT,
+      </if>
+      <if test="applyUnLock != null">
+        APPLY_UN_LOCK,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+      <if test="saveRecord != null">
+        SAVE_RECORD,
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM,
+      </if>
+      <if test="situation != null">
+        SITUATION,
+      </if>
+      <if test="dicEvalueViewKey != null">
+        DIC_EVALUE_VIEW_KEY,
+      </if>
+      <if test="draftPeople != null">
+        DRAFT_PEOPLE,
+      </if>
+      <if test="relevantNumber != null">
+        RELEVANT_NUMBER,
+      </if>
+      <if test="handOn != null">
+        HAND_ON,
+      </if>
+      <if test="dicResudenceKey != null">
+        DIC_RESUDENCE_KEY,
+      </if>
+      <if test="regResudence != null">
+        REG_RESUDENCE,
+      </if>
+      <if test="dicCheckKey != null">
+        DIC_CHECK_KEY,
+      </if>
+      <if test="oprators != null">
+        OPRATORS,
+      </if>
+      <if test="recommendStatus != null">
+        RECOMMEND_STATUS,
+      </if>
+      <if test="evalueViewsBak != null">
+        EVALUE_VIEWS_BAK,
+      </if>
+      <if test="evalueViews != null">
+        EVALUE_VIEWS,
+      </if>
+      <if test="wtdchPathBak != null">
+        WTDCH_PATH_BAK,
+      </if>
+      <if test="wtdchPath != null">
+        WTDCH_PATH,
+      </if>
+      <if test="policeViewsPathBak != null">
+        POLICE_VIEWS_PATH_BAK,
+      </if>
+      <if test="policeViewsPath != null">
+        POLICE_VIEWS_PATH,
+      </if>
+      <if test="preRecordPathBak != null">
+        PRE_RECORD_PATH_BAK,
+      </if>
+      <if test="preRecordPath != null">
+        PRE_RECORD_PATH,
+      </if>
+      <if test="basicViewsPathBak != null">
+        BASIC_VIEWS_PATH_BAK,
+      </if>
+      <if test="basicViewsPath != null">
+        BASIC_VIEWS_PATH,
+      </if>
+      <if test="emailNo != null">
+        EMAIL_NO,
+      </if>
+      <if test="emailPerson != null">
+        EMAIL_PERSON,
+      </if>
+      <if test="emailName != null">
+        EMAIL_NAME,
+      </if>
+      <if test="cityFactionQualityGoal != null">
+        CITY_FACTION_QUALITY_GOAL,
+      </if>
+      <if test="xfgEditReason != null">
+        XFG_EDIT_REASON,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="regResidenceProId != null">
+        REG_RESIDENCE_PRO_ID,
+      </if>
+      <if test="regResidenceCityId != null">
+        REG_RESIDENCE_CITY_ID,
+      </if>
+      <if test="regResidenceCountryId != null">
+        REG_RESIDENCE_COUNTRY_ID,
+      </if>
+      <if test="regResidenceStreet != null">
+        REG_RESIDENCE_STREET,
+      </if>
+      <if test="regResidenceDetail != null">
+        REG_RESIDENCE_DETAIL,
+      </if>
+      <if test="habitualResidenceProId != null">
+        HABITUAL_RESIDENCE_PRO_ID,
+      </if>
+      <if test="habitualResidenceCityId != null">
+        HABITUAL_RESIDENCE_CITY_ID,
+      </if>
+      <if test="habitualResidenceCountryId != null">
+        HABITUAL_RESIDENCE_COUNTRY_ID,
+      </if>
+      <if test="habitualResidenceStreet != null">
+        HABITUAL_RESIDENCE_STREET,
+      </if>
+      <if test="habitualResidenceDetail != null">
+        HABITUAL_RESIDENCE_DETAIL,
+      </if>
+      <if test="originProId != null">
+        origin_PRO_ID,
+      </if>
+      <if test="originCityId != null">
+        origin_CITY_ID,
+      </if>
+      <if test="originCountryId != null">
+        origin_COUNTRY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustUnit != null">
+        #{entrustUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="dicEntrustUnitTypeKey != null">
+        #{dicEntrustUnitTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptedEntrustTime != null">
+        #{acceptedEntrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="begTime != null">
+        #{begTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsGroupId != null">
+        #{sfsGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsGroupName != null">
+        #{sfsGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="oldName != null">
+        #{oldName,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null">
+        #{identification,jdbcType=VARCHAR},
+      </if>
+      <if test="bornDate != null">
+        #{bornDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustNo != null">
+        #{entrustNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnits != null">
+        #{workUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="crime != null">
+        #{crime,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="investigateMatters != null">
+        #{investigateMatters,jdbcType=VARCHAR},
+      </if>
+      <if test="adoption != null">
+        #{adoption,jdbcType=VARCHAR},
+      </if>
+      <if test="crimePersonName != null">
+        #{crimePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgePeriod != null">
+        #{adjudgePeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeStartTime != null">
+        #{adjudgeStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adjudgeEndTime != null">
+        #{adjudgeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adjudgeAdded != null">
+        #{adjudgeAdded,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeOrg != null">
+        #{adjudgeOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeDate != null">
+        #{adjudgeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="relationId != null">
+        #{relationId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicApplyTypeKey != null">
+        #{dicApplyTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null">
+        #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidence != null">
+        #{habitualResidence,jdbcType=VARCHAR},
+      </if>
+      <if test="crimeReason != null">
+        #{crimeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="familySituation != null">
+        #{familySituation,jdbcType=VARCHAR},
+      </if>
+      <if test="economicStatus != null">
+        #{economicStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="minorOtherCases != null">
+        #{minorOtherCases,jdbcType=VARCHAR},
+      </if>
+      <if test="physiConditions != null">
+        #{physiConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="psychFeature != null">
+        #{psychFeature,jdbcType=VARCHAR},
+      </if>
+      <if test="mettleType != null">
+        #{mettleType,jdbcType=VARCHAR},
+      </if>
+      <if test="hobbies != null">
+        #{hobbies,jdbcType=VARCHAR},
+      </if>
+      <if test="display != null">
+        #{display,jdbcType=VARCHAR},
+      </if>
+      <if test="amateurLife != null">
+        #{amateurLife,jdbcType=VARCHAR},
+      </if>
+      <if test="neighborhoodRelations != null">
+        #{neighborhoodRelations,jdbcType=VARCHAR},
+      </if>
+      <if test="socialInteraction != null">
+        #{socialInteraction,jdbcType=VARCHAR},
+      </if>
+      <if test="badFact != null">
+        #{badFact,jdbcType=VARCHAR},
+      </if>
+      <if test="crimeAcquaint != null">
+        #{crimeAcquaint,jdbcType=VARCHAR},
+      </if>
+      <if test="repentantAttitude != null">
+        #{repentantAttitude,jdbcType=VARCHAR},
+      </if>
+      <if test="fineFulfillAbility != null">
+        #{fineFulfillAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="reparationFulfillAbility != null">
+        #{reparationFulfillAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="victimAttitude != null">
+        #{victimAttitude,jdbcType=VARCHAR},
+      </if>
+      <if test="publicAttitude != null">
+        #{publicAttitude,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAttitude != null">
+        #{familyAttitude,jdbcType=VARCHAR},
+      </if>
+      <if test="lifeEnvironment != null">
+        #{lifeEnvironment,jdbcType=VARCHAR},
+      </if>
+      <if test="basicViews != null">
+        #{basicViews,jdbcType=VARCHAR},
+      </if>
+      <if test="basicView != null">
+        #{basicView,jdbcType=CLOB},
+      </if>
+      <if test="policeViews != null">
+        #{policeViews,jdbcType=VARCHAR},
+      </if>
+      <if test="policeView != null">
+        #{policeView,jdbcType=CLOB},
+      </if>
+      <if test="preRecord != null">
+        #{preRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="countyViews != null">
+        #{countyViews,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdchPathName != null">
+        #{wtdchPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustTypeId != null">
+        #{entrustTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSexKey != null">
+        #{dicSexKey,jdbcType=VARCHAR},
+      </if>
+      <if test="investigator1 != null">
+        #{investigator1,jdbcType=VARCHAR},
+      </if>
+      <if test="investigatorId1 != null">
+        #{investigatorId1,jdbcType=VARCHAR},
+      </if>
+      <if test="investigator2 != null">
+        #{investigator2,jdbcType=VARCHAR},
+      </if>
+      <if test="investigatorId2 != null">
+        #{investigatorId2,jdbcType=VARCHAR},
+      </if>
+      <if test="assistor1 != null">
+        #{assistor1,jdbcType=VARCHAR},
+      </if>
+      <if test="assistorId1 != null">
+        #{assistorId1,jdbcType=VARCHAR},
+      </if>
+      <if test="assistor2 != null">
+        #{assistor2,jdbcType=VARCHAR},
+      </if>
+      <if test="assistorId2 != null">
+        #{assistorId2,jdbcType=VARCHAR},
+      </if>
+      <if test="position1 != null">
+        #{position1,jdbcType=VARCHAR},
+      </if>
+      <if test="position2 != null">
+        #{position2,jdbcType=VARCHAR},
+      </if>
+      <if test="position3 != null">
+        #{position3,jdbcType=VARCHAR},
+      </if>
+      <if test="position4 != null">
+        #{position4,jdbcType=VARCHAR},
+      </if>
+      <if test="perAccounts != null">
+        #{perAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="preStartTime != null">
+        #{preStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockTime != null">
+        #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="preEndTime != null">
+        #{preEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUnLock != null">
+        #{applyUnLock,jdbcType=DECIMAL},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=DECIMAL},
+      </if>
+      <if test="saveRecord != null">
+        #{saveRecord,jdbcType=DECIMAL},
+      </if>
+      <if test="writNum != null">
+        #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="situation != null">
+        #{situation,jdbcType=CLOB},
+      </if>
+      <if test="dicEvalueViewKey != null">
+        #{dicEvalueViewKey,jdbcType=VARCHAR},
+      </if>
+      <if test="draftPeople != null">
+        #{draftPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="relevantNumber != null">
+        #{relevantNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="handOn != null">
+        #{handOn,jdbcType=DECIMAL},
+      </if>
+      <if test="dicResudenceKey != null">
+        #{dicResudenceKey,jdbcType=VARCHAR},
+      </if>
+      <if test="regResudence != null">
+        #{regResudence,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckKey != null">
+        #{dicCheckKey,jdbcType=VARCHAR},
+      </if>
+      <if test="oprators != null">
+        #{oprators,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendStatus != null">
+        #{recommendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="evalueViewsBak != null">
+        #{evalueViewsBak,jdbcType=VARCHAR},
+      </if>
+      <if test="evalueViews != null">
+        #{evalueViews,jdbcType=CLOB},
+      </if>
+      <if test="wtdchPathBak != null">
+        #{wtdchPathBak,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdchPath != null">
+        #{wtdchPath,jdbcType=CLOB},
+      </if>
+      <if test="policeViewsPathBak != null">
+        #{policeViewsPathBak,jdbcType=VARCHAR},
+      </if>
+      <if test="policeViewsPath != null">
+        #{policeViewsPath,jdbcType=CLOB},
+      </if>
+      <if test="preRecordPathBak != null">
+        #{preRecordPathBak,jdbcType=VARCHAR},
+      </if>
+      <if test="preRecordPath != null">
+        #{preRecordPath,jdbcType=CLOB},
+      </if>
+      <if test="basicViewsPathBak != null">
+        #{basicViewsPathBak,jdbcType=VARCHAR},
+      </if>
+      <if test="basicViewsPath != null">
+        #{basicViewsPath,jdbcType=CLOB},
+      </if>
+      <if test="emailNo != null">
+        #{emailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emailPerson != null">
+        #{emailPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="emailName != null">
+        #{emailName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityFactionQualityGoal != null">
+        #{cityFactionQualityGoal,jdbcType=FLOAT},
+      </if>
+      <if test="xfgEditReason != null">
+        #{xfgEditReason,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceProId != null">
+        #{regResidenceProId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCityId != null">
+        #{regResidenceCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCountryId != null">
+        #{regResidenceCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceStreet != null">
+        #{regResidenceStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceDetail != null">
+        #{regResidenceDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceProId != null">
+        #{habitualResidenceProId,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceCityId != null">
+        #{habitualResidenceCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceCountryId != null">
+        #{habitualResidenceCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceStreet != null">
+        #{habitualResidenceStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceDetail != null">
+        #{habitualResidenceDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="originProId != null">
+        #{originProId,jdbcType=VARCHAR},
+      </if>
+      <if test="originCityId != null">
+        #{originCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="originCountryId != null">
+        #{originCountryId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.investigate.Investigate">
+    update SF_INVESTIGATE
+    <set>
+      <if test="entrustUnit != null">
+        ENTRUST_UNIT = #{entrustUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="dicEntrustUnitTypeKey != null">
+        DIC_ENTRUST_UNIT_TYPE_KEY = #{dicEntrustUnitTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptedEntrustTime != null">
+        ACCEPTED_ENTRUST_TIME = #{acceptedEntrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="begTime != null">
+        BEG_TIME = #{begTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupId != null">
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsGroupId != null and sfsGroupId != ''">
+        SFS_GROUP_ID = #{sfsGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsGroupName != null and sfsGroupName != ''">
+        SFS_GROUP_NAME = #{sfsGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        ALIAS = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="oldName != null">
+        OLD_NAME = #{oldName,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        ORIGIN = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        NATION = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null">
+        IDENTIFICATION = #{identification,jdbcType=VARCHAR},
+      </if>
+      <if test="bornDate != null">
+        BORN_DATE = #{bornDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        JOB = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustNo != null">
+        ENTRUST_NO = #{entrustNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnits != null">
+        WORK_UNITS = #{workUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="crime != null">
+        CRIME = #{crime,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        PLACE = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="investigateMatters != null">
+        INVESTIGATE_MATTERS = #{investigateMatters,jdbcType=VARCHAR},
+      </if>
+      <if test="adoption != null">
+        ADOPTION = #{adoption,jdbcType=VARCHAR},
+      </if>
+      <if test="crimePersonName != null">
+        CRIME_PERSON_NAME = #{crimePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgePeriod != null">
+        ADJUDGE_PERIOD = #{adjudgePeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeStartTime != null">
+        ADJUDGE_START_TIME = #{adjudgeStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adjudgeEndTime != null">
+        ADJUDGE_END_TIME = #{adjudgeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adjudgeAdded != null">
+        ADJUDGE_ADDED = #{adjudgeAdded,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeOrg != null">
+        ADJUDGE_ORG = #{adjudgeOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeDate != null">
+        ADJUDGE_DATE = #{adjudgeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="relationId != null">
+        RELATION_ID = #{relationId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicApplyTypeKey != null">
+        DIC_APPLY_TYPE_KEY = #{dicApplyTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null">
+        MOBILE_NUMBER = #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidence != null">
+        HABITUAL_RESIDENCE = #{habitualResidence,jdbcType=VARCHAR},
+      </if>
+      <if test="crimeReason != null">
+        CRIME_REASON = #{crimeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="familySituation != null">
+        FAMILY_SITUATION = #{familySituation,jdbcType=VARCHAR},
+      </if>
+      <if test="economicStatus != null">
+        ECONOMIC_STATUS = #{economicStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="minorOtherCases != null">
+        MINOR_OTHER_CASES = #{minorOtherCases,jdbcType=VARCHAR},
+      </if>
+      <if test="physiConditions != null">
+        PHYSI_CONDITIONS = #{physiConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="psychFeature != null">
+        PSYCH_FEATURE = #{psychFeature,jdbcType=VARCHAR},
+      </if>
+      <if test="mettleType != null">
+        METTLE_TYPE = #{mettleType,jdbcType=VARCHAR},
+      </if>
+      <if test="hobbies != null">
+        HOBBIES = #{hobbies,jdbcType=VARCHAR},
+      </if>
+      <if test="display != null">
+        DISPLAY = #{display,jdbcType=VARCHAR},
+      </if>
+      <if test="amateurLife != null">
+        AMATEUR_LIFE = #{amateurLife,jdbcType=VARCHAR},
+      </if>
+      <if test="neighborhoodRelations != null">
+        NEIGHBORHOOD_RELATIONS = #{neighborhoodRelations,jdbcType=VARCHAR},
+      </if>
+      <if test="socialInteraction != null">
+        SOCIAL_INTERACTION = #{socialInteraction,jdbcType=VARCHAR},
+      </if>
+      <if test="badFact != null">
+        BAD_FACT = #{badFact,jdbcType=VARCHAR},
+      </if>
+      <if test="crimeAcquaint != null">
+        CRIME_ACQUAINT = #{crimeAcquaint,jdbcType=VARCHAR},
+      </if>
+      <if test="repentantAttitude != null">
+        REPENTANT_ATTITUDE = #{repentantAttitude,jdbcType=VARCHAR},
+      </if>
+      <if test="fineFulfillAbility != null">
+        FINE_FULFILL_ABILITY = #{fineFulfillAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="reparationFulfillAbility != null">
+        REPARATION_FULFILL_ABILITY = #{reparationFulfillAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="victimAttitude != null">
+        VICTIM_ATTITUDE = #{victimAttitude,jdbcType=VARCHAR},
+      </if>
+      <if test="publicAttitude != null">
+        PUBLIC_ATTITUDE = #{publicAttitude,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAttitude != null">
+        FAMILY_ATTITUDE = #{familyAttitude,jdbcType=VARCHAR},
+      </if>
+      <if test="lifeEnvironment != null">
+        LIFE_ENVIRONMENT = #{lifeEnvironment,jdbcType=VARCHAR},
+      </if>
+      <if test="basicViews != null">
+        BASIC_VIEWS = #{basicViews,jdbcType=VARCHAR},
+      </if>
+      <if test="basicView != null">
+        BASIC_VIEW = #{basicView,jdbcType=CLOB},
+      </if>
+      <if test="policeViews != null">
+        POLICE_VIEWS = #{policeViews,jdbcType=VARCHAR},
+      </if>
+      <if test="policeView != null">
+        POLICE_VIEW = #{policeView,jdbcType=CLOB},
+      </if>
+      <if test="preRecord != null">
+        PRE_RECORD = #{preRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="countyViews != null">
+        COUNTY_VIEWS = #{countyViews,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdchPathName != null">
+        WTDCH_PATH_NAME = #{wtdchPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustTypeId != null">
+        ENTRUST_TYPE_ID = #{entrustTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSexKey != null">
+        DIC_SEX_KEY = #{dicSexKey,jdbcType=VARCHAR},
+      </if>
+      <if test="investigator1 != null">
+        INVESTIGATOR1 = #{investigator1,jdbcType=VARCHAR},
+      </if>
+      <if test="investigatorId1 != null">
+        INVESTIGATOR_ID1 = #{investigatorId1,jdbcType=VARCHAR},
+      </if>
+      <if test="investigator2 != null">
+        INVESTIGATOR2 = #{investigator2,jdbcType=VARCHAR},
+      </if>
+      <if test="investigatorId2 != null">
+        INVESTIGATOR_ID2 = #{investigatorId2,jdbcType=VARCHAR},
+      </if>
+      <if test="assistor1 != null">
+        ASSISTOR1 = #{assistor1,jdbcType=VARCHAR},
+      </if>
+      <if test="assistorId1 != null">
+        ASSISTOR_ID1 = #{assistorId1,jdbcType=VARCHAR},
+      </if>
+      <if test="assistor2 != null">
+        ASSISTOR2 = #{assistor2,jdbcType=VARCHAR},
+      </if>
+      <if test="assistorId2 != null">
+        ASSISTOR_ID2 = #{assistorId2,jdbcType=VARCHAR},
+      </if>
+      <if test="position1 != null">
+        POSITION1 = #{position1,jdbcType=VARCHAR},
+      </if>
+      <if test="position2 != null">
+        POSITION2 = #{position2,jdbcType=VARCHAR},
+      </if>
+      <if test="position3 != null">
+        POSITION3 = #{position3,jdbcType=VARCHAR},
+      </if>
+      <if test="position4 != null">
+        POSITION4 = #{position4,jdbcType=VARCHAR},
+      </if>
+      <if test="perAccounts != null">
+        PER_ACCOUNTS = #{perAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="preStartTime != null">
+        PRE_START_TIME = #{preStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockTime != null">
+        LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="preEndTime != null">
+        PRE_END_TIME = #{preEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="count != null">
+        COUNT = #{count,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUnLock != null">
+        APPLY_UN_LOCK = #{applyUnLock,jdbcType=DECIMAL},
+      </if>
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=DECIMAL},
+      </if>
+      <if test="saveRecord != null">
+        SAVE_RECORD = #{saveRecord,jdbcType=DECIMAL},
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="situation != null">
+        SITUATION = #{situation,jdbcType=CLOB},
+      </if>
+      <if test="dicEvalueViewKey != null">
+        DIC_EVALUE_VIEW_KEY = #{dicEvalueViewKey,jdbcType=VARCHAR},
+      </if>
+      <if test="draftPeople != null">
+        DRAFT_PEOPLE = #{draftPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="relevantNumber != null">
+        RELEVANT_NUMBER = #{relevantNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="handOn != null">
+        HAND_ON = #{handOn,jdbcType=DECIMAL},
+      </if>
+      <if test="dicResudenceKey != null">
+        DIC_RESUDENCE_KEY = #{dicResudenceKey,jdbcType=VARCHAR},
+      </if>
+      <if test="regResudence != null">
+        REG_RESUDENCE = #{regResudence,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckKey != null">
+        DIC_CHECK_KEY = #{dicCheckKey,jdbcType=VARCHAR},
+      </if>
+      <if test="oprators != null">
+        OPRATORS = #{oprators,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendStatus != null">
+        RECOMMEND_STATUS = #{recommendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="evalueViewsBak != null">
+        EVALUE_VIEWS_BAK = #{evalueViewsBak,jdbcType=VARCHAR},
+      </if>
+      <if test="evalueViews != null">
+        EVALUE_VIEWS = #{evalueViews,jdbcType=CLOB},
+      </if>
+      <if test="wtdchPathBak != null">
+        WTDCH_PATH_BAK = #{wtdchPathBak,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdchPath != null">
+        WTDCH_PATH = #{wtdchPath,jdbcType=CLOB},
+      </if>
+      <if test="policeViewsPathBak != null">
+        POLICE_VIEWS_PATH_BAK = #{policeViewsPathBak,jdbcType=VARCHAR},
+      </if>
+      <if test="policeViewsPath != null">
+        POLICE_VIEWS_PATH = #{policeViewsPath,jdbcType=CLOB},
+      </if>
+      <if test="preRecordPathBak != null">
+        PRE_RECORD_PATH_BAK = #{preRecordPathBak,jdbcType=VARCHAR},
+      </if>
+      <if test="preRecordPath != null">
+        PRE_RECORD_PATH = #{preRecordPath,jdbcType=CLOB},
+      </if>
+      <if test="basicViewsPathBak != null">
+        BASIC_VIEWS_PATH_BAK = #{basicViewsPathBak,jdbcType=VARCHAR},
+      </if>
+      <if test="basicViewsPath != null">
+        BASIC_VIEWS_PATH = #{basicViewsPath,jdbcType=CLOB},
+      </if>
+      <if test="emailNo != null">
+        EMAIL_NO = #{emailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emailPerson != null">
+        EMAIL_PERSON = #{emailPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="emailName != null">
+        EMAIL_NAME = #{emailName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityFactionQualityGoal != null">
+        CITY_FACTION_QUALITY_GOAL = #{cityFactionQualityGoal,jdbcType=FLOAT},
+      </if>
+      <if test="xfgEditReason != null">
+        XFG_EDIT_REASON = #{xfgEditReason,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceProId != null">
+        REG_RESIDENCE_PRO_ID = #{regResidenceProId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCityId != null">
+        REG_RESIDENCE_CITY_ID = #{regResidenceCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCountryId != null">
+        REG_RESIDENCE_COUNTRY_ID = #{regResidenceCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceStreet != null">
+        REG_RESIDENCE_STREET = #{regResidenceStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceDetail != null">
+        REG_RESIDENCE_DETAIL = #{regResidenceDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceProId != null">
+        HABITUAL_RESIDENCE_PRO_ID = #{habitualResidenceProId,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceCityId != null">
+        HABITUAL_RESIDENCE_CITY_ID = #{habitualResidenceCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceCountryId != null">
+        HABITUAL_RESIDENCE_COUNTRY_ID = #{habitualResidenceCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceStreet != null">
+        HABITUAL_RESIDENCE_STREET = #{habitualResidenceStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="habitualResidenceDetail != null">
+        HABITUAL_RESIDENCE_DETAIL = #{habitualResidenceDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="originProId != null">
+        origin_PRO_ID = #{originProId,jdbcType=VARCHAR},
+      </if>
+      <if test="originCityId != null">
+        origin_CITY_ID = #{originCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="originCountryId != null">
+        origin_COUNTRY_ID = #{originCountryId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.investigate.Investigate">
+    update SF_INVESTIGATE
+    set ENTRUST_UNIT = #{entrustUnit,jdbcType=VARCHAR},
+      DIC_ENTRUST_UNIT_TYPE_KEY = #{dicEntrustUnitTypeKey,jdbcType=VARCHAR},
+      ACCEPTED_ENTRUST_TIME = #{acceptedEntrustTime,jdbcType=TIMESTAMP},
+      BEG_TIME = #{begTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      SFS_GROUP_ID = #{sfsGroupId,jdbcType=VARCHAR},
+      SFS_GROUP_NAME = #{sfsGroupName,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      ALIAS = #{alias,jdbcType=VARCHAR},
+      OLD_NAME = #{oldName,jdbcType=VARCHAR},
+      ORIGIN = #{origin,jdbcType=VARCHAR},
+      NATION = #{nation,jdbcType=VARCHAR},
+      IDENTIFICATION = #{identification,jdbcType=VARCHAR},
+      BORN_DATE = #{bornDate,jdbcType=TIMESTAMP},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      JOB = #{job,jdbcType=VARCHAR},
+      ENTRUST_NO = #{entrustNo,jdbcType=VARCHAR},
+      WORK_UNITS = #{workUnits,jdbcType=VARCHAR},
+      CRIME = #{crime,jdbcType=VARCHAR},
+      PLACE = #{place,jdbcType=VARCHAR},
+      INVESTIGATE_MATTERS = #{investigateMatters,jdbcType=VARCHAR},
+      ADOPTION = #{adoption,jdbcType=VARCHAR},
+      CRIME_PERSON_NAME = #{crimePersonName,jdbcType=VARCHAR},
+      ADJUDGE_PERIOD = #{adjudgePeriod,jdbcType=VARCHAR},
+      ADJUDGE_START_TIME = #{adjudgeStartTime,jdbcType=TIMESTAMP},
+      ADJUDGE_END_TIME = #{adjudgeEndTime,jdbcType=TIMESTAMP},
+      ADJUDGE_ADDED = #{adjudgeAdded,jdbcType=VARCHAR},
+      ADJUDGE_ORG = #{adjudgeOrg,jdbcType=VARCHAR},
+      ADJUDGE_DATE = #{adjudgeDate,jdbcType=VARCHAR},
+      RELATION_ID = #{relationId,jdbcType=VARCHAR},
+      DIC_APPLY_TYPE_KEY = #{dicApplyTypeKey,jdbcType=VARCHAR},
+      MOBILE_NUMBER = #{mobileNumber,jdbcType=VARCHAR},
+      HABITUAL_RESIDENCE = #{habitualResidence,jdbcType=VARCHAR},
+      CRIME_REASON = #{crimeReason,jdbcType=VARCHAR},
+      FAMILY_SITUATION = #{familySituation,jdbcType=VARCHAR},
+      ECONOMIC_STATUS = #{economicStatus,jdbcType=VARCHAR},
+      MINOR_OTHER_CASES = #{minorOtherCases,jdbcType=VARCHAR},
+      PHYSI_CONDITIONS = #{physiConditions,jdbcType=VARCHAR},
+      PSYCH_FEATURE = #{psychFeature,jdbcType=VARCHAR},
+      METTLE_TYPE = #{mettleType,jdbcType=VARCHAR},
+      HOBBIES = #{hobbies,jdbcType=VARCHAR},
+      DISPLAY = #{display,jdbcType=VARCHAR},
+      AMATEUR_LIFE = #{amateurLife,jdbcType=VARCHAR},
+      NEIGHBORHOOD_RELATIONS = #{neighborhoodRelations,jdbcType=VARCHAR},
+      SOCIAL_INTERACTION = #{socialInteraction,jdbcType=VARCHAR},
+      BAD_FACT = #{badFact,jdbcType=VARCHAR},
+      CRIME_ACQUAINT = #{crimeAcquaint,jdbcType=VARCHAR},
+      REPENTANT_ATTITUDE = #{repentantAttitude,jdbcType=VARCHAR},
+      FINE_FULFILL_ABILITY = #{fineFulfillAbility,jdbcType=VARCHAR},
+      REPARATION_FULFILL_ABILITY = #{reparationFulfillAbility,jdbcType=VARCHAR},
+      VICTIM_ATTITUDE = #{victimAttitude,jdbcType=VARCHAR},
+      PUBLIC_ATTITUDE = #{publicAttitude,jdbcType=VARCHAR},
+      FAMILY_ATTITUDE = #{familyAttitude,jdbcType=VARCHAR},
+      LIFE_ENVIRONMENT = #{lifeEnvironment,jdbcType=VARCHAR},
+      BASIC_VIEWS = #{basicViews,jdbcType=VARCHAR},
+      BASIC_VIEW = #{basicView,jdbcType=CLOB},
+      POLICE_VIEWS = #{policeViews,jdbcType=VARCHAR},
+      POLICE_VIEW = #{policeView,jdbcType=CLOB},
+      PRE_RECORD = #{preRecord,jdbcType=VARCHAR},
+      COUNTY_VIEWS = #{countyViews,jdbcType=VARCHAR},
+      WTDCH_PATH_NAME = #{wtdchPathName,jdbcType=VARCHAR},
+      ENTRUST_TYPE_ID = #{entrustTypeId,jdbcType=VARCHAR},
+      DIC_SEX_KEY = #{dicSexKey,jdbcType=VARCHAR},
+      INVESTIGATOR1 = #{investigator1,jdbcType=VARCHAR},
+      INVESTIGATOR_ID1 = #{investigatorId1,jdbcType=VARCHAR},
+      INVESTIGATOR2 = #{investigator2,jdbcType=VARCHAR},
+      INVESTIGATOR_ID2 = #{investigatorId2,jdbcType=VARCHAR},
+      ASSISTOR1 = #{assistor1,jdbcType=VARCHAR},
+      ASSISTOR_ID1 = #{assistorId1,jdbcType=VARCHAR},
+      ASSISTOR2 = #{assistor2,jdbcType=VARCHAR},
+      ASSISTOR_ID2 = #{assistorId2,jdbcType=VARCHAR},
+      POSITION1 = #{position1,jdbcType=VARCHAR},
+      POSITION2 = #{position2,jdbcType=VARCHAR},
+      POSITION3 = #{position3,jdbcType=VARCHAR},
+      POSITION4 = #{position4,jdbcType=VARCHAR},
+      PER_ACCOUNTS = #{perAccounts,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      PRE_START_TIME = #{preStartTime,jdbcType=TIMESTAMP},
+      LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+      PRE_END_TIME = #{preEndTime,jdbcType=TIMESTAMP},
+      COUNT = #{count,jdbcType=VARCHAR},
+      APPLY_UN_LOCK = #{applyUnLock,jdbcType=DECIMAL},
+      FLAG = #{flag,jdbcType=DECIMAL},
+      SAVE_RECORD = #{saveRecord,jdbcType=DECIMAL},
+      WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      SITUATION = #{situation,jdbcType=CLOB},
+      DIC_EVALUE_VIEW_KEY = #{dicEvalueViewKey,jdbcType=VARCHAR},
+      DRAFT_PEOPLE = #{draftPeople,jdbcType=VARCHAR},
+      RELEVANT_NUMBER = #{relevantNumber,jdbcType=VARCHAR},
+      HAND_ON = #{handOn,jdbcType=DECIMAL},
+      DIC_RESUDENCE_KEY = #{dicResudenceKey,jdbcType=VARCHAR},
+      REG_RESUDENCE = #{regResudence,jdbcType=VARCHAR},
+      DIC_CHECK_KEY = #{dicCheckKey,jdbcType=VARCHAR},
+      OPRATORS = #{oprators,jdbcType=VARCHAR},
+      RECOMMEND_STATUS = #{recommendStatus,jdbcType=VARCHAR},
+      EVALUE_VIEWS_BAK = #{evalueViewsBak,jdbcType=VARCHAR},
+      EVALUE_VIEWS = #{evalueViews,jdbcType=CLOB},
+      WTDCH_PATH_BAK = #{wtdchPathBak,jdbcType=VARCHAR},
+      WTDCH_PATH = #{wtdchPath,jdbcType=CLOB},
+      POLICE_VIEWS_PATH_BAK = #{policeViewsPathBak,jdbcType=VARCHAR},
+      POLICE_VIEWS_PATH = #{policeViewsPath,jdbcType=CLOB},
+      PRE_RECORD_PATH_BAK = #{preRecordPathBak,jdbcType=VARCHAR},
+      PRE_RECORD_PATH = #{preRecordPath,jdbcType=CLOB},
+      BASIC_VIEWS_PATH_BAK = #{basicViewsPathBak,jdbcType=VARCHAR},
+      BASIC_VIEWS_PATH = #{basicViewsPath,jdbcType=CLOB},
+      EMAIL_NO = #{emailNo,jdbcType=VARCHAR},
+      EMAIL_PERSON = #{emailPerson,jdbcType=VARCHAR},
+      EMAIL_NAME = #{emailName,jdbcType=VARCHAR},
+      CITY_FACTION_QUALITY_GOAL = #{cityFactionQualityGoal,jdbcType=FLOAT},
+      XFG_EDIT_REASON = #{xfgEditReason,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      REG_RESIDENCE_PRO_ID = #{regResidenceProId,jdbcType=VARCHAR},
+      REG_RESIDENCE_CITY_ID = #{regResidenceCityId,jdbcType=VARCHAR},
+      REG_RESIDENCE_COUNTRY_ID = #{regResidenceCountryId,jdbcType=VARCHAR},
+      REG_RESIDENCE_STREET = #{regResidenceStreet,jdbcType=VARCHAR},
+      REG_RESIDENCE_DETAIL = #{regResidenceDetail,jdbcType=VARCHAR},
+      HABITUAL_RESIDENCE_PRO_ID = #{habitualResidenceProId,jdbcType=VARCHAR},
+      HABITUAL_RESIDENCE_CITY_ID = #{habitualResidenceCityId,jdbcType=VARCHAR},
+      HABITUAL_RESIDENCE_COUNTRY_ID = #{habitualResidenceCountryId,jdbcType=VARCHAR},
+      HABITUAL_RESIDENCE_STREET = #{habitualResidenceStreet,jdbcType=VARCHAR},
+      HABITUAL_RESIDENCE_DETAIL = #{habitualResidenceDetail,jdbcType=VARCHAR},
+      origin_PRO_ID = #{originProId,jdbcType=VARCHAR},
+      origin_CITY_ID = #{originCityId,jdbcType=VARCHAR},
+      origin_COUNTRY_ID = #{originCountryId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.investigate.Investigate" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" /> 
+    from SF_INVESTIGATE t 
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="entrustUnit != null and entrustUnit!=''">
+      AND t.ENTRUST_UNIT like '%'||#{entrustUnit,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="dicEntrustUnitTypeKey != null and dicEntrustUnitTypeKey!=''">
+      AND t.DIC_ENTRUST_UNIT_TYPE_KEY = #{dicEntrustUnitTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="acceptedEntrustTime != null">
+      AND t.ACCEPTED_ENTRUST_TIME = #{acceptedEntrustTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="begTime != null">
+      AND t.BEG_TIME = #{begTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endTime != null">
+      AND t.END_TIME = #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="groupId != null and groupId!=''">
+     <![CDATA[  
+     	 AND  exists ( select t3.id from (select * from sys_group start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) t3 where t.GROUP_ID=t3.id)
+     ]]> 
+    </if>
+    <if test="sfsGroupId != null and sfsGroupId!=''">
+     <![CDATA[  
+     	 AND  exists ( select t2.id from (select * from sys_group start with id= #{sfsGroupId,jdbcType=VARCHAR} connect by prior id = parent_id) t2 where t.SFS_GROUP_ID=t2.id)
+     ]]>  
+    </if>
+    <if test="sfsGroupName != null and sfsGroupName!=''">
+      AND t.SFS_GROUP_NAME = #{sfsGroupName,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null and name!=''">
+      AND t.NAME like '%'||#{name,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="alias != null and alias!=''">
+      AND t.ALIAS = #{alias,jdbcType=VARCHAR}
+    </if>
+    <if test="oldName != null and oldName!=''">
+      AND t.OLD_NAME = #{oldName,jdbcType=VARCHAR}
+    </if>
+    <if test="origin != null and origin!=''">
+      AND t.ORIGIN = #{origin,jdbcType=VARCHAR}
+    </if>
+    <if test="nation != null and nation!=''">
+      AND t.NATION = #{nation,jdbcType=VARCHAR}
+    </if>
+    <if test="identification != null and identification!=''">
+      AND t.IDENTIFICATION = #{identification,jdbcType=VARCHAR}
+    </if>
+    <if test="bornDate != null">
+      AND t.BORN_DATE = #{bornDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="address != null and address!=''">
+      AND t.ADDRESS = #{address,jdbcType=VARCHAR}
+    </if>
+    <if test="contactPhone != null and contactPhone!=''">
+      AND t.CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR}
+    </if>
+    <if test="job != null and job!=''">
+      AND t.JOB = #{job,jdbcType=VARCHAR}
+    </if>
+    <if test="entrustNo != null and entrustNo!=''">
+      AND t.ENTRUST_NO = #{entrustNo,jdbcType=VARCHAR}
+    </if>
+    <if test="workUnits != null and workUnits!=''">
+      AND t.WORK_UNITS = #{workUnits,jdbcType=VARCHAR}
+    </if>
+    <if test="crime != null and crime!=''">
+      AND t.CRIME = #{crime,jdbcType=VARCHAR}
+    </if>
+    <if test="place != null and place!=''">
+      AND t.PLACE = #{place,jdbcType=VARCHAR}
+    </if>
+    <if test="investigateMatters != null and investigateMatters!=''">
+      AND t.INVESTIGATE_MATTERS = #{investigateMatters,jdbcType=VARCHAR}
+    </if>
+    <if test="adoption != null and adoption!=''">
+      AND t.ADOPTION = #{adoption,jdbcType=VARCHAR}
+    </if>
+    <if test="crimePersonName != null and crimePersonName!=''">
+      AND t.CRIME_PERSON_NAME = #{crimePersonName,jdbcType=VARCHAR}
+    </if>
+    <if test="adjudgePeriod != null and adjudgePeriod!=''">
+      AND t.ADJUDGE_PERIOD = #{adjudgePeriod,jdbcType=VARCHAR}
+    </if>
+    <if test="adjudgeStartTime != null">
+      AND t.ADJUDGE_START_TIME = #{adjudgeStartTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="adjudgeEndTime != null">
+      AND t.ADJUDGE_END_TIME = #{adjudgeEndTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="adjudgeAdded != null and adjudgeAdded!=''">
+      AND t.ADJUDGE_ADDED = #{adjudgeAdded,jdbcType=VARCHAR}
+    </if>
+    <if test="adjudgeOrg != null and adjudgeOrg!=''">
+      AND t.ADJUDGE_ORG = #{adjudgeOrg,jdbcType=VARCHAR}
+    </if>
+    <if test="adjudgeDate != null and adjudgeDate!=''">
+      AND t.ADJUDGE_DATE = #{adjudgeDate,jdbcType=VARCHAR}
+    </if>
+    <if test="relationId != null and relationId!=''">
+      AND t.RELATION_ID = #{relationId,jdbcType=VARCHAR}
+    </if>
+    <if test="dicApplyTypeKey != null and dicApplyTypeKey!=''">
+      AND t.DIC_APPLY_TYPE_KEY = #{dicApplyTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="mobileNumber != null and mobileNumber!=''">
+      AND t.MOBILE_NUMBER = #{mobileNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="habitualResidence != null and habitualResidence!=''">
+      AND t.HABITUAL_RESIDENCE = #{habitualResidence,jdbcType=VARCHAR}
+    </if>
+    <if test="crimeReason != null and crimeReason!=''">
+      AND t.CRIME_REASON = #{crimeReason,jdbcType=VARCHAR}
+    </if>
+    <if test="familySituation != null and familySituation!=''">
+      AND t.FAMILY_SITUATION = #{familySituation,jdbcType=VARCHAR}
+    </if>
+    <if test="economicStatus != null and economicStatus!=''">
+      AND t.ECONOMIC_STATUS = #{economicStatus,jdbcType=VARCHAR}
+    </if>
+    <if test="minorOtherCases != null and minorOtherCases!=''">
+      AND t.MINOR_OTHER_CASES = #{minorOtherCases,jdbcType=VARCHAR}
+    </if>
+    <if test="physiConditions != null and physiConditions!=''">
+      AND t.PHYSI_CONDITIONS = #{physiConditions,jdbcType=VARCHAR}
+    </if>
+    <if test="psychFeature != null and psychFeature!=''">
+      AND t.PSYCH_FEATURE = #{psychFeature,jdbcType=VARCHAR}
+    </if>
+    <if test="mettleType != null and mettleType!=''">
+      AND t.METTLE_TYPE = #{mettleType,jdbcType=VARCHAR}
+    </if>
+    <if test="hobbies != null and hobbies!=''">
+      AND t.HOBBIES = #{hobbies,jdbcType=VARCHAR}
+    </if>
+    <if test="display != null and display!=''">
+      AND t.DISPLAY = #{display,jdbcType=VARCHAR}
+    </if>
+    <if test="amateurLife != null and amateurLife!=''">
+      AND t.AMATEUR_LIFE = #{amateurLife,jdbcType=VARCHAR}
+    </if>
+    <if test="neighborhoodRelations != null and neighborhoodRelations!=''">
+      AND t.NEIGHBORHOOD_RELATIONS = #{neighborhoodRelations,jdbcType=VARCHAR}
+    </if>
+    <if test="socialInteraction != null and socialInteraction!=''">
+      AND t.SOCIAL_INTERACTION = #{socialInteraction,jdbcType=VARCHAR}
+    </if>
+    <if test="badFact != null and badFact!=''">
+      AND t.BAD_FACT = #{badFact,jdbcType=VARCHAR}
+    </if>
+    <if test="crimeAcquaint != null and crimeAcquaint!=''">
+      AND t.CRIME_ACQUAINT = #{crimeAcquaint,jdbcType=VARCHAR}
+    </if>
+    <if test="repentantAttitude != null and repentantAttitude!=''">
+      AND t.REPENTANT_ATTITUDE = #{repentantAttitude,jdbcType=VARCHAR}
+    </if>
+    <if test="fineFulfillAbility != null and fineFulfillAbility!=''">
+      AND t.FINE_FULFILL_ABILITY = #{fineFulfillAbility,jdbcType=VARCHAR}
+    </if>
+    <if test="reparationFulfillAbility != null and reparationFulfillAbility!=''">
+      AND t.REPARATION_FULFILL_ABILITY = #{reparationFulfillAbility,jdbcType=VARCHAR}
+    </if>
+    <if test="victimAttitude != null and victimAttitude!=''">
+      AND t.VICTIM_ATTITUDE = #{victimAttitude,jdbcType=VARCHAR}
+    </if>
+    <if test="publicAttitude != null and publicAttitude!=''">
+      AND t.PUBLIC_ATTITUDE = #{publicAttitude,jdbcType=VARCHAR}
+    </if>
+    <if test="familyAttitude != null and familyAttitude!=''">
+      AND t.FAMILY_ATTITUDE = #{familyAttitude,jdbcType=VARCHAR}
+    </if>
+    <if test="lifeEnvironment != null and lifeEnvironment!=''">
+      AND t.LIFE_ENVIRONMENT = #{lifeEnvironment,jdbcType=VARCHAR}
+    </if>
+    <if test="basicViews != null and basicViews!=''">
+      AND t.BASIC_VIEWS = #{basicViews,jdbcType=VARCHAR}
+    </if>
+    <if test="basicView != null and basicView!=''">
+      AND t.BASIC_VIEW = #{basicView,jdbcType=CLOB}
+    </if>
+    <if test="policeViews != null and policeViews!=''">
+      AND t.POLICE_VIEWS = #{policeViews,jdbcType=VARCHAR}
+    </if>
+    <if test="policeView != null and policeView!=''">
+      AND t.POLICE_VIEW = #{policeView,jdbcType=CLOB}
+    </if>
+    <if test="preRecord != null and preRecord!=''">
+      AND t.PRE_RECORD = #{preRecord,jdbcType=VARCHAR}
+    </if>
+    <if test="countyViews != null and countyViews!=''">
+      AND t.COUNTY_VIEWS = #{countyViews,jdbcType=VARCHAR}
+    </if>
+    <if test="wtdchPathName != null and wtdchPathName!=''">
+      AND t.WTDCH_PATH_NAME = #{wtdchPathName,jdbcType=VARCHAR}
+    </if>
+    <if test="entrustTypeId != null and entrustTypeId!=''">
+      AND t.ENTRUST_TYPE_ID = #{entrustTypeId,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSexKey != null and dicSexKey!=''">
+      AND t.DIC_SEX_KEY = #{dicSexKey,jdbcType=VARCHAR}
+    </if>
+    <if test="investigator1 != null and investigator1!=''">
+      AND t.INVESTIGATOR1 = #{investigator1,jdbcType=VARCHAR}
+    </if>
+    <if test="investigatorId1 != null and investigatorId1!=''">
+      AND t.INVESTIGATOR_ID1 = #{investigatorId1,jdbcType=VARCHAR}
+    </if>
+    <if test="investigator2 != null and investigator2!=''">
+      AND t.INVESTIGATOR2 = #{investigator2,jdbcType=VARCHAR}
+    </if>
+    <if test="investigatorId2 != null and investigatorId2!=''">
+      AND t.INVESTIGATOR_ID2 = #{investigatorId2,jdbcType=VARCHAR}
+    </if>
+    <if test="assistor1 != null and assistor1!=''">
+      AND t.ASSISTOR1 = #{assistor1,jdbcType=VARCHAR}
+    </if>
+    <if test="assistorId1 != null and assistorId1!=''">
+      AND t.ASSISTOR_ID1 = #{assistorId1,jdbcType=VARCHAR}
+    </if>
+    <if test="assistor2 != null and assistor2!=''">
+      AND t.ASSISTOR2 = #{assistor2,jdbcType=VARCHAR}
+    </if>
+    <if test="assistorId2 != null and assistorId2!=''">
+      AND t.ASSISTOR_ID2 = #{assistorId2,jdbcType=VARCHAR}
+    </if>
+    <if test="position1 != null and position1!=''">
+      AND t.POSITION1 = #{position1,jdbcType=VARCHAR}
+    </if>
+    <if test="position2 != null and position2!=''">
+      AND t.POSITION2 = #{position2,jdbcType=VARCHAR}
+    </if>
+    <if test="position3 != null and position3!=''">
+      AND t.POSITION3 = #{position3,jdbcType=VARCHAR}
+    </if>
+    <if test="position4 != null and position4!=''">
+      AND t.POSITION4 = #{position4,jdbcType=VARCHAR}
+    </if>
+    <if test="perAccounts != null and perAccounts!=''">
+      AND t.PER_ACCOUNTS = #{perAccounts,jdbcType=VARCHAR}
+    </if>
+    <if test="createdTime != null">
+      AND t.CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="modifiedTime != null">
+      AND t.MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="accountId != null and accountId!=''">
+      AND t.ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+    </if>
+    <if test="path != null and path!=''">
+      AND t.PATH = #{path,jdbcType=VARCHAR}
+    </if>
+    <if test="preStartTime != null">
+      AND t.PRE_START_TIME = #{preStartTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="lockTime != null">
+      AND t.LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="preEndTime != null">
+      AND t.PRE_END_TIME = #{preEndTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="count != null and count!=''">
+      AND t.COUNT = #{count,jdbcType=VARCHAR}
+    </if>
+    <if test="applyUnLock != null">
+      AND t.APPLY_UN_LOCK = #{applyUnLock,jdbcType=DECIMAL}
+    </if>
+    <if test="flag != null">
+      AND t.FLAG = #{flag,jdbcType=DECIMAL}
+    </if>
+    <if test="noteqflag != '' and noteqflag != null">
+    <![CDATA[ 
+      AND (t.FLAG = 1 or t.FLAG=2)
+    ]]>
+    </if>
+    <if test="saveRecord != null">
+      AND t.SAVE_RECORD = #{saveRecord,jdbcType=DECIMAL}
+    </if>
+    <if test="writNum != null and writNum!=''">
+      AND t.WRIT_NUM = #{writNum,jdbcType=VARCHAR}
+    </if>
+    <if test="situation != null and situation!=''">
+      AND t.SITUATION = #{situation,jdbcType=CLOB}
+    </if>
+    <if test="dicEvalueViewKey != null and dicEvalueViewKey!=''">
+      AND t.DIC_EVALUE_VIEW_KEY = #{dicEvalueViewKey,jdbcType=VARCHAR}
+    </if>
+    <if test="draftPeople != null and draftPeople!=''">
+      AND t.DRAFT_PEOPLE = #{draftPeople,jdbcType=VARCHAR}
+    </if>
+    <if test="relevantNumber != null and relevantNumber!=''">
+      AND t.RELEVANT_NUMBER = #{relevantNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="handOn != null">
+      AND t.HAND_ON = #{handOn,jdbcType=DECIMAL}
+    </if>
+    <if test="dicResudenceKey != null and dicResudenceKey!=''">
+      AND t.DIC_RESUDENCE_KEY = #{dicResudenceKey,jdbcType=VARCHAR}
+    </if>
+    <if test="regResudence != null and regResudence!=''">
+      AND t.REG_RESUDENCE = #{regResudence,jdbcType=VARCHAR}
+    </if>
+    <if test="dicCheckKey != null and dicCheckKey!=''">
+      AND t.DIC_CHECK_KEY = #{dicCheckKey,jdbcType=VARCHAR}
+    </if>
+    <if test="oprators != null and oprators!=''">
+      AND t.OPRATORS = #{oprators,jdbcType=VARCHAR}
+    </if>
+    <if test="recommendStatus != null and recommendStatus!=''">
+      AND t.RECOMMEND_STATUS = #{recommendStatus,jdbcType=VARCHAR}
+    </if>
+    <if test="evalueViewsBak != null and evalueViewsBak!=''">
+      AND t.EVALUE_VIEWS_BAK = #{evalueViewsBak,jdbcType=VARCHAR}
+    </if>
+    <if test="evalueViews != null and evalueViews!=''">
+      AND t.EVALUE_VIEWS = #{evalueViews,jdbcType=CLOB}
+    </if>
+    <if test="wtdchPathBak != null and wtdchPathBak!=''">
+      AND t.WTDCH_PATH_BAK = #{wtdchPathBak,jdbcType=VARCHAR}
+    </if>
+    <if test="wtdchPath != null and wtdchPath!=''">
+      AND t.WTDCH_PATH = #{wtdchPath,jdbcType=CLOB}
+    </if>
+    <if test="policeViewsPathBak != null and policeViewsPathBak!=''">
+      AND t.POLICE_VIEWS_PATH_BAK = #{policeViewsPathBak,jdbcType=VARCHAR}
+    </if>
+    <if test="policeViewsPath != null and policeViewsPath!=''">
+      AND t.POLICE_VIEWS_PATH = #{policeViewsPath,jdbcType=CLOB}
+    </if>
+    <if test="preRecordPathBak != null and preRecordPathBak!=''">
+      AND t.PRE_RECORD_PATH_BAK = #{preRecordPathBak,jdbcType=VARCHAR}
+    </if>
+    <if test="preRecordPath != null and preRecordPath!=''">
+      AND t.PRE_RECORD_PATH = #{preRecordPath,jdbcType=CLOB}
+    </if>
+    <if test="basicViewsPathBak != null and basicViewsPathBak!=''">
+      AND t.BASIC_VIEWS_PATH_BAK = #{basicViewsPathBak,jdbcType=VARCHAR}
+    </if>
+    <if test="basicViewsPath != null and basicViewsPath!=''">
+      AND t.BASIC_VIEWS_PATH = #{basicViewsPath,jdbcType=CLOB}
+    </if>
+    <if test="emailNo != null and emailNo!=''">
+      AND t.EMAIL_NO = #{emailNo,jdbcType=VARCHAR}
+    </if>
+    <if test="emailPerson != null and emailPerson!=''">
+      AND t.EMAIL_PERSON = #{emailPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="emailName != null and emailName!=''">
+      AND t.EMAIL_NAME = #{emailName,jdbcType=VARCHAR}
+    </if>
+    <if test="cityFactionQualityGoal != null">
+      AND t.CITY_FACTION_QUALITY_GOAL = #{cityFactionQualityGoal,jdbcType=FLOAT}
+    </if>
+    <if test="xfgEditReason != null and xfgEditReason!=''">
+      AND t.XFG_EDIT_REASON = #{xfgEditReason,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND t.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceProId != null and regResidenceProId !=''">
+      AND t.REG_RESIDENCE_PRO_ID = #{regResidenceProId,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceCityId != null and regResidenceCityId !=''">
+      AND t.REG_RESIDENCE_CITY_ID = #{regResidenceCityId,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceCountryId != null and regResidenceCountryId !=''">
+      AND t.REG_RESIDENCE_COUNTRY_ID = #{regResidenceCountryId,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceStreet != null and regResidenceStreet !=''">
+      AND t.REG_RESIDENCE_STREET = #{regResidenceStreet,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceDetail != null and regResidenceDetail !=''">
+      AND t.REG_RESIDENCE_DETAIL = #{regResidenceDetail,jdbcType=VARCHAR}
+    </if>
+    <if test="habitualResidenceProId != null and habitualResidenceProId !=''">
+      AND t.HABITUAL_RESIDENCE_PRO_ID = #{habitualResidenceProId,jdbcType=VARCHAR}
+    </if>
+    <if test="habitualResidenceCityId != null and habitualResidenceCityId !=''">
+      AND t.HABITUAL_RESIDENCE_CITY_ID = #{habitualResidenceCityId,jdbcType=VARCHAR}
+    </if>
+    <if test="habitualResidenceCountryId != null and habitualResidenceCountryId !=''">
+      AND t.HABITUAL_RESIDENCE_COUNTRY_ID = #{habitualResidenceCountryId,jdbcType=VARCHAR}
+    </if>
+    <if test="habitualResidenceStreet != null and habitualResidenceStreet !=''">
+      AND t.HABITUAL_RESIDENCE_STREET = #{habitualResidenceStreet,jdbcType=VARCHAR}
+    </if>
+    <if test="habitualResidenceDetail != null and habitualResidenceDetail !=''">
+      AND t.HABITUAL_RESIDENCE_DETAIL = #{habitualResidenceDetail,jdbcType=VARCHAR}
+    </if>
+    <if test="originProId != null and originProId !=''">
+      AND t.ORIGIN_PRO_ID = #{originProId,jdbcType=VARCHAR}
+    </if>
+    <if test="originCityId != null and originCityId !=''">
+      AND t.ORIGIN_CITY_ID = #{originCityId,jdbcType=VARCHAR}
+    </if>
+    <if test="originCountryId != null and originCountryId !=''">
+      AND t.ORIGIN_COUNTRY_ID = #{originCountryId,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="processInstanceId != null and processInstanceId!=''">
+      AND t.PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+    </if>
+    <if test="searchStartDate != null">
+      AND t.ACCEPTED_ENTRUST_TIME <![CDATA[ >= ]]> #{searchStartDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="searchEndDate != null">
+      AND t.ACCEPTED_ENTRUST_TIME <![CDATA[ <= ]]> #{searchEndDate,jdbcType=TIMESTAMP}
+    </if>
+  </sql>
+</mapper>

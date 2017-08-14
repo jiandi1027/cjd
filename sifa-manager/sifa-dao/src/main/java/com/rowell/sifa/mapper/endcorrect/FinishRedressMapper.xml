@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.endcorrect.FinishRedressMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.endcorrect.FinishRedress">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="PATH_NAME" jdbcType="VARCHAR" property="pathName" />
+    <result column="WRIT_NUM_Z" jdbcType="VARCHAR" property="writNumZ" />
+    <result column="WRIT_NUM_T" jdbcType="VARCHAR" property="writNumT" />
+    <result column="DIC_S_THREE_NON_KEY" jdbcType="VARCHAR" property="dicSThreeNonKey" />
+    <result column="DIC_IS_TRAIN_KEY" jdbcType="VARCHAR" property="dicIsTrainKey" />
+    <result column="DIC_SKILLS_CERTIFICATE_KEY" jdbcType="VARCHAR" property="dicSkillsCertificateKey" />
+    <result column="DIC_REDRESS_SHOW_KEY" jdbcType="VARCHAR" property="dicRedressShowKey" />
+    <result column="DIC_PLEA_ATTITUDE_KEY" jdbcType="VARCHAR" property="dicPleaAttitudeKey" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="RISK_ID" jdbcType="VARCHAR" property="riskId" />
+    <result column="FAMILY_CONTACT_ID" jdbcType="VARCHAR" property="familyContactId" />
+    <result column="SKILL_INFO" jdbcType="VARCHAR" property="skillInfo" />
+    <result column="IS_AGREE" jdbcType="DECIMAL" property="isAgree" />
+    <result column="NOTE_PATH" jdbcType="VARCHAR" property="notePath" />
+    <result column="NOTE_PATH_NAME" jdbcType="VARCHAR" property="notePathName" />
+    <result column="END_REASON_ID" jdbcType="VARCHAR" property="endReasonId" />
+    <result column="END_DETAIL_REASON" jdbcType="VARCHAR" property="endDetailReason" />
+    <result column="END_PATH" jdbcType="VARCHAR" property="endPath" />
+    <result column="END_PATH_NAME" jdbcType="VARCHAR" property="endPathName" />
+    <result column="END_ACCOUNT_NAME" jdbcType="VARCHAR" property="endAccountName" />
+    <result column="END_ACCOUNT_ID" jdbcType="VARCHAR" property="endAccountId" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.rowell.sifa.pojo.endcorrect.FinishRedress">
+    <result column="HELP_VIEW" jdbcType="CLOB" property="helpView" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CULPRIT_ID, PATH, PATH_NAME, WRIT_NUM_Z, WRIT_NUM_T, DIC_S_THREE_NON_KEY, DIC_IS_TRAIN_KEY, 
+    DIC_SKILLS_CERTIFICATE_KEY, DIC_REDRESS_SHOW_KEY, DIC_PLEA_ATTITUDE_KEY, ADDRESS, 
+    RISK_ID, FAMILY_CONTACT_ID, SKILL_INFO, IS_AGREE, NOTE_PATH, NOTE_PATH_NAME, END_REASON_ID, 
+    END_DETAIL_REASON, END_PATH, END_PATH_NAME, END_ACCOUNT_NAME, END_ACCOUNT_ID, CREATED, 
+    CREATER, UPDATED, UPDATER, DEL_FLAG, PROCESS_INSTANCE_ID,REMARK,
+    (select g.name from SYS_GROUP g left join SF_CULPRIT c on g.id=c.GROUP_ID where c.id=CULPRIT_ID) groupName,
+    (select c.name from SF_CULPRIT c where c.id=CULPRIT_ID) culpritName
+  </sql>
+  <sql id="Blob_Column_List">
+    HELP_VIEW
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from SF_FINISH_REDRESS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_FINISH_REDRESS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.endcorrect.FinishRedress">
+    insert into SF_FINISH_REDRESS (ID, CULPRIT_ID, PATH, 
+      PATH_NAME, WRIT_NUM_Z, WRIT_NUM_T, 
+      DIC_S_THREE_NON_KEY, DIC_IS_TRAIN_KEY, DIC_SKILLS_CERTIFICATE_KEY, 
+      DIC_REDRESS_SHOW_KEY, DIC_PLEA_ATTITUDE_KEY, 
+      ADDRESS, RISK_ID, FAMILY_CONTACT_ID, 
+      SKILL_INFO, IS_AGREE, NOTE_PATH, 
+      NOTE_PATH_NAME, END_REASON_ID, END_DETAIL_REASON, 
+      END_PATH, END_PATH_NAME, END_ACCOUNT_NAME, 
+      END_ACCOUNT_ID, CREATED, CREATER, 
+      UPDATED, UPDATER, DEL_FLAG, 
+      PROCESS_INSTANCE_ID, HELP_VIEW,REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{pathName,jdbcType=VARCHAR}, #{writNumZ,jdbcType=VARCHAR}, #{writNumT,jdbcType=VARCHAR}, 
+      #{dicSThreeNonKey,jdbcType=VARCHAR}, #{dicIsTrainKey,jdbcType=VARCHAR}, #{dicSkillsCertificateKey,jdbcType=VARCHAR}, 
+      #{dicRedressShowKey,jdbcType=VARCHAR}, #{dicPleaAttitudeKey,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{riskId,jdbcType=VARCHAR}, #{familyContactId,jdbcType=VARCHAR}, 
+      #{skillInfo,jdbcType=VARCHAR}, #{isAgree,jdbcType=DECIMAL}, #{notePath,jdbcType=VARCHAR}, 
+      #{notePathName,jdbcType=VARCHAR}, #{endReasonId,jdbcType=VARCHAR}, #{endDetailReason,jdbcType=VARCHAR}, 
+      #{endPath,jdbcType=VARCHAR}, #{endPathName,jdbcType=VARCHAR}, #{endAccountName,jdbcType=VARCHAR}, 
+      #{endAccountId,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+      #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL}, 
+      #{processInstanceId,jdbcType=VARCHAR}, #{helpView,jdbcType=CLOB},#{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.endcorrect.FinishRedress">
+    insert into SF_FINISH_REDRESS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="pathName != null">
+        PATH_NAME,
+      </if>
+      <if test="writNumZ != null">
+        WRIT_NUM_Z,
+      </if>
+      <if test="writNumT != null">
+        WRIT_NUM_T,
+      </if>
+      <if test="dicSThreeNonKey != null">
+        DIC_S_THREE_NON_KEY,
+      </if>
+      <if test="dicIsTrainKey != null">
+        DIC_IS_TRAIN_KEY,
+      </if>
+      <if test="dicSkillsCertificateKey != null">
+        DIC_SKILLS_CERTIFICATE_KEY,
+      </if>
+      <if test="dicRedressShowKey != null">
+        DIC_REDRESS_SHOW_KEY,
+      </if>
+      <if test="dicPleaAttitudeKey != null">
+        DIC_PLEA_ATTITUDE_KEY,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="riskId != null">
+        RISK_ID,
+      </if>
+      <if test="familyContactId != null">
+        FAMILY_CONTACT_ID,
+      </if>
+      <if test="skillInfo != null">
+        SKILL_INFO,
+      </if>
+      <if test="isAgree != null">
+        IS_AGREE,
+      </if>
+      <if test="notePath != null">
+        NOTE_PATH,
+      </if>
+      <if test="notePathName != null">
+        NOTE_PATH_NAME,
+      </if>
+      <if test="endReasonId != null">
+        END_REASON_ID,
+      </if>
+      <if test="endDetailReason != null">
+        END_DETAIL_REASON,
+      </if>
+      <if test="endPath != null">
+        END_PATH,
+      </if>
+      <if test="endPathName != null">
+        END_PATH_NAME,
+      </if>
+      <if test="endAccountName != null">
+        END_ACCOUNT_NAME,
+      </if>
+      <if test="endAccountId != null">
+        END_ACCOUNT_ID,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="helpView != null">
+        HELP_VIEW,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="pathName != null">
+        #{pathName,jdbcType=VARCHAR},
+      </if>
+      <if test="writNumZ != null">
+        #{writNumZ,jdbcType=VARCHAR},
+      </if>
+      <if test="writNumT != null">
+        #{writNumT,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSThreeNonKey != null">
+        #{dicSThreeNonKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsTrainKey != null">
+        #{dicIsTrainKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSkillsCertificateKey != null">
+        #{dicSkillsCertificateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicRedressShowKey != null">
+        #{dicRedressShowKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicPleaAttitudeKey != null">
+        #{dicPleaAttitudeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="riskId != null">
+        #{riskId,jdbcType=VARCHAR},
+      </if>
+      <if test="familyContactId != null">
+        #{familyContactId,jdbcType=VARCHAR},
+      </if>
+      <if test="skillInfo != null">
+        #{skillInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgree != null">
+        #{isAgree,jdbcType=DECIMAL},
+      </if>
+      <if test="notePath != null">
+        #{notePath,jdbcType=VARCHAR},
+      </if>
+      <if test="notePathName != null">
+        #{notePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="endReasonId != null">
+        #{endReasonId,jdbcType=VARCHAR},
+      </if>
+      <if test="endDetailReason != null">
+        #{endDetailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="endPath != null">
+        #{endPath,jdbcType=VARCHAR},
+      </if>
+      <if test="endPathName != null">
+        #{endPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="endAccountName != null">
+        #{endAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="endAccountId != null">
+        #{endAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="helpView != null">
+        #{helpView,jdbcType=CLOB},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.endcorrect.FinishRedress">
+    update SF_FINISH_REDRESS
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="pathName != null">
+        PATH_NAME = #{pathName,jdbcType=VARCHAR},
+      </if>
+      <if test="writNumZ != null">
+        WRIT_NUM_Z = #{writNumZ,jdbcType=VARCHAR},
+      </if>
+      <if test="writNumT != null">
+        WRIT_NUM_T = #{writNumT,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSThreeNonKey != null">
+        DIC_S_THREE_NON_KEY = #{dicSThreeNonKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsTrainKey != null">
+        DIC_IS_TRAIN_KEY = #{dicIsTrainKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSkillsCertificateKey != null">
+        DIC_SKILLS_CERTIFICATE_KEY = #{dicSkillsCertificateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicRedressShowKey != null">
+        DIC_REDRESS_SHOW_KEY = #{dicRedressShowKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicPleaAttitudeKey != null">
+        DIC_PLEA_ATTITUDE_KEY = #{dicPleaAttitudeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="riskId != null">
+        RISK_ID = #{riskId,jdbcType=VARCHAR},
+      </if>
+      <if test="familyContactId != null">
+        FAMILY_CONTACT_ID = #{familyContactId,jdbcType=VARCHAR},
+      </if>
+      <if test="skillInfo != null">
+        SKILL_INFO = #{skillInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgree != null">
+        IS_AGREE = #{isAgree,jdbcType=DECIMAL},
+      </if>
+      <if test="notePath != null">
+        NOTE_PATH = #{notePath,jdbcType=VARCHAR},
+      </if>
+      <if test="notePathName != null">
+        NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="endReasonId != null">
+        END_REASON_ID = #{endReasonId,jdbcType=VARCHAR},
+      </if>
+      <if test="endDetailReason != null">
+        END_DETAIL_REASON = #{endDetailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="endPath != null">
+        END_PATH = #{endPath,jdbcType=VARCHAR},
+      </if>
+      <if test="endPathName != null">
+        END_PATH_NAME = #{endPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="endAccountName != null">
+        END_ACCOUNT_NAME = #{endAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="endAccountId != null">
+        END_ACCOUNT_ID = #{endAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="helpView != null">
+        HELP_VIEW = #{helpView,jdbcType=CLOB},
+      </if>
+      <if test="remark != null">
+        REMARK=#{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.rowell.sifa.pojo.endcorrect.FinishRedress">
+    update SF_FINISH_REDRESS
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      PATH_NAME = #{pathName,jdbcType=VARCHAR},
+      WRIT_NUM_Z = #{writNumZ,jdbcType=VARCHAR},
+      WRIT_NUM_T = #{writNumT,jdbcType=VARCHAR},
+      DIC_S_THREE_NON_KEY = #{dicSThreeNonKey,jdbcType=VARCHAR},
+      DIC_IS_TRAIN_KEY = #{dicIsTrainKey,jdbcType=VARCHAR},
+      DIC_SKILLS_CERTIFICATE_KEY = #{dicSkillsCertificateKey,jdbcType=VARCHAR},
+      DIC_REDRESS_SHOW_KEY = #{dicRedressShowKey,jdbcType=VARCHAR},
+      DIC_PLEA_ATTITUDE_KEY = #{dicPleaAttitudeKey,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      RISK_ID = #{riskId,jdbcType=VARCHAR},
+      FAMILY_CONTACT_ID = #{familyContactId,jdbcType=VARCHAR},
+      SKILL_INFO = #{skillInfo,jdbcType=VARCHAR},
+      IS_AGREE = #{isAgree,jdbcType=DECIMAL},
+      NOTE_PATH = #{notePath,jdbcType=VARCHAR},
+      NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR},
+      END_REASON_ID = #{endReasonId,jdbcType=VARCHAR},
+      END_DETAIL_REASON = #{endDetailReason,jdbcType=VARCHAR},
+      END_PATH = #{endPath,jdbcType=VARCHAR},
+      END_PATH_NAME = #{endPathName,jdbcType=VARCHAR},
+      END_ACCOUNT_NAME = #{endAccountName,jdbcType=VARCHAR},
+      END_ACCOUNT_ID = #{endAccountId,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      HELP_VIEW = #{helpView,jdbcType=CLOB},
+      REMARK=#{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.endcorrect.FinishRedress">
+    update SF_FINISH_REDRESS
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      PATH_NAME = #{pathName,jdbcType=VARCHAR},
+      WRIT_NUM_Z = #{writNumZ,jdbcType=VARCHAR},
+      WRIT_NUM_T = #{writNumT,jdbcType=VARCHAR},
+      DIC_S_THREE_NON_KEY = #{dicSThreeNonKey,jdbcType=VARCHAR},
+      DIC_IS_TRAIN_KEY = #{dicIsTrainKey,jdbcType=VARCHAR},
+      DIC_SKILLS_CERTIFICATE_KEY = #{dicSkillsCertificateKey,jdbcType=VARCHAR},
+      DIC_REDRESS_SHOW_KEY = #{dicRedressShowKey,jdbcType=VARCHAR},
+      DIC_PLEA_ATTITUDE_KEY = #{dicPleaAttitudeKey,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      RISK_ID = #{riskId,jdbcType=VARCHAR},
+      FAMILY_CONTACT_ID = #{familyContactId,jdbcType=VARCHAR},
+      SKILL_INFO = #{skillInfo,jdbcType=VARCHAR},
+      IS_AGREE = #{isAgree,jdbcType=DECIMAL},
+      NOTE_PATH = #{notePath,jdbcType=VARCHAR},
+      NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR},
+      END_REASON_ID = #{endReasonId,jdbcType=VARCHAR},
+      END_DETAIL_REASON = #{endDetailReason,jdbcType=VARCHAR},
+      END_PATH = #{endPath,jdbcType=VARCHAR},
+      END_PATH_NAME = #{endPathName,jdbcType=VARCHAR},
+      END_ACCOUNT_NAME = #{endAccountName,jdbcType=VARCHAR},
+      END_ACCOUNT_ID = #{endAccountId,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      REMARK=#{remark,jdbcType=VARCHAR},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.endcorrect.FinishRedress" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_FINISH_REDRESS t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <select id="getCount" parameterType="com.rowell.sifa.pojo.endcorrect.FinishRedress" resultType="int">
+    select 
+    count(*) 
+    from SF_FINISH_REDRESS t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+  </select>
+  <sql id="findAllWhere">
+    <if test="culpritId != null and culpritId!=''">
+      AND CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="path != null and path!=''">
+      AND PATH = #{path,jdbcType=VARCHAR}
+    </if>
+    <if test="pathName != null and pathName!=''">
+      AND PATH_NAME = #{pathName,jdbcType=VARCHAR}
+    </if>
+    <if test="writNumZ != null and writNumZ!=''">
+      AND WRIT_NUM_Z = #{writNumZ,jdbcType=VARCHAR}
+    </if>
+    <if test="writNumT != null and writNumT!=''">
+      AND WRIT_NUM_T = #{writNumT,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSThreeNonKey != null and dicSThreeNonKey!=''">
+      AND DIC_S_THREE_NON_KEY = #{dicSThreeNonKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicIsTrainKey != null and dicIsTrainKey!=''">
+      AND DIC_IS_TRAIN_KEY = #{dicIsTrainKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSkillsCertificateKey != null and dicSkillsCertificateKey!=''">
+      AND DIC_SKILLS_CERTIFICATE_KEY = #{dicSkillsCertificateKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicRedressShowKey != null and dicRedressShowKey!=''">
+      AND DIC_REDRESS_SHOW_KEY = #{dicRedressShowKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicPleaAttitudeKey != null and dicPleaAttitudeKey!=''">
+      AND DIC_PLEA_ATTITUDE_KEY = #{dicPleaAttitudeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="address != null and address!=''">
+      AND ADDRESS = #{address,jdbcType=VARCHAR}
+    </if>
+    <if test="riskId != null and riskId!=''">
+      AND RISK_ID = #{riskId,jdbcType=VARCHAR}
+    </if>
+    <if test="familyContactId != null and familyContactId!=''">
+      AND FAMILY_CONTACT_ID = #{familyContactId,jdbcType=VARCHAR}
+    </if>
+    <if test="skillInfo != null and skillInfo!=''">
+      AND SKILL_INFO = #{skillInfo,jdbcType=VARCHAR}
+    </if>
+    <if test="isAgree != null">
+      AND IS_AGREE = #{isAgree,jdbcType=DECIMAL}
+    </if>
+    <if test="notePath != null and notePath!=''">
+      AND NOTE_PATH = #{notePath,jdbcType=VARCHAR}
+    </if>
+    <if test="notePathName != null and notePathName!=''">
+      AND NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="endReasonId != null and endReasonId!=''">
+      AND END_REASON_ID = #{endReasonId,jdbcType=VARCHAR}
+    </if>
+    <if test="endDetailReason != null and endDetailReason!=''">
+      AND END_DETAIL_REASON = #{endDetailReason,jdbcType=VARCHAR}
+    </if>
+    <if test="endPath != null and endPath!=''">
+      AND END_PATH = #{endPath,jdbcType=VARCHAR}
+    </if>
+    <if test="endPathName != null and endPathName!=''">
+      AND END_PATH_NAME = #{endPathName,jdbcType=VARCHAR}
+    </if>
+    <if test="endAccountName != null and endAccountName!=''">
+      AND END_ACCOUNT_NAME = #{endAccountName,jdbcType=VARCHAR}
+    </if>
+    <if test="endAccountId != null and endAccountId!=''">
+      AND END_ACCOUNT_ID = #{endAccountId,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="processInstanceId != null and processInstanceId!=''">
+      AND PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+    </if>
+    <if test="helpView != null and helpView!=''">
+      AND HELP_VIEW = #{helpView,jdbcType=CLOB}
+    </if>
+    <if test="remark != null and remark!=''">
+      AND REMARK = #{remark,jdbcType=VARCHAR}
+    </if>
+     <if test="culpritName != null and culpritName!=''">
+       AND exists (select * from SF_CULPRIT c where c.id=t.CULPRIT_ID and c.name like '%'||#{culpritName,jdbcType=VARCHAR}||'%')
+      </if>
+      <if test="groupName != null and groupName!=''">
+       AND exists (select * from SF_CULPRIT c where c.id=t.CULPRIT_ID and c.GROUP_ID=#{groupName,jdbcType=VARCHAR})
+      </if>
+      <if test="searchStartDate != null">
+       <![CDATA[  
+      AND t.CREATED >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="searchStartDate != null">
+    	 <![CDATA[  
+      AND t.CREATED >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND t.CREATED <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND t.CREATED <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g left join SF_CULPRIT c on g.id=c.group_id where c.id=CULPRIT_ID)
+    </if> 
+  </sql>
+</mapper>

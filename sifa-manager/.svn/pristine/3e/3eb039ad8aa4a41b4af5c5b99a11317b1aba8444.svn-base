@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.rewardspunishment.ReducePenaltyMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.rewardspunishment.ReducePenalty">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="REDUCE_TIME" jdbcType="VARCHAR" property="reduceTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="ACTIONS" jdbcType="CLOB" property="actions" />
+    <result column="REASON" jdbcType="VARCHAR" property="reason" />
+    <result column="END_CASE_PATH" jdbcType="VARCHAR" property="endCasePath" />
+    <result column="END_CASE_PATH_NAME" jdbcType="VARCHAR" property="endCasePathName" />
+    <result column="EVIDENCE_PATH" jdbcType="VARCHAR" property="evidencePath" />
+    <result column="EVIDENCE_PATH_NAME" jdbcType="VARCHAR" property="evidencePathName" />
+    <result column="OPINION" jdbcType="CLOB" property="opinion" />
+    <result column="COUNTY_VIEWS" jdbcType="CLOB" property="countyViews" />
+    <result column="CITY_OPINION" jdbcType="CLOB" property="cityOpinion" />
+    <result column="DIC_MONITOR_GRADE_KEY" jdbcType="VARCHAR" property="dicMonitorGradeKey" />
+    <result column="WRIT_NUM" jdbcType="VARCHAR" property="writNum" />
+    <result column="HAND_ON_UNIT" jdbcType="VARCHAR" property="handOnUnit" />
+    <result column="COPY_UNIT" jdbcType="VARCHAR" property="copyUnit" />
+    <result column="SHOW_RESULT" jdbcType="VARCHAR" property="showResult" />
+    <result column="SHOW_DETAIL" jdbcType="VARCHAR" property="showDetail" />
+    <result column="SHOW_ACTION" jdbcType="VARCHAR" property="showAction" />
+    <result column="PROCURATORATE" jdbcType="VARCHAR" property="procuratorate" />
+    <result column="PROCURATORATE_PATH" jdbcType="VARCHAR" property="procuratoratePath" />
+    <result column="PROCURATORATE_PATH_NAME" jdbcType="VARCHAR" property="procuratoratePathName" />
+    <result column="RESULT" jdbcType="VARCHAR" property="result" />
+    <result column="REDUCE_PATH" jdbcType="VARCHAR" property="reducePath" />
+    <result column="REDUCE_PATH_NAME" jdbcType="VARCHAR" property="reducePathName" />
+    <result column="UN_REDUCE_REASON" jdbcType="VARCHAR" property="unReduceReason" />
+    <result column="UN_REDUCE_PATH" jdbcType="VARCHAR" property="unReducePath" />
+    <result column="UN_REDUCE_PATH_NAME" jdbcType="VARCHAR" property="unReducePathName" />
+    <result column="DIC_CHECK_TYPE_KEY" jdbcType="VARCHAR" property="dicCheckTypeKey" />
+    <result column="CONCRETE_FACTS" jdbcType="CLOB" property="concreteFacts" />
+    <result column="COURT" jdbcType="VARCHAR" property="court" />
+    <result column="PEOPLE_PROCURATORATE" jdbcType="VARCHAR" property="peopleProcuratorate" />
+    <result column="POLICE" jdbcType="VARCHAR" property="police" />
+    <result column="PRISON" jdbcType="VARCHAR" property="prison" />
+    <result column="ISSUE_TIME" jdbcType="VARCHAR" property="issueTime" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROCESS_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="CULPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.CULPRIT_ID, t.REDUCE_TIME, t.END_TIME, t.ACTIONS, t.REASON, t.END_CASE_PATH, t.END_CASE_PATH_NAME, 
+    t.EVIDENCE_PATH, t.EVIDENCE_PATH_NAME, t.OPINION, t.COUNTY_VIEWS, t.CITY_OPINION, t.DIC_MONITOR_GRADE_KEY, 
+    t.WRIT_NUM, HAND_ON_UNIT, t.COPY_UNIT, t.SHOW_RESULT, t.SHOW_DETAIL, t.SHOW_ACTION, t.PROCURATORATE, 
+    t.PROCURATORATE_PATH, t.PROCURATORATE_PATH_NAME, t.RESULT, t.REDUCE_PATH, t.REDUCE_PATH_NAME, 
+    t.UN_REDUCE_REASON, t.UN_REDUCE_PATH, t.UN_REDUCE_PATH_NAME, t.DIC_CHECK_TYPE_KEY, t.CONCRETE_FACTS, 
+    t.COURT, t.PEOPLE_PROCURATORATE, t.POLICE, t.PRISON, t.ISSUE_TIME, t.CREATED, t.CREATER, t.UPDATED, 
+    t.UPDATER, t.DEL_FLAG,t.PROCESS_ID ,t2.name as culprit_name,t3.name as group_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_REDUCE_PENALTY t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_REDUCE_PENALTY t
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.rewardspunishment.ReducePenalty">
+    insert into SF_REDUCE_PENALTY (ID, CULPRIT_ID, REDUCE_TIME, 
+      END_TIME, ACTIONS, REASON, 
+      END_CASE_PATH, END_CASE_PATH_NAME, EVIDENCE_PATH, 
+      EVIDENCE_PATH_NAME, OPINION, COUNTY_VIEWS, 
+      CITY_OPINION, DIC_MONITOR_GRADE_KEY, WRIT_NUM, 
+      HAND_ON_UNIT, COPY_UNIT, SHOW_RESULT, 
+      SHOW_DETAIL, SHOW_ACTION, PROCURATORATE, 
+      PROCURATORATE_PATH, PROCURATORATE_PATH_NAME, 
+      RESULT, REDUCE_PATH, REDUCE_PATH_NAME, 
+      UN_REDUCE_REASON, UN_REDUCE_PATH, UN_REDUCE_PATH_NAME, 
+      DIC_CHECK_TYPE_KEY, CONCRETE_FACTS, COURT, 
+      PEOPLE_PROCURATORATE, POLICE, PRISON, 
+      ISSUE_TIME, CREATED, CREATER, 
+      UPDATED, UPDATER, DEL_FLAG,PROCESS_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{reduceTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{actions,jdbcType=CLOB}, #{reason,jdbcType=VARCHAR}, 
+      #{endCasePath,jdbcType=VARCHAR}, #{endCasePathName,jdbcType=VARCHAR}, #{evidencePath,jdbcType=VARCHAR}, 
+      #{evidencePathName,jdbcType=VARCHAR}, #{opinion,jdbcType=CLOB}, #{countyViews,jdbcType=CLOB}, 
+      #{cityOpinion,jdbcType=CLOB}, #{dicMonitorGradeKey,jdbcType=VARCHAR}, #{writNum,jdbcType=VARCHAR}, 
+      #{handOnUnit,jdbcType=VARCHAR}, #{copyUnit,jdbcType=VARCHAR}, #{showResult,jdbcType=VARCHAR}, 
+      #{showDetail,jdbcType=VARCHAR}, #{showAction,jdbcType=VARCHAR}, #{procuratorate,jdbcType=VARCHAR}, 
+      #{procuratoratePath,jdbcType=VARCHAR}, #{procuratoratePathName,jdbcType=VARCHAR}, 
+      #{result,jdbcType=VARCHAR}, #{reducePath,jdbcType=VARCHAR}, #{reducePathName,jdbcType=VARCHAR}, 
+      #{unReduceReason,jdbcType=VARCHAR}, #{unReducePath,jdbcType=VARCHAR}, #{unReducePathName,jdbcType=VARCHAR}, 
+      #{dicCheckTypeKey,jdbcType=VARCHAR}, #{concreteFacts,jdbcType=CLOB}, #{court,jdbcType=VARCHAR}, 
+      #{peopleProcuratorate,jdbcType=VARCHAR}, #{police,jdbcType=VARCHAR}, #{prison,jdbcType=VARCHAR}, 
+      #{issueTime,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+      #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL},#{processInstanceId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.ReducePenalty">
+    insert into SF_REDUCE_PENALTY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="reduceTime != null">
+        REDUCE_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="actions != null">
+        ACTIONS,
+      </if>
+      <if test="reason != null">
+        REASON,
+      </if>
+      <if test="endCasePath != null">
+        END_CASE_PATH,
+      </if>
+      <if test="endCasePathName != null">
+        END_CASE_PATH_NAME,
+      </if>
+      <if test="evidencePath != null">
+        EVIDENCE_PATH,
+      </if>
+      <if test="evidencePathName != null">
+        EVIDENCE_PATH_NAME,
+      </if>
+      <if test="opinion != null">
+        OPINION,
+      </if>
+      <if test="countyViews != null">
+        COUNTY_VIEWS,
+      </if>
+      <if test="cityOpinion != null">
+        CITY_OPINION,
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        DIC_MONITOR_GRADE_KEY,
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM,
+      </if>
+      <if test="handOnUnit != null">
+        HAND_ON_UNIT,
+      </if>
+      <if test="copyUnit != null">
+        COPY_UNIT,
+      </if>
+      <if test="showResult != null">
+        SHOW_RESULT,
+      </if>
+      <if test="showDetail != null">
+        SHOW_DETAIL,
+      </if>
+      <if test="showAction != null">
+        SHOW_ACTION,
+      </if>
+      <if test="procuratorate != null">
+        PROCURATORATE,
+      </if>
+      <if test="procuratoratePath != null">
+        PROCURATORATE_PATH,
+      </if>
+      <if test="procuratoratePathName != null">
+        PROCURATORATE_PATH_NAME,
+      </if>
+      <if test="result != null">
+        RESULT,
+      </if>
+      <if test="reducePath != null">
+        REDUCE_PATH,
+      </if>
+      <if test="reducePathName != null">
+        REDUCE_PATH_NAME,
+      </if>
+      <if test="unReduceReason != null">
+        UN_REDUCE_REASON,
+      </if>
+      <if test="unReducePath != null">
+        UN_REDUCE_PATH,
+      </if>
+      <if test="unReducePathName != null">
+        UN_REDUCE_PATH_NAME,
+      </if>
+      <if test="dicCheckTypeKey != null">
+        DIC_CHECK_TYPE_KEY,
+      </if>
+      <if test="concreteFacts != null">
+        CONCRETE_FACTS,
+      </if>
+      <if test="court != null">
+        COURT,
+      </if>
+      <if test="peopleProcuratorate != null">
+        PEOPLE_PROCURATORATE,
+      </if>
+      <if test="police != null">
+        POLICE,
+      </if>
+      <if test="prison != null">
+        PRISON,
+      </if>
+      <if test="issueTime != null">
+        ISSUE_TIME,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceTime != null">
+        #{reduceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actions != null">
+        #{actions,jdbcType=CLOB},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="endCasePath != null">
+        #{endCasePath,jdbcType=VARCHAR},
+      </if>
+      <if test="endCasePathName != null">
+        #{endCasePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePath != null">
+        #{evidencePath,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePathName != null">
+        #{evidencePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null">
+        #{opinion,jdbcType=CLOB},
+      </if>
+      <if test="countyViews != null">
+        #{countyViews,jdbcType=CLOB},
+      </if>
+      <if test="cityOpinion != null">
+        #{cityOpinion,jdbcType=CLOB},
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="writNum != null">
+        #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="handOnUnit != null">
+        #{handOnUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="copyUnit != null">
+        #{copyUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="showResult != null">
+        #{showResult,jdbcType=VARCHAR},
+      </if>
+      <if test="showDetail != null">
+        #{showDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="showAction != null">
+        #{showAction,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratorate != null">
+        #{procuratorate,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratoratePath != null">
+        #{procuratoratePath,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratoratePathName != null">
+        #{procuratoratePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="reducePath != null">
+        #{reducePath,jdbcType=VARCHAR},
+      </if>
+      <if test="reducePathName != null">
+        #{reducePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="unReduceReason != null">
+        #{unReduceReason,jdbcType=VARCHAR},
+      </if>
+      <if test="unReducePath != null">
+        #{unReducePath,jdbcType=VARCHAR},
+      </if>
+      <if test="unReducePathName != null">
+        #{unReducePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckTypeKey != null">
+        #{dicCheckTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteFacts != null">
+        #{concreteFacts,jdbcType=CLOB},
+      </if>
+      <if test="court != null">
+        #{court,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleProcuratorate != null">
+        #{peopleProcuratorate,jdbcType=VARCHAR},
+      </if>
+      <if test="police != null">
+        #{police,jdbcType=VARCHAR},
+      </if>
+      <if test="prison != null">
+        #{prison,jdbcType=VARCHAR},
+      </if>
+      <if test="issueTime != null">
+        #{issueTime,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.ReducePenalty">
+    update SF_REDUCE_PENALTY
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceTime != null">
+        REDUCE_TIME = #{reduceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actions != null">
+        ACTIONS = #{actions,jdbcType=CLOB},
+      </if>
+      <if test="reason != null">
+        REASON = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="endCasePath != null">
+        END_CASE_PATH = #{endCasePath,jdbcType=VARCHAR},
+      </if>
+      <if test="endCasePathName != null">
+        END_CASE_PATH_NAME = #{endCasePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePath != null">
+        EVIDENCE_PATH = #{evidencePath,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePathName != null">
+        EVIDENCE_PATH_NAME = #{evidencePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null">
+        OPINION = #{opinion,jdbcType=CLOB},
+      </if>
+      <if test="countyViews != null">
+        COUNTY_VIEWS = #{countyViews,jdbcType=CLOB},
+      </if>
+      <if test="cityOpinion != null">
+        CITY_OPINION = #{cityOpinion,jdbcType=CLOB},
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        DIC_MONITOR_GRADE_KEY = #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="handOnUnit != null">
+        HAND_ON_UNIT = #{handOnUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="copyUnit != null">
+        COPY_UNIT = #{copyUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="showResult != null">
+        SHOW_RESULT = #{showResult,jdbcType=VARCHAR},
+      </if>
+      <if test="showDetail != null">
+        SHOW_DETAIL = #{showDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="showAction != null">
+        SHOW_ACTION = #{showAction,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratorate != null">
+        PROCURATORATE = #{procuratorate,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratoratePath != null">
+        PROCURATORATE_PATH = #{procuratoratePath,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratoratePathName != null">
+        PROCURATORATE_PATH_NAME = #{procuratoratePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="reducePath != null">
+        REDUCE_PATH = #{reducePath,jdbcType=VARCHAR},
+      </if>
+      <if test="reducePathName != null">
+        REDUCE_PATH_NAME = #{reducePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="unReduceReason != null">
+        UN_REDUCE_REASON = #{unReduceReason,jdbcType=VARCHAR},
+      </if>
+      <if test="unReducePath != null">
+        UN_REDUCE_PATH = #{unReducePath,jdbcType=VARCHAR},
+      </if>
+      <if test="unReducePathName != null">
+        UN_REDUCE_PATH_NAME = #{unReducePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckTypeKey != null">
+        DIC_CHECK_TYPE_KEY = #{dicCheckTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteFacts != null">
+        CONCRETE_FACTS = #{concreteFacts,jdbcType=CLOB},
+      </if>
+      <if test="court != null">
+        COURT = #{court,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleProcuratorate != null">
+        PEOPLE_PROCURATORATE = #{peopleProcuratorate,jdbcType=VARCHAR},
+      </if>
+      <if test="police != null">
+        POLICE = #{police,jdbcType=VARCHAR},
+      </if>
+      <if test="prison != null">
+        PRISON = #{prison,jdbcType=VARCHAR},
+      </if>
+      <if test="issueTime != null">
+        ISSUE_TIME = #{issueTime,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.rewardspunishment.ReducePenalty">
+    update SF_REDUCE_PENALTY
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      REDUCE_TIME = #{reduceTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      ACTIONS = #{actions,jdbcType=CLOB},
+      REASON = #{reason,jdbcType=VARCHAR},
+      END_CASE_PATH = #{endCasePath,jdbcType=VARCHAR},
+      END_CASE_PATH_NAME = #{endCasePathName,jdbcType=VARCHAR},
+      EVIDENCE_PATH = #{evidencePath,jdbcType=VARCHAR},
+      EVIDENCE_PATH_NAME = #{evidencePathName,jdbcType=VARCHAR},
+      OPINION = #{opinion,jdbcType=CLOB},
+      COUNTY_VIEWS = #{countyViews,jdbcType=CLOB},
+      CITY_OPINION = #{cityOpinion,jdbcType=CLOB},
+      DIC_MONITOR_GRADE_KEY = #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      HAND_ON_UNIT = #{handOnUnit,jdbcType=VARCHAR},
+      COPY_UNIT = #{copyUnit,jdbcType=VARCHAR},
+      SHOW_RESULT = #{showResult,jdbcType=VARCHAR},
+      SHOW_DETAIL = #{showDetail,jdbcType=VARCHAR},
+      SHOW_ACTION = #{showAction,jdbcType=VARCHAR},
+      PROCURATORATE = #{procuratorate,jdbcType=VARCHAR},
+      PROCURATORATE_PATH = #{procuratoratePath,jdbcType=VARCHAR},
+      PROCURATORATE_PATH_NAME = #{procuratoratePathName,jdbcType=VARCHAR},
+      RESULT = #{result,jdbcType=VARCHAR},
+      REDUCE_PATH = #{reducePath,jdbcType=VARCHAR},
+      REDUCE_PATH_NAME = #{reducePathName,jdbcType=VARCHAR},
+      UN_REDUCE_REASON = #{unReduceReason,jdbcType=VARCHAR},
+      UN_REDUCE_PATH = #{unReducePath,jdbcType=VARCHAR},
+      UN_REDUCE_PATH_NAME = #{unReducePathName,jdbcType=VARCHAR},
+      DIC_CHECK_TYPE_KEY = #{dicCheckTypeKey,jdbcType=VARCHAR},
+      CONCRETE_FACTS = #{concreteFacts,jdbcType=CLOB},
+      COURT = #{court,jdbcType=VARCHAR},
+      PEOPLE_PROCURATORATE = #{peopleProcuratorate,jdbcType=VARCHAR},
+      POLICE = #{police,jdbcType=VARCHAR},
+      PRISON = #{prison,jdbcType=VARCHAR},
+      ISSUE_TIME = #{issueTime,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.rewardspunishment.ReducePenalty" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_REDUCE_PENALTY t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+  	 <if test="culpritName != null and culpritName!=''">
+      AND t2.name = #{culpritName,jdbcType=VARCHAR}
+    </if>
+    <if test="groupName != null and groupName!=''">
+      AND t3.ID  = #{groupName,jdbcType=VARCHAR}
+    </if>
+    <if test="culpritId != null and culpritId!=''">
+      AND CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="reduceTime != null and reduceTime!=''">
+      AND REDUCE_TIME = #{reduceTime,jdbcType=VARCHAR}
+    </if>
+    <if test="endTime != null">
+      AND END_TIME = #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="actions != null and actions!=''">
+      AND ACTIONS = #{actions,jdbcType=CLOB}
+    </if>
+    <if test="reason != null and reason!=''">
+      AND REASON = #{reason,jdbcType=VARCHAR}
+    </if>
+    <if test="endCasePath != null and endCasePath!=''">
+      AND END_CASE_PATH = #{endCasePath,jdbcType=VARCHAR}
+    </if>
+    <if test="endCasePathName != null and endCasePathName!=''">
+      AND END_CASE_PATH_NAME = #{endCasePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="evidencePath != null and evidencePath!=''">
+      AND EVIDENCE_PATH = #{evidencePath,jdbcType=VARCHAR}
+    </if>
+    <if test="evidencePathName != null and evidencePathName!=''">
+      AND EVIDENCE_PATH_NAME = #{evidencePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="opinion != null and opinion!=''">
+      AND OPINION = #{opinion,jdbcType=CLOB}
+    </if>
+    <if test="countyViews != null and countyViews!=''">
+      AND COUNTY_VIEWS = #{countyViews,jdbcType=CLOB}
+    </if>
+    <if test="cityOpinion != null and cityOpinion!=''">
+      AND CITY_OPINION = #{cityOpinion,jdbcType=CLOB}
+    </if>
+    <if test="dicMonitorGradeKey != null and dicMonitorGradeKey!=''">
+      AND DIC_MONITOR_GRADE_KEY = #{dicMonitorGradeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="writNum != null and writNum!=''">
+      AND WRIT_NUM = #{writNum,jdbcType=VARCHAR}
+    </if>
+    <if test="handOnUnit != null and handOnUnit!=''">
+      AND HAND_ON_UNIT = #{handOnUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="copyUnit != null and copyUnit!=''">
+      AND COPY_UNIT = #{copyUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="showResult != null and showResult!=''">
+      AND SHOW_RESULT = #{showResult,jdbcType=VARCHAR}
+    </if>
+    <if test="showDetail != null and showDetail!=''">
+      AND SHOW_DETAIL = #{showDetail,jdbcType=VARCHAR}
+    </if>
+    <if test="showAction != null and showAction!=''">
+      AND SHOW_ACTION = #{showAction,jdbcType=VARCHAR}
+    </if>
+    <if test="procuratorate != null and procuratorate!=''">
+      AND PROCURATORATE = #{procuratorate,jdbcType=VARCHAR}
+    </if>
+    <if test="procuratoratePath != null and procuratoratePath!=''">
+      AND PROCURATORATE_PATH = #{procuratoratePath,jdbcType=VARCHAR}
+    </if>
+    <if test="procuratoratePathName != null and procuratoratePathName!=''">
+      AND PROCURATORATE_PATH_NAME = #{procuratoratePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="result != null and result!=''">
+      AND RESULT = #{result,jdbcType=VARCHAR}
+    </if>
+    <if test="reducePath != null and reducePath!=''">
+      AND REDUCE_PATH = #{reducePath,jdbcType=VARCHAR}
+    </if>
+    <if test="reducePathName != null and reducePathName!=''">
+      AND REDUCE_PATH_NAME = #{reducePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="unReduceReason != null and unReduceReason!=''">
+      AND UN_REDUCE_REASON = #{unReduceReason,jdbcType=VARCHAR}
+    </if>
+    <if test="unReducePath != null and unReducePath!=''">
+      AND UN_REDUCE_PATH = #{unReducePath,jdbcType=VARCHAR}
+    </if>
+    <if test="unReducePathName != null and unReducePathName!=''">
+      AND UN_REDUCE_PATH_NAME = #{unReducePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="dicCheckTypeKey != null and dicCheckTypeKey!=''">
+      AND DIC_CHECK_TYPE_KEY = #{dicCheckTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="concreteFacts != null and concreteFacts!=''">
+      AND CONCRETE_FACTS = #{concreteFacts,jdbcType=CLOB}
+    </if>
+    <if test="court != null and court!=''">
+      AND COURT = #{court,jdbcType=VARCHAR}
+    </if>
+    <if test="peopleProcuratorate != null and peopleProcuratorate!=''">
+      AND PEOPLE_PROCURATORATE = #{peopleProcuratorate,jdbcType=VARCHAR}
+    </if>
+    <if test="police != null and police!=''">
+      AND POLICE = #{police,jdbcType=VARCHAR}
+    </if>
+    <if test="prison != null and prison!=''">
+      AND PRISON = #{prison,jdbcType=VARCHAR}
+    </if>
+    <if test="issueTime != null and issueTime!=''">
+      AND ISSUE_TIME = #{issueTime,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+  </sql>
+</mapper>

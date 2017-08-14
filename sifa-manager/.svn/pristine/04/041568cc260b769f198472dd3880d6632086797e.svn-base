@@ -1,0 +1,246 @@
+package com.rowell.sifa.web.servlet;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+
+import org.apache.log4j.Logger;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.rowell.common.utils.DateUtils;
+import com.rowell.common.utils.StringUtils;
+import com.rowell.sifa.common.utils.Constants;
+import com.rowell.sifa.pojo.investigate.Investigate;
+import com.rowell.sifa.pojo.monitoring.Terminal;
+import com.rowell.sifa.pojo.sys.SysAccount;
+import com.rowell.sifa.service.investigate.InvestigateService;
+import com.rowell.sifa.service.monitoring.TerminalActivityService;
+import com.rowell.sifa.service.monitoring.TerminalHistoryService;
+import com.rowell.sifa.service.monitoring.TerminalService;
+import com.rowell.sifa.web.terminal.SpLocation;
+import com.rowell.sifa.service.statistics.CulpritStatusTjService;
+import com.rowell.sifa.service.statistics.CulpritWorkTjService;
+import com.rowell.sifa.service.sys.IfaceRecordService;
+
+@SuppressWarnings("serial")
+public class InitializeServlet extends HttpServlet {
+
+	private static Logger logger = Logger.getLogger(InitializeServlet.class);
+
+	public InitializeServlet() {
+		super();
+	}
+
+	@Override
+	public void destroy() {
+		super.destroy();
+	}
+
+	@Override
+	public void init() throws ServletException {
+		try {
+			ServletContext servletContext = this.getServletContext();
+			WebApplicationContext wac = WebApplicationContextUtils
+					.getRequiredWebApplicationContext(servletContext);
+			
+			InvestigateService investigateService = (InvestigateService)wac.getBean("investigateService");
+			TerminalActivityService terminalActivityService = (TerminalActivityService)wac.getBean("terminalActivityService");
+			TerminalHistoryService terminalHistoryService = (TerminalHistoryService)wac.getBean("terminalHistoryService");
+			CulpritStatusTjService culpritStatusTjService = (CulpritStatusTjService)wac.getBean("culpritStatusTjService");
+			CulpritWorkTjService culpritWorkTjService = (CulpritWorkTjService)wac.getBean("culpritWorkTjService");
+			IfaceRecordService ifaceRecordService = (IfaceRecordService)wac.getBean("ifaceRecordService");
+			/*   定时器     start        */
+			
+			long currentTime = new Date().getTime();		
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			calendar.set(Calendar.HOUR_OF_DAY, 0);
+			calendar.set(Calendar.MINUTE, 0);
+			calendar.set(Calendar.SECOND, 0);
+			long nextTime = calendar.getTimeInMillis();  	//第二天零点
+			
+			// 审前调查上报超时定时器
+			Timer timer = new Timer();
+			timer.schedule(new InvestigateTemp(investigateService), (nextTime - currentTime), 24l * 60l * 60l * 1000l);		//周期一天
+//			timer.schedule(new InvestigateTemp(investigateService), 10 * 1000l, 60l * 1000l);		//测试10S后启动
+
+			Timer timer2 = new Timer();
+			SpLocation spLocation = new SpLocation(terminalActivityService, terminalHistoryService, "2");	//定位
+			//timer2.schedule(new LocationTemp(spLocation, terminalService), 30l * 1000l, 30l * 60l * 1000l);		//周期一天
+
+			//自动生成社区矫正人员统计报表
+			Timer timer3 = new Timer();
+			timer3.schedule(new CulpritStatusTjTemp(culpritStatusTjService), 20l * 1000l, 1000 * 60 * 60 * 24);//每1天执行操作
+			
+			//自动生成社区工作人员统计报表
+			Timer timer4 = new Timer();
+			timer4.schedule(new CulpritWorkTjTemp(culpritWorkTjService), 10l * 1000l, 1000l * 60l* 60l * 24l);//每1月执行操作
+			
+			Timer timer5 = new Timer();
+			timer5.schedule(new CulpritReportTjTemp(ifaceRecordService), 10l * 1000l, 1000l * 60l);//每1月执行操作
+
+			
+			/*   定时器     end        */
+
+		} catch (Exception e) {
+			logger.error(e);
+		}
+	}
+}
+
+
+
+
+class InvestigateTemp extends TimerTask {
+	private static Logger logger = Logger.getLogger(LocationTemp.class);
+	private InvestigateService investigateService;
+	
+	public InvestigateTemp(InvestigateService investigateService) {
+		this.investigateService = investigateService;
+	}
+	
+	public void run() {
+		try {
+			logger.info("**********审前调查上报定时器启动:" + new Date() + "**********");
+			
+			List<Investigate> list = investigateService.findAll(new Investigate());
+			for (Investigate investigate : list) {
+				if (investigate.getApplyUnLock() != null) {
+					if (investigate.getApplyUnLock() == 0 && investigate.getLockTime() != null) {	
+						if (DateUtils.getDistanceOfDayTwoDate(investigate.getLockTime(), new Date()) >= Constants.INVESTIGATE_TIMEOUT) {//上报已超时
+							try {
+								investigate.setApplyUnLock(2);//设置上报状态处于待上报解锁状态
+
+								investigate.setCurrentSysUser(new SysAccount());
+								investigateService.updateByIdSelective(investigate);
+							} catch (Exception e) {
+								// TODO: handle exception
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+			
+			logger.info("**********审前调查上报定时器结束-----成功:" + new Date() + "**********");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.info("**********审前调查上报定时器结束-----失败:" + new Date() + "**********");
+		}
+	}
+}
+
+
+
+//CulpritStatusTj实体类自动生成列表数据
+class CulpritStatusTjTemp extends TimerTask {
+	private CulpritStatusTjService culpritStatusTjService;
+	
+	public CulpritStatusTjTemp(CulpritStatusTjService culpritStatusTjService) {
+		this.culpritStatusTjService = culpritStatusTjService;
+	}
+	public void run() {
+		try {
+			Calendar calendar = Calendar.getInstance();
+			int day=calendar.get(Calendar.DAY_OF_MONTH);
+			if(day==1){//每月1号执行
+				culpritStatusTjService.timerInsert();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+class CulpritReportTjTemp extends TimerTask {
+	private IfaceRecordService ifaceRecordService;
+	
+	public CulpritReportTjTemp(IfaceRecordService ifaceRecordService) {
+		this.ifaceRecordService = ifaceRecordService;
+	}
+	public void run() {
+		try {
+			ifaceRecordService.ifaceRecordJob();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+class LocationTemp extends TimerTask {
+	private static Logger logger = Logger.getLogger(LocationTemp.class);
+	
+	private SpLocation spLocation;
+	
+	private TerminalService terminalService;
+	
+	public LocationTemp(SpLocation spLocation, TerminalService terminalService) {
+		this.spLocation = spLocation;
+		this.terminalService = terminalService;
+	}
+	
+	public void run() {
+		try {
+			logger.info("**********定位定时器开始:" + new Date() + "**********");
+			
+			String str = "";
+			Terminal record = new Terminal();
+			List<Terminal> list = terminalService.findAll(record);
+			for (Iterator iter = list.iterator(); iter.hasNext();) {
+				Terminal terminal = (Terminal) iter.next();
+				if (!StringUtils.isBlank(terminal.getMobileNumber())) {
+					if (str == "") {
+						str += terminal.getMobileNumber();
+					}
+					else str += "," + terminal.getMobileNumber();
+				}
+			}
+			System.out.println("telno:" + str);
+			spLocation.spCall(str);
+			
+			logger.info("**********定位定时器结束-----成功:" + new Date() + "**********");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.info("**********定位定时器结束-----失败:" + new Date() + "**********");
+		}
+	}
+}
+
+
+//自动生成社区工作人员统计报表
+class CulpritWorkTjTemp extends TimerTask {
+	private CulpritWorkTjService culpritWorkTjService;
+	
+	public CulpritWorkTjTemp(CulpritWorkTjService culpritWorkTjService) {
+		this.culpritWorkTjService = culpritWorkTjService;
+	}
+	public void run() {
+		try {
+			Calendar calendar = Calendar.getInstance();
+			int day=calendar.get(Calendar.DAY_OF_MONTH);
+			int month = calendar.get(calendar.MONTH) + 1;
+			if(day==1){//每月1号执行
+				if(month==1 || month==4 || month==7 || month==10){//1,4,7,10月执行一次	
+					culpritWorkTjService.timerInsert();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+
+

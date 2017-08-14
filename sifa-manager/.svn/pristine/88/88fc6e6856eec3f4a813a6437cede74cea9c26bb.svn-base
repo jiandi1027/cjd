@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.homepage.AnnouncementMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.homepage.Announcement">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="RELEASE_PEOPLE" jdbcType="VARCHAR" property="releasePeople" />
+    <result column="PLACE_THE_UNIT" jdbcType="VARCHAR" property="placeTheUnit" />
+    <result column="ANNOUNCEMENT_TOPIC" jdbcType="VARCHAR" property="announcementTopic" />
+    <result column="RELEASE_DATE" jdbcType="TIMESTAMP" property="releaseDate" />
+    <result column="ANNOUNCEMENT" jdbcType="VARCHAR" property="announcement" />
+    <result column="FILE1" jdbcType="VARCHAR" property="file1" />
+    <result column="FILE2" jdbcType="VARCHAR" property="file2" />
+    <result column="FILE3" jdbcType="VARCHAR" property="file3" />
+    <result column="READING_USER" jdbcType="VARCHAR" property="readingUser" />
+    <result column="DID_NOT_READ_USER" jdbcType="VARCHAR" property="didNotReadUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, RELEASE_PEOPLE, PLACE_THE_UNIT, ANNOUNCEMENT_TOPIC, RELEASE_DATE, ANNOUNCEMENT, 
+    FILE1, FILE2, FILE3, READING_USER, DID_NOT_READ_USER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_ANNOUNCEMENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_ANNOUNCEMENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.homepage.Announcement">
+    insert into SF_ANNOUNCEMENT (ID, RELEASE_PEOPLE, PLACE_THE_UNIT, 
+      ANNOUNCEMENT_TOPIC, RELEASE_DATE, ANNOUNCEMENT, 
+      FILE1, FILE2, FILE3, 
+      READING_USER, DID_NOT_READ_USER)
+    values (#{id,jdbcType=VARCHAR}, #{releasePeople,jdbcType=VARCHAR}, #{placeTheUnit,jdbcType=VARCHAR}, 
+      #{announcementTopic,jdbcType=VARCHAR}, #{releaseDate,jdbcType=TIMESTAMP}, #{announcement,jdbcType=VARCHAR}, 
+      #{file1,jdbcType=VARCHAR}, #{file2,jdbcType=VARCHAR}, #{file3,jdbcType=VARCHAR}, 
+      #{readingUser,jdbcType=VARCHAR}, #{didNotReadUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.homepage.Announcement">
+    insert into SF_ANNOUNCEMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="releasePeople != null">
+        RELEASE_PEOPLE,
+      </if>
+      <if test="placeTheUnit != null">
+        PLACE_THE_UNIT,
+      </if>
+      <if test="announcementTopic != null">
+        ANNOUNCEMENT_TOPIC,
+      </if>
+      <if test="releaseDate != null">
+        RELEASE_DATE,
+      </if>
+      <if test="announcement != null">
+        ANNOUNCEMENT,
+      </if>
+      <if test="file1 != null">
+        FILE1,
+      </if>
+      <if test="file2 != null">
+        FILE2,
+      </if>
+      <if test="file3 != null">
+        FILE3,
+      </if>
+      <if test="readingUser != null">
+        READING_USER,
+      </if>
+      <if test="didNotReadUser != null">
+        DID_NOT_READ_USER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="releasePeople != null">
+        #{releasePeople,jdbcType=VARCHAR},
+      </if>
+      <if test="placeTheUnit != null">
+        #{placeTheUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="announcementTopic != null">
+        #{announcementTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseDate != null">
+        #{releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="announcement != null">
+        #{announcement,jdbcType=VARCHAR},
+      </if>
+      <if test="file1 != null">
+        #{file1,jdbcType=VARCHAR},
+      </if>
+      <if test="file2 != null">
+        #{file2,jdbcType=VARCHAR},
+      </if>
+      <if test="file3 != null">
+        #{file3,jdbcType=VARCHAR},
+      </if>
+      <if test="readingUser != null">
+        #{readingUser,jdbcType=VARCHAR},
+      </if>
+      <if test="didNotReadUser != null">
+        #{didNotReadUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.homepage.Announcement">
+    update SF_ANNOUNCEMENT
+    <set>
+      <if test="releasePeople != null">
+        RELEASE_PEOPLE = #{releasePeople,jdbcType=VARCHAR},
+      </if>
+      <if test="placeTheUnit != null">
+        PLACE_THE_UNIT = #{placeTheUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="announcementTopic != null">
+        ANNOUNCEMENT_TOPIC = #{announcementTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseDate != null">
+        RELEASE_DATE = #{releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="announcement != null">
+        ANNOUNCEMENT = #{announcement,jdbcType=VARCHAR},
+      </if>
+      <if test="file1 != null">
+        FILE1 = #{file1,jdbcType=VARCHAR},
+      </if>
+      <if test="file2 != null">
+        FILE2 = #{file2,jdbcType=VARCHAR},
+      </if>
+      <if test="file3 != null">
+        FILE3 = #{file3,jdbcType=VARCHAR},
+      </if>
+      <if test="readingUser != null">
+        READING_USER = #{readingUser,jdbcType=VARCHAR},
+      </if>
+      <if test="didNotReadUser != null">
+        DID_NOT_READ_USER = #{didNotReadUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.homepage.Announcement">
+    update SF_ANNOUNCEMENT
+    set RELEASE_PEOPLE = #{releasePeople,jdbcType=VARCHAR},
+      PLACE_THE_UNIT = #{placeTheUnit,jdbcType=VARCHAR},
+      ANNOUNCEMENT_TOPIC = #{announcementTopic,jdbcType=VARCHAR},
+      RELEASE_DATE = #{releaseDate,jdbcType=TIMESTAMP},
+      ANNOUNCEMENT = #{announcement,jdbcType=VARCHAR},
+      FILE1 = #{file1,jdbcType=VARCHAR},
+      FILE2 = #{file2,jdbcType=VARCHAR},
+      FILE3 = #{file3,jdbcType=VARCHAR},
+      READING_USER = #{readingUser,jdbcType=VARCHAR},
+      DID_NOT_READ_USER = #{didNotReadUser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.homepage.Announcement" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_ANNOUNCEMENT t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr} 
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="releasePeople != null and releasePeople!=''">
+      AND RELEASE_PEOPLE = #{releasePeople,jdbcType=VARCHAR}
+    </if>
+    <if test="placeTheUnit != null and placeTheUnit!=''">
+      AND PLACE_THE_UNIT = #{placeTheUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="announcementTopic != null and announcementTopic!=''">
+      AND ANNOUNCEMENT_TOPIC like #{announcementTopic,jdbcType=VARCHAR}
+    </if>
+    <if test="releaseDate != null">
+      AND RELEASE_DATE = #{releaseDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="announcement != null and announcement!=''">
+      AND ANNOUNCEMENT = #{announcement,jdbcType=VARCHAR}
+    </if>
+    <if test="file1 != null and file1!=''">
+      AND FILE1 = #{file1,jdbcType=VARCHAR}
+    </if>
+    <if test="file2 != null and file2!=''">
+      AND FILE2 = #{file2,jdbcType=VARCHAR}
+    </if>
+    <if test="file3 != null and file3!=''">
+      AND FILE3 = #{file3,jdbcType=VARCHAR}
+    </if>
+    <if test="readingUser != null and readingUser!=''">
+      AND READING_USER = #{readingUser,jdbcType=VARCHAR}
+    </if>
+    <if test="didNotReadUser != null and didNotReadUser!=''">
+      AND DID_NOT_READ_USER = #{didNotReadUser,jdbcType=VARCHAR}
+    </if>
+     <if test="searchStartDate != null and searchStartDate!=''">
+     <![CDATA[
+      AND RELEASE_DATE >= #{searchStartDate, jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+     <if test="searchEndDate != null and searchEndDate!=''">
+     <![CDATA[
+      AND RELEASE_DATE <= #{searchEndDate, jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+  </sql>
+</mapper>

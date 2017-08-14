@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.dailymgr.InspectionMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.dailymgr.Inspection">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="GROUPS_STR" jdbcType="VARCHAR" property="groupsStr" />
+    <result column="GROUPS_STR_XJ" jdbcType="VARCHAR" property="groupsStrXj" />
+    <result column="GROUPIDS_STR" jdbcType="VARCHAR" property="groupidsStr" />
+    <result column="GROUPIDS_STR_XJ" jdbcType="VARCHAR" property="groupidsStrXj" />
+    <result column="CHECK_GROUP_ID" jdbcType="VARCHAR" property="checkGroupId" />
+    <result column="CHECK_START_TIME" jdbcType="TIMESTAMP" property="checkStartTime" />
+    <result column="CHECK_END_TIME" jdbcType="TIMESTAMP" property="checkEndTime" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="REAL_COUNT" jdbcType="DECIMAL" property="realCount" />
+    <result column="DIS_COUNT" jdbcType="DECIMAL" property="disCount" />
+    <result column="LATE_COUNT" jdbcType="DECIMAL" property="lateCount" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="sysGroup.name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.GROUPS_STR, t.GROUPS_STR_XJ, t.GROUPIDS_STR, t.GROUPIDS_STR_XJ, t.CHECK_GROUP_ID, t.CHECK_START_TIME, t.CHECK_END_TIME, 
+    t.AMOUNT, t.REAL_COUNT, t.DIS_COUNT, t.LATE_COUNT, t.CREATED, t.CREATER, t.UPDATED, t.UPDATER, t.DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />, g.name as "group_name"
+    from SF_INSPECTION t left join sys_Group g on g.id = t.check_Group_Id
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_INSPECTION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.dailymgr.Inspection">
+    insert into SF_INSPECTION (ID, GROUPS_STR, GROUPS_STR_XJ, 
+      GROUPIDS_STR, GROUPIDS_STR_XJ, CHECK_GROUP_ID, 
+      CHECK_START_TIME, CHECK_END_TIME, AMOUNT, REAL_COUNT, 
+      DIS_COUNT, LATE_COUNT, CREATED, 
+      CREATER, UPDATED, UPDATER, 
+      DEL_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{groupsStr,jdbcType=VARCHAR}, #{groupsStrXj,jdbcType=VARCHAR}, 
+      #{groupidsStr,jdbcType=VARCHAR}, #{groupidsStrXj,jdbcType=VARCHAR}, #{checkGroupId,jdbcType=VARCHAR}, 
+      #{checkStartTime,jdbcType=TIMESTAMP}, #{checkEndTime,jdbcType=TIMESTAMP}, #{amount,jdbcType=DECIMAL}, #{realCount,jdbcType=DECIMAL}, 
+      #{disCount,jdbcType=DECIMAL}, #{lateCount,jdbcType=DECIMAL}, #{created,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.dailymgr.Inspection">
+    insert into SF_INSPECTION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="groupsStr != null">
+        GROUPS_STR,
+      </if>
+      <if test="groupsStrXj != null">
+        GROUPS_STR_XJ,
+      </if>
+      <if test="groupidsStr != null">
+        GROUPIDS_STR,
+      </if>
+      <if test="groupidsStrXj != null">
+        GROUPIDS_STR_XJ,
+      </if>
+      <if test="checkGroupId != null">
+        CHECK_GROUP_ID,
+      </if>
+      <if test="checkStartTime != null">
+        CHECK_START_TIME,
+      </if>
+      <if test="checkEndTime != null">
+        CHECK_END_TIME,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="realCount != null">
+        REAL_COUNT,
+      </if>
+      <if test="disCount != null">
+        DIS_COUNT,
+      </if>
+      <if test="lateCount != null">
+        LATE_COUNT,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="groupsStr != null">
+        #{groupsStr,jdbcType=VARCHAR},
+      </if>
+      <if test="groupsStrXj != null">
+        #{groupsStrXj,jdbcType=VARCHAR},
+      </if>
+      <if test="groupidsStr != null">
+        #{groupidsStr,jdbcType=VARCHAR},
+      </if>
+      <if test="groupidsStrXj != null">
+        #{groupidsStrXj,jdbcType=VARCHAR},
+      </if>
+      <if test="checkGroupId != null">
+        #{checkGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStartTime != null">
+        #{checkStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkEndTime != null">
+        #{checkEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="realCount != null">
+        #{realCount,jdbcType=DECIMAL},
+      </if>
+      <if test="disCount != null">
+        #{disCount,jdbcType=DECIMAL},
+      </if>
+      <if test="lateCount != null">
+        #{lateCount,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.dailymgr.Inspection">
+    update SF_INSPECTION
+    <set>
+      <if test="groupsStr != null">
+        GROUPS_STR = #{groupsStr,jdbcType=VARCHAR},
+      </if>
+      <if test="groupsStrXj != null">
+        GROUPS_STR_XJ = #{groupsStrXj,jdbcType=VARCHAR},
+      </if>
+      <if test="groupidsStr != null">
+        GROUPIDS_STR = #{groupidsStr,jdbcType=VARCHAR},
+      </if>
+      <if test="groupidsStrXj != null">
+        GROUPIDS_STR_XJ = #{groupidsStrXj,jdbcType=VARCHAR},
+      </if>
+      <if test="checkGroupId != null">
+        CHECK_GROUP_ID = #{checkGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStartTime != null">
+        CHECK_START_TIME = #{checkStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkEndTime != null">
+        CHECK_END_TIME = #{checkEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="realCount != null">
+        REAL_COUNT = #{realCount,jdbcType=DECIMAL},
+      </if>
+      <if test="disCount != null">
+        DIS_COUNT = #{disCount,jdbcType=DECIMAL},
+      </if>
+      <if test="lateCount != null">
+        LATE_COUNT = #{lateCount,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.dailymgr.Inspection">
+    update SF_INSPECTION
+    set GROUPS_STR = #{groupsStr,jdbcType=VARCHAR},
+      GROUPS_STR_XJ = #{groupsStrXj,jdbcType=VARCHAR},
+      GROUPIDS_STR = #{groupidsStr,jdbcType=VARCHAR},
+      GROUPIDS_STR_XJ = #{groupidsStrXj,jdbcType=VARCHAR},
+      CHECK_GROUP_ID = #{checkGroupId,jdbcType=VARCHAR},
+      CHECK_START_TIME = #{checkStartTime,jdbcType=TIMESTAMP},
+      CHECK_END_TIME = #{checkEndTime,jdbcType=TIMESTAMP},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      REAL_COUNT = #{realCount,jdbcType=DECIMAL},
+      DIS_COUNT = #{disCount,jdbcType=DECIMAL},
+      LATE_COUNT = #{lateCount,jdbcType=DECIMAL},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.dailymgr.Inspection" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />, g.name as "group_name"
+    from SF_INSPECTION t left join sys_Group g on g.id = t.check_Group_Id
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="groupsStr != null and groupsStr!=''">
+      AND t.GROUPS_STR = #{groupsStr,jdbcType=VARCHAR}
+    </if>
+    <if test="groupsStrXj != null and groupsStrXj!=''">
+      AND t.GROUPS_STR_XJ = #{groupsStrXj,jdbcType=VARCHAR}
+    </if>
+    <if test="groupidsStr != null and groupidsStr != ''">
+      <![CDATA[  
+     	 AND  exists ( select t2.id from (select * from sys_group start with id= #{groupidsStr,jdbcType=VARCHAR} connect by prior id = parent_id) t2 where t.GROUPIDS_STR=t2.id)
+     ]]> 
+    </if>
+    <if test="groupidsStrXj != null and groupidsStrXj!=''">
+      AND t.GROUPIDS_STR_XJ = #{groupidsStrXj,jdbcType=VARCHAR}
+    </if>
+    <if test="checkGroupId != null and checkGroupId != ''">
+      AND t.check_Group_Id = #{checkGroupId,jdbcType=VARCHAR}
+    </if>
+    <if test="checkStartTime != null">
+      AND t.CHECK_START_TIME = #{checkStartTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="checkEndTime != null">
+      AND t.CHECK_END_TIME = #{checkEndTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="amount != null">
+      AND t.AMOUNT = #{amount,jdbcType=DECIMAL}
+    </if>
+    <if test="realCount != null">
+      AND t.REAL_COUNT = #{realCount,jdbcType=DECIMAL}
+    </if>
+    <if test="disCount != null">
+      AND t.DIS_COUNT = #{disCount,jdbcType=DECIMAL}
+    </if>
+    <if test="lateCount != null">
+      AND t.LATE_COUNT = #{lateCount,jdbcType=DECIMAL}
+    </if>
+    <if test="created != null">
+      AND t.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="searchStartDate != null and searchStartDate != ''">
+      AND t.check_Start_Time >= #{searchStartDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="searchEndDate != null and searchEndDate != ''">
+    	 <![CDATA[  
+      AND t.check_End_Time <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="sysGroup != null and sysGroup.name != '' and sysGroup.name != null">
+      AND g.name >= #{sysgroup.name,jdbcType=TIMESTAMP}
+    </if>
+    <if test="groupId != null and groupId != ''">
+      AND t.GROUPIDS_STR like '%'|| #{groupId,jdbcType=VARCHAR}||'%'
+    </if>
+  </sql>
+</mapper>

@@ -1,0 +1,128 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>特殊原因恢复矫正</title>
+<%@include file="/WEB-INF/views/include/head.jsp"%>
+<style type="text/css">
+td{border:solid #add9c0; border-width:0px 1px 1px 0px; padding:10px 0px;}
+table{border:solid #add9c0; border-width:1px 0px 0px 1px;}
+</style>
+</head>
+
+<body>
+ <form  action="${ctx}/endcorrect/redressResume/check" method="post" id="culpritInfo">
+	<c:choose>
+ 		<c:when test="${empty redressResume.culpritId }">
+ 		
+ 			<sys:culpritInfo hiddenId="culpritId" hiddenName="culpritId" id="culpritName" name="culpritName" required="true" hiddenValue="" formId="culpritInfo" isSelect="true"/>
+ 		</c:when>
+ 		<c:otherwise>
+ 	
+ 			<sys:culpritInfo hiddenId="culpritId" hiddenName="culpritId" id="culpritName" name="culpritName" required="false" hiddenValue="${redressResume.culpritId}" formId="culpritInfo" isSelect="false"/>
+ 		</c:otherwise>
+ 	</c:choose>
+    
+   
+     <div class="easyui-panel" title="特殊原因恢复矫正信息" style="width:100%;padding:10px;">
+     		<input type="hidden" name="id" value="${redressResume.id}"/>
+            <table width="100%">
+            	<tr>
+					<td>矫正恢复时间:</td>
+							<td><fmt:formatDate value="${redressResume.redressStartTime}"
+									pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td>矫正恢复时间:</td>
+							<td><fmt:formatDate value="${redressResume.redressEndTime}"
+									pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td>处理部门:</td>
+							<td>${redressResume.examineUnit}</td>
+                </tr>
+                <tr>
+                    <td><span class="c-red">*</span>恢复矫正原因:</td>
+                    <td colspan="5" align="left">${redressResume.reason}</td>
+                </tr>
+                <tr>
+                    <td><span class="c-red">*</span>主要事实:</td>
+                    <td colspan="5" align="left">${redressResume.fact}</td>
+                </tr>
+            </table>
+            <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" bgColor=#c4d8ed>
+
+   <TBODY>
+   <c:if test="${redressResume.auditType ne 'workerPrint'}">
+   <TR>
+   			
+				<TD height=30 width="15%" align=right >审核结果：</TD>
+								<TD  width="35%">
+								<input type="radio" name="dicDecideType" value="1" checked="checked"/>同意
+								<c:if test="${redressResume.auditType ne 'xfgCheck'}">
+								<input type="radio" name="dicDecideType" value="2" />退回
+								</c:if>
+								</TD>
+								<TD height=30 width="15%" align=right >审核意见</TD>
+								<TD  width="35%">
+								<textarea rows="3" cols="30" name="opinion" required=true missingMessage="审核意见不能为空!"></textarea>
+								</TD>
+				</TR>
+	</c:if>
+				<tr>
+							  <td colspan=4 align=center class=category>
+								<a id="btn1"  class="easyui-linkbutton"   iconCls="icon-save" href="javascript:void(0)" >提交</a>
+							  </td>
+							</tr>
+   </TBODY>
+</TABLE>
+    </div>
+    </form>
+    <script>
+        function clearForm(){
+            $('#culpritInfo').form('clear');
+        }
+        $(function() {
+        	$('#btn1').click(function(){
+        		//alert($('dicDecideType'));
+        		$('#culpritInfo').submit();
+        	});	
+        
+        $('#culpritId').combogrid({    
+        	delay: 500,
+        	 panelWidth: 300, 
+        	 striped:true,
+        	 panelHeight: 300,
+    		mode: 'remote',  
+			idField: 'id',
+			textField: 'name',
+			url: '${ctx}/culpritinfo/culprit/list',
+			columns: [[
+				{field:'name',title:'姓名',width:120,align:'center'},
+				{field:'dicSexKey',title:'性别',width:80,align:'center'}
+			]],
+			fitColumns: true,
+			pagination: true,           //是否分页  
+        rownumbers: true,           //序号  
+        collapsible: false,         //是否可折叠的  
+        method: 'post',
+        onSelect:function(record){
+        	 var arr = $('#culpritId').combogrid('grid').datagrid('getSelections');
+        	 $('#culpritInfo').form('load',arr[0]);
+       	}
+        }); 
+        
+        
+      //取得分页组件对象  
+        var pager = $('#culpritId').combogrid('grid').datagrid('getPager');  
+        if (pager) {  
+            $(pager).pagination({  
+                pageSize: 10,               //每页显示的记录条数，默认为10  
+                beforePageText: '第',       //页数文本框前显示的汉字  
+                afterPageText: '',
+                displayMsg: ''
+            });  
+        }  
+        });
+        
+	
+    </script>
+</body>
+</html>

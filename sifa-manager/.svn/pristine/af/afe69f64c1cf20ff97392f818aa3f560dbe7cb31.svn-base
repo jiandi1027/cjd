@@ -1,0 +1,132 @@
+package com.rowell.sifa.service.rewardspunishment;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.flowable.engine.RuntimeService;
+import org.flowable.engine.TaskService;
+import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.engine.task.Task;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rowell.sifa.common.utils.Constants;
+import com.rowell.sifa.common.utils.ProcessUtils;
+import com.rowell.sifa.common.utils.SysAccountUtils;
+import com.rowell.sifa.mapper.flow.ProcessDetailMapper;
+import com.rowell.sifa.mapper.rewardspunishment.WarningMapper;
+import com.rowell.sifa.pojo.flow.ProcessDetail;
+import com.rowell.sifa.pojo.rewardspunishment.Warning;
+import com.rowell.sifa.service.base.CrudService;
+
+/**  
+    * @ClassName: WarningService  
+    * @Description: 警告service  
+    * @author yxb 
+    * @date 2017年3月24日  
+    *    
+    */
+@Service
+@Transactional(readOnly = true)
+public class WarningService extends CrudService<WarningMapper, Warning> {
+	
+	@Autowired
+	private RuntimeService runtimeService;
+	@Autowired
+	private TaskService taskService;
+	@Autowired
+	private ProcessDetailMapper processDetailMapper;
+	
+	
+	@Override
+	@Transactional(readOnly = false)
+	public int insert(Warning warning) {
+		warning.setCurrentSysUser(SysAccountUtils.getSysAccount());
+		warning.preInsert();
+		/***
+		 * 启动流程实例，指定下一步工作流
+		 */
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_SFSGZRY));
+		variables.put("warning", warning.getFact());
+		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("warning", warning.getId(),
+				variables);
+		
+		warning.setProcessInstanceId(processInstance.getProcessInstanceId());
+		warning.setOptTime(new Date());
+		return super.insert(warning);
+	}
+
+
+	@Transactional(readOnly = false) 
+	public void saveCommenAuditStatus(String roleId, Warning warning, ProcessDetail processDetail) {
+		Task task = taskService.createTaskQuery().taskId(warning.getTaskId()).taskAssignee(ProcessUtils.getRoleIdWithGroupId(roleId)).singleResult();
+
+		if (task != null) {
+			processDetail.setProcessDefKey("warning");
+			processDetail.setAuditName(task.getName());
+			processDetail.setProcessId(warning.getProcessInstanceId());
+			processDetail.setCurrentSysUser(SysAccountUtils.getSysAccount());
+			processDetail.preInsert();
+			processDetailMapper.insert(processDetail);
+			
+			
+			// 说明assignee是该任务的办理人，有权限完成3002
+			Map<String, Object> variables = new HashMap<String, Object>();
+			// 根据 auditType判断是几级审核workerReport
+			if(warning.getAuditType().equals("usertask1")){
+				//工作人员上报
+				variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_XJZKFZR));			
+				variables.put("decideType", Integer.parseInt(processDetail.getDicDecideType()));
+			}else if (warning.getAuditType().equals("usertask3")) {
+				//司法所to县矫正科
+				if("2".equals(processDetail.getDicDecideType())){//退回操作
+					variables.put("role_id",ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_SFSGZRY));
+				}else if("1".equals(processDetail.getDicDecideType())){
+					variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_XFZKFZR));	
+				}else{
+					variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_SFSFZR));	
+				}
+				variables.put("decideType", Integer.parseInt(processDetail.getDicDecideType()));
+			}else if (warning.getAuditType().equals("usertask2")) {
+				//县矫正科
+				if("2".equals(processDetail.getDicDecideType())){//退回操作
+					variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_SFSGZRY));
+				}else if("4".equals(processDetail.getDicDecideType())){
+					//县矫正审核
+					variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_SFSFZR));
+				}else{
+					variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_XJZKFZR));
+				}
+				variables.put("decideType", Integer.parseInt(processDetail.getDicDecideType()));
+			} else if (warning.getAuditType().equals("usertask4")) {
+				// 县矫法制科审核			
+				if("2".equals(processDetail.getDicDecideType())){//退回操作
+					variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_XJZKFZR));
+				}else{
+					variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_XFGLD));
+				}
+				variables.put("decideType", Integer.parseInt(processDetail.getDicDecideType()));
+			}else if (warning.getAuditType().equals("usertask5")) {
+				// 县分局审核		
+				if("5".equals(processDetail.getDicDecideType())){//退回操作
+					variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_XFZKFZR));
+				}else{
+					variables.put("role_id", ProcessUtils.getRoleIdWithGroupId(Constants.ROLE_XJZKGZRY));	
+				}	
+				variables.put("decideType", Integer.parseInt(processDetail.getDicDecideType()));
+			}
+			if("3".equals(processDetail.getDicDecideType())){
+				//司法所审核
+				variables.put("role_id", (Constants.ROLE_SFSFZR));
+				variables.put("decideType", Integer.parseInt(processDetail.getDicDecideType()));
+			}
+			// 提交审核时，设置流程变量，变量值就是审核 信息
+			taskService.complete(warning.getTaskId(), variables);
+
+		}
+		
+	}
+}

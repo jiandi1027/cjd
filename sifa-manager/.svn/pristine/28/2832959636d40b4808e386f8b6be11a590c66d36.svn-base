@@ -1,0 +1,83 @@
+package com.rowell.sifa.service.monitoring;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rowell.common.utils.StringUtils;
+import com.rowell.sifa.common.utils.Constants;
+import com.rowell.sifa.mapper.monitoring.OverAlarmMapper;
+import com.rowell.sifa.pojo.culpritinfo.Culprit;
+import com.rowell.sifa.pojo.dailymgr.AskLeave;
+import com.rowell.sifa.pojo.monitoring.OverAlarm;
+import com.rowell.sifa.pojo.sys.SysGroup;
+import com.rowell.sifa.service.base.CrudService;
+import com.rowell.sifa.service.culpritinfo.CulpritService;
+import com.rowell.sifa.service.dailymgr.AskLeaveService;
+import com.rowell.sifa.service.sys.SysGroupService;
+
+@Service
+@Transactional(readOnly = true)
+public class OverAlarmService  extends CrudService<OverAlarmMapper, OverAlarm> { 
+	@Autowired
+	private CulpritService culpritService;
+	@Autowired
+	private SysGroupService sysGroupService;
+	@Autowired
+	private AskLeaveService askLeaveService;
+	
+	
+	public List<OverAlarm> findAllByRowone(OverAlarm overAlarm){
+    	return dao.selectAllByRowone(overAlarm);
+    }
+	
+	public OverAlarm addCulpritToOverAlarm(OverAlarm overAlarm){
+		if(!StringUtils.isBlank(overAlarm.getCulpritId())){
+			Culprit clist=culpritService.findById(overAlarm.getCulpritId());
+			String s =clist.getGroupId();
+			SysGroup s1=sysGroupService.findById(s);
+			overAlarm.setGroupName(s1.getName());
+			overAlarm.setCulpritName(clist.getName());
+		}
+		return overAlarm;
+	}
+	
+	/**
+	 * 
+	 * @param x			经度
+	 * @param y			纬度
+	 * @param moible	定位号
+	 * @param id		历史轨迹表id
+	 */
+	public void judgeOverAlarm(String x, String y, String mobile, String id, String msg){
+		try {
+			if (!StringUtils.isBlank(msg)) {
+				OverAlarm overAlarm = new OverAlarm();
+				
+				Culprit culprit = new Culprit();
+				culprit.setMobileNumber(mobile);
+				List<Culprit> culpritList = culpritService.findAll(culprit);
+				if (culpritList.size() > 0) {
+					overAlarm.setCulpritId(culpritList.get(0).getId());
+					
+					AskLeave askLeave = new AskLeave();
+					askLeave.setDicStatusKey(Constants.ASKLEAVE_STATUS_WXJ);
+					askLeave.setCulpritId(culpritList.get(0).getId());
+					List<AskLeave> askLeaveList = askLeaveService.findAll(askLeave);
+					if (askLeaveList.size() > 0) {
+						overAlarm.setAskLeaveId(askLeaveList.get(0).getId());
+					}
+				}
+				overAlarm.setNote(msg);
+				overAlarm.setTerminalHisId(id);
+				super.insertSelective(overAlarm);
+				System.out.println("over_alarm--insert");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+}

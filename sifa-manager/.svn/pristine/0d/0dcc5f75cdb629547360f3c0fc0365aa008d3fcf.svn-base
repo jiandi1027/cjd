@@ -1,0 +1,1391 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<!-- <div class="easyui-panel" style="width:200px;height:100px"
+			data-options="fit:true,border:false"> -->
+<form  action="${ctx}/culpritinfo/culpritComplicity/save" method="post" id="personDocInfo">
+ <div class="easyui-panel" title="个人资料" style="width:100%;padding:5px;margin:0 auto;">
+     <input type="hidden" name="id" value="${culprit.id }" />
+            <table width="100%" class="grid">
+                <tr>
+	                <th width="10%"><span class="c-red">*</span>健康状况：</th>
+					<td width="23%"><input name="DicHealthyStatusKey" id="DicHealthyStatusKey" class="easyui-combobox" required=true value="<c:if test='${empty culprit.dicHealthyStatusKey }'>41001</c:if><c:if test='${!empty culprit.dicHealthyStatusKey }'>${culprit.dicHealthyStatusKey }</c:if>"
+	                    			data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=41000',panelHeight:'auto',editable:false"></input>
+	                </td>
+                	<th width="10%">是否有传染病史：</th>
+	 				<td width="23%">
+			 			<input id="dicSfycrbsKey0"  type="radio" name="dicSfycrbsKey" value="1"  <c:if test="${culprit.dicSfycrbsKey eq 1 }">checked="checked"</c:if> style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"/>是&nbsp;&nbsp;&nbsp;
+			 			<input id="dicSfycrbsKey1"  type="radio" name="dicSfycrbsKey" value="0" <c:if test="${culprit.dicSfycrbsKey eq 0 }">checked="checked"</c:if> style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"/>否
+	 				</td>
+	 				<th width="10%">心里是否健康：</th>
+		 			<td width="23%">
+			 			<input type="radio" id="dicXlsfjkKey0" name="dicXlsfjkKey" value="1"  <c:if test="${culprit.dicXlsfjkKey eq 1 }">checked="checked"</c:if> style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"/>是&nbsp;&nbsp;&nbsp;
+			 			<input type="radio" id="dicXlsfjkKey1" name="dicXlsfjkKey" value="0"  <c:if test="${culprit.dicXlsfjkKey eq 0 }">checked="checked"</c:if> style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"/>否
+		 			</td>
+                </tr>
+                <tr>
+                   <th width="10%">具体健康状况：</th>
+					<td><input type="text" name="healthyStatusInfo" id="healthyStatusInfo" value="${ culprit.healthyStatusInfo}" class="f1 easyui-textbox" /></td>
+					<th width="10%">具体传染病史：</th>
+					<td>
+						<c:if test="${culprit.dicSfycrbsKey ne 0 }">
+			 			<input name="contagionId" id="contagionId" class="easyui-combobox"  value="${culprit.contagionId}"
+                    			data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=64000',panelHeight:'auto',disabled: true,editable:false"></input>
+			 			</c:if>
+			 			<c:if test="${culprit.dicSfycrbsKey eq 0 }">
+			 				<input name="contagionId" id="contagionId" class="easyui-combobox"  value="${culprit.contagionId}"
+                    			data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=64000',panelHeight:'auto',editable:false"></input>
+			 			</c:if>
+			 		</td >
+					<th width="10%">具体心里状况：</th>
+					<td>
+						<c:if test="${culprit.dicXlsfjkKey eq 1 }">
+				 		<input type="text" name="mentalInfo" id="mentalInfo" value="${culprit.mentalInfo}"
+									class="f1 easyui-textbox"/>
+				 		</c:if>
+				 		<c:if test="${culprit.dicXlsfjkKey ne 1 }">
+				 				<input type="text" name="mentalInfo" id="mentalInfo" value="${culprit.mentalInfo}"
+									class="f1 easyui-textbox" data-options="disabled: true"  />
+				 		</c:if>
+			 		</td>
+                </tr>
+                <tr>
+                    <th width="10%"><span class="c-red">*</span>文化程度：</th>
+					<td><input name="dicWhcdKey" id="dicWhcdKey" class="easyui-combobox" required=true value="${culprit.dicWhcdKey}"
+                    			data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=19000',panelHeight:'auto',editable:false"></input></td>
+					<th width="10%"><span class="c-red">*</span>就业就学情况：</th>
+					<td><input name="dicWorkStatusKey" id="dicWorkStatusKey" class="easyui-combobox" required=true value="${culprit.dicWorkStatusKey}"
+                    			data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=66000',panelHeight:'auto',editable:false"></input></td>
+					<th width="10%">鉴定机构：</th>
+					<td><c:if test="${culprit.dicXlsfjkKey eq 1 }">
+			 				<input type="text" name="identifyOrg" id="identifyOrg" value="${culprit.identifyOrg}"
+								class="f1 easyui-textbox" />
+			 			</c:if>
+			 			<c:if test="${culprit.dicXlsfjkKey ne 1 }">
+			 				<input type="text" name="identifyOrg" id="identifyOrg" value="${culprit.identifyOrg}"
+								class="f1 easyui-textbox" data-options="disabled: true"   />
+			 			</c:if>
+					</td>
+                </tr>
+                <tr>
+                    <th><span class="c-red">*</span>婚姻状况：</th>
+					<td ><input name="dicHyzkKey"  id="dicHyzkKey" class="easyui-combobox" required=true value="${culprit.dicHyzkKey}"
+					data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=11000',panelHeight:'auto',editable:false"></input></td>
+                    <th>原政治面貌：</th>
+					<td ><input name="dicYzzmmKey" class="easyui-combobox"  value="${culprit.dicYzzmmKey}"
+                    	data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=65000',panelHeight:'auto',editable:false"></input></td>
+					<th>现政治面貌：</th>
+					<td ><input name="dicXzzmmKey" class="easyui-combobox" value="${culprit.dicXzzmmKey}"
+                    	data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=65000',panelHeight:'auto',editable:false"></input></td>
+                </tr>
+                <tr>
+               	 	<th>职业：</th>
+					<td><input type="text" name="job" id="job" value="${culprit.job}" class="f1 easyui-textbox"  /></td>
+	                <th>工作单位：</th>
+					<td><input type="text" name="newJob" id="newJob" value="${culprit.newJob}" class="f1 easyui-textbox"  /></td>
+					<th>单位联系电话：</th>
+					<td><input type="text" name="jobPhone" id="jobPhone" value="${culprit.jobPhone}" class="f1 easyui-textbox" data-options="validType:'telNum'" /></td>
+				</tr>
+				<tr>
+					<th><span class="c-red">*</span>联系方式：</th>
+					<td><input type="text" name="contactPhone" id="contactPhone" value="${culprit.contactPhone}" class="f1 easyui-textbox" required=true data-options="validType:'telno'"/></td>
+	                <th>管理分区：</th>
+					<td colspan="3"><input type="text" name="" id="" value="无" class="f1 easyui-textbox"  /></td>
+				</tr>
+				<tr>
+                    <th width="10%">户籍详细地址：</th>
+                    <td colspan="5">${culprit.regResidence }
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%"><span class="c-red">*</span>居住地详细地址：</th>
+                    <td colspan="5"><input name="addressProId" id="addressProId" class="easyui-combobox" required=true value="${culprit.addressProId}"
+                    data-options="valueField:'id',textField:'areaName',url:'${ctx}/culpritinfo/culprit/findAreaByLevel?areaLevel=1',panelHeight:'200px',editable:false"></input>省
+                    	<input type="hidden" id="addressPro" name="addressPro" value="${culprit.addressPro}">
+                    	<input name="addressCityId" id="addressCityId" class="easyui-combobox" required=true value="${culprit.addressCityId}"
+                    	data-options="valueField:'id',textField:'areaName',url:'${ctx}/culpritinfo/culprit/findAreaByLevel?areaParent=${culprit.addressProId}',panelHeight:'200px',editable:false"></input>市
+                    	<input type="hidden" id="addressCity" name="addressCity" value="${culprit.addressCity}">
+                    	<input name="addressCountryId" id="addressCountryId" class="easyui-combobox" required=true value="${culprit.addressCountryId}"
+                    	data-options="valueField:'id',textField:'areaName',url:'${ctx}/culpritinfo/culprit/findAreaByLevel?areaParent=${culprit.addressCityId}',panelHeight:'200px',editable:false"></input>县（区）
+                    	<input type="hidden" id="addressCountry" name="addressCountry"  value="${culprit.addressCountry}">
+                    	<input id="addressStreet" name="addressStreet" class="f1 easyui-textbox" value="${culprit.addressStreet}">乡镇（街道）
+                    	<input name="addressDetail" id="addressDetail" class="f1 easyui-textbox" value="${culprit.addressDetail}">（详细门牌号）
+                    </td>
+                </tr> 
+                <tr>
+                	<td style="text-align:center;" colspan="6">
+                		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()" data-options="iconCls:'icon-save'">保存</a>
+                	</td>
+                </tr>
+                
+            </table>
+    </div>
+     <div class="easyui-panel" id="p2" title="其他资料" style="width:100%;height:80%;padding:5px;margin:0 auto">
+	     <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;" >   
+		    <div title="工作情况" data-options="closable:false"  style="display:none;">
+		    	<table class="easyui-datagrid" id="resume_content" style="height:100% ;width:100%;"
+					data-options="singleSelect:true,collapsible:true,striped:true,rownumbers:true,toolbar:toolbarResume,loadMsg: '数据正在加载,请耐心的等待...',
+					fitColumns:true,url:'${ctx}/culpritinfo/culpritResume/list?culpritId='+'${culprit.id }',method:'post',onLoadSuccess:function (data) {
+                        $('.organization-easyui-linkbutton-pencil').linkbutton({text:'修改',plain:true,iconCls:'fi-pencil icon-blue'});
+                        $('.organization-easyui-linkbutton-del').linkbutton({text:'删除',plain:true,iconCls:'fi-x icon-red'});
+                    }">
+					<thead>
+						<tr>
+							<th data-options="field:'id',checkbox:true">编号</th>
+							<th data-options="field:'startTime',width:'20%',align:'center' ">入职时间</th>
+							<th data-options="field:'endTime',width:'20%',align:'center'" >离职时间</th>
+							<th data-options="field:'org',width:'20%',align:'center'" >工作单位</th>
+							<th data-options="field:'role',width:'20%',align:'center'">职务</th>
+							<th data-options="field:'prison',width:'18%',align:'center'" formatter="formatResume">操作</th>
+						</tr>
+					</thead>
+				</table>      
+		    </div>   
+		    <div title="家庭成员" data-options="closable:false" style="overflow:auto;display:none;">
+		    	<table class="easyui-datagrid" id="family_content" style="height: 100%;width:100%"
+					data-options="singleSelect:true,collapsible:true,striped:true,rownumbers:true,toolbar:toolbarFamily,loadMsg: '数据正在加载,请耐心的等待...',
+					fitColumns:true,url:'${ctx}/culpritinfo/culpritFamily/list?culpritId='+'${culprit.id }',method:'post',
+					onLoadSuccess:function (data) {
+                        $('.organization-easyui-linkbutton-info').linkbutton({text:'详细',plain:true,iconCls:'fi-info icon-blue'}); 
+                        $('.organization-easyui-linkbutton-pencil').linkbutton({text:'修改',plain:true,iconCls:'fi-pencil icon-blue'});
+                        $('.organization-easyui-linkbutton-del').linkbutton({text:'删除',plain:true,iconCls:'fi-x icon-red'});
+                    }">
+					<thead>
+						<tr>
+							<th data-options="field:'id',checkbox:true">编号</th>
+							<th data-options="field:'dicRelationKey',width:'15%',align:'center',formatter:function(value,rowData,rowIndex){    
+								    	 return sy.getDicValue('sf_investigate_family','dic_relation_key',rowData.dicRelationKey,''); 
+								} ">关系</th>
+							<th data-options="field:'name',width:'15%',align:'center'">姓名</th>
+							<th data-options="field:'birthday',width:'15%',align:'center'">出生日期</th>
+							<th data-options="field:'org',width:'15%',align:'center'">工作单位</th>
+							<th data-options="field:'phone',width:'20%',align:'center'">联系方式</th>
+							<th data-options="field:'prison',width:'18%',align:'center'" formatter="formatFamily">操作</th>
+						</tr>
+					</thead>
+				</table>        
+		    </div>   
+		    <div title="志愿者帮教" data-options="closable:false" style="display:none;">
+		    <table class="easyui-datagrid" id="volunteer_content" style="height: 100%;width:100%"
+					data-options="singleSelect:true,collapsible:true,striped:true,rownumbers:true,toolbar:toolbarVolunteer,
+					loadMsg: '数据正在加载,请耐心的等待...',fitColumns:true,url:'${ctx}/sys/volunteer/list?culpritId='+'${culprit.id }',method:'post',
+					onLoadSuccess:function (data) {
+                        $('.organization-easyui-linkbutton-info').linkbutton({text:'详细',plain:true,iconCls:'fi-info icon-blue'}); 
+                        $('.organization-easyui-linkbutton-pencil').linkbutton({text:'修改',plain:true,iconCls:'fi-pencil icon-blue'});
+                        $('.organization-easyui-linkbutton-del').linkbutton({text:'删除',plain:true,iconCls:'fi-x icon-red'});
+                    }">
+					<thead>
+						<tr>
+							<th data-options="field:'id',checkbox:true">编号</th>
+							<th data-options="field:'name',width:'20%',align:'center' ">姓名</th>
+							<th data-options="field:'limit',width:'20%',align:'center'" >聘用时限</th>
+							<th data-options="field:'job',width:'20%',align:'center'" >工作单位</th>
+							<th data-options="field:'linkMobile',width:'20%',align:'center'">联系方式</th>
+							<th data-options="field:'prison',width:'18%',align:'center'" formatter="formatVolunteer">操作</th>
+						</tr>
+					</thead>
+				</table>              
+		    </div>
+		  	<div title="矫正方案" data-options="closable:false" style="display:none;">
+			    <table class="easyui-datagrid" id="scheme_content" style="height: 100%;;width:100%"
+					data-options="singleSelect:true,collapsible:true,striped:true,rownumbers:true,toolbar:toolbarScheme,fitColumns:true,loadMsg: '数据正在加载,请耐心的等待...'  ,
+					fitColumns:true,url:'${ctx}/sys/scheme/list?culpritId='+'${culprit.id }',method:'post',
+					onLoadSuccess:function (data) {
+                        $('.organization-easyui-linkbutton-info').linkbutton({text:'详细',plain:true,iconCls:'fi-info icon-blue'}); 
+                        $('.organization-easyui-linkbutton-pencil').linkbutton({text:'修改',plain:true,iconCls:'fi-pencil icon-blue'});
+                        $('.organization-easyui-linkbutton-del').linkbutton({text:'删除',plain:true,iconCls:'fi-x icon-red'});
+                    }">
+					<thead>
+						<tr>
+							<th data-options="field:'id',checkbox:true">编号</th>
+							<th data-options="field:'schemeName',width:'50%',align:'center'" editor="text">矫正方案名称</th>
+							<th data-options="field:'action',width:'48%',align:'center'" formatter="formatScheme">操作</th><!-- formatter="formatterJudg" -->
+						</tr>
+					</thead>
+				</table>           
+		    </div> 
+		    <div title="矫正小组" data-options="closable:false" style="display:none;">
+			    <table class="easyui-datagrid" id="monitor_content" style="height: 100%;width:100%"
+						data-options="singleSelect:true,collapsible:true,striped:true,rownumbers:true,toolbar:toolbarMonitor,loadMsg: '数据正在加载,请耐心的等待...',
+						fitColumns:true,url:'${ctx}/culpritinfo/Monitor/list?culpritId='+'${culprit.id }',method:'post',
+						onLoadSuccess:function (data) {
+                        $('.organization-easyui-linkbutton-info').linkbutton({text:'详细',plain:true,iconCls:'fi-info icon-blue'}); 
+                        $('.organization-easyui-linkbutton-pencil').linkbutton({text:'修改',plain:true,iconCls:'fi-pencil icon-blue'});
+                        $('.organization-easyui-linkbutton-del').linkbutton({text:'删除',plain:true,iconCls:'fi-x icon-red'});
+                    }">
+						<thead>
+							<tr>
+								<th data-options="field:'id',checkbox:true">编号</th>
+								<th data-options="field:'name',width:'15%',align:'center'">姓名</th>
+								<th data-options="field:'dicSexKey',width:'10%',align:'center',formatter:function(value,row,index){
+							if (value==10001){return '男';}else{return '女';}}">性别</th>
+								<th data-options="field:'groupTypeId',width:'15%',align:'center' ">成员类别</th>
+								<th data-options="field:'xzcylx',width:'15%',align:'center',formatter:function(value,rowData,rowIndex){    
+									    if(typeof(rowData.xzcylx) != 'undefined' && rowData.xzcylx!=''){
+									    	 return sy.getDicValue('common_table','xzcylx',rowData.xzcylx,''); 
+									    }   
+									}" editor="text">成员类型</th>
+								<th data-options="field:'org',width:'20%',align:'center'">单位</th>
+								<th data-options="field:'prison',width:'23%',align:'center'" formatter="formatMonitor">操作</th>
+							</tr>
+						</thead>
+					</table>          
+		 		</div> 
+	 </div>
+	 </div>
+	 </form> 
+	 <div id="resume" title="工作情况" modal=true  closable=true 
+	        maximizable=true class="easyui-dialog" closed=true style="width: 600px;padding:5px;" 
+	        data-options="buttons:[{
+				text:'保存',
+				iconCls:'icon-save',
+				handler:function(){resumeSave();}
+			},{
+				text:'关闭',
+				iconCls:'fi-x icon-blue',
+				handler:function(){resumeClose();}
+			}]">
+		<form id="resumeForm" action="" method="post" autocomplete="off">
+			<input type="hidden" name="id" value="" />
+			<input type="hidden" name="culpritId" value="${culprit.id }" />
+			<table width="100%" class="grid">
+				<tr>
+					<th width="15%">入职时间：</th>
+					<td width="35%"><input  name="startTime" id="resumeStartTime" 
+								class="Wdate easyui-validatebox" onfocus="var resumeEndTime=$dp.$('resumeEndTime');WdatePicker({skin:'blueFresh',dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'resumeEndTime\')}'})" /></td>
+					<th width="15%">离职时间：</th>
+					<td width="35%"><input name="endTime" id="resumeEndTime"
+								class="Wdate easyui-validatebox" onfocus="WdatePicker({skin:'blueFresh',dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'resumeStartTime\')}'})"></td>			
+				</tr>
+				<tr>
+					<th>工作单位：</th>
+					<td><input name="org" id="resumeOrg"class="easyui-textbox" /></td>
+					<th>职务：</th>
+					<td><input name="role"id="resumeRole" class="easyui-textbox" /></td>
+				</tr>
+				<!-- <tr align="center">
+					<td colspan="4"><a id="resumeBtn" href="javascript:void(0)" class="easyui-linkbutton" onclick="resumeSave();" data-options="iconCls:'icon-save'">保存</a>
+						<a href="javascript:void(0)"  class="easyui-linkbutton" onclick="resumeClose();" data-options="iconCls:'fi-x icon-blue'">关闭</a></td>
+				</tr> -->
+			</table>
+		</form>
+	</div>
+	 <div id="family" title="新增家庭成员" modal=true closable=true resizable=true
+	        maximizable=true class="easyui-dialog" closed=true style="width:600px;padding:5px;">
+		<form id="familyForm" action="" method="post" autocomplete="off">
+			<input type="hidden" name="id" value="" />
+			<input type="hidden" name="culpritId" value="" />
+			<table width="100%" class="grid">
+				<tr>
+					<th width="15%"><span class="c-red">*</span>姓名：</th>
+					<td width="35%"><input name="name" id="familyName" class="easyui-textbox" required=true data-options="validType:'chinaName'"/></td>
+					<th width="15%"><span class="c-red">*</span>性别：</th>
+					<td width="35%"><input name="dicSexKey" id="familyDicSexKey" class="easyui-combobox" required=true value=""
+                    	data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=10000',panelHeight:'auto',editable:false"></input></td>
+				</tr>
+				<tr>
+					<th><span class="c-red">*</span>关系：</th>
+					<td><input name="dicRelationKey" class="easyui-combobox" required=true id="familyDicRelationKey"
+					data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=1530000',panelHeight:'auto',editable:false"/></td>
+					<th>现政治面貌：</th>
+					<td ><input name="dicZzmmKey" class="easyui-combobox" value="" id="familyDicZzmmKey"
+                    	data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=65000',panelHeight:'auto',editable:false"></input></td>
+				</tr>
+				<tr>
+					<th>工作单位：</th>
+					<td><input name="org" class="easyui-textbox"id="familyOrg" /></td>
+					<th>职务：</th>
+					<td><input name="role" class="easyui-textbox"id="familyRole" /></td>
+				</tr>
+				<tr>
+					<th>电话：</th>
+					<td><input name="phone" class="easyui-numberbox" id="familyPhone" data-options="validType:'telno'"/></td>
+					<th>出生日期：</th>
+					<td><input type="text" name="birthday" id="familyBirthday"
+								class="Wdate easyui-validatebox" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" /></td>
+				</tr>
+				<tr>
+					<th  width="15%">住址：</th>
+					<td colspan="3"><input name="address" class="easyui-textbox" id="familyAddress" style="width:400px;"/></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="volunteer" title="志愿者帮教新增" modal=true closable=true resizable=true
+	        maximizable=true class="easyui-dialog" closed=true style="width:700px;padding:5px;" >
+		<form id="volunteerForm" action="" method="post" autocomplete="off">
+			<input type="hidden" name="id" value="" />
+			<input type="hidden" name="culpritId" value="" />
+			<table width="100%" class="grid">
+				<tr>
+					<th width="15%"><span class="c-red">*</span>姓名：</th>
+					<td width="35%"><input name="name" class="easyui-textbox" id="volunteerName" required=true data-options="validType:'chinaName'"/></td>
+					<th width="15%"><span class="c-red">*</span>性别：</th>
+					<td width="35%"><input name="dicSexKey" id="volunteerDicSexKey" class="easyui-combobox" required=true value=""
+                    	data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=10000',panelHeight:'auto',editable:false"></input></td>
+				</tr>
+				<tr>
+					<th><span class="c-red">*</span>聘用开始日期：</th>
+					<td><input type="text" name="startDate" id="volunteerStartDate" required=true 
+								class="Wdate easyui-validatebox" onfocus="var volunteerEndDate=$dp.$('volunteerEndDate');WdatePicker({skin:'blueFresh',dateFmt:'yyyy-MM-dd',onpicked:function(){volunteerEndDate.focus();},maxDate:'#F{$dp.$D(\'volunteerEndDate\')}'})" /></td>
+					<th><span class="c-red">*</span>聘用结束日期：</th>
+					<td><input type="text" name="endDate" id="volunteerEndDate" required=true 
+								class="Wdate easyui-validatebox" onfocus="WdatePicker({skin:'blueFresh',dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'volunteerStartDate\')}'})" /></td>
+				</tr>
+				<tr>
+					<th><span class="c-red">*</span>聘用时限(年)：</th>
+					<td><input name="limit" class="easyui-numberbox" data-options="min:1" required=true id="volunteerLimit" /></td>
+					<th>手机号：</th>
+					<td><input name="linkMobile" class="easyui-numberbox" id="volunteerLinkMobile" data-options="validType:'telno'"/></td>
+					
+				</tr>
+				<tr>
+					<th>工作单位：</th>
+					<td colspan="3"><input name="job" class="easyui-textbox" id="volunteerJob" style="width:400px;"/></td>
+				</tr>
+				<tr>
+					<th>住址：</th>
+					<td colspan="2"><input name="address" class="easyui-textbox" id="volunteerAddress" style="width:400px;"/></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="scheme" title="矫正方案" modal=true  closable=true resizable=true
+	        maximizable=true class="easyui-dialog" closed=true style="width:800px;padding:5px;" >
+		<form id="schemeForm" action="" method="post"  autocomplete="off">
+			<input type="hidden" name="id" value="" />
+			<input type="hidden" name="culpritId" value="" />
+			<table width="100%" class="grid">
+				<tr>
+                    <th width="15%"><span class="c-red">*</span>矫正方案名称：</th>
+                    <td>
+                    <textarea  name="schemeName" id="schemeName" class="easyui-validatebox"  multiline="true"  required=true missingMessage="方案名称不能为空!"
+						onkeydown='textarealength(this,100)' onkeyup='textarealength(this,100)' 
+							style="width:400px;height:18px;overflow:hidden;" maxlength=100></textarea>
+						<br/>
+						<p class="textarea-numberbar">
+								备注：此处最多可以输入<em class="c-red">100</em>个字，你已输入<em class="textarea-length c-red">0</em>个字。
+						</p>
+                    </td>
+                </tr>
+                 <tr>
+                    <th><span class="c-red">*</span>矫正意见：</th>
+					<td>
+					<textarea  name="schemeOpinion" id="schemeOpinion" class="easyui-validatebox"  multiline="true" 
+						onkeydown='textarealength(this,200)' onkeyup='textarealength(this,200)'  required=true
+							style="width:600px;height:200px;overflow:hidden;" maxlength=200></textarea>
+						<br/>
+						<p class="textarea-numberbar">
+								备注：此处最多可以输入<em class="c-red">200</em>个字，你已输入<em class="textarea-length c-red">0</em>个字。
+						</p>
+					</td>
+                </tr> 
+                <tr>
+                    <th><span class="c-red">*</span>矫正措施：</th>
+					<td>
+					<textarea  name="schemeStep" id="schemeStep" class="easyui-validatebox"  multiline="true"
+						onkeydown='textarealength(this,500)' onkeyup='textarealength(this,500)'  required=true
+							style="width:600px;height:200px;overflow:hidden;" maxlength=500></textarea>
+						<br/>
+						<p class="textarea-numberbar">
+								备注：此处最多可以输入<em class="c-red">500</em>个字，你已输入<em class="textarea-length c-red">0</em>个字。
+						</p>
+					</td>
+                </tr>
+			</table>
+		</form>
+	</div>
+	<div id="printScheme1"></div>
+	<div id="monitor" title="矫正小组" modal=true  closable=true resizable=true
+	        maximizable=true class="easyui-dialog" closed=true style="width:600px;padding:5px;">
+		<form id="monitorForm" action="" method="post" autocomplete="off">
+			<input type="hidden" name="id" value="" />
+			<input type="hidden" name="culpritId" value="" />
+			<table width="100%" class="grid">
+				<tr>
+					<th width="15%"><span class="c-red">*</span>姓名：</th>
+					<td width="35%"><input name="name" id="monitorName" class="easyui-textbox" required=true data-options="validType:'chinaName'"/></td>
+					<th width="15%"><span class="c-red">*</span>类别：</th>
+					<td width="35%"><input name="xzcylx" id="xzcylx" class="easyui-combobox" required=true value=""
+                    	data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=38000',panelHeight:'auto',editable:false"></input></td>
+				</tr>
+				<tr>
+					<th>工作单位：</th>
+					<td><input name="org" class="easyui-textbox"id="monitorOrg" /></td>
+					<th>性别：</th>
+					<td ><input name="dicSexKey" class="easyui-combobox" value="" id="monitorDicSexKey"
+                    	data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=10000',panelHeight:'auto',editable:false"></input></td>
+				</tr>
+				<tr>
+					<th>联系电话：</th>
+					<td><input name="mobile" class="easyui-textbox"id="monitorMobile" data-options="validType:'telno'"/></td>
+					<th>学历：</th>
+					<td><input name="qulifId" class="easyui-combobox" value="" id="monitorQulifId"
+                    	data-options="valueField:'id',textField:'value',url:'${ctx}/sys/sysDic/getDicOnlyByParent?parentKey=19000',panelHeight:'auto',editable:false"></input></td>
+				</tr>
+				<tr>
+					<th>成员类别：</th>
+					<td colspan="3">
+						<select id="monitorRelation" class="easyui-combobox" name="groupTypeId" style="width:173px;" required=true data-options="panelHeight:'auto',editable:false">   
+						    <option value="组长">组长</option>   
+						    <option value="成员">成员</option>    
+						</select>  
+					</td>
+				</tr>
+				<tr>
+					<th>家庭住址：</th>
+					<td colspan="3"><input name="address" class="easyui-textbox" id="monitorAddress" style="width:400px;"/></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+    <script>
+    var culpritId='${culprit.id}';
+    var toolbarVolunteer = [ {
+		text : '新增',
+		iconCls : 'fi-plus icon-green',
+		handler : function() {
+			$('#volunteer').dialog({
+				title : '新增',
+				iconCls : 'fi-plus icon-green',
+				buttons:[{
+					text:'保存',
+					iconCls:'icon-save',
+					handler:function(){volunteerSave();}
+				},{
+					text:'关闭',
+					iconCls:'fi-x icon-blue',
+					handler:function(){volunteerClose();}
+				}]
+			});
+			//$('#myform').find('input[name!=sex]').val("");
+			//$('#volunteerForm').get(0).reset();
+			$('#volunteerName').textbox('enable');
+	    	$('#volunteerDicSexKey').combobox('enable');
+	    	$('#volunteerStartDate').validatebox('enable');
+	    	$('#volunteerEndDate').validatebox('enable');
+	    	$('#volunteerJob').textbox('enable');
+	    	$('#volunteerLimit').textbox('enable');
+	    	$('#volunteerLinkMobile').numberbox('enable');
+	    	$('#volunteerAddress').textbox('enable');
+	    	$('#volunteerBtn').linkbutton('enable');
+			$('#volunteerForm').form('clear');
+			$('#volunteerForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+				culpritId : culpritId
+			});
+			$('#volunteer').dialog('open');
+		}
+
+	}]
+    function volunteerClose(){
+    	$('#volunteerForm').form('clear');
+    	$('#volunteer').dialog('close');
+	
+    }
+    function volunteerSave(){
+			if($('#volunteerForm').form('validate')){	
+				$.ajax({
+					type: 'post' ,
+					url: '${ctx}/sys/volunteer/save',
+					data:$('#volunteerForm').serialize(),
+					dataType:'json' ,
+					success:function(result){
+						//1 关闭窗口
+						$('#volunteer').dialog('close');
+						$('#volunteer_content').datagrid('reload');
+						//parent.location.reload();
+		      			//var index = parent.layer.getFrameIndex(window.name);
+						//parent.layer.close(index);
+					} ,
+					error:function(result){
+						$.messager.show({
+							title:result.status==200?"ok":"fail" ,  
+							msg:result.msg
+						});
+					}
+				});
+			} else {
+				$.messager.show({
+					title:'提示信息!' ,
+					msg:'数据验证不通过'
+				});
+			}
+	}
+    function formatVolunteer(val,row,index){  
+    	var space = '&nbsp;';
+    	var operation='<a href="javascript:void(0);" class="organization-easyui-linkbutton-info" onclick="volunteerDetail(\''+index+'\')">详细</a>'+space; 
+    	operation+='<a href="javascript:void(0);" class="organization-easyui-linkbutton-pencil" onclick="volunteerUpdate(\''+index+'\')">修改</a>'+space;
+    	operation+='<a href="javascript:void(0);" class="organization-easyui-linkbutton-del" onclick="fvolunteerDelete(\''+row.id+'\')">删除</a>';
+
+    	return operation;
+    }
+    function volunteerUpdate(index){  
+    	 $('#volunteerName').textbox('enable');
+     	$('#volunteerDicSexKey').combobox('enable');
+     	$('#volunteerStartDate').validatebox('enable');
+     	$('#volunteerEndDate').validatebox('enable');
+     	$('#volunteerJob').textbox('enable');
+     	$('#volunteerLimit').textbox('enable');
+     	$('#volunteerLinkMobile').numberbox('enable');
+     	$('#volunteerAddress').textbox('enable');
+     	$('#volunteerBtn').linkbutton('enable'); 
+     	$('#volunteer_content').datagrid('selectRow',index); 
+    	var arr = $('#volunteer_content').datagrid('getSelections');
+    	$('#volunteer').dialog({
+			title : '修改',
+			iconCls:'fi-pencil icon-blue',
+			buttons:[{
+				text:'保存',
+				iconCls:'icon-save',
+				handler:function(){volunteerSave();}
+			},{
+				text:'关闭',
+				iconCls:'fi-x icon-blue',
+				handler:function(){volunteerClose();}
+			}]
+		});
+    	$('#volunteer').dialog('open');
+    	$('#volunteerForm').form('clear')
+    	$('#volunteerForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+			id : arr[0].id,
+			culpritId : arr[0].culpritId,
+			name : arr[0].name,
+			dicSexKey : arr[0].dicSexKey,
+			startDate : arr[0].startDate,
+			endDate : arr[0].endDate,
+			job : arr[0].job,
+			limit : arr[0].limit,
+			linkMobile :arr[0].linkMobile,
+			address:arr[0].address
+		});
+    	$('#volunteer_content').datagrid('unselectAll'); 
+    }
+    function volunteerDetail(index){ 
+    	$('#volunteer_content').datagrid('selectRow',index);
+    	var arr = $('#volunteer_content').datagrid('getSelections');
+    	$('#volunteer').dialog({
+			title : '详细',
+			iconCls:'fi-info icon-blue',
+			buttons:[{
+				text:'关闭',
+				iconCls:'fi-x icon-blue',
+				handler:function(){volunteerClose();}
+			}]
+		});
+    	
+    	$('#volunteerForm').form('clear')
+    	$('#volunteerForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+			id : arr[0].id,
+			name : arr[0].name,
+			dicSexKey : arr[0].dicSexKey,
+			startDate : arr[0].startDate,
+			endDate : arr[0].endDate,
+			job : arr[0].job,
+			limit : arr[0].limit,
+			linkMobile :arr[0].linkMobile,
+			address:arr[0].address
+		});
+    	$('#volunteerName').textbox('disable');
+    	$('#volunteerDicSexKey').combobox('disable');
+    	$('#volunteerStartDate').validatebox('disable');
+    	$('#volunteerEndDate').validatebox('disable');
+    	$('#volunteerJob').textbox('disable');
+    	$('#volunteerLimit').textbox('disable');
+    	$('#volunteerLinkMobile').numberbox('disable');
+    	$('#volunteerAddress').textbox('disable');
+    	$('#volunteerBtn').linkbutton('disable');
+    	$('#volunteer').dialog('open');
+    	$('#volunteer_content').datagrid('unselectAll'); 
+    }
+    function volunteerDelete(id){
+    	   $.messager.confirm('提示信息', '确认删除?', function(r) {
+    			if (r) {
+    				$.post('${ctx}/sys/volunteer/batchDelete', {
+    					ids : id
+    				}, function(result) {
+    					//1 刷新数据表格 
+    					$('#volunteer_content').datagrid('reload');
+    					$.messager.show({
+    						title : '提示信息!',
+    						msg : '删除成功'
+    					});
+    				});
+    			} else {
+    				return;
+    			}
+    		});
+    	}
+    
+    
+    //工作情况操作
+    function formatResume(val,row,index){ 
+    	var space = '&nbsp;';
+    	/* var operation='<a href="javascript:void(0);" class="organization-easyui-linkbutton-info" onclick="resumeDetail(\''+row.id+'\')">详细</a>'+space; */
+    	var operation='<a href="javascript:void(0);" class="organization-easyui-linkbutton-pencil" onclick="resumeUpdate(\''+index+'\')">修改</a>'+space;
+    	operation=operation+'<a href="javascript:void(0);" class="organization-easyui-linkbutton-del" onclick="resumeDelete(\''+row.id+'\')">删除</a>';
+
+    	return operation;
+    }
+    //个人简历新增
+    var toolbarResume = [ {
+		text : '新增',
+		iconCls : 'fi-plus icon-green',
+		handler : function() {
+			$('#resume').dialog({
+				title : '新增工作情况',
+				iconCls:'fi-plus icon-green',
+				resizable:true
+			});
+			$('#resumeForm').form('clear');
+			$('#resumeForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+				culpritId : culpritId
+			});
+			$('#resume').dialog('open');
+
+		}
+
+	}]
+    function resumeClose(){
+    	$('#resume').dialog('close');
+    	$('#resumeForm').form('clear');
+		
+    }
+    //保存个人简历
+    function resumeSave(){
+			if($('#resumeForm').form('validate')){	
+				$.ajax({
+					type: 'post' ,
+					url: '${ctx}/culpritinfo/culpritResume/save',
+					data:$('#resumeForm').serialize() ,
+					dataType:'json' ,
+					success:function(result){
+						//1 关闭窗口
+						$('#resume').dialog('close');
+						$('#resume_content').datagrid('reload');
+						//parent.location.reload();
+		      			//var index = parent.layer.getFrameIndex(window.name);
+						//parent.layer.close(index);
+					} ,
+					error:function(result){
+						$.messager.show({
+							title:result.status==200?"ok":"fail" ,  
+							msg:result.msg
+						});
+					}
+				});
+			} else {
+				$.messager.show({
+					title:'提示信息!' ,
+					msg:'数据验证不通过'
+				});
+			}
+	}
+   //修改个人简历
+    function resumeUpdate(index){
+    	$('#resume_content').datagrid('selectRow',index); 
+		var arr = $('#resume_content').datagrid('getSelections');
+    	$('#resume').dialog({
+			title : '修改个人简历',
+			iconCls:'fi-pencil icon-blue',
+		});
+    	$('#resumeForm').form('clear');
+    	$('#resumeForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+			id : arr[0].id,
+			culpritId : arr[0].culpritId,
+			startTime : arr[0].startTime,
+			endTime : arr[0].endTime,
+			org : arr[0].org,
+			role : arr[0].role
+		});
+    	$('#resume').dialog('open');
+    	$('#resume_content').datagrid('unselectAll'); 
+    }
+   /* //个人简历详细
+    function resumeDetail(id){  
+    	var arr1 = $('#resume_content').datagrid('getSelections');
+    	$('#resume').dialog({
+			title : '详细'
+		});
+    	$('#resumeForm').form('clear')
+    	$('#resumeForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+			id : arr1[0].id,
+			culpritId : arr1[0].culpritId,
+			startTime : arr1[0].startTime,
+			endTime : arr1[0].endTime,
+			org : arr1[0].org,
+			role : arr1[0].role
+		});
+    	$('#resumeStartTime').validatebox({'disabled':true});
+    	$('#resumeEndTime').validatebox({'disabled':true});
+    	$('#resumeOrg').textbox({'disabled':true});
+    	$('#resumeRole').textbox({'disabled':true});
+    	$('#resumeBtn').linkbutton({'disabled':true});
+    	$('#resume').dialog('open');
+    	$('#resume_content').datagrid('unselectAll'); 
+    } */
+   //个人简历删除
+   function resumeDelete(id){
+	   $.messager.confirm('提示信息', '确认删除?', function(r) {
+			if (r) {
+				$.post('${ctx}/culpritinfo/culpritResume/batchDelete', {
+					ids : id
+				}, function(result) {
+					//1 刷新数据表格 
+					$('#resume_content').datagrid('reload');
+					$.messager.show({
+						title : '提示信息!',
+						msg : '删除成功'
+					});
+				});
+			} else {
+				return;
+			}
+		});
+   }
+    
+    //家庭成员新增
+    var toolbarFamily = [ {
+		text : '新增',
+		iconCls : 'fi-plus icon-green',
+		handler : function() {
+			$('#family').dialog({
+				title : '家庭成员新增',
+				iconCls : 'fi-plus icon-green',
+				buttons:[{
+					text:'保存',
+					iconCls:'icon-save',
+					handler:function(){familySave();}
+				},{
+					text:'关闭',
+					iconCls:'fi-x icon-blue',
+					handler:function(){familyClose();}
+				}]
+			});
+			$('#familyForm').form('clear');
+			$('#family').dialog('open');
+			$('#familyForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+				culpritId : culpritId
+			});
+		}
+	}]
+    function familySave(){
+			if($('#familyForm').form('validate')){	
+				$.ajax({
+					type: 'post' ,
+					url: '${ctx}/culpritinfo/culpritFamily/save',
+					data:$('#familyForm').serialize() ,
+					dataType:'json' ,
+					success:function(result){
+						//1 关闭窗口
+						$('#family').dialog('close');
+						$('#family_content').datagrid('reload');
+
+					} ,
+					error:function(result){
+						$.messager.show({
+							title:result.status==200?"ok":"fail" ,  
+							msg:result.msg
+						});
+					}
+				});
+			} else {
+				$.messager.show({
+					title:'提示信息!' ,
+					msg:'数据验证不通过'
+				});
+			}
+	}
+    function formatFamily(val,row,index){  
+    	var space = '&nbsp;';
+    	var operation='<a href="javascript:void(0);" class="organization-easyui-linkbutton-info" onclick="familyDetail(\''+index+'\')">详细</a>'+space; 
+    	operation+='<a href="javascript:void(0);" class="organization-easyui-linkbutton-pencil" onclick="familyUpdate(\''+index+'\')">修改</a>'+space;
+    	operation+='<a href="javascript:void(0);" class="organization-easyui-linkbutton-del" onclick="familyDelete(\''+row.id+'\')">删除</a>';
+
+    	return operation;
+    }
+    function familyClose(){
+    	$('#familyForm').form('clear');
+		$('#family').dialog('close');
+		$('#familyName').textbox('enable');
+    	$('#familyDicSexKey').combobox('enable');
+    	$('#familyBirthday').validatebox('enable');
+    	$('#familyDicZzmmKey').combobox('enable');
+    	$('#familyOrg').textbox('enable');
+    	$('#familyRole').textbox('enable');
+    	$('#familyPhone').numberbox('enable');
+    	$('#familyAddress').textbox('enable');
+    	$('#familyDicRelationKey').combobox('enable');
+    	$('#familyBtn').linkbutton('enable');
+    }
+    function familyUpdate(index){
+    	$('#familyName').textbox('enable');
+    	$('#familyDicSexKey').combobox('enable');
+    	$('#familyBirthday').validatebox('enable');
+    	$('#familyDicZzmmKey').combobox('enable');
+    	$('#familyOrg').textbox('enable');
+    	$('#familyRole').textbox('enable');
+    	$('#familyPhone').numberbox('enable');
+    	$('#familyAddress').textbox('enable');
+    	$('#familyDicRelationKey').combobox('enable');
+    	$('#familyBtn').linkbutton('enable');
+    	$('#family_content').datagrid('selectRow',index); 
+    	var arr = $('#family_content').datagrid('getSelections');
+    	$('#family').dialog({
+			title : '家庭成员修改',
+			iconCls:'fi-pencil icon-blue',
+			buttons:[{
+				text:'保存',
+				iconCls:'icon-save',
+				handler:function(){familySave();}
+			},{
+				text:'关闭',
+				iconCls:'fi-x icon-blue',
+				handler:function(){familyClose();}
+			}]
+		});
+    	$('#family').dialog('open');
+    	$('#familyForm').form('reset');
+    	$('#familyForm').form('clear');
+    	$('#familyForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+			id : arr[0].id,
+			culpritId : arr[0].culpritId,
+			name : arr[0].name,
+			dicSexKey : arr[0].dicSexKey,
+			birthday : arr[0].birthday,
+			dicZzmmKey : arr[0].dicZzmmKey,
+			org : arr[0].org,
+			role : arr[0].role,
+			phone : arr[0].phone,
+			address : arr[0].address,
+			dicRelationKey : arr[0].dicRelationKey
+		});
+    	$('#family_content').datagrid('unselectAll'); 
+    }
+    //家庭成员详细
+    function familyDetail(index){  
+    	$('#family_content').datagrid('selectRow',index); 
+    	var arr = $('#family_content').datagrid('getSelections');
+    	$('#family').dialog({
+    		title : '家庭成员详细',
+    		iconCls:'fi-info icon-blue',
+    		buttons:[{
+				text:'关闭',
+				iconCls:'fi-x icon-blue',
+				handler:function(){familyClose();}
+			}]
+    	});
+    	$('#familyForm').form('reset');
+    	$('#familyForm').form('clear');
+    	$('#familyForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+    		id : arr[0].id,
+			culpritId : arr[0].culpritId,
+			name : arr[0].name,
+			dicSexKey : arr[0].dicSexKey,
+			birthday : arr[0].birthday,
+			dicZzmmKey : arr[0].dicZzmmKey,
+			org : arr[0].org,
+			role : arr[0].role,
+			phone : arr[0].phone,
+			address : arr[0].address,
+			dicRelationKey : arr[0].dicRelationKey
+    	});
+    	$('#familyName').textbox('disable');
+    	$('#familyDicSexKey').combobox('disable');
+    	$('#familyBirthday').validatebox('disable');
+    	$('#familyDicZzmmKey').combobox('disable');
+    	$('#familyOrg').textbox('disable')
+    	$('#familyRole').textbox('disable')
+    	$('#familyPhone').numberbox('disable')
+    	$('#familyAddress').textbox('disable')
+    	$('#familyDicRelationKey').combobox('disable');
+    	$('#familyBtn').linkbutton('disable');
+    	$('#family').dialog('open');
+    	$('#family_content').datagrid('unselectAll'); 
+    }
+    //家庭情况删除
+    function familyDelete(id){
+       $.messager.confirm('提示信息', '确认删除?', function(r) {
+    		if (r) {
+    			$.post('${ctx}/culpritinfo/culpritFamily/batchDelete', {
+    				ids : id
+    			}, function(result) {
+    				//1 刷新数据表格 
+    				$('#family_content').datagrid('reload');
+    				$.messager.show({
+    					title : '提示信息!',
+    					msg : '删除成功'
+    				});
+    			});
+    		} else {
+    			return;
+    		}
+    	});
+    }
+//矫正方案
+ var toolbarScheme = [ {
+		text : '新增',
+		iconCls : 'fi-plus icon-green',
+		handler : function() {
+			$('#scheme').dialog({
+				title : '新增矫正方案',
+				iconCls : 'fi-plus icon-green',
+				buttons:[{
+					text:'保存',
+					iconCls:'icon-save',
+					handler:function(){schemeSave();}
+				},{
+					text:'关闭',
+					iconCls:'fi-x icon-blue',
+					handler:function(){schemeClose();}
+				}]
+			});
+			//$('#myform').find('input[name!=sex]').val("");
+			//$('#volunteerForm').get(0).reset();
+			 $('#schemeName').validatebox('enable');
+		 	$('#schemeOpinion').validatebox('enable');
+		 	$('#schemeStep').validatebox('enable');
+			$('#schemeForm').form('clear');
+			
+			$('#schemeForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+				culpritId : culpritId
+			});
+			$('#scheme').dialog('open');
+		}
+
+	}]
+	//重启表单编辑功能
+    function schemeClose(){
+    	$('#schemeForm').form('clear');
+    	$('#scheme').dialog('close');
+    	$('#schemeName').textbox('enable');
+    	$('#schemeOpinion').textbox('enable');
+    	$('#schemeStep').textbox('enable');
+    }
+ function schemeSave(){
+			if($('#schemeForm').form('validate')){	
+				$.ajax({
+					type: 'post' ,
+					url: '${ctx}/sys/scheme/save',
+					data:$('#schemeForm').serialize() ,
+					dataType:'json' ,
+					success:function(result){
+						//1 关闭窗口
+						$('#scheme').dialog('close');
+						$('#scheme_content').datagrid('reload');
+						//parent.location.reload();
+		      			//var index = parent.layer.getFrameIndex(window.name);
+						//parent.layer.close(index);
+					} ,
+					error:function(result){
+						$.meesager.show({
+							title:result.status==200?"ok":"fail" ,  
+							msg:result.msg
+						});
+					}
+				});
+			} else {
+				$.messager.show({
+					title:'提示信息!' ,
+					msg:'数据验证不通过'
+				});
+			}
+	}
+ function formatScheme(val,row,index){ 
+	 var space = '&nbsp;';
+ 	var operation='<a href="javascript:void(0);" class="organization-easyui-linkbutton-info" onclick="schemeDetail(\''+index+'\')">详细</a>'+space; 
+ 	operation+='<a href="javascript:void(0);" class="organization-easyui-linkbutton-pencil" onclick="schemeUpdate(\''+index+'\')">修改</a>'+space;
+ 	operation+='<a href="javascript:void(0);" class="organization-easyui-linkbutton-del" onclick="schemeDelete(\''+row.id+'\')">删除</a>';
+
+ 	return operation;
+	
+ }
+ function schemeUpdate(index){ 
+	 $('#schemeName').validatebox('enable');
+ 	$('#schemeOpinion').validatebox('enable');
+ 	$('#schemeStep').validatebox('enable');
+ 	$('#scheme_content').datagrid('selectRow',index); 
+ 	var arr = $('#scheme_content').datagrid('getSelections');
+ 	$('#scheme').dialog({
+			title : '修改',
+			iconCls:'fi-pencil icon-blue',
+			buttons:[{
+				text:'保存',
+				iconCls:'icon-save',
+				handler:function(){schemeSave();}
+			},{
+				text:'关闭',
+				iconCls:'fi-x icon-blue',
+				handler:function(){schemeClose();}
+			}]
+		});
+ 	
+ 	$('#schemeForm').form('clear')
+ 	$('#schemeForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+			id : arr[0].id,
+			culpritId : arr[0].culpritId,
+			schemeName : arr[0].schemeName,
+			schemeOpinion : arr[0].schemeOpinion,
+			schemeStep : arr[0].schemeStep,
+			endDate : arr[0].endDate
+		});
+ 	$('#scheme').dialog('open');
+ 	$('#scheme_content').datagrid('unselectAll'); 
+ }
+ function schemeDetail(index){
+	$('#scheme_content').datagrid('selectRow',index); 
+ 	var arr = $('#scheme_content').datagrid('getSelections');
+
+ 	$('#scheme').dialog({
+			title : '详细',
+			iconCls:'fi-info icon-blue',
+			buttons:[{
+				text:'打印《社区服刑人员矫正方案》',
+				iconCls:'icon-save',
+				handler:function(){printScheme(arr[0].id);}
+			},{
+				text:'关闭',
+				iconCls:'fi-x icon-blue',
+				handler:function(){schemeClose();}
+			}]
+		});
+
+ 	$('#schemeForm').form('clear');
+ 	$('#schemeForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+			id : arr[0].id,
+			schemeName : arr[0].schemeName,
+			schemeOpinion : arr[0].schemeOpinion,
+			schemeStep : arr[0].schemeStep,
+			endDate : arr[0].endDate
+		});
+ 	$('#schemeName').validatebox('disable');
+	$('#schemeOpinion').validatebox('disable');
+	$('#schemeStep').validatebox('disable');
+	$('#scheme').dialog('open');
+ 	$('#scheme_content').datagrid('unselectAll'); 
+ }
+ function schemeDelete(id){
+ 	   $.messager.confirm('提示信息', '确认删除?', function(r) {
+ 			if (r) {
+ 				$.post('${ctx}/sys/scheme/batchDelete', {
+ 					ids : id
+ 				}, function(result) {
+ 					//1 刷新数据表格 
+ 					$('#scheme_content').datagrid('reload');
+ 					$.messager.show({
+ 						title : '提示信息!',
+ 						msg : '删除成功'
+ 					});
+ 				});
+ 			} else {
+ 				return;
+ 			}
+ 		});
+ 	}
+ 
+	//打印矫正方案
+ 	function printScheme(id){ 
+ 	 $('#printScheme1').dialog({    
+		    title: '打印《社区服刑人员矫正方案》',    
+		    width: 900,    
+		    height:800,    
+		    closed: false,    
+		    cache: false,    
+		    href : '${ctx}/sys/scheme/printSchemePlan?id=' + id,
+		    modal: true,
+		   buttons :[{
+				text:'打印',
+	            iconCls:'fi-print icon-blue',
+				handler:function(){
+					$('#schemePrintBtn').click();
+				}
+			}, {
+				text:'关闭',
+				iconCls:'fi-x icon-blue',
+				handler:function(){
+					$('#printScheme1').dialog('close');
+				}
+			}]
+		});    
+	}  
+ 
+ 
+ 
+ 
+        function submitForm(){
+        	 $('#personDocInfo').form('submit');
+        }
+        
+        $('#personDocInfo').form({
+    		url:'${ctx}/culpritinfo/culprit/save',
+    		onSubmit:function(){
+    			return $(this).form('validate');
+    		},
+    		success:function(data){
+    			data = JSON.parse(data);
+    			if(data.status==200){
+    				$.messager.show({
+    					title:'提示信息!' ,
+    					msg:data.msg
+    				});
+    				//2刷新datagrid 
+					//$('#judg_list_content').datagrid('reload');
+    				//parent.location.reload();
+    				
+        			//var index = parent.layer.getFrameIndex(window.name);
+					//parent.layer.close(index);
+					
+    			}else{
+    				alert(data.msg);
+    			}
+    			
+    		}
+    	});	
+        var toolbarMonitor = [ {
+    		text : '新增',
+    		iconCls : 'fi-plus icon-green',
+    		handler : function() {
+    			$('#monitor').dialog({
+    				title : '新增矫正小组',
+    				iconCls : 'fi-plus icon-green',
+    				buttons:[{
+    					text:'保存',
+    					iconCls:'icon-save',
+    					handler:function(){monitorSave();}
+    				},{
+    					text:'关闭',
+    					iconCls:'fi-x icon-blue',
+    					handler:function(){monitorClose();}
+    				}]
+    			});
+    			$('#monitorName').textbox('enable');
+            	$('#monitorOrg').textbox('enable');
+            	$('#xzcylx').combobox('enable');
+            	$('#monitorDicSexKey').combobox('enable');
+            	$('#monitorQulifId').combobox('enable');
+            	$('#monitorMobile').textbox('enable');
+            	$('#monitorAddress').textbox('enable');
+            	$('#monitorRelation').combobox('enable');
+    			$('#monitorForm').form('clear');
+    			$('#monitorForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+    				culpritId : culpritId
+    			});
+    			$('#monitor').dialog('open');
+    		}
+
+    	}]
+        function monitorClose(){
+        	$('#monitorForm').form('clear');
+        	$('#monitor').dialog('close');
+        	$('#monitorName').textbox('enable');
+        	$('#monitorOrg').textbox('enable');
+        	$('#xzcylx').combobox('enable');
+        	$('#monitorDicSexKey').combobox('enable');
+        	$('#monitorQulifId').combobox('enable');
+        	$('#monitorMobile').textbox('enable');
+        	$('#monitorAddress').textbox('enable');
+        	$('#monitorRelation').combobox('enable');
+        }
+        function monitorSave(){
+    			if($('#monitorForm').form('validate')){	
+    				$.ajax({
+    					type: 'post' ,
+    					url: '${ctx}/culpritinfo/Monitor/save',
+    					data:$('#monitorForm').serialize(),
+    					dataType:'json' ,
+    					success:function(result){
+    						$.messager.show({
+    	    					title:'提示信息!',
+    	    					msg:result.msg
+    	    					});	
+    						//1 关闭窗口
+    						$('#monitor').dialog('close');
+    						$('#monitor_content').datagrid('reload');
+    						//parent.location.reload();
+    		      			//var index = parent.layer.getFrameIndex(window.name);
+    						//parent.layer.close(index);
+    					} ,
+    					error:function(result){
+    						$.meesager.show({
+    							title:'提示信息!'  ,  
+    							msg:result.msg
+    						});
+    					}
+    				});
+    			} else {
+    				$.messager.show({
+    					title:'提示信息!' ,
+    					msg:'数据验证不通过'
+    				});
+    			}
+    	}
+        function formatMonitor(val,row,index){  
+        	 var space = '&nbsp;';
+       	 	var operation='<a href="javascript:void(0);" class="organization-easyui-linkbutton-info" onclick="monitorDetail(\''+index+'\')">详细</a>'+space; 
+       	 	operation+='<a href="javascript:void(0);" class="organization-easyui-linkbutton-pencil" onclick="monitorUpdate(\''+index+'\')">修改</a>'+space;
+       	 	operation+='<a href="javascript:void(0);" class="organization-easyui-linkbutton-del" onclick="monitorDelete(\''+row.id+'\')">删除</a>';
+
+       	 	return operation;
+        }
+        function monitorUpdate(index){  
+        	$('#monitor_content').datagrid('selectRow',index); 
+         	var arr = $('#monitor_content').datagrid('getSelections');
+        	$('#monitorName').textbox('enable');
+        	$('#monitorOrg').textbox('enable');
+        	$('#xzcylx').combobox('enable');
+        	$('#monitorDicSexKey').combobox('enable');
+        	$('#monitorQulifId').combobox('enable');
+        	$('#monitorMobile').textbox('enable');
+        	$('#monitorAddress').textbox('enable');
+        	$('#monitorRelation').combobox('enable');
+        	$('#monitorForm').form('clear');
+        	$('#monitorForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+    			id : arr[0].id,
+    			culpritId : arr[0].culpritId,
+    			name : arr[0].name,
+    			xzcylx : arr[0].xzcylx,
+    			org : arr[0].org,
+    			dicSexKey : arr[0].dicSexKey,
+    			mobile : arr[0].mobile,
+    			qulifId : arr[0].qulifId,
+    			address :arr[0].address,
+    			groupTypeId:arr[0].groupTypeId
+    		});
+        	$('#monitor').dialog({
+    			title : '修改矫正小组',
+    			iconCls:'fi-pencil icon-blue',
+    			buttons:[{
+    				text:'保存',
+    				iconCls:'icon-save',
+    				handler:function(){monitorSave();}
+    			},{
+    				text:'关闭',
+    				iconCls:'fi-x icon-blue',
+    				handler:function(){monitorClose();}
+    			}]
+    		});
+        	$('#monitor').dialog('open');
+        	$('#monitor_content').datagrid('unselectAll'); 
+        }
+        function monitorDetail(index){
+        	$('#monitor_content').datagrid('selectRow',index); 
+        	var arr = $('#monitor_content').datagrid('getSelections');
+        	$('#monitor').dialog({
+    			title : '详细',
+    			iconCls:'fi-info icon-blue',
+    			buttons:[{
+    				text:'关闭',
+    				iconCls:'fi-x icon-blue',
+    				handler:function(){monitorClose();}
+    			}]
+    		});
+        	$('#monitor').dialog('open');
+        	$('#monitorForm').form('clear')
+        	$('#monitorForm').form('load', { //调用load方法把所选中的数据load到表单中,非常方便
+    			id : arr[0].id,
+    			name : arr[0].name,
+    			xzcylx : arr[0].xzcylx,
+    			org : arr[0].org,
+    			dicSexKey : arr[0].dicSexKey,
+    			mobile : arr[0].mobile,
+    			qulifId : arr[0].qulifId,
+    			address :arr[0].address,
+    			groupTypeId:arr[0].groupTypeId
+    		});
+        	$('#monitorName').textbox('disable');
+        	$('#monitorOrg').textbox('disable');
+        	$('#xzcylx').combobox('disable');
+        	$('#monitorDicSexKey').combobox('disable');
+        	$('#monitorQulifId').combobox('disable');
+        	$('#monitorMobile').textbox('disable');
+        	$('#monitorAddress').textbox('disable');
+        	$('#monitorRelation').combobox('disable');
+        	$('#monitor_content').datagrid('unselectAll'); 
+        }
+        function monitorDelete(id){
+        	   $.messager.confirm('提示信息', '确认删除?', function(r) {
+        			if (r) {
+        				$.post('${ctx}/culpritinfo/Monitor/batchDelete', {
+        					ids : id
+        				}, function(result) {
+        					//1 刷新数据表格 
+        					$('#monitor_content').datagrid('reload');
+        					$.messager.show({
+        						title : '提示信息!',
+        						msg : '删除成功'
+        					});
+        				});
+        			} else {
+        				return;
+        			}
+        		});
+        	}
+        
+        
+        $(function() {
+        	//户口地下拉选
+        	
+        	
+        	//表单提交
+        	
+        	//进入页面判断是否启用传染病控件
+        	
+        	
+        	//计算字数
+        	
+         
+        });
+        //判断有传染病启用组件
+        $('#dicSfycrbsKey0').click(function(){
+ 			$('#contagionId').combobox('enable');
+    	});
+        $('#dicSfycrbsKey1').click(function(){
+        	$('#contagionId').combobox('clear');
+ 			$('#contagionId').combobox('disable');
+    	});
+      //判断心里状况启用组件
+       $('#dicXlsfjkKey0').click(function(){
+    	   $('#mentalInfo').textbox('clear');
+    	   $('#identifyOrg').textbox('clear');
+    	   $('#mentalInfo').textbox('disable');
+   			$('#identifyOrg').textbox('disable');
+    	});
+        $('#dicXlsfjkKey1').click(function(){
+     	   $('#mentalInfo').textbox('enable');
+  			$('#identifyOrg').textbox('enable');
+    	});
+        //居住地变更时
+        $('#addressProId').combobox({    
+        	onChange: function(newValue,oldValue){
+				$('#addressPro').val($('#addressProId').combobox('getText'));
+        		$('#addressCityId').combobox({    
+        			url:'${ctx}/culpritinfo/culprit/findAreaByLevel?areaParent='+newValue,    
+        		    valueField:'id',    
+        		    textField:'areaName'
+        		    
+        		});
+        		$('#addressCityId').combobox('clear');	
+			}   
+   		}); 
+        $('#addressCityId').combobox({    
+        	onChange: function(newValue,oldValue){
+				$('#addressCity').val($('#addressCityId').combobox('getText'));
+        		$('#addressCountryId').combobox({    
+        			url:'${ctx}/culpritinfo/culprit/findAreaByLevel?areaParent='+newValue,    
+        		    valueField:'id',    
+        		    textField:'areaName'   
+        		});
+        		$('#addressCountryId').combobox('clear');
+			}   
+   		});
+        //县区选择完存一份名字
+        $('#addressCountryId').combobox({  
+	        onChange: function(newValue,oldValue){
+				$('#addressCountry').val($('#addressCountryId').combobox('getText'));
+	        }
+        });
+        $.formatString = function(str) {
+    		for ( var i = 0; i < arguments.length - 1; i++) {
+    			str = str.replace("{" + i + "}", arguments[i + 1]);
+    		}
+    	return str;
+    	}
+    </script>

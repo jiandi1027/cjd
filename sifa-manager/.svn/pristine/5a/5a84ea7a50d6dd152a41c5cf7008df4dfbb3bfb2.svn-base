@@ -1,0 +1,71 @@
+package com.rowell.sifa.pojo.homepage;
+
+
+import java.io.Serializable;
+
+import com.rowell.sifa.pojo.base.DataEntity;
+
+@SuppressWarnings("serial")
+public class ToBeProcessed extends DataEntity<ToBeProcessed> implements Serializable {
+  
+
+    private String code;
+
+    private Long parentId;
+    //序号
+    private Integer no;
+
+    private String name;
+
+    private String description;
+    
+    private Integer amount;
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+
+	public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public Integer getNo() {
+        return no;
+    }
+
+    public void setNo(Integer no) {
+        this.no = no;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+}

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.homepage.SenderMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.homepage.Sender">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="SEND_UNIT" jdbcType="VARCHAR" property="sendUnit" />
+    <result column="RECEIVER_UNIT" jdbcType="VARCHAR" property="receiverUnit" />
+    <result column="DOCUMENT_TITLE" jdbcType="VARCHAR" property="documentTitle" />
+    <result column="TAKE_TIME" jdbcType="TIMESTAMP" property="takeTime" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="STATE1" jdbcType="VARCHAR" property="state1" />
+    <result column="STATE2" jdbcType="VARCHAR" property="state2" />
+    <result column="CREATION_TIME" jdbcType="TIMESTAMP" property="creationTime" />
+    <result column="FLLE1" jdbcType="VARCHAR" property="flle1" />
+    <result column="FLLE2" jdbcType="VARCHAR" property="flle2" />
+    <result column="FLLE3" jdbcType="VARCHAR" property="flle3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SEND_UNIT, RECEIVER_UNIT, DOCUMENT_TITLE, TAKE_TIME, STATE, CREATION_TIME, FLLE1, 
+    FLLE2, FLLE3,STATE1,STATE2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_SENDER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_SENDER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.homepage.Sender">
+    insert into SF_SENDER (ID, SEND_UNIT, RECEIVER_UNIT, 
+      DOCUMENT_TITLE, TAKE_TIME, STATE, STATE1,
+      CREATION_TIME, FLLE1, FLLE2, STATE2,
+      FLLE3)
+    values (#{id,jdbcType=VARCHAR}, #{sendUnit,jdbcType=VARCHAR}, #{receiverUnit,jdbcType=VARCHAR}, 
+      #{documentTitle,jdbcType=VARCHAR}, #{takeTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}, #{state1,jdbcType=VARCHAR},
+      #{creationTime,jdbcType=TIMESTAMP}, #{flle1,jdbcType=VARCHAR}, #{flle2,jdbcType=VARCHAR}, 
+      #{flle3,jdbcType=VARCHAR}, #{state2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.homepage.Sender">
+    insert into SF_SENDER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="sendUnit != null">
+        SEND_UNIT,
+      </if>
+      <if test="receiverUnit != null">
+        RECEIVER_UNIT,
+      </if>
+      <if test="documentTitle != null">
+        DOCUMENT_TITLE,
+      </if>
+      <if test="takeTime != null">
+        TAKE_TIME,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="creationTime != null">
+        CREATION_TIME,
+      </if>
+      <if test="flle1 != null">
+        FLLE1,
+      </if>
+      <if test="flle2 != null">
+        FLLE2,
+      </if>
+      <if test="flle3 != null">
+        FLLE3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUnit != null">
+        #{sendUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverUnit != null">
+        #{receiverUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="documentTitle != null">
+        #{documentTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="takeTime != null">
+        #{takeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flle1 != null">
+        #{flle1,jdbcType=VARCHAR},
+      </if>
+      <if test="flle2 != null">
+        #{flle2,jdbcType=VARCHAR},
+      </if>
+      <if test="flle3 != null">
+        #{flle3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.homepage.Sender">
+    update SF_SENDER
+    <set>
+      <if test="sendUnit != null">
+        SEND_UNIT = #{sendUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverUnit != null">
+        RECEIVER_UNIT = #{receiverUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="documentTitle != null">
+        DOCUMENT_TITLE = #{documentTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="takeTime != null">
+        TAKE_TIME = #{takeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+       <if test="state1 != null">
+        STATE1 = #{state1,jdbcType=VARCHAR},
+      </if>
+       <if test="state2 != null">
+        STATE2 = #{state2,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        CREATION_TIME = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flle1 != null">
+        FLLE1 = #{flle1,jdbcType=VARCHAR},
+      </if>
+      <if test="flle2 != null">
+        FLLE2 = #{flle2,jdbcType=VARCHAR},
+      </if>
+      <if test="flle3 != null">
+        FLLE3 = #{flle3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.homepage.Sender">
+    update SF_SENDER
+    set SEND_UNIT = #{sendUnit,jdbcType=VARCHAR},
+      RECEIVER_UNIT = #{receiverUnit,jdbcType=VARCHAR},
+      DOCUMENT_TITLE = #{documentTitle,jdbcType=VARCHAR},
+      TAKE_TIME = #{takeTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR},
+      STATE1 = #{state1,jdbcType=VARCHAR},
+      STATE2 = #{state2,jdbcType=VARCHAR},
+      CREATION_TIME = #{creationTime,jdbcType=TIMESTAMP},
+      FLLE1 = #{flle1,jdbcType=VARCHAR},
+      FLLE2 = #{flle2,jdbcType=VARCHAR},
+      FLLE3 = #{flle3,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.homepage.Sender" resultMap="BaseResultMap">
+	select 
+    <include refid="Base_Column_List" />
+    from SF_SENDER t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+  	<if test="searchStartDate != null and searchStartDate!=''">
+     <![CDATA[
+      AND TAKE_TIME >= #{searchStartDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+     <if test="searchEndDate != null and searchEndDate!=''">
+     <![CDATA[
+      AND TAKE_TIME <= #{searchEndDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+    <if test="state != null and state!=''">
+      AND STATE = #{state,jdbcType=VARCHAR}
+    </if>
+    <if test="state1 != null and state1!=''">
+      AND STATE1 = #{state1,jdbcType=VARCHAR}
+    </if>
+     <if test="state2 != null and state2!=''">
+      AND STATE2 = #{state2,jdbcType=VARCHAR}
+    </if>
+    <if test="sendUnit != null and sendUnit!=''">
+      AND SEND_UNIT = #{sendUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="receiverUnit != null and receiverUnit!=''">
+      AND RECEIVER_UNIT = #{receiverUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="documentTitle != null and documentTitle!=''">
+      AND DOCUMENT_TITLE like  #{documentTitle,jdbcType=VARCHAR} 
+    </if>
+    <if test="takeTime != null">
+      AND TAKE_TIME = #{takeTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creationTime != null">
+      AND CREATION_TIME = #{creationTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="flle1 != null and flle1!=''">
+      AND FLLE1 = #{flle1,jdbcType=VARCHAR}
+    </if>
+    <if test="flle2 != null and flle2!=''">
+      AND FLLE2 = #{flle2,jdbcType=VARCHAR}
+    </if>
+    <if test="flle3 != null and flle3!=''">
+      AND FLLE3 = #{flle3,jdbcType=VARCHAR}
+    </if>
+  </sql>
+</mapper>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.rewardspunishment.CommendMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.rewardspunishment.Commend">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="FILE_PATH_NAME" jdbcType="VARCHAR" property="filePathName" />
+    <result column="FILE_PATH" jdbcType="VARCHAR" property="filePath" />
+    <result column="DO_DATE" jdbcType="TIMESTAMP" property="doDate" />
+    <result column="REASON" jdbcType="VARCHAR" property="reason" />
+    <result column="FACT" jdbcType="VARCHAR" property="fact" />
+    <result column="SPONSOR" jdbcType="VARCHAR" property="sponsor" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="EXAMINE_UNIT" jdbcType="VARCHAR" property="examineUnit" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="WRIT_NUM" jdbcType="VARCHAR" property="writNum" />
+    <result column="DIC_COMMEND_REASON_KEY" jdbcType="VARCHAR" property="dicCommendReasonKey" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="DIC_PRINT_STATUS_KEY" jdbcType="VARCHAR" property="dicPrintStatusKey" />
+    <result column="PINGYI_PATH_NAME" jdbcType="VARCHAR" property="pingyiPathName" />
+    <result column="PINGYI_PATH" jdbcType="VARCHAR" property="pingyiPath" />
+    <result column="COP_ACCOUN_ID" jdbcType="VARCHAR" property="copAccounId" />
+    <result column="OPT_TIME" jdbcType="TIMESTAMP" property="optTime" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROCESS_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="CULPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.FILE_PATH_NAME, t.FILE_PATH, t.DO_DATE, t.REASON, t.FACT, t.SPONSOR, t.NOTE, t.EXAMINE_UNIT, 
+    t.CULPRIT_ID, t.WRIT_NUM, t.DIC_COMMEND_REASON_KEY, t.BEGIN_DATE, t.END_DATE, t.DIC_PRINT_STATUS_KEY, 
+    t.PINGYI_PATH_NAME, t.PINGYI_PATH, t.COP_ACCOUN_ID, t.OPT_TIME, t.CREATED, t.CREATER, t.UPDATED, 
+    t.UPDATER, t.DEL_FLAG,t.PROCESS_ID,t2.name as culprit_name,t3.name as group_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_COMMEND t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_COMMEND
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.rewardspunishment.Commend">
+  	update SF_COMMEND
+  	set FILE_PATH_NAME = #{filePathName,jdbcType=VARCHAR},
+  	FILE_PATH = #{filePath,jdbcType=VARCHAR}, 
+  	DO_DATE = #{doDate,jdbcType=TIMESTAMP},
+  	REASON = #{reason,jdbcType=VARCHAR},
+  	FACT = #{fact,jdbcType=VARCHAR},
+  	SPONSOR = #{sponsor,jdbcType=VARCHAR},
+  	NOTE = #{note,jdbcType=VARCHAR},
+  	EXAMINE_UNIT = #{examineUnit,jdbcType=VARCHAR}, 
+  	CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+  	WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+  	DIC_COMMEND_REASON_KEY = #{dicCommendReasonKey,jdbcType=VARCHAR}, 
+  	BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+  	END_DATE = #{endDate,jdbcType=TIMESTAMP},
+  	DIC_PRINT_STATUS_KEY = #{dicPrintStatusKey,jdbcType=VARCHAR}, 
+  	PINGYI_PATH_NAME =  #{pingyiPathName,jdbcType=VARCHAR},
+  	PINGYI_PATH = #{pingyiPath,jdbcType=VARCHAR},
+  	COP_ACCOUN_ID = #{copAccounId,jdbcType=VARCHAR}, 
+  	OPT_TIME = #{optTime,jdbcType=TIMESTAMP},
+  	CREATED = #{created,jdbcType=TIMESTAMP},
+  	CREATER =  #{creater,jdbcType=VARCHAR},
+  	UPDATED = #{updated,jdbcType=TIMESTAMP},
+  	UPDATER = #{updater,jdbcType=VARCHAR},
+  	DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+  	PROCESS_ID = #{processInstanceId,jdbcType=VARCHAR} 
+  	where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.rewardspunishment.Commend">
+    insert into SF_COMMEND (ID, FILE_PATH_NAME, FILE_PATH, 
+      DO_DATE, REASON, FACT, 
+      SPONSOR, NOTE, EXAMINE_UNIT, 
+      CULPRIT_ID, WRIT_NUM, DIC_COMMEND_REASON_KEY, 
+      BEGIN_DATE, END_DATE, DIC_PRINT_STATUS_KEY, 
+      PINGYI_PATH_NAME, PINGYI_PATH, COP_ACCOUN_ID, 
+      OPT_TIME, CREATED, CREATER, 
+      UPDATED, UPDATER, DEL_FLAG,PROCESS_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{filePathName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, 
+      #{doDate,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR}, #{fact,jdbcType=VARCHAR}, 
+      #{sponsor,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{examineUnit,jdbcType=VARCHAR}, 
+      #{culpritId,jdbcType=VARCHAR}, #{writNum,jdbcType=VARCHAR}, #{dicCommendReasonKey,jdbcType=VARCHAR}, 
+      #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{dicPrintStatusKey,jdbcType=VARCHAR}, 
+      #{pingyiPathName,jdbcType=VARCHAR}, #{pingyiPath,jdbcType=VARCHAR}, #{copAccounId,jdbcType=VARCHAR}, 
+      #{optTime,jdbcType=TIMESTAMP}, #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+      #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL},#{processInstanceId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.Commend">
+    insert into SF_COMMEND
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="filePathName != null">
+        FILE_PATH_NAME,
+      </if>
+      <if test="filePath != null">
+        FILE_PATH,
+      </if>
+      <if test="doDate != null">
+        DO_DATE,
+      </if>
+      <if test="reason != null">
+        REASON,
+      </if>
+      <if test="fact != null">
+        FACT,
+      </if>
+      <if test="sponsor != null">
+        SPONSOR,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="examineUnit != null">
+        EXAMINE_UNIT,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM,
+      </if>
+      <if test="dicCommendReasonKey != null">
+        DIC_COMMEND_REASON_KEY,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="dicPrintStatusKey != null">
+        DIC_PRINT_STATUS_KEY,
+      </if>
+      <if test="pingyiPathName != null">
+        PINGYI_PATH_NAME,
+      </if>
+      <if test="pingyiPath != null">
+        PINGYI_PATH,
+      </if>
+      <if test="copAccounId != null">
+        COP_ACCOUN_ID,
+      </if>
+      <if test="optTime != null">
+        OPT_TIME,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+       <if test="processInstanceId != null">
+        PROCESS_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="filePathName != null">
+        #{filePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="doDate != null">
+        #{doDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="fact != null">
+        #{fact,jdbcType=VARCHAR},
+      </if>
+      <if test="sponsor != null">
+        #{sponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="examineUnit != null">
+        #{examineUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="writNum != null">
+        #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCommendReasonKey != null">
+        #{dicCommendReasonKey,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicPrintStatusKey != null">
+        #{dicPrintStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="pingyiPathName != null">
+        #{pingyiPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="pingyiPath != null">
+        #{pingyiPath,jdbcType=VARCHAR},
+      </if>
+      <if test="copAccounId != null">
+        #{copAccounId,jdbcType=VARCHAR},
+      </if>
+      <if test="optTime != null">
+        #{optTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+		#{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.rewardspunishment.Commend" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+      from SF_COMMEND t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.dailymgr.AskLeave">
+    update SF_COMMEND
+    <set>
+      <if test="processInstanceId != null">
+        PROCESS_ID = #{processInstanceId,jdbcType=VARCHAR}
+      </if>
+      
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="findAllWhere">
+  	 <if test="culpritName != null and culpritName!=''">
+      AND t2.name LIKE CONCAT(CONCAT('%',#{culpritName}),'%')
+    </if>
+    <if test="groupId != null and groupId!=''">
+      
+       <![CDATA[  
+     	 AND  exists ( select t4.id from (select * from sys_group start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) t4 where t3.ID=t4.id)
+     ]]> 
+    </if>
+    <if test="groupName != null and groupName!=''">
+      
+       <![CDATA[  
+     	 AND  exists ( select t4.id from (select * from sys_group start with id= #{groupName,jdbcType=VARCHAR} connect by prior id = parent_id) t4 where t3.ID=t4.id)
+     ]]> 
+    </if>
+  	<if test="doDate != null and doDate !=''">
+  		<![CDATA[
+  			AND t.DO_DATE >= #{doDate,jdbcType=TIMESTAMP}
+  		]]>
+  	</if>
+  	<if test="endDoDate != null and endDoDate !=''">
+  		<![CDATA[
+  			AND t.DO_DATE <= #{endDoDate,jdbcType=TIMESTAMP}
+  		]]>
+  	</if>
+  	<if test="searchStartDate != null and searchStartDate !=''">
+  		<![CDATA[
+  			AND t.BEGIN_DATE >= #{searchStartDate,jdbcType=TIMESTAMP}
+  		]]>
+  	</if>
+  	<if test="searchEndDate != null and searchEndDate !=''">
+  		<![CDATA[
+  			AND t.BEGIN_DATE <= #{searchEndDate,jdbcType=TIMESTAMP}
+  		]]>
+  	</if>
+  	<if test="culpritId != null and culpritId!=''">
+      AND t.CULPRIT_ID  = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="reason != null and reason!=''">
+      AND t.reason  = #{reason,jdbcType=VARCHAR}
+    </if>
+  </sql>
+</mapper>

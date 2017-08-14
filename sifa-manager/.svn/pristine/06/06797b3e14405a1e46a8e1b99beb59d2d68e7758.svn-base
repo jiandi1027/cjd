@@ -1,0 +1,404 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<style media="print">
+	.noprint {
+		display: none;
+	}
+	nav,aside{
+		display: none;
+	}	
+	@page {
+	   	size: auto;  
+	   	margin: 0mm; 
+	 }
+</style>
+<style>
+.sm{font-size:10px;}
+</style>
+<div style="margin:0 2px;padding:0;font-size:16px;font-family:Arial, Helvetica, sans-serif;">
+<div id="idControls" style="text-align:center;margin-top:10px;" class="noprint"><input type="button"
+	value="打印当前页" onclick="window.print();" />&nbsp;&nbsp;
+	<div id="plusCheck" style="display: none">
+	<br>
+	安装IE加载项;或者直接点击<a href="javascript:loadFile('/file/smsx.exe')">下载安装</a>
+	</div>
+</div>
+
+<div style="text-align:center;margin-top:10px;">
+	<div style="font-size:28px;font-weight:bold;text-align:center">
+		社区矫正人员情况统计表（<fmt:formatDate value="${culpritStatusTj.reportDate}"
+									pattern="yyyy年MM月" />）（试行）
+	</div>
+	<table style="width:80%;margin:5px auto;" border=0 cellspacing=0 cellpadding=0>
+	<tr style="font-size:20px;font-weight:bold;">
+		<td>填报单位：${culpritStatusTj.groupName}</td>
+		<td>（盖章）负责人：</td>
+		<td>制表人：${culpritStatusTj.creater}</td>
+		<c:choose>
+		<c:when test="${culpritStatusTj.reporttime eq null}">
+		<td>填报时间：<fmt:formatDate value="${reportTime}"
+									pattern="yyyy年MM月dd日" /></td>
+		</c:when>
+		<c:otherwise>
+		<td>填报时间：<fmt:formatDate value="${culpritStatusTj.reporttime}" pattern="yyyy年MM月dd日" /></td>
+		</c:otherwise>
+		</c:choose>
+	</tr>
+	</table>
+
+	<table border=1 cellspacing=0 cellpadding=0 class="table" style="margin:2px auto;"  style="width:2500px;" >
+	<tr>
+		<td rowspan=5 width="100">
+			<div style="padding-bottom:20px;">地</div>
+			<div style="padding-top:180px;">区</div>
+		</td>
+		<td rowspan=3 width="30">本<br/>月<br/>在<br/>册<br/>人<br/>数</td>
+		<td rowspan=3 width="30">上<br/>月<br/>在<br/>册<br/>人<br/>数</td>
+		<td colspan=5>变动情况</td>
+		<td colspan=5>类别</td>
+		<td colspan=9>犯罪类型</td>
+		<td colspan=3>户籍</td>
+		<td colspan=2>性别</td>
+		<td colspan=2>民族</td>
+		<td colspan=4>年龄情况</td>
+		<td colspan=4>文化结构</td>
+		<td colspan=3>就业、就学情况</td>
+		<td colspan=4>奖惩情况</td>
+		<td rowspan=3>截<br/>止<br/>本<br/>月<br/>脱<br/>管</td>
+		<td rowspan=3>本<br/>月<br/>重<br/>新<br/>犯<br/>罪</td>
+		<td colspan=3>累计项目</td>
+	</tr>
+	<tr>
+		<td rowspan=2>本<br/>月<br/>增<br/>加</td>
+		<td colspan=4>本月减少</td>
+		<td rowspan=2 width="20">管<br/>制</td>
+		<td rowspan=2 width="20">缓<br/>刑</td>
+		<td rowspan=2 width="20">假<br/>释</td>
+		<td rowspan=2 width="20">暂<br/>予<br/>监<br/>外<br/>执<br/>行</td>
+		<td rowspan=2 width="20">剥<br/>夺<br/>政<br/>治<br/>权<br/>利</td>
+		<td rowspan=2 width="20">危<br/>害<br/>国<br/>家<br/>安<br/>全<br/>罪</td>
+		<td rowspan=2 width="20">危<br/>害<br/>公<br/>共<br/>安<br/>全<br/>罪</td>
+		<td rowspan=2 width="20">破<br/>坏<br/>社<br/>会<br/>主<br/>义<br/>市<br/>场<br/>经<br/>济<br/>秩<br/>序<br/>罪</td>
+		<td rowspan=2 width="20">侵<br/>犯<br/>公<br/>民<br/>人<br/>身<br/>权<br/>利<br/>、<br/>民<br/>主<br/>权<br/>利<br/>罪</td>
+		<td rowspan=2 width="20">侵<br/>犯<br/>财<br/>产<br/>罪</td>
+		<td rowspan=2 width="20">妨<br/>害<br/>社<br/>会<br/>管<br/>理<br/>秩<br/>序<br/>罪</td>
+		<td rowspan=2 width="20">贪<br/>污<br/>受<br/>贿<br/>罪</td>
+		<td rowspan=2 width="20">渎<br/>职<br/>罪</td>
+		<td rowspan=2 width="20">其<br/>他</td>
+		<td rowspan=2 width="20">城<br/>镇<br/>户<br/>口</td>
+		<td rowspan=2 width="20">农<br/>村<br/>户<br/>口</td>
+		<td rowspan=2 width="20">其<br/>他</td>
+		<td rowspan=2 width="20">男<br/>性</td>
+		<td rowspan=2 width="20">女<br/>性</td>
+		<td rowspan=2 width="20">汉<br/>族</td>
+		<td rowspan=2 width="20">少<br/>数<br/>民<br/>族</td>
+		<td rowspan=2 width="20">未<br/>满<br/>18<br/>周<br/>岁</td>
+		<td rowspan=2 width="20">18<br/>至<br/>45<br/>周<br/>岁</td>
+		<td rowspan=2 width="20">46<br/>至<br/>60<br/>周<br/>岁</td>
+		<td rowspan=2 width="20">61周<br/>岁<br/>以<br/>上</td>
+		<td rowspan=2 width="20">大<br/>专<br/>及<br/>以<br/>上</td>
+		<td rowspan=2 width="20">高<br/>中</td>
+		<td rowspan=2 width="20">初<br/>中</td>
+		<td rowspan=2 width="20">小<br/>学<br/>及<br/>以<br/>下</td>
+		<td rowspan=2 width="20">在<br/>校<br/>就<br/>读</td>
+		<td rowspan=2 width="20">就<br/>业</td>
+		<td rowspan=2 width="20">无<br/>业</td>
+		<td rowspan=2 width="20">社<br/>区<br/>矫<br/>正<br/>机<br/>构<br/>奖<br/>励</td>
+		<td rowspan=2 width="20">社<br/>区<br/>矫<br/>正<br/>机<br/>构<br/>处<br/>罚</td>
+		<td rowspan=2 width="20">裁<br/>定<br/>减<br/>刑</td>
+		<td rowspan=2 width="20">受<br/>治<br/>安<br/>处<br/>罚</td>
+		<td rowspan=2 width="20">累<br/>计<br/>接<br/>收</td>
+		<td rowspan=2 width="20">累<br/>计<br/>解<br/>除<br/>矫<br/>正</td>
+		<td rowspan=2 width="20">累<br/>计<br/>重<br/>新<br/>犯<br/>罪</td>
+	</tr>
+	<tr>
+		<td width="20">期<br/>满<br/>解<br/>除<br/>矫<br/>正</td>
+		<td width="20">收<br/>监<br/>执<br/>行</td>
+		<td width="20">死<br/>亡</td>
+		<td width="20">其<br/>他</td>
+	</tr>
+	<tr>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+		<td>人</td>
+	</tr>
+	<tr>
+		<td>1&nbsp;</td>
+		<td>2&nbsp;</td>
+		<td>3&nbsp;</td>
+		<td>4&nbsp;</td>
+		<td>5&nbsp;</td>
+		<td>6&nbsp;</td>
+		<td>7&nbsp;</td>
+		<td>8&nbsp;</td>
+		<td>9&nbsp;</td>
+		<td>10&nbsp;</td>
+		<td>11&nbsp;</td>
+		<td>12&nbsp;</td>
+		<td>13&nbsp;</td>
+		<td>14&nbsp;</td>
+		<td>15&nbsp;</td>
+		<td>16&nbsp;</td>
+		<td>17&nbsp;</td>
+		<td>18&nbsp;</td>
+		<td>19&nbsp;</td>
+		<td>20&nbsp;</td>
+		<td>21&nbsp;</td>
+		<td>22&nbsp;</td>
+		<td>23&nbsp;</td>
+		<td>24&nbsp;</td>
+		<td>25&nbsp;</td>
+		<td>26&nbsp;</td>
+		<td>27&nbsp;</td>
+		<td>28&nbsp;</td>
+		<td>29&nbsp;</td>
+		<td>30&nbsp;</td>
+		<td>31&nbsp;</td>
+		<td>32&nbsp;</td>
+		<td>33&nbsp;</td>
+		<td>34&nbsp;</td>
+		<td>35&nbsp;</td>
+		<td>36&nbsp;</td>
+		<td>37&nbsp;</td>
+		<td>38&nbsp;</td>
+		<td>39&nbsp;</td>
+		<td>40&nbsp;</td>
+		<td>41&nbsp;</td>
+		<td>42&nbsp;</td>
+		<td>43&nbsp;</td>
+		<td>44&nbsp;</td>
+		<td>45&nbsp;</td>
+		<td>46&nbsp;</td>
+		<td>47&nbsp;</td>
+		<td>48&nbsp;</td>
+		</tr>
+	 <c:forEach items="${childTjList}" var="culpritStatusTj">
+	<c:if test="${culpritStatusTj.dicState eq 91801}"> 
+		<tr>
+			<td width='100' class="sm">
+			${culpritStatusTj.groupName}
+			</td>
+			<td class="sm">${culpritStatusTj.byzcrs}</td>
+			<td class="sm">${culpritStatusTj.syzcrs}</td>
+			<td class="sm">${culpritStatusTj.change_byzj}</td>
+			<td class="sm">${culpritStatusTj.change_qmjcjz}</td>
+			<td class="sm">${culpritStatusTj.change_sjzx}</td>
+			<td class="sm">${culpritStatusTj.change_sw}</td>
+			<td class="sm">${culpritStatusTj.change_qtyy}</td>
+			<td class="sm">${culpritStatusTj.class_gz}</td>
+			<td class="sm">${culpritStatusTj.class_hx}</td>
+			<td class="sm">${culpritStatusTj.class_js}</td>
+			<td class="sm">${culpritStatusTj.class_zyjwzx}</td>
+			<td class="sm">${culpritStatusTj.class_bdzzql}</td>
+			<td class="sm">${culpritStatusTj.type_whgjaqz}</td>
+			<td class="sm">${culpritStatusTj.type_whggaqz}</td>
+			<td class="sm">${culpritStatusTj.type_phshzyz}</td>
+			<td class="sm">${culpritStatusTj.type_qfgmrsqlz}</td>
+			<td class="sm">${culpritStatusTj.type_qfccz}</td>
+			<td class="sm">${culpritStatusTj.type_fhshglzxz}</td>
+			<td class="sm">${culpritStatusTj.type_twhlz}</td>
+			<td class="sm">${culpritStatusTj.type_dzz}</td>
+			<td class="sm">${culpritStatusTj.type_other}</td>
+			<td class="sm">${culpritStatusTj.reg_city}</td>
+			<td class="sm">${culpritStatusTj.reg_village}</td>
+			<td class="sm">${culpritStatusTj.reg_other}</td>
+			<td class="sm">${culpritStatusTj.sex_male}</td>
+			<td class="sm">${culpritStatusTj.sex_female}</td>
+			<td class="sm">${culpritStatusTj.nation_han}</td>
+			<td class="sm">${culpritStatusTj.nation_few}</td>
+			<td class="sm">${culpritStatusTj.age_u18}</td>
+			<td class="sm">${culpritStatusTj.age_19to45}</td>
+			<td class="sm">${culpritStatusTj.age_46to60}</td>
+			<td class="sm">${culpritStatusTj.age_61p}</td>
+			<td class="sm">${culpritStatusTj.qualification_junior}</td>
+			<td class="sm">${culpritStatusTj.qualification_senior}</td>
+			<td class="sm">${culpritStatusTj.qualification_middle}</td>
+			<td class="sm">${culpritStatusTj.qualification_primary}</td>
+			<td class="sm">${culpritStatusTj.work_study}</td>
+			<td class="sm">${culpritStatusTj.work_on}</td>
+			<td class="sm">${culpritStatusTj.work_nojob}</td>
+			<td class="sm">${culpritStatusTj.praise_sqjl}</td>
+			<td class="sm">${culpritStatusTj.praise_sqcf}</td>
+			<td class="sm">${culpritStatusTj.praise_cdjx}</td>
+			<td class="sm">${culpritStatusTj.praise_szacf}</td>
+			<td class="sm">${culpritStatusTj.jzbytg}</td>
+			<td class="sm">${culpritStatusTj.zfxz}</td>
+			<td class="sm">${culpritStatusTj.total_accept}</td>
+			<td class="sm">${culpritStatusTj.total_relieve}</td>
+			<td class="sm">${culpritStatusTj.total_crime_again}</td>
+		</tr>
+		</c:if>
+		</c:forEach>
+		<c:forEach items="${childTjList}" var="culpritStatusTj">
+		<c:if test="${culpritStatusTj.dicState eq 91802 && groupleavel ne 2}"> 
+		<tr>
+			<td width='100' class="sm">
+			<span style="color:#FF0000">${culpritStatusTj.groupName}<br/>(未上报)</span>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		</c:if> 
+		</c:forEach> 
+		<tr>
+			<td class="sm">
+			合计&nbsp;
+			</td>
+			<td class="sm">${culpritStatusTj.byzcrs}</td>
+			<td class="sm">${culpritStatusTj.syzcrs}</td>
+			<td class="sm">${culpritStatusTj.change_byzj}</td>
+			<td class="sm">${culpritStatusTj.change_qmjcjz}</td>
+			<td class="sm">${culpritStatusTj.change_sjzx}</td>
+			<td class="sm">${culpritStatusTj.change_sw}</td>
+			<td class="sm">${culpritStatusTj.change_qtyy}</td>
+			<td class="sm">${culpritStatusTj.class_gz}</td>
+			<td class="sm">${culpritStatusTj.class_hx}</td>
+			<td class="sm">${culpritStatusTj.class_js}</td>
+			<td class="sm">${culpritStatusTj.class_zyjwzx}</td>
+			<td class="sm">${culpritStatusTj.class_bdzzql}</td>
+			<td class="sm">${culpritStatusTj.type_whgjaqz}</td>
+			<td class="sm">${culpritStatusTj.type_whggaqz}</td>
+			<td class="sm">${culpritStatusTj.type_phshzyz}</td>
+			<td class="sm">${culpritStatusTj.type_qfgmrsqlz}</td>
+			<td class="sm">${culpritStatusTj.type_qfccz}</td>
+			<td class="sm">${culpritStatusTj.type_fhshglzxz}</td>
+			<td class="sm">${culpritStatusTj.type_twhlz}</td>
+			<td class="sm">${culpritStatusTj.type_dzz}</td>
+			<td class="sm">${culpritStatusTj.type_other}</td>
+			<td class="sm">${culpritStatusTj.reg_city}</td>
+			<td class="sm">${culpritStatusTj.reg_village}</td>
+			<td class="sm">${culpritStatusTj.reg_other}</td>
+			<td class="sm">${culpritStatusTj.sex_male}</td>
+			<td class="sm">${culpritStatusTj.sex_female}</td>
+			<td class="sm">${culpritStatusTj.nation_han}</td>
+			<td class="sm">${culpritStatusTj.nation_few}</td>
+			<td class="sm">${culpritStatusTj.age_u18}</td>
+			<td class="sm">${culpritStatusTj.age_19to45}</td>
+			<td class="sm">${culpritStatusTj.age_46to60}</td>
+			<td class="sm">${culpritStatusTj.age_61p}</td>
+			<td class="sm">${culpritStatusTj.qualification_junior}</td>
+			<td class="sm">${culpritStatusTj.qualification_senior}</td>
+			<td class="sm">${culpritStatusTj.qualification_middle}</td>
+			<td class="sm">${culpritStatusTj.qualification_primary}</td>
+			<td class="sm">${culpritStatusTj.work_study}</td>
+			<td class="sm">${culpritStatusTj.work_on}</td>
+			<td class="sm">${culpritStatusTj.work_nojob}</td>
+			<td class="sm">${culpritStatusTj.praise_sqjl}</td>
+			<td class="sm">${culpritStatusTj.praise_sqcf}</td>
+			<td class="sm">${culpritStatusTj.praise_cdjx}</td>
+			<td class="sm">${culpritStatusTj.praise_szacf}</td>
+			<td class="sm">${culpritStatusTj.jzbytg}</td>
+			<td class="sm">${culpritStatusTj.zfxz}</td>
+			<td class="sm">${culpritStatusTj.total_accept}</td>
+			<td class="sm">${culpritStatusTj.total_relieve}</td>
+			<td class="sm">${culpritStatusTj.total_crime_again}</td>
+		</tr>
+		<%-- <%-- <c:if test="${ tag.count <6 || tag.count ==6}">
+			<c:if test="${ tag.count% 6 ==0  &&  model[tag.count]!=null }">
+				</table>
+					<div class="pnext">&nbsp;</div>
+				<table border=0 cellspacing=0 cellpadding=0 class="table" style="margin-top:45px;"  style="width:1000px;table-layout:fixed;border-collapse: collapse" >
+			</c:if>
+		</c:if>
+		<c:if test="${ tag.count >6}">
+			<c:if test="${ (tag.count-6)% 17 ==0  &&  model[tag.count]!=null }">
+				</table>
+					<div class="pnext">&nbsp;</div>
+				<table border=0 cellspacing=0 cellpadding=0 class="table" style="margin-top:45px;"  style="width:1000px;table-layout:fixed;border-collapse: collapse" >
+			</c:if>
+		</c:if> --%>
+		
+	</table>
+</div>
+</div>

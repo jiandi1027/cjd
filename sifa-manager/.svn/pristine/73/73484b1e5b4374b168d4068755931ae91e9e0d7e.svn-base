@@ -1,0 +1,88 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<object  id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> 
+       <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+</object> 
+	<div>
+		<div style="display:none">
+			<a href="#" class="easyui-linkbutton" data-options="iconCls:'fi-print icon-blue'" id="printRevokeParoleBook" onclick="preview_revokeParole()">打印当前页</a> 
+		</div>
+		<div id="revokeParole_PrintMsg"></div>
+	    <div id="revokeParolePrint">
+		<div style="font-family:FangSong_GB2312;font-size:19px;
+		margin-top:40px;width:165mm;height: 200mm;border:0;margin-right:auto;margin-left: auto;">
+			<div class="title" style="font-size:30px;margin-top:20px;text-align: center;">
+				撤销假释建议书
+			</div>
+			<div style="font-size:19px;margin-top:20px; text-align:right;">
+				${model.writNum}&nbsp;
+			</div>
+			<div style="margin-top:3px;text-indent:28px;line-height:30px;padding:0;margin: 0;">
+				社区矫正人员：${culprit.name },${fns:getSysDicValueByKey('common_table','nation',culprit.nation,'')},<fmt:formatDate value="${culprit.birthday}" pattern="yyyy年MM月dd日" />出生,
+				 居住地：${culprit.address },
+				户籍地：${culprit.regResidence }。
+				 因${culprit.culpritJudgment.crimeInfo }经
+				${culprit.culpritJudgment.adjudgeOrg }于
+				<fmt:formatDate value="${culprit.culpritJudgment.adjudgeDate }" pattern="yyyy年MM月dd日" /> 
+				以(${culprit.culpritJudgment.adjudgeId })&nbsp;&nbsp;&nbsp;&nbsp;字第&nbsp;&nbsp;&nbsp;&nbsp;号
+				刑事判决书判处
+				${fns:getSysDicValueByKey('sf_investigate','entrust_type_id',culprit.culpritJudgment.dicPenalTypeKey,'')}
+				,缓刑${fns:getSysDicValueByKey('sf_culpritJudgment','dicCrimeTypeKey',culprit.culpritJudgment.dicCrimeTypeKey,'')}
+				,附加${culprit.culpritJudgment.accessoryPunishment }。
+				在缓刑考验期间依法实行社区矫正，社区矫正期限自
+				<fmt:formatDate value="${culprit.culpritJudgment.redressStartDate}"
+									pattern="yyyy年MM月dd日" />
+				起至
+				<fmt:formatDate value="${culprit.culpritJudgment.redressEndDate}"
+									pattern="yyyy年MM月dd日"/>止。
+			</div>
+			<div
+				style="font-size:19px;;margin-top:3px;text-indent:28px;line-height:30px;">
+				该社区矫正人员有违反法律（行政法规、社区矫正监督管理规定、人民法院禁止令）的行为，具体事实如下：
+			</div>
+			<div style="margin-top:3px;line-height:30px;padding:0;margin: 0;" >
+				<textarea class="easyui-validatebox"  multiline="true"  readonly="readonly"
+				style="text-indent:28px;border:0 none;overflow:hidden;font-size:19px;text-align:left;width:620px;height:300px;font-family: FangSong_GB2312;">${revokeParole.concreteFacts}</textarea>
+			</div>
+			<div style="font-size:19px;;margin-top:3px;text-indent:28px;line-height:30px;">
+				根据《中华人民共和国刑法》第七十七条、《社区矫正实施办法》第二十五条、《广西壮族自治区社区矫正实施细则（试行）》第八十七条之规定，建议对社区矫正人员${culprit.name}撤销假释。
+			</div>
+			<div style="text-indent:28px;line-height:30px;padding:0;margin: 0;">此致</div>
+			<div style="text-indent:28px;line-height:30px;padding:0;margin: 0;">
+				${revokeParole.court}中级人民法院
+			</div>
+
+			<div style="margin-top:50px;margin-bottom:30px;text-align:right;padding:0;">
+				${issueYear}&nbsp;年&nbsp;${issueMonth}&nbsp;月&nbsp;${issueDay}&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+			<div style="font-size:19px;margin-top:30px;line-height:30px;">
+				抄送：${revokeParole.procuratorate}人民检察院，${revokeParole.police}公安（分）局。
+			</div>
+		</div>
+		</div>
+</div>	
+
+<script type="text/javascript">
+
+var LODOP; //声明为全局变量 
+//打印当前页
+function preview_revokeParole(){
+	 CreatePrintPage();
+	 LODOP.PREVIEW();
+} 
+
+//创建打印页面
+function CreatePrintPage(){
+	LODOP = getLodop(document.getElementById('LODOP_OB'),document.getElementById('LODOP_EM'),document.getElementById('revokeParole_PrintMsg'));
+  LODOP.PRINT_INIT("打印撤销缓刑建议书");
+  //设置打印纸张大小，1代表纵向打印
+  LODOP.SET_PRINT_PAGESIZE(1, 0, 0, "A4");
+  LODOP.ADD_PRINT_HTM(40,70,"70%","100%",$('#revokeParolePrint').html());
+/*   LODOP.ADD_PRINT_TEXT(1050, 370, 200, 22, "第#页/共&页");
+  LODOP.SET_PRINT_STYLEA(2, "ItemType", 2);
+  LODOP.SET_PRINT_STYLEA(2, "HOrient", 1);
+  LODOP.SET_PRINT_STYLEA(0, "TableHeightScope",1); */
+}
+
+  </script>
+

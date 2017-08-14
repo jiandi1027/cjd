@@ -1,0 +1,179 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+
+<link rel="stylesheet" type="text/css" href="${ctxStatic}/lib/upload/webuploader.css" />
+<script type="text/javascript" src="${ctxStatic}/lib/upload/webuploader.js" charset="utf-8"></script>
+<script type="text/javascript" src="${ctxStatic}/lib/upload/MyWebUpload.js" charset="utf-8"></script>
+
+
+ <form  action="${ctx}/dailymgr/askLeave/save" method="post" id="culpritInfo" enctype="multipart/form-data" >
+   <div class="easyui-panel" title="矫正对象基本信息" style="width:100%;padding:10px;">
+     		
+            <table width="100%" class="grid">
+                <tr>
+                    <th><span class="c-red">*</span>姓名：</th>
+                    <td colspan="5"><input name="culpritId" id="culpritId" class="easyui-combogrid" required=true
+						 missingMessage="姓名不能为空!"
+						 /></td>
+                </tr>
+                <tr>
+                    <th>性别：</th>
+                    <td><input name="dicSexKey" id="dicSexKey" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                     <th>民族：</th>
+                    <td><input name="nation" id="nation" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                     <th>身份证号：</th>
+                    <td><input name="identification" id="identification" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                </tr>
+                <tr>
+                    <th>曾用名：</th>
+                    <td><input name="alias" id="alias" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                     <th>出生日期：</th>
+                    <td><input name="birthday" id="birthday" class="f1 easyui-textbox"  readonly="readonly"></input></td>
+                     <th>文化程度：</th>
+                    <td><input name="dicWhcdKey" id="dicWhcdKey" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                </tr>
+                
+                 <tr>
+                    <th>婚姻状况：</th>
+                    <td><input name="dicHyzkKey" id="dicHyzkKey" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                     <th>职业：</th>
+                    <td><input name="job" id="job" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                     <th>原政治面貌：</th>
+                    <td><input name="dicYzzmmKey" id="dicYzzmmKey" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                </tr>
+                 <tr>
+                    <th>籍贯：</th>
+                    <td><input name="origin" id="origin" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                     <th>户籍所在地：</th>
+                    <td><input name="regResidenceStreet" id="regResidenceStreet" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                     <th>现居住地：</th>
+                    <td><input name="addressDetail" id="addressDetail"  class="f1 easyui-textbox" readonly="readonly"></input></td>
+                </tr>
+                <tr>
+                    <th>刑法执行类别：</th>
+                    <td><input name="email" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                     <th>矫正开始时间：</th>
+                    <td><input name="redressStartDate" id="redressStartDate" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                     <th>矫正结束时间：</th>
+                    <td><input name="redressEndDate" id="redressEndDate" class="f1 easyui-textbox" readonly="readonly"></input></td>
+                </tr>
+               
+            </table>
+           
+    </div>
+   
+     <div class="easyui-panel" title="相关信息" style="width:100%;padding:5px;">
+            <table width="100%" class="grid">
+                <tr>
+                   <th width="17%"><span class="c-red"></span>结案报告：</th>
+					
+					<td width="83%">
+						<div id="endCasePat"></div>
+					</td>
+				<tr>
+					<th><span class="c-red"></span>证据上传：</th>
+					<td >
+						<div id="evidencePat"></div>
+					</td>
+					
+				</tr>
+				<tr>
+					<th><span class="c-red"></span>法律依据：</th>
+					<td >
+						<div id="reason"></div>
+					</td>
+					
+				</tr>
+				<tr>
+					<th><span class="c-red">*</span>表现概括：</th>
+					<td>
+					<textArea class="f1 easyui-validatebox"   style="width:685px;height:130px;"
+					data-options="multiline:true" name="actions" required=true id="actions"
+					style="width: 280px; height: 100px" onkeydown='textarealength(this,300)' onKeyUp="textarealength(this,300)" maxlength="300"></textArea>
+					<br>
+						备注：此处最多可以输入<em class="c-red">300</em>个字，你已输入<em class="textarea-length c-red">0</em>个字。
+				   </td>
+				</tr>
+		
+			</table>
+    </div>
+ </form>
+<script>
+        function submitForm(){
+        	 $('#culpritInfo').form('submit');
+        }
+       	
+   	   $(function() {
+   		$("#endCasePat").powerWebUpload({ auto: true,fileSingleSizeLimit:10,serverPath:'${ctx}/servlet/file/upload',fileType:'rar,zip,doc,xls,docx,xlsx,pdf'});
+   		$("#evidencePat").powerWebUpload({ auto: true,fileSingleSizeLimit:10,serverPath:'${ctx}/servlet/file/upload',fileType:'rar,zip,doc,xls,docx,xlsx,pdf'});
+   		$("#reason").powerWebUpload({ auto: true,fileSingleSizeLimit:10,serverPath:'${ctx}/servlet/file/upload',fileType:'rar,zip,doc,xls,docx,xlsx,pdf'});
+   	       	$('#culpritInfo').form({
+   	       		url:'${ctx}/rewardspunishment/reducePenalty/save',
+   	       		onSubmit:function(){
+   	       			 progressLoad();
+   	       			 var isValid = $(this).form('validate');
+   	       			
+   	                    if (!isValid) {
+   	                        progressClose();
+   	                    }
+   	                    return isValid;
+   	       		},
+   	       		success:function(data){
+   	       			data = JSON.parse(data);
+   	       			progressClose();
+   	       			if(data.status==200){
+   	       				$.messager.show({
+   	       					title:'提示信息!' ,
+   	       					msg:data.msg
+   	       				});
+   	       				
+   	       				 parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+   	                     parent.$.modalDialog.handler.dialog('close');
+   	   					
+   	       			}else{
+   	       				 parent.$.messager.alert('错误', result.msg, 'error');
+   	       			}
+   	       			
+   	       		}
+   	       	});
+      
+        $('#culpritId').combogrid({    
+        	delay: 500,
+        	 panelWidth: 300, 
+        	 striped:true,
+        	 panelHeight: 300,
+    		mode: 'remote',  
+			idField: 'id',
+			textField: 'name',
+			url: '${ctx}/culpritinfo/culprit/list',
+			columns: [[
+				{field:'name',title:'姓名',width:120,align:'center'},
+				{field:'dicSexKey',title:'性别',width:80,align:'center'}
+			]],
+			fitColumns: true,
+			pagination: true,           //是否分页  
+        rownumbers: true,           //序号  
+        collapsible: false,         //是否可折叠的  
+        method: 'post',
+        onSelect:function(record){
+        	 var arr = $('#culpritId').combogrid('grid').datagrid('getSelections');
+        	 $('#culpritInfo').form('load',arr[0]);
+       	}
+        }); 
+        
+        
+      //取得分页组件对象  
+        var pager = $('#culpritId').combogrid('grid').datagrid('getPager');  
+        if (pager) {  
+            $(pager).pagination({  
+                pageSize: 10,               //每页显示的记录条数，默认为10  
+                beforePageText: '第',       //页数文本框前显示的汉字  
+                afterPageText: '',
+                displayMsg: ''
+            });  
+        }  
+        });
+        
+	
+    </script>
+

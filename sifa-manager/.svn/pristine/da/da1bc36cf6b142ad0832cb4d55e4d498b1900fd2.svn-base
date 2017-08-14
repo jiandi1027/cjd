@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.endcorrect.DeathMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.endcorrect.Death">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DEATHL_TIME" jdbcType="TIMESTAMP" property="deathlTime" />
+    <result column="DEATH_REASON" jdbcType="CLOB" property="deathReason" />
+    <result column="SITUATION" jdbcType="CLOB" property="situation" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="PATH_NAME" jdbcType="VARCHAR" property="pathName" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="WRIT_NUM" jdbcType="VARCHAR" property="writNum" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, DEATHL_TIME, DEATH_REASON, SITUATION, PATH, PATH_NAME, CULPRIT_ID, WRIT_NUM, 
+    CREATED, CREATER, UPDATED, UPDATER, DEL_FLAG,PROCESS_INSTANCE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_DEATH
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_DEATH
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.endcorrect.Death">
+    insert into SF_DEATH (ID, DEATHL_TIME, DEATH_REASON, 
+      SITUATION, PATH, PATH_NAME, 
+      CULPRIT_ID, WRIT_NUM, CREATED, 
+      CREATER, UPDATED, UPDATER, 
+      DEL_FLAG,PROCESS_INSTANCE_ID)
+    values (#{id,jdbcType=VARCHAR}, #{deathlTime,jdbcType=TIMESTAMP}, #{deathReason,jdbcType=CLOB}, 
+      #{situation,jdbcType=CLOB}, #{path,jdbcType=VARCHAR}, #{pathName,jdbcType=VARCHAR}, 
+      #{culpritId,jdbcType=VARCHAR}, #{writNum,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL},#{processInstanceId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.endcorrect.Death">
+    insert into SF_DEATH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="deathlTime != null">
+        DEATHL_TIME,
+      </if>
+      <if test="deathReason != null">
+        DEATH_REASON,
+      </if>
+      <if test="situation != null">
+        SITUATION,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="pathName != null">
+        PATH_NAME,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="deathlTime != null">
+        #{deathlTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deathReason != null">
+        #{deathReason,jdbcType=CLOB},
+      </if>
+      <if test="situation != null">
+        #{situation,jdbcType=CLOB},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="pathName != null">
+        #{pathName,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="writNum != null">
+        #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.endcorrect.Death">
+    update SF_DEATH
+    <set>
+      <if test="deathlTime != null">
+        DEATHL_TIME = #{deathlTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deathReason != null">
+        DEATH_REASON = #{deathReason,jdbcType=CLOB},
+      </if>
+      <if test="situation != null">
+        SITUATION = #{situation,jdbcType=CLOB},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="pathName != null">
+        PATH_NAME = #{pathName,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+       <if test="processInstanceId != null">
+       PROCESS_INSTANCE_ID = #{processinstanceId,jdbcType=VARCHAR}
+       </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.endcorrect.Death">
+    update SF_DEATH
+    set DEATHL_TIME = #{deathlTime,jdbcType=TIMESTAMP},
+      DEATH_REASON = #{deathReason,jdbcType=CLOB},
+      SITUATION = #{situation,jdbcType=CLOB},
+      PATH = #{path,jdbcType=VARCHAR},
+      PATH_NAME = #{pathName,jdbcType=VARCHAR},
+      CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.endcorrect.Death" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_DEATH t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <select id="getCount" parameterType="com.rowell.sifa.pojo.endcorrect.Death" resultType="int">
+    select count(*)
+    from SF_DEATH t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+  </select>
+  <sql id="findAllWhere">
+    <if test="deathlTime != null">
+      AND DEATHL_TIME = #{deathlTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="deathReason != null and deathReason!=''">
+      AND DEATH_REASON = #{deathReason,jdbcType=CLOB}
+    </if>
+    <if test="situation != null and situation!=''">
+      AND SITUATION = #{situation,jdbcType=CLOB}
+    </if>
+    <if test="path != null and path!=''">
+      AND PATH = #{path,jdbcType=VARCHAR}
+    </if>
+    <if test="pathName != null and pathName!=''">
+      AND PATH_NAME = #{pathName,jdbcType=VARCHAR}
+    </if>
+    <if test="culpritId != null and culpritId!=''">
+      AND CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="writNum != null and writNum!=''">
+      AND WRIT_NUM = #{writNum,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+     <if test="deathReason != null and deathReason!=''">
+      AND DEATH_REASON = #{deathReason,jdbcType=CLOB}
+    </if>
+    <if test="searchStartDate != null">
+    <![CDATA[ 
+      AND t.CREATED >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]> 
+    </if>
+    
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND t.CREATED <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g left join SF_CULPRIT c on g.id=c.group_id where c.id=t.CULPRIT_ID)
+    </if> 
+  </sql>
+</mapper>

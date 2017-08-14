@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.dailymgr.SpecialAreaMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.dailymgr.SpecialArea">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="DIC_CHECK_TYPE_ID" jdbcType="VARCHAR" property="dicCheckTypeId" />
+    <result column="AREA" jdbcType="VARCHAR" property="area" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="REASON" jdbcType="VARCHAR" property="reason" />
+    <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="NOTE" jdbcType="CLOB" property="note" /> 
+    <result column="DIC_MONITOR_GRADE_KEY" jdbcType="VARCHAR" property="dicMonitorGradeKey" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="CULPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.CULPRIT_ID,t.DIC_CHECK_TYPE_ID,t.AREA,t.APPLY_DATE,t.REASON,t.START_DATE,
+    t.END_DATE,t.NOTE,t.DIC_MONITOR_GRADE_KEY, 
+    t.CREATED, t.CREATER, t.UPDATED, t.UPDATER, 
+   	t.DEL_FLAG,t.PROCESS_INSTANCE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,t2.name as culprit_name,t3.name as group_name
+    from SF_SPECIAL_AREA t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_SPECIAL_AREA
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.dailymgr.SpecialArea">
+    insert into SF_SPECIAL_AREA (
+    	ID,CULPRIT_ID,DIC_CHECK_TYPE_ID,AREA,APPLY_DATE,REASON,START_DATE,
+    	END_DATE,NOTE,DIC_MONITOR_GRADE_KEY, 
+    	CREATED, CREATER, UPDATED,UPDATER, 
+   		DEL_FLAG,PROCESS_INSTANCE_ID
+   		)
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{dicCheckTypeId,jdbcType=VARCHAR},
+      #{area,jdbcType=VARCHAR},#{applyDate,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR},
+      #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP},#{note,jdbcType=VARCHAR},
+      #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL},#{processInstanceId,jdbcType=VARCHAR}
+     )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.dailymgr.SpecialArea">
+    insert into SF_SPECIAL_AREA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="dicCheckTypeId != null">
+        DIC_CHECK_TYPE_ID,
+      </if>
+      <if test="area != null">
+        AREA,
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE,
+      </if>
+      <if test="reason != null">
+        REASON,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        DIC_MONITOR_GRADE_KEY,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+    </trim> 
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+       <if test="id != null">
+       #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+       #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckTypeId != null">
+       #{dicCheckTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null">
+       #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP}, 
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+         #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+         #{updated,jdbcType=TIMESTAMP}, 
+      </if>
+      <if test="updater != null">
+       #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+       #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if> 
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.dailymgr.SpecialArea">
+    update SF_SPECIAL_AREA
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID=#{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckTypeId != null">
+       DIC_CHECK_TYPE_ID=#{dicCheckTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+       AREA= #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+       APPLY_DATE= #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null">
+       REASON=#{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+       START_DATE=#{startDate,jdbcType=TIMESTAMP}, 
+      </if>
+      <if test="endDate != null">
+        END_DATE=#{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        NOTE=#{note,jdbcType=VARCHAR},
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        DIC_MONITOR_GRADE_KEY=#{dicMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED=#{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER=#{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED=#{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER=#{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG=#{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID=#{processInstanceId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.dailymgr.SpecialArea">
+    update SF_SPECIAL_AREA
+    set CULPRIT_ID=#{culpritId,jdbcType=VARCHAR},
+       	DIC_CHECK_TYPE_ID=#{dicCheckTypeId,jdbcType=VARCHAR},
+        AREA= #{area,jdbcType=VARCHAR},
+        APPLY_DATE= #{applyDate,jdbcType=TIMESTAMP},
+        REASON=#{reason,jdbcType=VARCHAR},
+        START_DATE=#{startDate,jdbcType=TIMESTAMP}, 
+        END_DATE=#{endDate,jdbcType=TIMESTAMP},
+        NOTE=#{note,jdbcType=VARCHAR},
+        DIC_MONITOR_GRADE_KEY=#{dicMonitorGradeKey,jdbcType=VARCHAR},
+        CREATED=#{created,jdbcType=TIMESTAMP},
+        CREATER=#{creater,jdbcType=VARCHAR},
+        UPDATED=#{updated,jdbcType=TIMESTAMP},
+        UPDATER=#{updater,jdbcType=VARCHAR},
+        DEL_FLAG=#{delFlag,jdbcType=DECIMAL},
+        PROCESS_INSTANCE_ID=#{processInstanceId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.dailymgr.SpecialArea" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,t2.name as culprit_name,t3.name as group_name
+    from SF_SPECIAL_AREA t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+  	<if test="culprit!=null and culprit.name != null and culprit.name!=''">
+      AND t2.NAME like '%'|| #{culprit.name,jdbcType=VARCHAR}||'%'
+    </if>
+     <if test="groupId != null and groupId!=''">
+     	 <![CDATA[  
+     	 AND  exists ( select t4.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) t4 where t2.group_id=t4.id)
+       ]]>  
+    </if>
+    <if test="culpritId != null and culpritId !=''">
+      AND t.CULPRIT_ID=#{culpritId,jdbcType=VARCHAR}
+     </if>
+      <if test="dicCheckTypeId != null and dicCheckTypeId !=''">
+       AND t.DIC_CHECK_TYPE_ID=#{dicCheckTypeId,jdbcType=VARCHAR}
+      </if>
+      <if test="area != null and area !=''">
+       AND t.AREA= #{area,jdbcType=VARCHAR}
+      </if>
+      <if test="applyDate != null and applyDate !=''">
+       AND t.APPLY_DATE= #{applyDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="reason != null and reason !=''">
+       AND t.REASON=#{reason,jdbcType=VARCHAR}
+      </if>
+      <if test="startDate != null and startDate !=''">
+       AND t.START_DATE=#{startDate,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="endDate != null and endDate !=''">
+        AND t.END_DATE=#{endDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="note != null and note !=''">
+        AND t.NOTE=#{note,jdbcType=VARCHAR}
+      </if>
+      <if test="dicMonitorGradeKey != null and dicMonitorGradeKey !=''">
+        AND t.DIC_MONITOR_GRADE_KEY=#{dicMonitorGradeKey,jdbcType=VARCHAR}
+      </if>
+      <if test="created != null and created !=''">
+      	AND t.CREATED=#{created,jdbcType=TIMESTAMP}
+      </if>
+      <if test="searchStartDate != null">
+	    <![CDATA[ 
+	      AND t.APPLY_DATE >= #{searchStartDate,jdbcType=TIMESTAMP}
+	       ]]> 
+	  </if>
+     <if test="searchEndDate != null">
+    	 <![CDATA[  
+      		AND t.APPLY_DATE <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+      <if test="creater != null and creater !=''">
+      AND  t.CREATER=#{creater,jdbcType=VARCHAR}
+      </if>
+      <if test="updated != null and updated !=''">
+      AND  t.UPDATED=#{updated,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updater != null and updater !=''">
+      AND  t.UPDATER=#{updater,jdbcType=VARCHAR}
+      </if>
+      <if test="delFlag != null and delFlag !=''">
+      AND  t.DEL_FLAG=#{delFlag,jdbcType=DECIMAL}
+      </if>
+      <if test="processInstanceId != null and processInstanceId !=''">
+      AND  t.PROCESS_INSTANCE_ID=#{processInstanceId,jdbcType=VARCHAR}
+      </if>
+  </sql>
+</mapper>

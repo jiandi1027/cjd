@@ -1,0 +1,157 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<script type="text/javascript">
+
+$(function() {
+
+	//查询当月
+	$('#searchDangYue').click(function(){
+		$('#searchEndDate').val(new Date());
+		var lastMonthDate = new Date(); //上月日期  
+		lastMonthDate.setDate(1);  
+		lastMonthDate.setMonth(lastMonthDate.getMonth()-1);  
+		$('#searchStartDate').val(lastMonthDate);
+		$('#t_culprit_status_content').datagrid('load',
+				 $.serializeObject($('#searchTjForm')));
+		
+	});
+	
+	formatterDate = function (date) {
+		var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
+		var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0"
+		+ (date.getMonth() + 1);
+		var hor = date.getHours();
+		var min = date.getMinutes();
+		var sec = date.getSeconds();
+		return date.getFullYear() + '-' + month + '-' + day+" "+hor+":"+min+":"+sec;
+		};
+
+
+});
+
+function formatOper(val,row,index){  
+	var operation=''
+	if(row.dicState=="91802"){//未上报
+		operation+='<a href="javascript:void(0);" onclick="submitTj(\''+row.id+'\')">上报</a>';
+	}
+	operation+='&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);" onclick="showPrint(\''+row.id+'\')">查看</a>'
+	+'&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);" onclick="out(\''+row.id+'\')">导出</a>';
+	if(row.groupleave!="2"){
+		operation+='&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);" onclick="returnTj(\''+row.groupId+'\',\''+row.reportDate+'\')">退回</a>';
+	}
+    return operation;
+} 
+ /* //退回
+function returnTj(groupId,reportDate){
+	$.messager.confirm('提示', '请判断是否要执行该操作?', function(b){  
+	      if (b){  
+	    	  $.ajax({
+	  			type : 'get',
+	  			url : "${ctx}/statistics/culpritStatusTj/returnTj?groupId="+groupId+"&&reportDate="+reportDate,
+	  			cache : false,
+	  			async : false, //同步请求
+	  			dataType : 'json',
+	  			success : function(result) {
+	  				if(result.status==200){
+	  					alert(result.msg);
+	  				}else{
+	  					alert(result.msg);
+	  				}
+	  				
+	  			}
+	  		});
+	  		
+	      }
+	});  
+	
+}  */
+
+function showPrint(id){
+	//查看
+	 parent.$.modalDialog({
+         title : '统计详情',
+         iconCls:'fi-plus icon-green',
+         width : sy.getBrowerWidth()-250,
+         height : sy.getBrowerHeight()-150,
+         href : '${ctx}/statistics/culpritStatusTj/showPrint?id=' + id
+     });
+	
+}
+
+function submitTj(id){
+	//上报
+	 parent.$.modalDialog({
+         title : '上报详情',
+         iconCls:'fi-plus icon-green',
+         width : sy.getBrowerWidth()-250,
+         height : sy.getBrowerHeight()-150,
+         href : '${ctx}/statistics/culpritStatusTj/submitTj?id=' + id,
+         buttons : [ {
+             text : '上报',
+             iconCls:'icon-save',
+             handler : function() {
+                 parent.$.modalDialog.openner_dataGrid = $('#t_culprit_status_content').datagrid();//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+                 var f = parent.$.modalDialog.handler.find('#culpritStatusContent');
+                 f.submit();
+             }
+         }]
+     });
+	
+}
+
+</script>
+
+<div class="easyui-layout" data-options="fit:true,border:false">
+ <form id="searchTjForm"  style="padding-bottom: 10px;padding-top: 10px;">
+	<div data-options="region:'east',border:true,split:false,title:'查询'" style="width: 240px;">
+        <div class="easyui-layout" data-options="fit:true,border:true">
+        <div region="center" border="false">
+        <c:if test="${!fns:isLeafGroup(fns:getSysAccount().groupId) }">
+          <sys:sysGroup hiddenId="groupId" hiddenName="groupId" dataGridId="t_culprit_status_content"/>
+           </c:if>
+            <div class="easyui-panel search-form" data-options="fit:true,border:false" id="p2" title="<c:if test="${!fns:isLeafGroup(fns:getSysAccount().groupId) }">查询项目</c:if>" style="width:100%;">
+			<table>
+				<tr>
+				<td class="search-title">统计月份：</td>
+					<td><input id="searchStartDate" name="searchStartDate" class="Wdate easyui-validatebox" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM'})"  editable="false"/></td>
+				</tr>
+				<tr>
+				<td class="search-title" style="text-align:right">至：</td>
+					<td><input id="searchEndDate" name="searchEndDate"  class="Wdate easyui-validatebox" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM'})"  editable="false" /></td>
+				</tr>
+				<tr>
+			</table>
+		</div>
+		</div>
+		 <div data-options="region:'south',border:false" style="height: 30px;line-height:30px; overflow: hidden;text-align: center;background-color: #eee" ><a
+						href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="javascript:$('#t_culprit_status_content').datagrid('load' ,$.serializeObject($('#searchTjForm')));"
+						id="searchTjBtn">搜索</a> &nbsp;&nbsp; 
+						<a href="#" class="easyui-linkbutton" id="cleanTjBtn" iconCls="icon-undo" onclick="javascript:$('#searchTjForm').form('clear');">清空</a></div>
+		</div>
+	</div>
+	</form>
+    <div data-options="region:'center',border:true" >
+        <table class="easyui-datagrid" id="t_culprit_status_content" title="社区矫正人员情况统计表（月表）"
+			data-options="singleSelect:true,fit:true,toolbar:'#toolbar',collapsible:true,striped:true,loadMsg: '数据正在加载,请耐心的等待...' ,pagination:true,pageSize: 10 ,pageList:[5,10,15,20,50],fitColumns:true,url:'${ctx}/statistics/culpritStatusTj/list',method:'post'">
+			<thead>
+				<tr>
+					<th data-options="field:'id',checkbox:true,width:80">编号</th>
+					<th data-options="field:'groupName',width:100,align:'center'"
+						editor="{type:'validatebox',options:{required:true}}">单位</th>
+					<th data-options="field:'reportDate',width:120,align:'center',sortable:true"
+						editor="text">统计月份</th>
+					<th data-options="field:'dicState',width:120,align:'center',sortable:true,
+					formatter:function(value,rowData,rowIndex){return sy.getDicValue('sf_culprit_tj','dic_state',value,'')}"
+						editor="text">报表状态</th>
+				 	<th data-options="field:'_opt',width:200,formatter:formatOper,align:'center'">操作</th>  
+
+				</tr>
+			</thead>
+		</table>
+    </div>
+</div>
+<!-- <div id="toolbar" style="display: none;">
+   <div id="toolbar"> 
+		<a id="searchDangYue" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">查看当月</a>  
+	</div>
+</div> -->

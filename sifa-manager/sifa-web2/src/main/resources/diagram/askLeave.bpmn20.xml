@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="askLeave" name="askLeave" isExecutable="true">
+    <startEvent id="startEvent1"></startEvent>
+    <userTask id="sid-9A6B6B56-F30C-45B4-B3F3-9B23B4EDFBFE" name="工作人员上报" flowable:assignee="${role_id}">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[true]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-F888F05B-5E84-4923-9753-85DE19E6EC19" sourceRef="startEvent1" targetRef="sid-9A6B6B56-F30C-45B4-B3F3-9B23B4EDFBFE"></sequenceFlow>
+    <userTask id="sid-4D413733-2AC3-4216-B256-3401407AFE59" name="司法所审核" flowable:assignee="${role_id}">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="sid-D8609204-1B83-4971-95B5-A94A8DB7614F"></exclusiveGateway>
+    <sequenceFlow id="sid-E4BEEAA2-1BE5-4110-8AF5-569A90FF2D07" sourceRef="sid-4D413733-2AC3-4216-B256-3401407AFE59" targetRef="sid-D8609204-1B83-4971-95B5-A94A8DB7614F"></sequenceFlow>
+    <userTask id="sid-0144419C-0E58-4F7F-B68E-7213A05A9001" name="县矫正科审核" flowable:assignee="${role_id}">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <userTask id="sid-21F6488C-48C6-4421-BB6A-34C05D1410C6" name="县矫正科审核" flowable:assignee="${role_id}">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <userTask id="sid-AA718114-DE52-46F9-BE43-EAA87C5E5096" name="司法所打印" flowable:assignee="${role_id}">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <endEvent id="sid-473E927B-3A59-4515-8043-200EA31F3423"></endEvent>
+    <sequenceFlow id="sid-DF01A4E6-1762-4A63-9C50-5553ECC9DC16" name="          退回">
+      <extensionElements>
+        <EDITOR_RESOURCEID><![CDATA[sid-DF01A4E6-1762-4A63-9C50-5553ECC9DC16]]></EDITOR_RESOURCEID>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decideType==2}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-3071C445-C0C4-4B14-85FE-3B773E2C3DD3" name="7天以上" sourceRef="sid-D8609204-1B83-4971-95B5-A94A8DB7614F" targetRef="sid-0144419C-0E58-4F7F-B68E-7213A05A9001">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${leaveDay>7}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-42BEC435-1BBC-434E-948D-DB2E52887D08" name="7天以内" sourceRef="sid-D8609204-1B83-4971-95B5-A94A8DB7614F" targetRef="sid-473E927B-3A59-4515-8043-200EA31F3423">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${leaveDay<=7}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-E5D1EA17-21AB-40F5-A59F-F776AB069FAD" name="
+不同意                         
+">
+      <extensionElements>
+        <EDITOR_RESOURCEID><![CDATA[sid-E5D1EA17-21AB-40F5-A59F-F776AB069FAD]]></EDITOR_RESOURCEID>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decideType==0}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-9C060758-29D1-4A56-911B-3ED8E46D33AC" name="不同意" sourceRef="sid-0144419C-0E58-4F7F-B68E-7213A05A9001" targetRef="sid-473E927B-3A59-4515-8043-200EA31F3423">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decideType==0}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-AECEDB51-052E-464D-8F6D-77179F59B111" name="       退回" sourceRef="sid-4D413733-2AC3-4216-B256-3401407AFE59" targetRef="sid-9A6B6B56-F30C-45B4-B3F3-9B23B4EDFBFE">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decideType==2}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-5D983E5D-03EB-48C7-81EA-DF67A95842D3" name="   同意" sourceRef="sid-9A6B6B56-F30C-45B4-B3F3-9B23B4EDFBFE" targetRef="sid-4D413733-2AC3-4216-B256-3401407AFE59">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decideType==1}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-B1E805DA-EB7C-4D81-BE04-015161A1FCE3" name="同意" sourceRef="sid-0144419C-0E58-4F7F-B68E-7213A05A9001" targetRef="sid-21F6488C-48C6-4421-BB6A-34C05D1410C6">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decideType==1}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-A9A1B020-17AB-4EAA-8499-D395CB001BA7" name="退回">
+      <extensionElements>
+        <EDITOR_RESOURCEID><![CDATA[sid-A9A1B020-17AB-4EAA-8499-D395CB001BA7]]></EDITOR_RESOURCEID>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decideType==2}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-E9A257A8-B5AA-4185-A5BF-52AD1F343318" name="同意" sourceRef="sid-21F6488C-48C6-4421-BB6A-34C05D1410C6" targetRef="sid-AA718114-DE52-46F9-BE43-EAA87C5E5096">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decideType==1}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-2CB34811-0520-41DA-B23E-95A4CF7C0126" name="不同意" sourceRef="sid-21F6488C-48C6-4421-BB6A-34C05D1410C6" targetRef="sid-473E927B-3A59-4515-8043-200EA31F3423">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decideType==0}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-909636E9-4BBE-44FC-8638-EBAEC36B5286" name="打印" sourceRef="sid-AA718114-DE52-46F9-BE43-EAA87C5E5096" targetRef="sid-473E927B-3A59-4515-8043-200EA31F3423"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_askLeave">
+    <bpmndi:BPMNPlane bpmnElement="askLeave" id="BPMNPlane_askLeave">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="75.0" y="75.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-9A6B6B56-F30C-45B4-B3F3-9B23B4EDFBFE" id="BPMNShape_sid-9A6B6B56-F30C-45B4-B3F3-9B23B4EDFBFE">
+        <omgdc:Bounds height="51.0" width="126.0" x="175.0" y="64.5"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-4D413733-2AC3-4216-B256-3401407AFE59" id="BPMNShape_sid-4D413733-2AC3-4216-B256-3401407AFE59">
+        <omgdc:Bounds height="51.0" width="126.0" x="420.0" y="64.5"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-D8609204-1B83-4971-95B5-A94A8DB7614F" id="BPMNShape_sid-D8609204-1B83-4971-95B5-A94A8DB7614F">
+        <omgdc:Bounds height="40.0" width="40.0" x="463.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-0144419C-0E58-4F7F-B68E-7213A05A9001" id="BPMNShape_sid-0144419C-0E58-4F7F-B68E-7213A05A9001">
+        <omgdc:Bounds height="51.0" width="126.0" x="420.0" y="300.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-21F6488C-48C6-4421-BB6A-34C05D1410C6" id="BPMNShape_sid-21F6488C-48C6-4421-BB6A-34C05D1410C6">
+        <omgdc:Bounds height="51.0" width="126.0" x="420.0" y="435.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-AA718114-DE52-46F9-BE43-EAA87C5E5096" id="BPMNShape_sid-AA718114-DE52-46F9-BE43-EAA87C5E5096">
+        <omgdc:Bounds height="51.0" width="126.0" x="135.0" y="435.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-473E927B-3A59-4515-8043-200EA31F3423" id="BPMNShape_sid-473E927B-3A59-4515-8043-200EA31F3423">
+        <omgdc:Bounds height="28.0" width="28.0" x="184.0" y="311.5"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-AECEDB51-052E-464D-8F6D-77179F59B111" id="BPMNEdge_sid-AECEDB51-052E-464D-8F6D-77179F59B111">
+        <omgdi:waypoint x="420.0" y="103.74545454545455"></omgdi:waypoint>
+        <omgdi:waypoint x="373.0" y="114.0"></omgdi:waypoint>
+        <omgdi:waypoint x="301.0" y="101.2"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-909636E9-4BBE-44FC-8638-EBAEC36B5286" id="BPMNEdge_sid-909636E9-4BBE-44FC-8638-EBAEC36B5286">
+        <omgdi:waypoint x="198.0" y="435.0"></omgdi:waypoint>
+        <omgdi:waypoint x="198.0" y="339.5"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-3071C445-C0C4-4B14-85FE-3B773E2C3DD3" id="BPMNEdge_sid-3071C445-C0C4-4B14-85FE-3B773E2C3DD3">
+        <omgdi:waypoint x="483.4236947791165" y="219.57630522088354"></omgdi:waypoint>
+        <omgdi:waypoint x="483.102" y="300.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-B1E805DA-EB7C-4D81-BE04-015161A1FCE3" id="BPMNEdge_sid-B1E805DA-EB7C-4D81-BE04-015161A1FCE3">
+        <omgdi:waypoint x="469.1954887218045" y="351.0"></omgdi:waypoint>
+        <omgdi:waypoint x="447.0" y="392.0"></omgdi:waypoint>
+        <omgdi:waypoint x="469.5985401459854" y="435.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-F888F05B-5E84-4923-9753-85DE19E6EC19" id="BPMNEdge_sid-F888F05B-5E84-4923-9753-85DE19E6EC19">
+        <omgdi:waypoint x="105.0" y="90.0"></omgdi:waypoint>
+        <omgdi:waypoint x="175.0" y="90.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-E9A257A8-B5AA-4185-A5BF-52AD1F343318" id="BPMNEdge_sid-E9A257A8-B5AA-4185-A5BF-52AD1F343318">
+        <omgdi:waypoint x="420.0" y="460.5"></omgdi:waypoint>
+        <omgdi:waypoint x="261.0" y="460.5"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-2CB34811-0520-41DA-B23E-95A4CF7C0126" id="BPMNEdge_sid-2CB34811-0520-41DA-B23E-95A4CF7C0126">
+        <omgdi:waypoint x="429.1666666666667" y="435.0"></omgdi:waypoint>
+        <omgdi:waypoint x="210.65232974450956" y="331.49320882634663"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-9C060758-29D1-4A56-911B-3ED8E46D33AC" id="BPMNEdge_sid-9C060758-29D1-4A56-911B-3ED8E46D33AC">
+        <omgdi:waypoint x="420.0" y="325.5"></omgdi:waypoint>
+        <omgdi:waypoint x="212.0" y="325.5"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-42BEC435-1BBC-434E-948D-DB2E52887D08" id="BPMNEdge_sid-42BEC435-1BBC-434E-948D-DB2E52887D08">
+        <omgdi:waypoint x="469.59013398294763" y="206.59013398294763"></omgdi:waypoint>
+        <omgdi:waypoint x="210.82465577586007" y="319.8850018494483"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-5D983E5D-03EB-48C7-81EA-DF67A95842D3" id="BPMNEdge_sid-5D983E5D-03EB-48C7-81EA-DF67A95842D3">
+        <omgdi:waypoint x="301.0" y="74.25"></omgdi:waypoint>
+        <omgdi:waypoint x="366.0" y="58.0"></omgdi:waypoint>
+        <omgdi:waypoint x="420.0" y="72.76923076923077"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-E4BEEAA2-1BE5-4110-8AF5-569A90FF2D07" id="BPMNEdge_sid-E4BEEAA2-1BE5-4110-8AF5-569A90FF2D07">
+        <omgdi:waypoint x="483.11538461538464" y="115.5"></omgdi:waypoint>
+        <omgdi:waypoint x="483.40909090909093" y="180.4090909090909"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

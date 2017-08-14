@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.dailymgr.InterviewMapper">
+	<resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.dailymgr.Interview">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="BELONG_STREET" jdbcType="VARCHAR" property="belongStreet" />
+		<result column="INTERVIEW_DATE" jdbcType="TIMESTAMP" property="interviewDate" />
+		<result column="INTERVIEW_PLACE" jdbcType="VARCHAR" property="interviewPlace" />
+		<result column="INTERVIEW_PERSON" jdbcType="VARCHAR" property="interviewPerson" />
+		<result column="INTERVIEW_CONDITION" jdbcType="CLOB"
+			property="interviewCondition" />
+		<result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+		<result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+		<result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+		<result column="ACCOUNT_ID" jdbcType="VARCHAR" property="accountId" />
+		<result column="PATH" jdbcType="VARCHAR" property="path" />
+		<result column="DOCUMENT_ID" jdbcType="VARCHAR" property="documentId" />
+		<result column="INTERVIEW_REASON" jdbcType="VARCHAR" property="interviewReason" />
+		<result column="IMAGE_PATH" jdbcType="VARCHAR" property="imagePath" />
+		<result column="IMAGE_PATH_NAME" jdbcType="VARCHAR" property="imagePathName" />
+		<result column="MP3_PATH" jdbcType="VARCHAR" property="mp3Path" />
+		<result column="MP3_PATH_NAME" jdbcType="VARCHAR" property="mp3PathName" />
+		<result column="VIDEO_PATH" jdbcType="VARCHAR" property="videoPath" />
+		<result column="VIDEO_PATH_NAME" jdbcType="VARCHAR" property="videoPathName" />
+		<result column="RESULT" jdbcType="VARCHAR" property="result" />
+		<result column="ZFDX" jdbcType="VARCHAR" property="zfdx" />
+		<result column="XDNL" jdbcType="VARCHAR" property="xdnl" />
+		<result column="BLSH" jdbcType="VARCHAR" property="blsh" />
+		<result column="SHLY" jdbcType="VARCHAR" property="shly" />
+		<result column="JJQK" jdbcType="VARCHAR" property="jjqk" />
+		<result column="HYQK" jdbcType="VARCHAR" property="hyqk" />
+		<result column="JZQK" jdbcType="VARCHAR" property="jzqk" />
+		<result column="HDQK" jdbcType="VARCHAR" property="hdqk" />
+		<result column="ZDBG" jdbcType="VARCHAR" property="zdbg" />
+		<result column="JQBX" jdbcType="VARCHAR" property="jqbx" />
+		<result column="ADDRESS_PRO" jdbcType="VARCHAR" property="addressPro" />
+		<result column="ADDRESS_CITY" jdbcType="VARCHAR" property="addressCity" />
+		<result column="ADDRESS_COUNTRY" jdbcType="VARCHAR" property="addressCountry" />
+		<result column="ADDRESS_STREET" jdbcType="VARCHAR" property="addressStreet" />
+		<result column="ADDRESS_DETAIL" jdbcType="VARCHAR" property="addressDetail" />
+		<result column="CULPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    	<result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		t.ID, t.BELONG_STREET, t.INTERVIEW_DATE, t.INTERVIEW_PLACE, t.INTERVIEW_PERSON,
+		t.INTERVIEW_CONDITION,
+		t.CULPRIT_ID, t.CREATED_TIME, t.MODIFIED_TIME, t.ACCOUNT_ID, t.PATH, t.DOCUMENT_ID,
+		t.INTERVIEW_REASON,
+		t.IMAGE_PATH, t.IMAGE_PATH_NAME, t.MP3_PATH, t.MP3_PATH_NAME, t.VIDEO_PATH,
+		t.VIDEO_PATH_NAME,
+		t.RESULT, t.ZFDX,t.XDNL,t.JKZK,t.BLSH,t.SHLY,t.JJQK,t.HYQK,t.JZQK,t.HDQK,t.ZDBG,t.JQBX,
+		t.ADDRESS_PRO,t.ADDRESS_CITY,t.ADDRESS_COUNTRY,t.ADDRESS_STREET,t.ADDRESS_DETAIL
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from SF_INTERVIEW t
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from SF_INTERVIEW
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.rowell.sifa.pojo.dailymgr.Interview">
+		insert into SF_INTERVIEW (ID, BELONG_STREET, INTERVIEW_DATE,
+		INTERVIEW_PLACE, INTERVIEW_PERSON, INTERVIEW_CONDITION,
+		CULPRIT_ID, CREATED_TIME, MODIFIED_TIME,
+		ACCOUNT_ID, PATH, DOCUMENT_ID,
+		INTERVIEW_REASON, IMAGE_PATH, IMAGE_PATH_NAME,
+		MP3_PATH, MP3_PATH_NAME, VIDEO_PATH,
+		VIDEO_PATH_NAME, RESULT, ZFDX,XDNL,JKZK,BLSH,SHLY,JJQK,HYQK,JZQK,HDQK,ZDBG,JQBX,
+		ADDRESS_PRO,ADDRESS_CITY,ADDRESS_COUNTRY,ADDRESS_STREET,ADDRESS_DETAIL
+		)
+		values (#{id,jdbcType=VARCHAR}, #{belongStreet,jdbcType=VARCHAR},
+		#{interviewDate,jdbcType=TIMESTAMP},
+		#{interviewPlace,jdbcType=VARCHAR},
+		#{interviewPerson,jdbcType=VARCHAR},
+		#{interviewCondition,jdbcType=CLOB},
+		#{culpritId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP},
+		#{modifiedTime,jdbcType=TIMESTAMP},
+		#{accountId,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{documentId,jdbcType=VARCHAR},
+		#{interviewReason,jdbcType=CLOB}, #{imagePath,jdbcType=VARCHAR},
+		#{imagePathName,jdbcType=VARCHAR},
+		#{mp3Path,jdbcType=VARCHAR}, #{mp3PathName,jdbcType=VARCHAR}, #{videoPath,jdbcType=VARCHAR},
+		#{videoPathName,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR},
+		#{zfdx,jdbcType=VARCHAR},
+		#{xdnl,jdbcType=VARCHAR},#{jkzk,jdbcType=VARCHAR},#{blsh,jdbcType=VARCHAR},#{shly,jdbcType=VARCHAR},#{jjqk,jdbcType=VARCHAR},
+		#{hyqk,jdbcType=VARCHAR},#{jzqk,jdbcType=VARCHAR},#{hdqk,jdbcType=VARCHAR},#{zdbg,jdbcType=VARCHAR},#{jqbx,jdbcType=VARCHAR},
+		#{addressPro,jdbcType=VARCHAR},#{addressCity,jdbcType=VARCHAR},#{addressCountry,jdbcType=VARCHAR},#{addressStreet,jdbcType=VARCHAR},#{addressDetail,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.rowell.sifa.pojo.dailymgr.Interview">
+		insert into SF_INTERVIEW
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="belongStreet != null">
+				BELONG_STREET,
+			</if>
+			<if test="interviewDate != null">
+				INTERVIEW_DATE,
+			</if>
+			<if test="interviewPlace != null">
+				INTERVIEW_PLACE,
+			</if>
+			<if test="interviewPerson != null">
+				INTERVIEW_PERSON,
+			</if>
+			<if test="interviewCondition != null">
+				INTERVIEW_CONDITION,
+			</if>
+			<if test="culpritId != null">
+				CULPRIT_ID,
+			</if>
+			<if test="createdTime != null">
+				CREATED_TIME,
+			</if>
+			<if test="modifiedTime != null">
+				MODIFIED_TIME,
+			</if>
+			<if test="accountId != null">
+				ACCOUNT_ID,
+			</if>
+			<if test="path != null">
+				PATH,
+			</if>
+			<if test="documentId != null">
+				DOCUMENT_ID,
+			</if>
+			<if test="interviewReason != null">
+				INTERVIEW_REASON,
+			</if>
+			<if test="imagePath != null">
+				IMAGE_PATH,
+			</if>
+			<if test="imagePathName != null">
+				IMAGE_PATH_NAME,
+			</if>
+			<if test="mp3Path != null">
+				MP3_PATH,
+			</if>
+			<if test="mp3PathName != null">
+				MP3_PATH_NAME,
+			</if>
+			<if test="videoPath != null">
+				VIDEO_PATH,
+			</if>
+			<if test="videoPathName != null">
+				VIDEO_PATH_NAME,
+			</if>
+			<if test="result != null">
+				RESULT,
+			</if>
+			<if test="zfdx != null">
+				ZFDX,
+			</if>
+			<if test="xdnl != null">
+				XDNL,
+			</if>
+			<if test="jkzk != null">
+				JKZK,
+			</if>
+			<if test="blsh != null">
+				BLSH,
+			</if>
+			<if test="shly != null">
+				SHLY,
+			</if>
+			<if test="jjqk != null">
+				JJQK,
+			</if>
+			<if test="hyqk  != null">
+				HYQK,
+			</if>
+			<if test="jzqk!= null">
+				JZQK,
+			</if>
+			<if test="hdqk != null">
+				HDQK,
+			</if>
+			<if test="zdbg != null">
+				ZDBG,
+			</if>
+			<if test="jqbx != null">
+				JQBX,
+			</if>
+			<if test="addressPro != null">
+				ADDRESS_PRO,
+			</if>
+			<if test="addressCity != null">
+				ADDRESS_CITY,
+			</if>
+			<if test="addressCountry != null">
+				ADDRESS_COUNTRY,
+			</if>
+			<if test="addressStreet != null">
+				ADDRESS_STREET,
+			</if>
+			<if test="addressDetail != null">
+				ADDRESS_DETAIL,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="belongStreet != null">
+				#{belongStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewDate != null">
+				#{interviewDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="interviewPlace != null">
+				#{interviewPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewPerson != null">
+				#{interviewPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewCondition != null">
+				#{interviewCondition,jdbcType=CLOB},
+			</if>
+			<if test="culpritId != null">
+				#{culpritId,jdbcType=VARCHAR},
+			</if>
+			<if test="createdTime != null">
+				#{createdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifiedTime != null">
+				#{modifiedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="accountId != null">
+				#{accountId,jdbcType=VARCHAR},
+			</if>
+			<if test="path != null">
+				#{path,jdbcType=VARCHAR},
+			</if>
+			<if test="documentId != null">
+				#{documentId,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewReason != null">
+				#{interviewReason,jdbcType=CLOB},
+			</if>
+			<if test="imagePath != null">
+				#{imagePath,jdbcType=VARCHAR},
+			</if>
+			<if test="imagePathName != null">
+				#{imagePathName,jdbcType=VARCHAR},
+			</if>
+			<if test="mp3Path != null">
+				#{mp3Path,jdbcType=VARCHAR},
+			</if>
+			<if test="mp3PathName != null">
+				#{mp3PathName,jdbcType=VARCHAR},
+			</if>
+			<if test="videoPath != null">
+				#{videoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="videoPathName != null">
+				#{videoPathName,jdbcType=VARCHAR},
+			</if>
+			<if test="result != null">
+				#{result,jdbcType=VARCHAR},
+			</if>
+			<if test="zfdx != null">
+				#{zfdx,jdbcType=VARCHAR},
+			</if>
+			<if test="xdnl != null">
+				#{xdnl,jdbcType=VARCHAR},
+			</if>
+			<if test="jkzk != null">
+				#{jkzk,jdbcType=VARCHAR},
+			</if>
+			<if test="blsh != null">
+				#{blsh,jdbcType=VARCHAR},
+			</if>
+			<if test="shly != null">
+				#{shly,jdbcType=VARCHAR},
+			</if>
+			<if test="jjqk != null">
+				#{jjqk,jdbcType=VARCHAR},
+			</if>
+			<if test="hyqk != null">
+				#{hyqk,jdbcType=VARCHAR},
+			</if>
+			<if test="jzqk != null">
+				#{jzqk,jdbcType=VARCHAR},
+			</if>
+			<if test="hdqk != null">
+				#{hdqk,jdbcType=VARCHAR},
+			</if>
+			<if test="zdbg != null">
+				#{zdbg,jdbcType=VARCHAR},
+			</if>
+			<if test="jqbx != null">
+				#{jqbx,jdbcType=VARCHAR},
+			</if>
+			<if test="addressPro != null">
+				#{addressPro,jdbcType=VARCHAR},
+			</if>
+			<if test="addressCity != null">
+				#{addressCity,jdbcType=VARCHAR},
+			</if>
+			<if test="addressCountry != null">
+				#{addressCountry,jdbcType=VARCHAR},
+			</if>
+			<if test="addressStreet != null">
+				#{addressStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="addressDetail != null">
+				#{addressDetail,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.dailymgr.Interview">
+		update SF_INTERVIEW
+		<set>
+			<if test="belongStreet != null">
+				BELONG_STREET = #{belongStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewDate != null">
+				INTERVIEW_DATE = #{interviewDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="interviewPlace != null">
+				INTERVIEW_PLACE = #{interviewPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewPerson != null">
+				INTERVIEW_PERSON = #{interviewPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewCondition != null">
+				INTERVIEW_CONDITION = #{interviewCondition,jdbcType=CLOB},
+			</if>
+			<if test="culpritId != null">
+				CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+			</if>
+			<if test="createdTime != null">
+				CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifiedTime != null">
+				MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="accountId != null">
+				ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+			</if>
+			<if test="path != null">
+				PATH = #{path,jdbcType=VARCHAR},
+			</if>
+			<if test="documentId != null">
+				DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewReason != null">
+				INTERVIEW_REASON = #{interviewReason,jdbcType=CLOB},
+			</if>
+			<if test="imagePath != null">
+				IMAGE_PATH = #{imagePath,jdbcType=VARCHAR},
+			</if>
+			<if test="imagePathName != null">
+				IMAGE_PATH_NAME = #{imagePathName,jdbcType=VARCHAR},
+			</if>
+			<if test="mp3Path != null">
+				MP3_PATH = #{mp3Path,jdbcType=VARCHAR},
+			</if>
+			<if test="mp3PathName != null">
+				MP3_PATH_NAME = #{mp3PathName,jdbcType=VARCHAR},
+			</if>
+			<if test="videoPath != null">
+				VIDEO_PATH = #{videoPath,jdbcType=VARCHAR},
+			</if>
+			<if test="videoPathName != null">
+				VIDEO_PATH_NAME = #{videoPathName,jdbcType=VARCHAR},
+			</if>
+			<if test="result != null">
+				RESULT = #{result,jdbcType=VARCHAR},
+			</if>
+			<if test="zfdx != null">
+				ZFDX = #{zfdx,jdbcType=VARCHAR},
+			</if>
+			<if test="xdnl != null">
+				XDNL = #{xdnl,jdbcType=VARCHAR},
+			</if>
+			<if test="jkzk != null">
+				JKZK = #{jkzk,jdbcType=VARCHAR},
+			</if>
+			<if test="blsh != null">
+				BLSH = #{blsh,jdbcType=VARCHAR},
+			</if>
+			<if test="shly != null">
+				SHLY = #{shly,jdbcType=VARCHAR},
+			</if>
+			<if test="jjqk != null">
+				JJQK = #{jjqk,jdbcType=VARCHAR},
+			</if>
+			<if test="hyqk != null">
+				HYQK = #{hyqk,jdbcType=VARCHAR},
+			</if>
+			<if test="jzqk != null">
+				JZQK = #{jzqk,jdbcType=VARCHAR},
+			</if>
+			<if test="hdqk != null">
+				HDQK = #{hdqk,jdbcType=VARCHAR},
+			</if>
+			<if test="zdbg != null">
+				ZDBG = #{zdbg,jdbcType=VARCHAR},
+			</if>
+			<if test="jqbx != null">
+				JQBX = #{jqbx,jdbcType=VARCHAR},
+			</if>
+			<if test="addressPro != null">
+				ADDRESS_PRO=#{addressPro,jdbcType=VARCHAR},
+			</if>
+			<if test="addressCity != null">
+				ADDRESS_CITY=#{addressCity,jdbcType=VARCHAR},
+			</if>
+			<if test="addressCountry != null">
+				ADDRESS_COUNTRY=#{addressCountry,jdbcType=VARCHAR},
+			</if>
+			<if test="addressStreet != null">
+				ADDRESS_STREET=#{addressStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="addressDetail != null">
+				ADDRESS_DETAIL=#{addressDetail,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.dailymgr.Interview">
+		update SF_INTERVIEW
+		set BELONG_STREET = #{belongStreet,jdbcType=VARCHAR},
+		INTERVIEW_DATE = #{interviewDate,jdbcType=TIMESTAMP},
+		INTERVIEW_PLACE = #{interviewPlace,jdbcType=VARCHAR},
+		INTERVIEW_PERSON = #{interviewPerson,jdbcType=VARCHAR},
+		INTERVIEW_CONDITION = #{interviewCondition,jdbcType=CLOB},
+		CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+		CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+		MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+		ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+		PATH = #{path,jdbcType=VARCHAR},
+		DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},
+		INTERVIEW_REASON = #{interviewReason,jdbcType=CLOB},
+		IMAGE_PATH = #{imagePath,jdbcType=VARCHAR},
+		IMAGE_PATH_NAME = #{imagePathName,jdbcType=VARCHAR},
+		MP3_PATH = #{mp3Path,jdbcType=VARCHAR},
+		MP3_PATH_NAME = #{mp3PathName,jdbcType=VARCHAR},
+		VIDEO_PATH = #{videoPath,jdbcType=VARCHAR},
+		VIDEO_PATH_NAME = #{videoPathName,jdbcType=VARCHAR},
+		RESULT = #{result,jdbcType=VARCHAR},
+		ZFDX = #{zfdx,jdbcType=VARCHAR},
+		XDNL = #{xdnl,jdbcType=VARCHAR},
+		JKZK = #{jkzk,jdbcType=VARCHAR},
+		BLSH = #{blsh,jdbcType=VARCHAR},
+		SHLY = #{shly,jdbcType=VARCHAR},
+		JJQK = #{jjqk,jdbcType=VARCHAR},
+		HYQK = #{hyqk,jdbcType=VARCHAR},
+		JZQK = #{jzqk,jdbcType=VARCHAR},
+		HDQK = #{hdqk,jdbcType=VARCHAR},
+		ZDBG = #{zdbg,jdbcType=VARCHAR},
+		JQBX = #{jqbx,jdbcType=VARCHAR},
+		ADDRESS_PRO = #{addressPro,jdbcType=VARCHAR},
+		ADDRESS_CITY = #{addressCity,jdbcType=VARCHAR},
+		ADDRESS_COUNTRY = #{addressCountry,jdbcType=VARCHAR},
+		ADDRESS_STREET = #{addressStreet,jdbcType=VARCHAR},
+		ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectAll" parameterType="com.rowell.sifa.pojo.dailymgr.Interview"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />,t2.name as culprit_name,t3.name as group_name
+    from SF_INTERVIEW t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+		<where>
+			<include refid="findAllWhere" />
+		</where>
+		<if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+		</if>
+	</select>
+	<sql id="findAllWhere">
+		<if test="belongStreet != null and belongStreet!=''">
+			AND t.BELONG_STREET = #{belongStreet,jdbcType=VARCHAR}
+		</if>
+		<if test="interviewDate != null">
+			AND t.INTERVIEW_DATE = #{interviewDate,jdbcType=TIMESTAMP}
+		</if>
+		<if test="searchStartDate !='' and searchStartDate !=null">
+		     <![CDATA[
+		      AND t.INTERVIEW_DATE>= #{searchStartDate,jdbcType=TIMESTAMP}
+		      ]]>
+		 </if>
+		 <if test="searchEndDate!= '' and searchEndDate != null">
+		     <![CDATA[
+		      AND t.INTERVIEW_DATE<= #{searchEndDate,jdbcType=TIMESTAMP}
+		      ]]>
+		   </if>
+		<if test="interviewPlace != null and interviewPlace!=''">
+			AND t.INTERVIEW_PLACE = #{interviewPlace,jdbcType=VARCHAR}
+		</if>
+		<if test="interviewPerson != null and interviewPerson!=''">
+			AND t.INTERVIEW_PERSON = #{interviewPerson,jdbcType=VARCHAR}
+		</if>
+		<if test="interviewCondition != null and interviewCondition!=''">
+			AND t.INTERVIEW_CONDITION = #{interviewCondition,jdbcType=CLOB}
+		</if>
+		<if test="culpritId != null and culpritId!=''">
+			AND t.CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+		</if>
+		<if test="createdTime != null">
+			AND t.CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="modifiedTime != null">
+			AND t.MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="accountId != null and accountId!=''">
+			AND t.ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+		</if>
+		<if test="path != null and path!=''">
+			AND t.PATH = #{path,jdbcType=VARCHAR}
+		</if>
+		<if test="documentId != null and documentId!=''">
+			AND t.DOCUMENT_ID = #{documentId,jdbcType=VARCHAR}
+		</if>
+		<if test="interviewReason != null and interviewReason!=''">
+			AND t.INTERVIEW_REASON = #{interviewReason,jdbcType=CLOB}
+		</if>
+		<if test="imagePath != null and imagePath!=''">
+			AND t.IMAGE_PATH = #{imagePath,jdbcType=VARCHAR}
+		</if>
+		<if test="imagePathName != null and imagePathName!=''">
+			AND t.IMAGE_PATH_NAME = #{imagePathName,jdbcType=VARCHAR}
+		</if>
+		<if test="mp3Path != null and mp3Path!=''">
+			AND t.MP3_PATH = #{mp3Path,jdbcType=VARCHAR}
+		</if>
+		<if test="mp3PathName != null and mp3PathName!=''">
+			AND t.MP3_PATH_NAME = #{mp3PathName,jdbcType=VARCHAR}
+		</if>
+		<if test="videoPath != null and videoPath!=''">
+			AND t.VIDEO_PATH = #{videoPath,jdbcType=VARCHAR}
+		</if>
+		<if test="videoPathName != null and videoPathName!=''">
+			AND t.VIDEO_PATH_NAME = #{videoPathName,jdbcType=VARCHAR}
+		</if>
+		<if test="result != null and result!=''">
+			AND t.RESULT = #{result,jdbcType=VARCHAR}
+		</if>
+		<if test="zfdx != null and zfdx!=''">
+			AND t.ZFDX = #{zfdx,jdbcType=VARCHAR}
+		</if>
+		<if test="xdnl != null">
+			AND t.XDNL = #{xdnl,jdbcType=VARCHAR}
+		</if>
+		<if test="jkzk != null">
+			AND t.JKZK = #{jkzk,jdbcType=VARCHAR}
+		</if>
+		<if test="blsh != null">
+			AND t.BLSH = #{blsh,jdbcType=VARCHAR}
+		</if>
+		<if test="shly != null">
+			AND t.SHLY = #{shly,jdbcType=VARCHAR}
+		</if>
+		<if test="jjqk != null">
+			AND t.JJQK = #{jjqk,jdbcType=VARCHAR}
+		</if>
+		<if test="hyqk != null">
+			AND t.HYQK = #{hyqk,jdbcType=VARCHAR}
+		</if>
+		<if test="jzqk != null">
+			AND t.JZQK = #{jzqk,jdbcType=VARCHAR}
+		</if>
+		<if test="hdqk != null">
+			AND t.HDQK = #{hdqk,jdbcType=VARCHAR}
+		</if>
+		<if test="zdbg != null">
+			AND t.ZDBG = #{zdbg,jdbcType=VARCHAR}
+		</if>
+		<if test="jqbx != null">
+			AND t.JQBX = #{jqbx,jdbcType=VARCHAR}
+		</if>
+		    <if test="groupId != null and groupId!=''">
+     <![CDATA[  
+     	 AND  exists ( select t3.id from (select * from sys_group start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) t3 where t2.GROUP_ID=t3.id)
+     ]]> 
+    </if>
+	</sql>
+</mapper>
