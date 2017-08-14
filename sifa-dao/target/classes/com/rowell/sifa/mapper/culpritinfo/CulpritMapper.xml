@@ -1,0 +1,1882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.culpritinfo.CulpritMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.culpritinfo.Culprit">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NO" jdbcType="VARCHAR" property="no" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="DIC_GLDXJB_KEY" jdbcType="VARCHAR" property="dicGldxjbKey" />
+    <result column="ALIAS" jdbcType="VARCHAR" property="alias" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="DIC_SEX_KEY" jdbcType="VARCHAR" property="dicSexKey" />
+    <result column="NATION" jdbcType="VARCHAR" property="nation" />
+    <result column="DIC_WHCD_KEY" jdbcType="VARCHAR" property="dicWhcdKey" />
+    <result column="ORIGIN" jdbcType="VARCHAR" property="origin" />
+    <result column="DIC_YZZMM_KEY" jdbcType="VARCHAR" property="dicYzzmmKey" />
+    <result column="DIC_HYZK_KEY" jdbcType="VARCHAR" property="dicHyzkKey" />
+    <result column="REG_RESIDENCE" jdbcType="VARCHAR" property="regResidence" />
+    <result column="DIC_HKLX_KEY" jdbcType="VARCHAR" property="dicHklxKey" />
+    <result column="IDENTIFICATION" jdbcType="VARCHAR" property="identification" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="JOB" jdbcType="VARCHAR" property="job" />
+    <result column="DIC_STATUS_KEY" jdbcType="VARCHAR" property="dicStatusKey" />
+    <result column="CONTACT_PHONE" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="MOBILE_NUMBER" jdbcType="VARCHAR" property="mobileNumber" />
+    <result column="NOTE" jdbcType="CLOB" property="note" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="TERMINAL_ID" jdbcType="VARCHAR" property="terminalId" />
+    <result column="ACCOUNT_ID" jdbcType="VARCHAR" property="accountId" />
+    <result column="DIC_HEALTHY_STATUS_KEY" jdbcType="VARCHAR" property="dicHealthyStatusKey" />
+    <result column="CEDENTIALS_NUMBER" jdbcType="VARCHAR" property="cedentialsNumber" />
+    <result column="DIC_ZJLX_KEY" jdbcType="VARCHAR" property="dicZjlxKey" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="DIC_IS_ADULT_KEY" jdbcType="VARCHAR" property="dicIsAdultKey" />
+    <result column="PASSPORT_NUM" jdbcType="VARCHAR" property="passportNum" />
+    <result column="DIC_SFYHXZ_KEY" jdbcType="VARCHAR" property="dicSfyhxzKey" />
+    <result column="RETURN_CARD_NUM" jdbcType="VARCHAR" property="returnCardNum" />
+    <result column="DIC_SFYTBZ_KEY" jdbcType="DECIMAL" property="dicSfytbzKey" />
+    <result column="COMPATRIOTS_CARD_NUM" jdbcType="VARCHAR" property="compatriotsCardNum" />
+    <result column="HEALTHY_STATUS_INFO" jdbcType="VARCHAR" property="healthyStatusInfo" />
+    <result column="DIC_SFYCRBS_KEY" jdbcType="VARCHAR" property="dicSfycrbsKey" />
+    <result column="CONTAGION_ID" jdbcType="VARCHAR" property="contagionId" />
+    <result column="DIC_XLSFJK_KEY" jdbcType="VARCHAR" property="dicXlsfjkKey" />
+    <result column="MENTAL_INFO" jdbcType="VARCHAR" property="mentalInfo" />
+    <result column="IDENTIFY_ORG" jdbcType="VARCHAR" property="identifyOrg" />
+    <result column="DIC_XZZMM_KEY" jdbcType="VARCHAR" property="dicXzzmmKey" />
+    <result column="ADDRESS_PRO_ID" jdbcType="VARCHAR" property="addressProId" />
+    <result column="ADDRESS_PRO" jdbcType="VARCHAR" property="addressPro" />
+    <result column="ADDRESS_CITY_ID" jdbcType="VARCHAR" property="addressCityId" />
+    <result column="ADDRESS_CITY" jdbcType="VARCHAR" property="addressCity" />
+    <result column="ADDRESS_COUNTRY_ID" jdbcType="VARCHAR" property="addressCountryId" />
+    <result column="ADDRESS_COUNTRY" jdbcType="VARCHAR" property="addressCountry" />
+    <result column="ADDRESS_STREET" jdbcType="VARCHAR" property="addressStreet" />
+    <result column="ADDRESS_DETAIL" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="REG_RESIDENCE_PRO_ID" jdbcType="VARCHAR" property="regResidenceProId" />
+    <result column="REG_RESIDENCE_PRO" jdbcType="VARCHAR" property="regResidencePro" />
+    <result column="REG_RESIDENCE_CITY_ID" jdbcType="VARCHAR" property="regResidenceCityId" />
+    <result column="REG_RESIDENCE_CITY" jdbcType="VARCHAR" property="regResidenceCity" />
+    <result column="REG_RESIDENCE_COUNTRY_ID" jdbcType="VARCHAR" property="regResidenceCountryId" />
+    <result column="REG_RESIDENCE_COUNTRY" jdbcType="VARCHAR" property="regResidenceCountry" />
+    <result column="REG_RESIDENCE_STREET" jdbcType="VARCHAR" property="regResidenceStreet" />
+    <result column="REG_RESIDENCE_DETAIL" jdbcType="VARCHAR" property="regResidenceDetail" />
+    <result column="DIC_WORK_STATUS_KEY" jdbcType="VARCHAR" property="dicWorkStatusKey" />
+    <result column="NEW_JOB" jdbcType="VARCHAR" property="newJob" />
+    <result column="JOB_PHONE" jdbcType="VARCHAR" property="jobPhone" />
+    <result column="DIC_HAVA_FAMILY_KEY" jdbcType="VARCHAR" property="dicHavaFamilyKey" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="REDRESS_START_DATE" jdbcType="TIMESTAMP" property="redressStartDate" />
+    <result column="REDRESS_END_DATE" jdbcType="TIMESTAMP" property="redressEndDate" />
+    <result column="FINISH_INTO" jdbcType="DECIMAL" property="finshInfo" />
+    <result column="DIC_PENAL_TYPE_KEY" jdbcType="VARCHAR" property="dicPenalTypeKey" />
+    <result column="CRIME_INFO" jdbcType="VARCHAR" property="crimeInfo" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="DIC_REPORT_INFO_KEY" jdbcType="VARCHAR" property="dicReportInfoKey" />
+    <result column="DIC_REPORT_TYPE_KEY" jdbcType="VARCHAR" property="dicReportTypeKey" />
+    <result column="ACCOUNTNAME" jdbcType="VARCHAR" property="accountName" />
+    <result column="OLD_MONITOR_GRADE" jdbcType="VARCHAR" property="dicOldMonitorGradeKey" />
+    <result column="DIC_PASS_PORT_KEY" jdbcType="VARCHAR" property="dicPassPortKey" />
+    <result column="HOME_PLACE" jdbcType="VARCHAR" property="homePlace" />
+     <result column="DIC_MONITOR_GRADE_KEY" jdbcType="VARCHAR" property="dicMonitorGradeKey"/>
+     <result column="DIC_REGISTER_ID" jdbcType="VARCHAR" property="dicRegisterId"/>
+     <result column="SHORT_NUMBER" jdbcType="VARCHAR" property="shortNumber"/>
+     <result column="FINISH_INTO1" jdbcType="DECIMAL" property="finshInfo1" />
+     <result column="FINISH_INTO2" jdbcType="DECIMAL" property="finshInfo2" />
+     <result column="FINISH_INTO3" jdbcType="DECIMAL" property="finshInfo3" />
+     <result column="FINISH_INTO4" jdbcType="DECIMAL" property="finshInfo4" />
+     <result column="FINISH_INTO5" jdbcType="DECIMAL" property="finshInfo5" />
+     <result column="FINISH_INTO6" jdbcType="DECIMAL" property="finshInfo6" />
+     <result column="FINISH_INTO7" jdbcType="DECIMAL" property="finshInfo7" />
+     <result column="FINISH_INTO8" jdbcType="DECIMAL" property="finshInfo8" />
+     <result column="FINISH_INTO9" jdbcType="DECIMAL" property="finshInfo9" />
+     <result column="IFACE_SN" jdbcType="VARCHAR" property="ifaceSn" />
+     <result column="FINGER_FACE_TIME" jdbcType="TIMESTAMP" property="fingerFaceTime" />
+     <result column="MOBILENUMBER" jdbcType="VARCHAR" property="bindNumber" />
+     <result column="TYPE" jdbcType="VARCHAR" property="type" />
+     <result column="INTERVALTIME" jdbcType="VARCHAR" property="intervalTime" />
+     <result column="BINDTIME" jdbcType="VARCHAR" property="bindtime" />
+     <result column="BINDSTATUS" jdbcType="VARCHAR" property="bindstatus" />
+     <result column="DIC_FIRST_REPORT_GET_KEY" jdbcType="VARCHAR" property="dicFirstReportGetKey" />
+     <result column="DIC_FIRST_REPORT_TYPE_KEY" jdbcType="VARCHAR" property="dicFirstReportTypeKey" />
+    <association property="culpritJudgment" column="id"  select="com.rowell.sifa.mapper.culpritinfo.CulpritJudgmentMapper.selectByCulpritId"/>
+  </resultMap>
+  
+   <resultMap id="SimpleBaseResultMap" type="com.rowell.sifa.pojo.culpritinfo.Culprit">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NO" jdbcType="VARCHAR" property="no" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="DIC_GLDXJB_KEY" jdbcType="VARCHAR" property="dicGldxjbKey" />
+    <result column="ALIAS" jdbcType="VARCHAR" property="alias" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="DIC_SEX_KEY" jdbcType="VARCHAR" property="dicSexKey" />
+    <result column="NATION" jdbcType="VARCHAR" property="nation" />
+    <result column="DIC_WHCD_KEY" jdbcType="VARCHAR" property="dicWhcdKey" />
+    <result column="ORIGIN" jdbcType="VARCHAR" property="origin" />
+    <result column="DIC_YZZMM_KEY" jdbcType="VARCHAR" property="dicYzzmmKey" />
+    <result column="DIC_HYZK_KEY" jdbcType="VARCHAR" property="dicHyzkKey" />
+    <result column="REG_RESIDENCE" jdbcType="VARCHAR" property="regResidence" />
+    <result column="DIC_HKLX_KEY" jdbcType="VARCHAR" property="dicHklxKey" />
+    <result column="IDENTIFICATION" jdbcType="VARCHAR" property="identification" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="JOB" jdbcType="VARCHAR" property="job" />
+    <result column="DIC_STATUS_KEY" jdbcType="VARCHAR" property="dicStatusKey" />
+    <result column="CONTACT_PHONE" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="MOBILE_NUMBER" jdbcType="VARCHAR" property="mobileNumber" />
+    <result column="NOTE" jdbcType="CLOB" property="note" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="TERMINAL_ID" jdbcType="VARCHAR" property="terminalId" />
+    <result column="ACCOUNT_ID" jdbcType="VARCHAR" property="accountId" />
+    <result column="DIC_HEALTHY_STATUS_KEY" jdbcType="VARCHAR" property="dicHealthyStatusKey" />
+    <result column="CEDENTIALS_NUMBER" jdbcType="VARCHAR" property="cedentialsNumber" />
+    <result column="DIC_ZJLX_KEY" jdbcType="VARCHAR" property="dicZjlxKey" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="DIC_IS_ADULT_KEY" jdbcType="VARCHAR" property="dicIsAdultKey" />
+    <result column="PASSPORT_NUM" jdbcType="VARCHAR" property="passportNum" />
+    <result column="DIC_SFYHXZ_KEY" jdbcType="VARCHAR" property="dicSfyhxzKey" />
+    <result column="RETURN_CARD_NUM" jdbcType="VARCHAR" property="returnCardNum" />
+    <result column="DIC_SFYTBZ_KEY" jdbcType="DECIMAL" property="dicSfytbzKey" />
+    <result column="COMPATRIOTS_CARD_NUM" jdbcType="VARCHAR" property="compatriotsCardNum" />
+    <result column="HEALTHY_STATUS_INFO" jdbcType="VARCHAR" property="healthyStatusInfo" />
+    <result column="DIC_SFYCRBS_KEY" jdbcType="VARCHAR" property="dicSfycrbsKey" />
+    <result column="CONTAGION_ID" jdbcType="VARCHAR" property="contagionId" />
+    <result column="DIC_XLSFJK_KEY" jdbcType="VARCHAR" property="dicXlsfjkKey" />
+    <result column="MENTAL_INFO" jdbcType="VARCHAR" property="mentalInfo" />
+    <result column="IDENTIFY_ORG" jdbcType="VARCHAR" property="identifyOrg" />
+    <result column="DIC_XZZMM_KEY" jdbcType="VARCHAR" property="dicXzzmmKey" />
+    <result column="ADDRESS_PRO_ID" jdbcType="VARCHAR" property="addressProId" />
+    <result column="ADDRESS_PRO" jdbcType="VARCHAR" property="addressPro" />
+    <result column="ADDRESS_CITY_ID" jdbcType="VARCHAR" property="addressCityId" />
+    <result column="ADDRESS_CITY" jdbcType="VARCHAR" property="addressCity" />
+    <result column="ADDRESS_COUNTRY_ID" jdbcType="VARCHAR" property="addressCountryId" />
+    <result column="ADDRESS_COUNTRY" jdbcType="VARCHAR" property="addressCountry" />
+    <result column="ADDRESS_STREET" jdbcType="VARCHAR" property="addressStreet" />
+    <result column="ADDRESS_DETAIL" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="REG_RESIDENCE_PRO_ID" jdbcType="VARCHAR" property="regResidenceProId" />
+    <result column="REG_RESIDENCE_PRO" jdbcType="VARCHAR" property="regResidencePro" />
+    <result column="REG_RESIDENCE_CITY_ID" jdbcType="VARCHAR" property="regResidenceCityId" />
+    <result column="REG_RESIDENCE_CITY" jdbcType="VARCHAR" property="regResidenceCity" />
+    <result column="REG_RESIDENCE_COUNTRY_ID" jdbcType="VARCHAR" property="regResidenceCountryId" />
+    <result column="REG_RESIDENCE_COUNTRY" jdbcType="VARCHAR" property="regResidenceCountry" />
+    <result column="REG_RESIDENCE_STREET" jdbcType="VARCHAR" property="regResidenceStreet" />
+    <result column="REG_RESIDENCE_DETAIL" jdbcType="VARCHAR" property="regResidenceDetail" />
+    <result column="DIC_WORK_STATUS_KEY" jdbcType="VARCHAR" property="dicWorkStatusKey" />
+    <result column="NEW_JOB" jdbcType="VARCHAR" property="newJob" />
+    <result column="JOB_PHONE" jdbcType="VARCHAR" property="jobPhone" />
+    <result column="DIC_HAVA_FAMILY_KEY" jdbcType="VARCHAR" property="dicHavaFamilyKey" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="REDRESS_START_DATE" jdbcType="TIMESTAMP" property="redressStartDate" />
+    <result column="REDRESS_END_DATE" jdbcType="TIMESTAMP" property="redressEndDate" />
+    <result column="FINISH_INTO" jdbcType="DECIMAL" property="finshInfo" />
+    <result column="DIC_PENAL_TYPE_KEY" jdbcType="VARCHAR" property="dicPenalTypeKey" />
+    <result column="CRIME_INFO" jdbcType="VARCHAR" property="crimeInfo" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="DIC_REPORT_INFO_KEY" jdbcType="VARCHAR" property="dicReportInfoKey" />
+    <result column="DIC_REPORT_TYPE_KEY" jdbcType="VARCHAR" property="dicReportTypeKey" />
+    <result column="ACCOUNTNAME" jdbcType="VARCHAR" property="accountName" />
+    <result column="OLD_MONITOR_GRADE" jdbcType="VARCHAR" property="dicOldMonitorGradeKey" />
+    <result column="DIC_PASS_PORT_KEY" jdbcType="VARCHAR" property="dicPassPortKey" />
+    <result column="HOME_PLACE" jdbcType="VARCHAR" property="homePlace" />
+     <result column="DIC_MONITOR_GRADE_KEY" jdbcType="VARCHAR" property="dicMonitorGradeKey"/>
+     <result column="DIC_REGISTER_ID" jdbcType="VARCHAR" property="dicRegisterId"/>
+     <result column="SHORT_NUMBER" jdbcType="VARCHAR" property="shortNumber"/>
+  </resultMap>
+     <resultMap id="countMap" type="hashmap">
+        <result column="count" property="COUNT" jdbcType="VARCHAR"/>
+        <result column="typeName" property="TYPENAME" jdbcType="VARCHAR"/>
+        <result column="percent" property="PERCENT" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ageMap" type="hashmap">
+        <result column="age18" property="AGE18" jdbcType="VARCHAR"/>
+        <result column="age45" property="AGE45" jdbcType="VARCHAR"/>
+        <result column="age60" property="AGE60" jdbcType="VARCHAR"/>
+        <result column="ageUp" property="AGEUP" jdbcType="VARCHAR"/>
+        <result column="totalCount" property="TOTALCOUNT" jdbcType="VARCHAR"/>
+        <result column="percent18" property="PERCENT18" jdbcType="VARCHAR"/>
+        <result column="percent45" property="PERCENT45" jdbcType="VARCHAR"/>
+        <result column="percent60" property="PERCENT60" jdbcType="VARCHAR"/>
+        <result column="percentUp" property="PERCENTUP" jdbcType="VARCHAR"/>
+    </resultMap> 
+  <sql id="Base_Column_List">
+    t1.ID, t1.NO, t1.GROUP_ID, t1.NAME, t1.DIC_GLDXJB_KEY, t1.ALIAS, t1.IMAGE, t1.DIC_SEX_KEY, t1.NATION, t1.DIC_WHCD_KEY, 
+    t1.ORIGIN, t1.DIC_YZZMM_KEY, t1.DIC_HYZK_KEY, t1.REG_RESIDENCE, t1.DIC_HKLX_KEY, t1.IDENTIFICATION, 
+    t1.ADDRESS, t1.JOB, t1.DIC_STATUS_KEY, t1.CONTACT_PHONE, t1.MOBILE_NUMBER, t1.NOTE, t1.CREATED_TIME, t1.MODIFIED_TIME, 
+    t1.TERMINAL_ID, t1.ACCOUNT_ID, t1.DIC_HEALTHY_STATUS_KEY, t1.CEDENTIALS_NUMBER, t1.DIC_ZJLX_KEY, t1.BIRTHDAY, 
+    t1.DIC_IS_ADULT_KEY, t1.PASSPORT_NUM, t1.DIC_SFYHXZ_KEY, t1.RETURN_CARD_NUM, t1.DIC_SFYTBZ_KEY, 
+    t1.COMPATRIOTS_CARD_NUM, t1.HEALTHY_STATUS_INFO, t1.DIC_SFYCRBS_KEY, t1.CONTAGION_ID, t1.DIC_XLSFJK_KEY, 
+    t1.MENTAL_INFO, t1.IDENTIFY_ORG, t1.DIC_XZZMM_KEY, t1.ADDRESS_PRO_ID, t1.ADDRESS_PRO, t1.ADDRESS_CITY_ID, 
+    t1.ADDRESS_CITY, t1.ADDRESS_COUNTRY_ID, t1.ADDRESS_COUNTRY, t1.ADDRESS_STREET, t1.ADDRESS_DETAIL, 
+    t1.REG_RESIDENCE_PRO_ID, t1.REG_RESIDENCE_PRO, t1.REG_RESIDENCE_CITY_ID, t1.REG_RESIDENCE_CITY, 
+    t1.REG_RESIDENCE_COUNTRY_ID, t1.REG_RESIDENCE_COUNTRY, t1.REG_RESIDENCE_STREET, t1.REG_RESIDENCE_DETAIL, 
+    t1.DIC_WORK_STATUS_KEY, t1.NEW_JOB, t1.JOB_PHONE, t1.DIC_HAVA_FAMILY_KEY, t1.CREATED, t1.CREATER, t1.UPDATED, 
+    t1.UPDATER, t1.DEL_FLAG,t1.REDRESS_START_DATE,t1.REDRESS_END_DATE,t1.FINISH_INTO,t1.DIC_REPORT_INFO_KEY,t1.DIC_REPORT_TYPE_KEY,
+    t1.DIC_PASS_PORT_KEY,t1.HOME_PLACE,
+    (select j.adjudge_org from SF_CULPRIT_JUDGMENT j where j.CULPRIT_ID=id) adjudgeOrg,
+    (select j.DIC_PENAL_TYPE_KEY from SF_CULPRIT_JUDGMENT j where j.CULPRIT_ID=id) dicCrimeTypeKey,t1.DIC_MONITOR_GRADE_KEY,
+    t1.DIC_REGISTER_ID, t1.SHORT_NUMBER,
+    t1.FINISH_INTO1,t1.FINISH_INTO2,t1.FINISH_INTO3,
+    t1.FINISH_INTO4,t1.FINISH_INTO5,t1.FINISH_INTO6,
+    t1.FINISH_INTO7,t1.FINISH_INTO8,t1.FINISH_INTO9,
+    t1.IFACE_SN,t1.FINGER_FACE_TIME,t1.DIC_FIRST_REPORT_GET_KEY,t1.DIC_FIRST_REPORT_TYPE_KEY
+  </sql>
+  <select id="findNames" resultType="com.rowell.common.pojo.EasyUITreeNode">
+    select ID,NAME as "text" from SF_CULPRIT
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,t3.name as group_name,t2.DIC_PENAL_TYPE_KEY,t2.CRIME_INFO
+    from SF_CULPRIT t1 left join SF_CULPRIT_JUDGMENT t2 on (t1.ID=t2.CULPRIT_ID) left join sys_group t3 on (t1.group_id=t3.id)
+    where t1.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey1" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,t3.name as group_name,t2.DIC_PENAL_TYPE_KEY,t2.CRIME_INFO,t4.DIC_MONITOR_GRADE_KEY as MONITOR_GRADE
+    from SF_CULPRIT t1 left join SF_CULPRIT_JUDGMENT t2 on (t1.ID=t2.CULPRIT_ID) left join sys_group t3 on (t1.group_id=t3.id)
+    left join SF_GRADE_CHANGE t4 on(t1.ID=t4.CULPRIT_ID)
+    where t1.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_CULPRIT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit">
+    insert into SF_CULPRIT (ID, NO, GROUP_ID, 
+      NAME, DIC_GLDXJB_KEY, ALIAS, 
+      IMAGE, DIC_SEX_KEY, NATION, 
+      DIC_WHCD_KEY, ORIGIN, DIC_YZZMM_KEY, 
+      DIC_HYZK_KEY, REG_RESIDENCE, DIC_HKLX_KEY, 
+      IDENTIFICATION, ADDRESS, JOB, 
+      DIC_STATUS_KEY, CONTACT_PHONE, MOBILE_NUMBER, 
+      NOTE, CREATED_TIME, MODIFIED_TIME, 
+      TERMINAL_ID, ACCOUNT_ID, DIC_HEALTHY_STATUS_KEY, 
+      CEDENTIALS_NUMBER, DIC_ZJLX_KEY, BIRTHDAY, 
+      DIC_IS_ADULT_KEY, PASSPORT_NUM, DIC_SFYHXZ_KEY, 
+      RETURN_CARD_NUM, DIC_SFYTBZ_KEY, COMPATRIOTS_CARD_NUM, 
+      HEALTHY_STATUS_INFO, DIC_SFYCRBS_KEY, CONTAGION_ID, 
+      DIC_XLSFJK_KEY, MENTAL_INFO, IDENTIFY_ORG, 
+      DIC_XZZMM_KEY, ADDRESS_PRO_ID, ADDRESS_PRO, 
+      ADDRESS_CITY_ID, ADDRESS_CITY, ADDRESS_COUNTRY_ID, 
+      ADDRESS_COUNTRY, ADDRESS_STREET, ADDRESS_DETAIL, 
+      REG_RESIDENCE_PRO_ID, REG_RESIDENCE_PRO, REG_RESIDENCE_CITY_ID, 
+      REG_RESIDENCE_CITY, REG_RESIDENCE_COUNTRY_ID, 
+      REG_RESIDENCE_COUNTRY, REG_RESIDENCE_STREET, 
+      REG_RESIDENCE_DETAIL, DIC_WORK_STATUS_KEY, NEW_JOB, 
+      JOB_PHONE, DIC_HAVA_FAMILY_KEY, CREATED, 
+      CREATER, UPDATED, UPDATER, 
+      DEL_FLAG,REDRESS_START_DATE,REDRESS_END_DATE,FINISH_INTO,DIC_REPORT_INFO_KEY,
+      DIC_REPORT_TYPE_KEY,DIC_PASS_PORT_KEY,HOME_PLACE,DIC_MONITOR_GRADE_KEY,
+      DIC_REGISTER_ID, SHORT_NUMBER,
+      FINISH_INTO1,FINISH_INTO2,FINISH_INTO3,FINISH_INTO4,
+      FINISH_INTO5,FINISH_INTO6,FINISH_INTO7,FINISH_INTO8,FINISH_INTO9,
+      IFACE_SN,FINGER_FACE_TIME,DIC_FIRST_REPORT_GET_KEY,DIC_FIRST_REPORT_TYPE_KEY)
+    values (#{id,jdbcType=VARCHAR}, #{no,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{dicGldxjbKey,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{dicSexKey,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
+      #{dicWhcdKey,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{dicYzzmmKey,jdbcType=VARCHAR}, 
+      #{dicHyzkKey,jdbcType=VARCHAR}, #{regResidence,jdbcType=VARCHAR}, #{dicHklxKey,jdbcType=VARCHAR}, 
+      #{identification,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{dicStatusKey,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{mobileNumber,jdbcType=VARCHAR}, 
+      #{note,jdbcType=CLOB}, #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{terminalId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, #{dicHealthyStatusKey,jdbcType=VARCHAR}, 
+      #{cedentialsNumber,jdbcType=VARCHAR}, #{dicZjlxKey,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{dicIsAdultKey,jdbcType=VARCHAR}, #{passportNum,jdbcType=VARCHAR}, #{dicSfyhxzKey,jdbcType=VARCHAR}, 
+      #{returnCardNum,jdbcType=VARCHAR}, #{dicSfytbzKey,jdbcType=DECIMAL}, #{compatriotsCardNum,jdbcType=VARCHAR}, 
+      #{healthyStatusInfo,jdbcType=VARCHAR}, #{dicSfycrbsKey,jdbcType=VARCHAR}, #{contagionId,jdbcType=VARCHAR}, 
+      #{dicXlsfjkKey,jdbcType=VARCHAR}, #{mentalInfo,jdbcType=VARCHAR}, #{identifyOrg,jdbcType=VARCHAR}, 
+      #{dicXzzmmKey,jdbcType=VARCHAR}, #{addressProId,jdbcType=VARCHAR}, #{addressPro,jdbcType=VARCHAR}, 
+      #{addressCityId,jdbcType=VARCHAR}, #{addressCity,jdbcType=VARCHAR}, #{addressCountryId,jdbcType=VARCHAR}, 
+      #{addressCountry,jdbcType=VARCHAR}, #{addressStreet,jdbcType=VARCHAR}, #{addressDetail,jdbcType=VARCHAR}, 
+      #{regResidenceProId,jdbcType=VARCHAR}, #{regResidencePro,jdbcType=VARCHAR}, #{regResidenceCityId,jdbcType=VARCHAR}, 
+      #{regResidenceCity,jdbcType=VARCHAR}, #{regResidenceCountryId,jdbcType=VARCHAR}, 
+      #{regResidenceCountry,jdbcType=VARCHAR}, #{regResidenceStreet,jdbcType=VARCHAR}, 
+      #{regResidenceDetail,jdbcType=VARCHAR}, #{dicWorkStatusKey,jdbcType=VARCHAR}, #{newJob,jdbcType=VARCHAR}, 
+      #{jobPhone,jdbcType=VARCHAR}, #{dicHavaFamilyKey,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL},#{redressStartDate,jdbcType=TIMESTAMP}, #{redressEndDate,jdbcType=TIMESTAMP},
+      #{finshInfo,jdbcType=DECIMAL}, #{dicReportInfoKey,jdbcType=VARCHAR}, #{dicReportTypeKey,jdbcType=VARCHAR},
+      #{dicPassPortKey,jdbcType=VARCHAR},#{homePlace,jdbcType=VARCHAR},#{dicMonitorGradeKey,jdbcType=VARCHAR},
+      #{dicRegisterId,jdbcType=VARCHAR}, #{shortNumber,jdbcType=VARCHAR},
+      #{finshInfo1,jdbcType=DECIMAL}, #{finshInfo2,jdbcType=DECIMAL}, #{finshInfo3,jdbcType=DECIMAL},
+      #{finshInfo4,jdbcType=DECIMAL}, #{finshInfo5,jdbcType=DECIMAL}, #{finshInfo6,jdbcType=DECIMAL},
+      #{finshInfo7,jdbcType=DECIMAL}, #{finshInfo8,jdbcType=DECIMAL}, #{finshInfo9,jdbcType=DECIMAL},
+      #{ifaceSn,jdbcType=VARCHAR}, #{fingerFaceTime,jdbcType=TIMESTAMP}, 
+      #{dicFirstReportGetKey,jdbcType=VARCHAR}, #{dicFirstReportTypeKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit">
+    insert into SF_CULPRIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="no != null">
+        NO,
+      </if>
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="dicGldxjbKey != null">
+        DIC_GLDXJB_KEY,
+      </if>
+      <if test="alias != null">
+        ALIAS,
+      </if>
+      <if test="image != null">
+        IMAGE,
+      </if>
+      <if test="dicSexKey != null">
+        DIC_SEX_KEY,
+      </if>
+      <if test="nation != null">
+        NATION,
+      </if>
+      <if test="dicWhcdKey != null">
+        DIC_WHCD_KEY,
+      </if>
+      <if test="origin != null">
+        ORIGIN,
+      </if>
+      <if test="dicYzzmmKey != null">
+        DIC_YZZMM_KEY,
+      </if>
+      <if test="dicHyzkKey != null">
+        DIC_HYZK_KEY,
+      </if>
+      <if test="regResidence != null">
+        REG_RESIDENCE,
+      </if>
+      <if test="dicHklxKey != null">
+        DIC_HKLX_KEY,
+      </if>
+      <if test="identification != null">
+        IDENTIFICATION,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="job != null">
+        JOB,
+      </if>
+      <if test="dicStatusKey != null">
+        DIC_STATUS_KEY,
+      </if>
+      <if test="contactPhone != null">
+        CONTACT_PHONE,
+      </if>
+      <if test="mobileNumber != null">
+        MOBILE_NUMBER,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="terminalId != null">
+        TERMINAL_ID,
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID,
+      </if>
+      <if test="dicHealthyStatusKey != null">
+        DIC_HEALTHY_STATUS_KEY,
+      </if>
+      <if test="cedentialsNumber != null">
+        CEDENTIALS_NUMBER,
+      </if>
+      <if test="dicZjlxKey != null">
+        DIC_ZJLX_KEY,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY,
+      </if>
+      <if test="dicIsAdultKey != null">
+        DIC_IS_ADULT_KEY,
+      </if>
+      <if test="passportNum != null">
+        PASSPORT_NUM,
+      </if>
+      <if test="dicSfyhxzKey != null">
+        DIC_SFYHXZ_KEY,
+      </if>
+      <if test="returnCardNum != null">
+        RETURN_CARD_NUM,
+      </if>
+      <if test="dicSfytbzKey != null">
+        DIC_SFYTBZ_KEY,
+      </if>
+      <if test="compatriotsCardNum != null">
+        COMPATRIOTS_CARD_NUM,
+      </if>
+      <if test="healthyStatusInfo != null">
+        HEALTHY_STATUS_INFO,
+      </if>
+      <if test="dicSfycrbsKey != null">
+        DIC_SFYCRBS_KEY,
+      </if>
+      <if test="contagionId != null">
+        CONTAGION_ID,
+      </if>
+      <if test="dicXlsfjkKey != null">
+        DIC_XLSFJK_KEY,
+      </if>
+      <if test="mentalInfo != null">
+        MENTAL_INFO,
+      </if>
+      <if test="identifyOrg != null">
+        IDENTIFY_ORG,
+      </if>
+      <if test="dicXzzmmKey != null">
+        DIC_XZZMM_KEY,
+      </if>
+      <if test="addressProId != null">
+        ADDRESS_PRO_ID,
+      </if>
+      <if test="addressPro != null">
+        ADDRESS_PRO,
+      </if>
+      <if test="addressCityId != null">
+        ADDRESS_CITY_ID,
+      </if>
+      <if test="addressCity != null">
+        ADDRESS_CITY,
+      </if>
+      <if test="addressCountryId != null">
+        ADDRESS_COUNTRY_ID,
+      </if>
+      <if test="addressCountry != null">
+        ADDRESS_COUNTRY,
+      </if>
+      <if test="addressStreet != null">
+        ADDRESS_STREET,
+      </if>
+      <if test="addressDetail != null">
+        ADDRESS_DETAIL,
+      </if>
+      <if test="regResidenceProId != null">
+        REG_RESIDENCE_PRO_ID,
+      </if>
+      <if test="regResidencePro != null">
+        REG_RESIDENCE_PRO,
+      </if>
+      <if test="regResidenceCityId != null">
+        REG_RESIDENCE_CITY_ID,
+      </if>
+      <if test="regResidenceCity != null">
+        REG_RESIDENCE_CITY,
+      </if>
+      <if test="regResidenceCountryId != null">
+        REG_RESIDENCE_COUNTRY_ID,
+      </if>
+      <if test="regResidenceCountry != null">
+        REG_RESIDENCE_COUNTRY,
+      </if>
+      <if test="regResidenceStreet != null">
+        REG_RESIDENCE_STREET,
+      </if>
+      <if test="regResidenceDetail != null">
+        REG_RESIDENCE_DETAIL,
+      </if>
+      <if test="dicWorkStatusKey != null">
+        DIC_WORK_STATUS_KEY,
+      </if>
+      <if test="newJob != null">
+        NEW_JOB,
+      </if>
+      <if test="jobPhone != null">
+        JOB_PHONE,
+      </if>
+      <if test="dicHavaFamilyKey != null">
+        DIC_HAVA_FAMILY_KEY,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="redressStartDate != null">
+        REDRESS_START_DATE,
+      </if>
+      <if test="redressEndDate != null">
+        REDRESS_END_DATE,
+      </if>
+      <if test="finshInfo != null">
+        FINISH_INTO,
+      </if>
+      <if test="dicReportInfoKey != null">
+        DIC_REPORT_INFO_KEY,
+      </if>
+      <if test="dicReportTypeKey != null">
+        DIC_REPORT_TYPE_KEY,
+      </if>
+      <if test="dicPassPortKey!= null">
+        DIC_PASS_PORT_KEY,
+      </if>
+      <if test="homePlace != null">
+        HOME_PLACE,
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        DIC_MONITOR_GRADE_KEY,
+      </if>
+      <if test="dicRegisterId != null">
+        DIC_REGISTER_ID,
+      </if>
+      <if test="shortNumber != null">
+        SHORT_NUMBER,
+      </if>
+       <if test="finshInfo1 != null">
+        FINISH_INTO1,
+      </if>
+       <if test="finshInfo2 != null">
+        FINISH_INTO2,
+      </if>
+       <if test="finshInfo3 != null">
+        FINISH_INTO3,
+      </if>
+       <if test="finshInfo4 != null">
+        FINISH_INTO4,
+      </if>
+       <if test="finshInfo5 != null">
+        FINISH_INTO5,
+      </if>
+       <if test="finshInfo6 != null">
+        FINISH_INTO6,
+      </if>
+       <if test="finshInfo7 != null">
+        FINISH_INTO7,
+      </if>
+       <if test="finshInfo8 != null">
+        FINISH_INTO8,
+      </if>
+      <if test="finshInfo9 != null">
+        FINISH_INTO9,
+      </if>
+      <if test="ifaceSn != null">
+        IFACE_SN,
+      </if>
+      <if test="fingerFaceTime != null">
+        FINGER_FACE_TIME,
+      </if>
+      <if test="dicFirstReportGetKey != null">
+        DIC_FIRST_REPORT_GET_KEY,
+      </if>
+      <if test="dicFirstReportTypeKey != null">
+        DIC_FIRST_REPORT_TYPE_KEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null">
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dicGldxjbKey != null">
+        #{dicGldxjbKey,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSexKey != null">
+        #{dicSexKey,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="dicWhcdKey != null">
+        #{dicWhcdKey,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="dicYzzmmKey != null">
+        #{dicYzzmmKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHyzkKey != null">
+        #{dicHyzkKey,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidence != null">
+        #{regResidence,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHklxKey != null">
+        #{dicHklxKey,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null">
+        #{identification,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="dicStatusKey != null">
+        #{dicStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null">
+        #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=CLOB},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminalId != null">
+        #{terminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHealthyStatusKey != null">
+        #{dicHealthyStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cedentialsNumber != null">
+        #{cedentialsNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dicZjlxKey != null">
+        #{dicZjlxKey,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicIsAdultKey != null">
+        #{dicIsAdultKey,jdbcType=VARCHAR},
+      </if>
+      <if test="passportNum != null">
+        #{passportNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSfyhxzKey != null">
+        #{dicSfyhxzKey,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCardNum != null">
+        #{returnCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSfytbzKey != null">
+        #{dicSfytbzKey,jdbcType=DECIMAL},
+      </if>
+      <if test="compatriotsCardNum != null">
+        #{compatriotsCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="healthyStatusInfo != null">
+        #{healthyStatusInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSfycrbsKey != null">
+        #{dicSfycrbsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="contagionId != null">
+        #{contagionId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicXlsfjkKey != null">
+        #{dicXlsfjkKey,jdbcType=VARCHAR},
+      </if>
+      <if test="mentalInfo != null">
+        #{mentalInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="identifyOrg != null">
+        #{identifyOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="dicXzzmmKey != null">
+        #{dicXzzmmKey,jdbcType=VARCHAR},
+      </if>
+      <if test="addressProId != null">
+        #{addressProId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPro != null">
+        #{addressPro,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCityId != null">
+        #{addressCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCity != null">
+        #{addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCountryId != null">
+        #{addressCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCountry != null">
+        #{addressCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="addressStreet != null">
+        #{addressStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceProId != null">
+        #{regResidenceProId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidencePro != null">
+        #{regResidencePro,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCityId != null">
+        #{regResidenceCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCity != null">
+        #{regResidenceCity,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCountryId != null">
+        #{regResidenceCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCountry != null">
+        #{regResidenceCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceStreet != null">
+        #{regResidenceStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceDetail != null">
+        #{regResidenceDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="dicWorkStatusKey != null">
+        #{dicWorkStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="newJob != null">
+        #{newJob,jdbcType=VARCHAR},
+      </if>
+      <if test="jobPhone != null">
+        #{jobPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHavaFamilyKey != null">
+        #{dicHavaFamilyKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+       <if test="redressStartDate != null">
+        #{redressStartDate,jdbcType=TIMESTAMP},
+      </if>
+       <if test="updater != null">
+         #{redressEndDate,jdbcType=TIMESTAMP},
+      </if>
+       <if test="finshInfo != null">
+        #{finshInfo,jdbcType=DECIMAL},
+      </if>
+      <if test="dicReportInfoKey != null">
+        #{dicReportInfoKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicReportTypeKey != null">
+        #{dicReportTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicPassPortKey != null">
+        #{dicPassPortKey,jdbcType=VARCHAR},
+      </if>
+      <if test="homePlace != null">
+        #{homePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicRegisterId != null">
+        #{dicRegisterId,jdbcType=VARCHAR},
+      </if>
+      <if test="shortNumber != null">
+        #{shortNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="finshInfo1 != null">
+        #{finshInfo1,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo2 != null">
+        #{finshInfo2,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo3 != null">
+        #{finshInfo3,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo4 != null">
+        #{finshInfo4,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo5 != null">
+        #{finshInfo5,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo6 != null">
+        #{finshInfo6,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo7 != null">
+        #{finshInfo7,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo8 != null">
+        #{finshInfo8,jdbcType=DECIMAL},
+      </if>
+       <if test="finshInfo9 != null">
+        #{finshInfo9,jdbcType=DECIMAL},
+      </if>
+      <if test="ifaceSn != null">
+        #{IFACE_SN,jdbcType=VARCHAR},
+      </if>
+       <if test="fingerFaceTime != null">
+        #{FINGER_FACE_TIME,jdbcType=TIMESTAMP},
+      </if>
+       <if test="dicFirstReportGetKey != null">
+        #{dicFirstReportGetKey,jdbcType=VARCHAR},
+      </if>
+       <if test="dicFirstReportTypeKey != null">
+        #{dicFirstReportTypeKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit">
+    update SF_CULPRIT
+    <set>
+      <if test="no != null">
+        NO = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dicGldxjbKey != null">
+        DIC_GLDXJB_KEY = #{dicGldxjbKey,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        ALIAS = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSexKey != null">
+        DIC_SEX_KEY = #{dicSexKey,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        NATION = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="dicWhcdKey != null">
+        DIC_WHCD_KEY = #{dicWhcdKey,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        ORIGIN = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="dicYzzmmKey != null">
+        DIC_YZZMM_KEY = #{dicYzzmmKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHyzkKey != null">
+        DIC_HYZK_KEY = #{dicHyzkKey,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidence != null">
+        REG_RESIDENCE = #{regResidence,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHklxKey != null">
+        DIC_HKLX_KEY = #{dicHklxKey,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null">
+        IDENTIFICATION = #{identification,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        JOB = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="dicStatusKey != null">
+        DIC_STATUS_KEY = #{dicStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null">
+        MOBILE_NUMBER = #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=CLOB},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminalId != null">
+        TERMINAL_ID = #{terminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHealthyStatusKey != null">
+        DIC_HEALTHY_STATUS_KEY = #{dicHealthyStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cedentialsNumber != null">
+        CEDENTIALS_NUMBER = #{cedentialsNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dicZjlxKey != null">
+        DIC_ZJLX_KEY = #{dicZjlxKey,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicIsAdultKey != null">
+        DIC_IS_ADULT_KEY = #{dicIsAdultKey,jdbcType=VARCHAR},
+      </if>
+      <if test="passportNum != null">
+        PASSPORT_NUM = #{passportNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSfyhxzKey != null">
+        DIC_SFYHXZ_KEY = #{dicSfyhxzKey,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCardNum != null">
+        RETURN_CARD_NUM = #{returnCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSfytbzKey != null">
+        DIC_SFYTBZ_KEY = #{dicSfytbzKey,jdbcType=DECIMAL},
+      </if>
+      <if test="compatriotsCardNum != null">
+        COMPATRIOTS_CARD_NUM = #{compatriotsCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="healthyStatusInfo != null">
+        HEALTHY_STATUS_INFO = #{healthyStatusInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSfycrbsKey != null">
+        DIC_SFYCRBS_KEY = #{dicSfycrbsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="contagionId != null">
+        CONTAGION_ID = #{contagionId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicXlsfjkKey != null">
+        DIC_XLSFJK_KEY = #{dicXlsfjkKey,jdbcType=VARCHAR},
+      </if>
+      <if test="mentalInfo != null">
+        MENTAL_INFO = #{mentalInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="identifyOrg != null">
+        IDENTIFY_ORG = #{identifyOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="dicXzzmmKey != null">
+        DIC_XZZMM_KEY = #{dicXzzmmKey,jdbcType=VARCHAR},
+      </if>
+      <if test="addressProId != null">
+        ADDRESS_PRO_ID = #{addressProId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPro != null">
+        ADDRESS_PRO = #{addressPro,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCityId != null">
+        ADDRESS_CITY_ID = #{addressCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCity != null">
+        ADDRESS_CITY = #{addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCountryId != null">
+        ADDRESS_COUNTRY_ID = #{addressCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCountry != null">
+        ADDRESS_COUNTRY = #{addressCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="addressStreet != null">
+        ADDRESS_STREET = #{addressStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceProId != null">
+        REG_RESIDENCE_PRO_ID = #{regResidenceProId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidencePro != null">
+        REG_RESIDENCE_PRO = #{regResidencePro,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCityId != null">
+        REG_RESIDENCE_CITY_ID = #{regResidenceCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCity != null">
+        REG_RESIDENCE_CITY = #{regResidenceCity,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCountryId != null">
+        REG_RESIDENCE_COUNTRY_ID = #{regResidenceCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceCountry != null">
+        REG_RESIDENCE_COUNTRY = #{regResidenceCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceStreet != null">
+        REG_RESIDENCE_STREET = #{regResidenceStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="regResidenceDetail != null">
+        REG_RESIDENCE_DETAIL = #{regResidenceDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="dicWorkStatusKey != null">
+        DIC_WORK_STATUS_KEY = #{dicWorkStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="newJob != null">
+        NEW_JOB = #{newJob,jdbcType=VARCHAR},
+      </if>
+      <if test="jobPhone != null">
+        JOB_PHONE = #{jobPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHavaFamilyKey != null">
+        DIC_HAVA_FAMILY_KEY = #{dicHavaFamilyKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+       <if test="redressStartDate != null">
+        REDRESS_START_DATE=#{redressStartDate,jdbcType=TIMESTAMP},
+      </if>
+       <if test="redressEndDate != null">
+        REDRESS_END_DATE=#{redressEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finshInfo != null">
+        FINISH_INTO = #{finshInfo,jdbcType=DECIMAL},
+      </if>
+      <if test="dicReportInfoKey != null">
+        DIC_REPORT_INFO_KEY = #{dicReportInfoKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicReportTypeKey != null">
+        DIC_REPORT_TYPE_KEY = #{dicReportTypeKey,jdbcType=VARCHAR},
+      </if>
+       <if test="dicPassPortKey != null">
+        DIC_PASS_PORT_KEY = #{dicPassPortKey,jdbcType=VARCHAR},
+      </if>
+       <if test="homePlace != null">
+        HOME_PLACE = #{homePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        DIC_MONITOR_GRADE_KEY = #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicRegisterId != null">
+        DIC_REGISTER_ID = #{dicRegisterId,jdbcType=VARCHAR},
+      </if>
+      <if test="shortNumber != null">
+        SHORT_NUMBER = #{shortNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="finshInfo1 != null">
+        FINISH_INTO1 = #{finshInfo1,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo2 != null">
+        FINISH_INTO2 = #{finshInfo2,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo3 != null">
+        FINISH_INTO3 = #{finshInfo3,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo4 != null">
+        FINISH_INTO4 = #{finshInfo4,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo5 != null">
+        FINISH_INTO5 = #{finshInfo5,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo6 != null">
+        FINISH_INTO6 = #{finshInfo6,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo7 != null">
+        FINISH_INTO7 = #{finshInfo7,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo8 != null">
+        FINISH_INTO8 = #{finshInfo8,jdbcType=DECIMAL},
+      </if>
+      <if test="finshInfo9 != null">
+        FINISH_INTO9 = #{finshInfo9,jdbcType=DECIMAL},
+      </if>
+      <if test="ifaceSn != null">
+        IFACE_SN = #{ifaceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="fingerFaceTime != null">
+        FINGER_FACE_TIME = #{fingerFaceTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="dicFirstReportGetKey != null">
+        DIC_FIRST_REPORT_GET_KEY=#{dicFirstReportGetKey,jdbcType=VARCHAR},
+      </if>
+       <if test="dicFirstReportTypeKey != null">
+        DIC_FIRST_REPORT_TYPE_KEY=#{dicFirstReportTypeKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit">
+    update SF_CULPRIT
+    set NO = #{no,jdbcType=VARCHAR},
+      GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      DIC_GLDXJB_KEY = #{dicGldxjbKey,jdbcType=VARCHAR},
+      ALIAS = #{alias,jdbcType=VARCHAR},
+      IMAGE = #{image,jdbcType=VARCHAR},
+      DIC_SEX_KEY = #{dicSexKey,jdbcType=VARCHAR},
+      NATION = #{nation,jdbcType=VARCHAR},
+      DIC_WHCD_KEY = #{dicWhcdKey,jdbcType=VARCHAR},
+      ORIGIN = #{origin,jdbcType=VARCHAR},
+      DIC_YZZMM_KEY = #{dicYzzmmKey,jdbcType=VARCHAR},
+      DIC_HYZK_KEY = #{dicHyzkKey,jdbcType=VARCHAR},
+      REG_RESIDENCE = #{regResidence,jdbcType=VARCHAR},
+      DIC_HKLX_KEY = #{dicHklxKey,jdbcType=VARCHAR},
+      IDENTIFICATION = #{identification,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      JOB = #{job,jdbcType=VARCHAR},
+      DIC_STATUS_KEY = #{dicStatusKey,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      MOBILE_NUMBER = #{mobileNumber,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=CLOB},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      TERMINAL_ID = #{terminalId,jdbcType=VARCHAR},
+      ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      DIC_HEALTHY_STATUS_KEY = #{dicHealthyStatusKey,jdbcType=VARCHAR},
+      CEDENTIALS_NUMBER = #{cedentialsNumber,jdbcType=VARCHAR},
+      DIC_ZJLX_KEY = #{dicZjlxKey,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      DIC_IS_ADULT_KEY = #{dicIsAdultKey,jdbcType=VARCHAR},
+      PASSPORT_NUM = #{passportNum,jdbcType=VARCHAR},
+      DIC_SFYHXZ_KEY = #{dicSfyhxzKey,jdbcType=VARCHAR},
+      RETURN_CARD_NUM = #{returnCardNum,jdbcType=VARCHAR},
+      DIC_SFYTBZ_KEY = #{dicSfytbzKey,jdbcType=DECIMAL},
+      COMPATRIOTS_CARD_NUM = #{compatriotsCardNum,jdbcType=VARCHAR},
+      HEALTHY_STATUS_INFO = #{healthyStatusInfo,jdbcType=VARCHAR},
+      DIC_SFYCRBS_KEY = #{dicSfycrbsKey,jdbcType=VARCHAR},
+      CONTAGION_ID = #{contagionId,jdbcType=VARCHAR},
+      DIC_XLSFJK_KEY = #{dicXlsfjkKey,jdbcType=VARCHAR},
+      MENTAL_INFO = #{mentalInfo,jdbcType=VARCHAR},
+      IDENTIFY_ORG = #{identifyOrg,jdbcType=VARCHAR},
+      DIC_XZZMM_KEY = #{dicXzzmmKey,jdbcType=VARCHAR},
+      ADDRESS_PRO_ID = #{addressProId,jdbcType=VARCHAR},
+      ADDRESS_PRO = #{addressPro,jdbcType=VARCHAR},
+      ADDRESS_CITY_ID = #{addressCityId,jdbcType=VARCHAR},
+      ADDRESS_CITY = #{addressCity,jdbcType=VARCHAR},
+      ADDRESS_COUNTRY_ID = #{addressCountryId,jdbcType=VARCHAR},
+      ADDRESS_COUNTRY = #{addressCountry,jdbcType=VARCHAR},
+      ADDRESS_STREET = #{addressStreet,jdbcType=VARCHAR},
+      ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR},
+      REG_RESIDENCE_PRO_ID = #{regResidenceProId,jdbcType=VARCHAR},
+      REG_RESIDENCE_PRO = #{regResidencePro,jdbcType=VARCHAR},
+      REG_RESIDENCE_CITY_ID = #{regResidenceCityId,jdbcType=VARCHAR},
+      REG_RESIDENCE_CITY = #{regResidenceCity,jdbcType=VARCHAR},
+      REG_RESIDENCE_COUNTRY_ID = #{regResidenceCountryId,jdbcType=VARCHAR},
+      REG_RESIDENCE_COUNTRY = #{regResidenceCountry,jdbcType=VARCHAR},
+      REG_RESIDENCE_STREET = #{regResidenceStreet,jdbcType=VARCHAR},
+      REG_RESIDENCE_DETAIL = #{regResidenceDetail,jdbcType=VARCHAR},
+      DIC_WORK_STATUS_KEY = #{dicWorkStatusKey,jdbcType=VARCHAR},
+      NEW_JOB = #{newJob,jdbcType=VARCHAR},
+      JOB_PHONE = #{jobPhone,jdbcType=VARCHAR},
+      DIC_HAVA_FAMILY_KEY = #{dicHavaFamilyKey,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      REDRESS_START_DATE=#{redressStartDate,jdbcType=TIMESTAMP},
+      REDRESS_END_DATE=#{redressEndDate,jdbcType=TIMESTAMP},
+      FINISH_INTO = #{finshInfo,jdbcType=DECIMAL},
+      DIC_REPORT_INFO_KEY = #{dicReportInfoKey,jdbcType=VARCHAR},
+      DIC_REPORT_TYPE_KEY = #{dicReportTypeKey,jdbcType=VARCHAR},
+      DIC_PASS_PORT_KEY = #{dicPassPortKey,jdbcType=VARCHAR},
+      HOME_PLACE = #{homePlace,jdbcType=VARCHAR},
+      DIC_MONITOR_GRADE_KEY = #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      DIC_REGISTER_ID = #{dicRegisterId,jdbcType=VARCHAR},
+      SHORT_NUMBER = #{shortNumber,jdbcType=VARCHAR},
+      FINISH_INTO1 = #{finshInfo1,jdbcType=DECIMAL},
+      FINISH_INTO2 = #{finshInfo2,jdbcType=DECIMAL},
+      FINISH_INTO3 = #{finshInfo3,jdbcType=DECIMAL},
+      FINISH_INTO4 = #{finshInfo4,jdbcType=DECIMAL},
+      FINISH_INTO5 = #{finshInfo5,jdbcType=DECIMAL},
+      FINISH_INTO6 = #{finshInfo6,jdbcType=DECIMAL},
+      FINISH_INTO7 = #{finshInfo7,jdbcType=DECIMAL},
+      FINISH_INTO8 = #{finshInfo8,jdbcType=DECIMAL},
+      FINISH_INTO9 = #{finshInfo9,jdbcType=DECIMAL},
+      IFACE_SN = #{ifaceSn,jdbcType=VARCHAR},
+      FINGER_FACE_TIME = #{fingerFaceTime,jdbcType=TIMESTAMP},
+      DIC_FIRST_REPORT_GET_KEY=#{dicFirstReportGetKey,jdbcType=VARCHAR},
+      DIC_FIRST_REPORT_TYPE_KEY=#{dicFirstReportTypeKey,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,t3.name as group_name,t2.DIC_PENAL_TYPE_KEY,t2.CRIME_INFO,t5.ACCOUNTNAME
+    from SF_CULPRIT t1 left join SF_CULPRIT_JUDGMENT t2 on (t1.ID=t2.CULPRIT_ID) left join sys_group t3 on (t1.group_id=t3.id) left join sys_account t5 on(t1.ACCOUNT_ID=t5.ID)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+   <select id="selectAllSimple" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="SimpleBaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT t1 
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  
+   <select id="selectOnlyCulpritInfo" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT t1 
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+   <select id="findNumByGroupId" parameterType="String" resultType="int">
+    select count(id)
+    from SF_CULPRIT t1 
+   	where t1.group_id=#{groupId}
+  </select>
+  <sql id="findAllWhere">
+    <if test="no != null and no!=''">
+      AND t1.NO like '%'|| #{no,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id)
+    </if>
+    <if test="name != null and name!=''">
+      AND t1.NAME like '%'||#{name,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="dicGldxjbKey != null and dicGldxjbKey!=''">
+      AND t1.DIC_GLDXJB_KEY = #{dicGldxjbKey,jdbcType=VARCHAR}
+    </if>
+    <if test="alias != null and alias!=''">
+      AND t1.ALIAS = #{alias,jdbcType=VARCHAR}
+    </if>
+    <if test="image != null and image!=''">
+      AND t1.IMAGE = #{image,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSexKey != null and dicSexKey!=''">
+      AND t1.DIC_SEX_KEY = #{dicSexKey,jdbcType=VARCHAR}
+    </if>
+    <if test="nation != null and nation!=''">
+      AND t1.NATION = #{nation,jdbcType=VARCHAR}
+    </if>
+    <if test="dicWhcdKey != null and dicWhcdKey!=''">
+      AND t1.DIC_WHCD_KEY = #{dicWhcdKey,jdbcType=VARCHAR}
+    </if>
+    <if test="origin != null and origin!=''">
+      AND t1.ORIGIN = #{origin,jdbcType=VARCHAR}
+    </if>
+    <if test="dicYzzmmKey != null and dicYzzmmKey!=''">
+      AND t1.DIC_YZZMM_KEY = #{dicYzzmmKey,jdbcType=VARCHAR}
+    </if>
+    <if test="searchStartDate != null and searchStartDate!=''">
+     <![CDATA[
+      AND t1.REDRESS_END_DATE >= #{searchStartDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+     <if test="searchEndDate != null and searchEndDate!=''">
+     <![CDATA[
+      AND t1.REDRESS_END_DATE <= #{searchEndDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+    <if test="dicHyzkKey != null and dicHyzkKey!=''">
+      AND t1.DIC_HYZK_KEY = #{dicHyzkKey,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidence != null and regResidence!=''">
+      AND t1.REG_RESIDENCE = #{regResidence,jdbcType=VARCHAR}
+    </if>
+    <if test="dicHklxKey != null and dicHklxKey!=''">
+      AND t1.DIC_HKLX_KEY = #{dicHklxKey,jdbcType=VARCHAR}
+    </if>
+    <if test="identification != null and identification!=''">
+      AND t1.IDENTIFICATION like '%'|| #{identification,jdbcType=VARCHAR} ||'%'
+    </if>
+    <if test="address != null and address!=''">
+      AND t1.ADDRESS = #{address,jdbcType=VARCHAR}
+    </if>
+    <if test="job != null and job!=''">
+      AND t1.JOB = #{job,jdbcType=VARCHAR}
+    </if>
+    <if test="dicStatusKey != null and dicStatusKey!=''">
+      AND t1.DIC_STATUS_KEY = #{dicStatusKey,jdbcType=VARCHAR}
+    </if>
+    <if test="contactPhone != null and contactPhone!=''">
+      AND t1.CONTACT_PHONE like '%'||#{contactPhone,jdbcType=VARCHAR} ||'%'
+    </if>
+    <if test="mobileNumber != null and mobileNumber!=''">
+       AND t1.MOBILE_NUMBER like '%'||#{mobileNumber,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="note != null and note!=''">
+      AND t1.NOTE = #{note,jdbcType=CLOB}
+    </if>
+    <if test="createdTime != null">
+      AND t1.CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="searchStartDate_file !=null and searchStartDate_file !=''">
+     <![CDATA[
+      AND t1.CREATED_TIME >= #{searchStartDate_file,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+     <if test="searchEndDate_file !=null and searchEndDate_file != ''">
+     <![CDATA[
+      AND t1.CREATED_TIME <= #{searchEndDate_file,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+    <if test="modifiedTime != null">
+      AND t1.MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="terminalId != null and terminalId!=''">
+      AND t1.TERMINAL_ID = #{terminalId,jdbcType=VARCHAR}
+    </if>
+    <if test="accountId != null and accountId!=''">
+      AND t1.ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+    </if>
+    <if test="dicHealthyStatusKey != null and dicHealthyStatusKey!=''">
+      AND t1.DIC_HEALTHY_STATUS_KEY = #{dicHealthyStatusKey,jdbcType=VARCHAR}
+    </if>
+    <if test="cedentialsNumber != null and cedentialsNumber!=''">
+      AND t1.CEDENTIALS_NUMBER = #{cedentialsNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="dicZjlxKey != null and dicZjlxKey!=''">
+      AND t1.DIC_ZJLX_KEY = #{dicZjlxKey,jdbcType=VARCHAR}
+    </if>
+    <if test="birthday != null">
+      AND t1.BIRTHDAY = #{birthday,jdbcType=TIMESTAMP}
+    </if>
+    <if test="dicIsAdultKey != null and dicIsAdultKey!=''">
+      AND t1.DIC_IS_ADULT_KEY = #{dicIsAdultKey,jdbcType=VARCHAR}
+    </if>
+    <if test="passportNum != null and passportNum!=''">
+      AND t1.PASSPORT_NUM = #{passportNum,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSfyhxzKey != null and dicSfyhxzKey!=''">
+      AND t1.DIC_SFYHXZ_KEY = #{dicSfyhxzKey,jdbcType=VARCHAR}
+    </if>
+    <if test="returnCardNum != null and returnCardNum!=''">
+      AND t1.RETURN_CARD_NUM = #{returnCardNum,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSfytbzKey != null and returnCardNum!=''">
+      AND t1.DIC_SFYTBZ_KEY = #{dicSfytbzKey,jdbcType=DECIMAL}
+    </if>
+    <if test="compatriotsCardNum != null and compatriotsCardNum!=''">
+      AND t1.COMPATRIOTS_CARD_NUM = #{compatriotsCardNum,jdbcType=VARCHAR}
+    </if>
+    <if test="healthyStatusInfo != null and healthyStatusInfo!=''">
+      AND t1.HEALTHY_STATUS_INFO = #{healthyStatusInfo,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSfycrbsKey != null and dicSfycrbsKey!=''">
+      AND t1.DIC_SFYCRBS_KEY = #{dicSfycrbsKey,jdbcType=VARCHAR}
+    </if>
+    <if test="contagionId != null and contagionId!=''">
+      AND t1.CONTAGION_ID = #{contagionId,jdbcType=VARCHAR}
+    </if>
+    <if test="dicXlsfjkKey != null and dicXlsfjkKey!=''">
+      AND t1.DIC_XLSFJK_KEY = #{dicXlsfjkKey,jdbcType=VARCHAR}
+    </if>
+  
+    <if test="groupName != null and groupName!=''">
+      AND t3.id = #{groupName,jdbcType=VARCHAR}
+    </if>
+    <if test="mentalInfo != null and mentalInfo!=''">
+      AND t1.MENTAL_INFO = #{mentalInfo,jdbcType=VARCHAR}
+    </if>
+    <if test="identifyOrg != null and identifyOrg!=''">
+      AND t1.IDENTIFY_ORG = #{identifyOrg,jdbcType=VARCHAR}
+    </if>
+    <if test="dicXzzmmKey != null and dicXzzmmKey!=''">
+      AND t1.DIC_XZZMM_KEY = #{dicXzzmmKey,jdbcType=VARCHAR}
+    </if>
+    <if test="addressProId != null and addressProId!=''">
+      AND t1.ADDRESS_PRO_ID = #{addressProId,jdbcType=VARCHAR}
+    </if>
+    <if test="addressPro != null and addressPro!=''">
+      AND t1.ADDRESS_PRO = #{addressPro,jdbcType=VARCHAR}
+    </if>
+    <if test="addressCityId != null and addressCityId!=''">
+      AND t1.ADDRESS_CITY_ID = #{addressCityId,jdbcType=VARCHAR}
+    </if>
+    <if test="addressCity != null and addressCity!=''">
+      AND t1.ADDRESS_CITY = #{addressCity,jdbcType=VARCHAR}
+    </if>
+    <if test="addressCountryId != null and addressCountryId!=''">
+      AND t1.ADDRESS_COUNTRY_ID = #{addressCountryId,jdbcType=VARCHAR}
+    </if>
+    <if test="addressCountry != null and addressCountry!=''">
+      AND t1.ADDRESS_COUNTRY = #{addressCountry,jdbcType=VARCHAR}
+    </if>
+    <if test="addressStreet != null and addressStreet!=''">
+      AND t1.ADDRESS_STREET = #{addressStreet,jdbcType=VARCHAR}
+    </if>
+    <if test="addressDetail != null and addressDetail!=''">
+      AND t1.ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceProId != null and regResidenceProId!=''">
+      AND t1.REG_RESIDENCE_PRO_ID = #{regResidenceProId,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidencePro != null and regResidencePro!=''">
+      AND t1.REG_RESIDENCE_PRO = #{regResidencePro,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceCityId != null and regResidenceCityId!=''">
+      AND t1.REG_RESIDENCE_CITY_ID = #{regResidenceCityId,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceCity != null and regResidenceCity!=''">
+      AND t1.REG_RESIDENCE_CITY = #{regResidenceCity,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceCountryId != null and regResidenceCountryId!=''">
+      AND t1.REG_RESIDENCE_COUNTRY_ID = #{regResidenceCountryId,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceCountry != null and regResidenceCountry!=''">
+      AND t1.REG_RESIDENCE_COUNTRY = #{regResidenceCountry,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceStreet != null and regResidenceStreet!=''">
+      AND t1.REG_RESIDENCE_STREET = #{regResidenceStreet,jdbcType=VARCHAR}
+    </if>
+    <if test="regResidenceDetail != null and regResidenceDetail!=''">
+      AND t1.REG_RESIDENCE_DETAIL = #{regResidenceDetail,jdbcType=VARCHAR}
+    </if>
+    <if test="dicWorkStatusKey != null and dicWorkStatusKey!=''">
+      AND t1.DIC_WORK_STATUS_KEY = #{dicWorkStatusKey,jdbcType=VARCHAR}
+    </if>
+    <if test="newJob != null and newJob!=''">
+      AND t1.NEW_JOB = #{newJob,jdbcType=VARCHAR}
+    </if>
+    <if test="jobPhone != null and jobPhone!=''">
+      AND t1.JOB_PHONE = #{jobPhone,jdbcType=VARCHAR}
+    </if>
+    <if test="dicHavaFamilyKey != null and dicHavaFamilyKey!=''">
+      AND t1.DIC_HAVA_FAMILY_KEY = #{dicHavaFamilyKey,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND t1.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="searchCreatedStartDate !=null and searchCreatedStartDate !=''">
+     <![CDATA[
+      AND t1.CREATED >= #{searchCreatedStartDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+     <if test="searchCreatedEndDate !=null and searchCreatedEndDate != ''">
+     <![CDATA[
+      AND t1.CREATED <= #{searchCreatedEndDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t1.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t1.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t1.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t1.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="redressStartDate != null">
+       AND t1.REDRESS_START_DATE=#{redressStartDate,jdbcType=TIMESTAMP}
+     </if>
+     <if test="redressEndDate != null">
+       AND t1.REDRESS_END_DATE=#{redressEndDate,jdbcType=TIMESTAMP}
+     </if>
+	<if test="searchRedressStartDate !=null and searchRedressStartDate !=''">
+     <![CDATA[
+      AND t2.REDRESS_END_DATE >= #{searchRedressStartDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+     <if test="searchRedressEndDate !=null and searchRedressEndDate != ''">
+     <![CDATA[
+      AND t2.REDRESS_END_DATE <= #{searchRedressEndDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+     <if test="finshInfo != null">
+      AND t1.FINISH_INTO = #{finshInfo,jdbcType=DECIMAL}
+    </if>
+    <if test="dicPenalTypeKey != null and dicPenalTypeKey != ''">
+      AND t2.DIC_PENAL_TYPE_KEY = #{dicPenalTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="crimeInfo != null and crimeInfo != ''">
+      AND t2.CRIME_INFO = #{crimeInfo ,jdbcType=VARCHAR}
+    </if>
+    <if test="searchLimiteDate != null and searchLimiteDate != ''">
+       <![CDATA[
+      AND t2.LIMIT_DATE <= #{searchLimiteDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+    <if test="dicReportInfoKey != null and dicReportInfoKey != ''">
+      AND t1.DIC_REPORT_INFO_KEY = #{dicReportInfoKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicReportTypeKey != null and  dicReportTypeKey != ''">
+      AND t1.DIC_REPORT_TYPE_KEY = #{dicReportTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicPassPortKey != null and  dicPassPortKey != ''">
+      AND t1.DIC_PASS_PORT_KEY = #{dicPassPortKey,jdbcType=VARCHAR}
+    </if>
+    <if test="homePlace != null and  homePlace != ''">
+      AND t1.HOME_PLACE = #{homePlace,jdbcType=VARCHAR}
+    </if>
+    <if test="dicMonitorGradeKey != null and dicMonitorGradeKey != ''" >
+      AND t1.DIC_MONITOR_GRADE_KEY = #{dicMonitorGradeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicRegisterId != null">
+      AND t1.DIC_REGISTER_ID = #{dicRegisterId,jdbcType=VARCHAR}
+    </if>
+    <if test="shortNumber != null">
+      AND t1.SHORT_NUMBER = #{shortNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="finshInfo1 != null and finshInfo1 != ''">
+      AND t1.FINISH_INTO1 = #{finshInfo1,jdbcType=DECIMAL}
+    </if>
+    <if test="finshInfo2 != null">
+      AND t1.FINISH_INTO2 = #{finshInfo2,jdbcType=DECIMAL}
+    </if>
+    <if test="finshInfo3 != null">
+      AND t1.FINISH_INTO3 = #{finshInfo3,jdbcType=DECIMAL}
+    </if>
+    <if test="finshInfo4 != null">
+      AND t1.FINISH_INTO4 = #{finshInfo4,jdbcType=DECIMAL}
+    </if>
+    <if test="finshInfo5 != null">
+      AND t1.FINISH_INTO5 = #{finshInfo5,jdbcType=DECIMAL}
+    </if>
+    <if test="finshInfo6 != null">
+      AND t1.FINISH_INTO6 = #{finshInfo6,jdbcType=DECIMAL}
+    </if>
+    <if test="finshInfo7 != null">
+      AND t1.FINISH_INTO7 = #{finshInfo7,jdbcType=DECIMAL}
+    </if>
+    <if test="finshInfo8 != null">
+      AND t1.FINISH_INTO8 = #{finshInfo8,jdbcType=DECIMAL}
+    </if>
+    <if test="finshInfo9 != null">
+      AND t1.FINISH_INTO9 = #{finshInfo9,jdbcType=DECIMAL}
+    </if>
+    <if test="ifaceSn != null">
+      AND t1.IFACE_SN = #{ifaceSn,jdbcType=VARCHAR}
+    </if>
+    <if test="fingerFaceTime != null">
+      AND t1.FINGER_FACE_TIME = #{fingerFaceTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="dicFirstReportGetKey != null and dicFirstReportGetKey != ''">
+      AND  t1.DIC_FIRST_REPORT_GET_KEY=#{dicFirstReportGetKey,jdbcType=VARCHAR}
+     </if>
+     <if test="dicFirstReportTypeKey != null and dicFirstReportTypeKey != ''">
+      AND  t1.DIC_FIRST_REPORT_TYPE_KEY=#{dicFirstReportTypeKey,jdbcType=VARCHAR}
+      </if>
+      <if test="dicAdjudgeRedressOrgKey != null and dicAdjudgeRedressOrgKey!=''">
+      AND t2.DIC_ADJUDGE_REDRESS_ORG_KEY  =#{dicAdjudgeRedressOrgKey,jdbcType=VARCHAR}
+    </if>
+  </sql>
+  <sql id="findAllWhereWithTerminal">
+    <if test="bindstatus =='已绑定'">
+	 <![CDATA[
+	  AND st.mobileNumber is not null
+	 ]]>
+    </if>
+    <if test="bindstatus =='未绑定'">
+	 <![CDATA[
+	  AND st.mobileNumber is null
+	 ]]>
+    </if>
+    <if test="bindNumber != null and bindNumber !=''">
+      AND st.mobileNumber = #{bindNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null and type !=''">
+      AND st.type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="intervalTime != null and intervalTime !=''">
+      AND st.interval_time = #{intervalTime,jdbcType=VARCHAR}
+    </if>
+	<if test="searchTerminalStartDate !=null and searchTerminalStartDate !=''">
+     <![CDATA[
+      AND st.created >= #{searchTerminalStartDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+     <if test="searchTerminalEndDate !=null and searchTerminalEndDate != ''">
+     <![CDATA[
+      AND st.created <= #{searchTerminalEndDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+  </sql>
+
+   <sql id="findAllWhereChart">
+     <if test="searchStartDate !=null and searchStartDate !=''">
+     	<![CDATA[
+     	and t1.CREATED >= #{searchStartDate,jdbcType=TIMESTAMP}
+     	]]>
+    </if>
+     <if test="searchEndDate !=null and searchEndDate !=''">
+     	<![CDATA[
+     	and t1.CREATED <= #{searchEndDate,jdbcType=TIMESTAMP}
+     	]]>
+    </if>
+    <if test="dicStatusKey !=null and dicStatusKey !=''">
+     	<![CDATA[
+     	and t1.DIC_STATUS_KEY = #{dicStatusKey,jdbcType=VARCHAR}
+     	]]>
+    </if>
+  </sql>
+  
+  
+  <select id="findCulpritBySysAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT t1
+    where  t1.group_id in (select id from sys_group start with id = #{groupId,jdbcType=VARCHAR} connect by prior id=parent_id)
+  </select>
+  <select id="groupBySex" resultMap = "countMap" parameterType="map">
+  	select a.sexCount count,t.value typeName,concat(to_char(round((a.sexCount/(select count(dic_Sex_Key) from SF_CULPRIT t1 
+     <where> <include refid="findAllWhereChart" /> </where>
+     and exists ( select g.id from (select * from sys_group  start with id=#{groupId,jdbcType=VARCHAR} connect by prior id = parent_id)g where t1.group_id=g.id)))*100,2),'fm990.9999'),'%') percent from SYS_DIC t left join 
+	(select count(t1.dic_Sex_Key) sexCount,t1.dic_Sex_Key sexKey from SF_CULPRIT t1 
+	 <where> <include refid="findAllWhereChart" /> </where>
+	 and exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by t1.dic_Sex_Key) a 
+	on a.sexKey=t.key  where t.parent_key='10000' and a.sexCount>0 and a.sexCount is not null order by t.DIC_SORT
+  </select>
+   <select id="groupByAge" resultMap = "ageMap" parameterType="map">
+   <![CDATA[
+  	select count(case when (to_char(sysdate,'yyyy')- t.born_year) < 18 then 1 else null end) as age18,
+  	concat(to_char(round((count(case when (to_char(sysdate,'yyyy')- t.born_year) < 18 then 1 else null end)/count(t.identification))*100,2),'fm990.9999'),'%') percent18,
+	count(case when (to_char(sysdate,'yyyy')- t.born_year) < 45 and (to_char(sysdate,'yyyy')- t.born_year) >= 18  then 1 else null end) as age45,
+	concat(to_char(round((count(case when (to_char(sysdate,'yyyy')- t.born_year) < 45 and (to_char(sysdate,'yyyy')- t.born_year) >= 18  then 1 else null end)/count(t.identification))*100,2),'fm990.9999'),'%') percent45,
+	count(case when (to_char(sysdate,'yyyy')- t.born_year) < 60 and (to_char(sysdate,'yyyy')- t.born_year) >= 45  then 1 else null end) as age60,
+	concat(to_char(round((	count(case when (to_char(sysdate,'yyyy')- t.born_year) < 60 and (to_char(sysdate,'yyyy')- t.born_year) >= 45  then 1 else null end)/count(t.identification))*100,2),'fm990.9999'),'%') percent60,
+	count(case when (to_char(sysdate,'yyyy')- t.born_year) >= 60  then 1 else null end) as ageUp,
+	concat(to_char(round((count(case when (to_char(sysdate,'yyyy')- t.born_year) >= 60  then 1 else null end)/count(t.identification))*100,2),'fm990.9999'),'%') percentUp,
+	count(t.identification) as totalCount ]]> from (
+	select case when length(t1.identification) = 18 then substr(t1.identification, 7, 4) when length(t1.identification) = 15 then '19'||substr(t1.identification, 7, 2) end as born_year, t1.identification as identification  
+	from sf_culprit t1 <where> <include refid="findAllWhereChart" /> </where> 
+	and exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id))t
+  </select>
+   <select id="groupByPenalType"  parameterType="map" resultMap = "countMap">
+  	select a.penalTypeCount count,t.value typeName,concat(to_char(round((a.penalTypeCount/(select count(c.DIC_PENAL_TYPE_KEY) from SF_CULPRIT_JUDGMENT c left join SF_CULPRIT t1 on c.CULPRIT_ID=t1.id
+     <where> <include refid="findAllWhereChart" /> </where>
+     and exists ( select g.id from (select * from sys_group  start with id=#{groupId,jdbcType=VARCHAR} connect by prior id = parent_id)g where t1.group_id=g.id)))*100,2),'fm990.9999'),'%') percent from SYS_DIC t left join 
+	(select count(j.DIC_PENAL_TYPE_KEY) penalTypeCount,j.DIC_PENAL_TYPE_KEY penalType from SF_CULPRIT_JUDGMENT j left join SF_CULPRIT t1 on j.CULPRIT_ID=t1.id
+	 <where> <include refid="findAllWhereChart" /> </where>
+	  and exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by j.DIC_PENAL_TYPE_KEY) a 
+	on a.penalType=t.key  where t.parent_key='20000' and a.penalTypeCount is not null order by t.DIC_SORT
+  </select> 
+  <select id="groupByHjlx" parameterType="map" resultMap="countMap">
+  	select a.dicHklxCount count,t.value typeName,concat(to_char(round((a.dicHklxCount/(select count(DIC_HKLX_KEY) from SF_CULPRIT t1 
+     <where> <include refid="findAllWhereChart" /> </where>
+     and exists ( select g.id from (select * from sys_group  start with id=#{groupId,jdbcType=VARCHAR} connect by prior id = parent_id)g where t1.group_id=g.id)))*100,2),'fm990.9999'),'%') percent 
+  	 from SYS_DIC t left join 
+	(select count(t1.DIC_HKLX_KEY) dicHklxCount,t1.DIC_HKLX_KEY dicHklx from SF_CULPRIT t1 
+	 <where> <include refid="findAllWhereChart" /> </where>
+	  and exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by t1.DIC_HKLX_KEY) a 
+	on a.dicHklx=t.key  where t.parent_key='12000' and a.dicHklxCount>0 and a.dicHklxCount is not null order by t.DIC_SORT
+  </select>
+  <select id="groupByCrimeType" parameterType="map" resultMap="countMap">
+  	  select a.crimeTypeCount count,t.value typeName,concat(to_char(round((a.crimeTypeCount/(select count(DIC_CRIME_TYPE_KEY) from SF_CULPRIT_JUDGMENT c left join SF_CULPRIT t1 on c.CULPRIT_ID=t1.id
+    <where> <include refid="findAllWhereChart" /> </where>
+     and exists ( select g.id from (select * from sys_group  start with id=#{groupId,jdbcType=VARCHAR} connect by prior id = parent_id)g where t1.group_id=g.id)))*100,2),'fm990.9999'),'%') percent from SYS_DIC t left join 
+  (select count(j.DIC_CRIME_TYPE_KEY) crimeTypeCount,j.DIC_CRIME_TYPE_KEY crimeType from SF_CULPRIT_JUDGMENT j left join SF_CULPRIT t1 on j.CULPRIT_ID=t1.id
+   <where> <include refid="findAllWhereChart" /> </where>
+   and exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by j.DIC_CRIME_TYPE_KEY) a 
+  on a.crimeType=t.key  where t.parent_key='26000' and a.crimeTypeCount is not null order by t.DIC_SORT
+  </select>
+    <select id="findByGroupIdAndRandom" resultMap="BaseResultMap">
+    <![CDATA[
+    	select * from (select 
+      ]]>
+    <include refid="Base_Column_List" /> from sf_culprit t1 left join SF_RECIDIVISM r on R.Culprit_Id = t1.id 
+    <![CDATA[
+		where t1.group_id = #{groupId,jdbcType=VARCHAR} and r.culprit_id is null 
+		and t1.dic_gldxjb_key <> '27005' and  t1.dic_status_key = '13001' 
+		and t1.id not in
+		(select t.culprit_id from sf_askleave t 
+		where ((t.begin_date < #{checkStartTime,jdbcType=TIMESTAMP} and t.end_date > #{checkStartTime,jdbcType=TIMESTAMP}) 
+		or (t.begin_date < #{checkEndTime,jdbcType=TIMESTAMP} and t.end_date > #{checkEndTime,jdbcType=TIMESTAMP}) 
+		or (t.begin_date > #{checkStartTime,jdbcType=TIMESTAMP} and t.end_date < #{checkEndTime,jdbcType=TIMESTAMP}))
+		and t.dic_status_key <> '17001')
+		order by dbms_random.value) 
+		where rownum <= #{amount,jdbcType=VARCHAR}
+      ]]>
+  </select>
+  
+  <select id="selectAllByGroupId" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,t3.name as group_name,t2.DIC_PENAL_TYPE_KEY,t2.CRIME_INFO,t5.ACCOUNTNAME
+    from SF_CULPRIT t1 left join SF_CULPRIT_JUDGMENT t2 on (t1.ID=t2.CULPRIT_ID) left join sys_group t3 on (t1.group_id=t3.id) left join sys_account t5 on(t1.ACCOUNT_ID=t5.ID)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <select id="selectAllWithTerminal" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    <![CDATA[
+	    ,t3.name as group_name, st.mobilenumber as mobileNumber, st.type as type, st.interval_time as intervalTime, st.created as bindtime,	
+	    case when st.mobilenumber is null then '未绑定' else '已绑定' end as bindstatus 
+    ]]>
+    from SF_CULPRIT t1 left join sys_group t3 on (t1.group_id=t3.id) 
+    left join sf_terminal st on st.culprit_id = t1.id 
+    <where>
+      <include refid="findAllWhere" />
+      <include refid="findAllWhereWithTerminal" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  
+  <select id="statisticsCulpritByYear" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+  	<![CDATA[
+  	select * from (select to_char(REDRESS_START_DATE,'yyyy') year,count(*) count from SF_CULPRIT t1 where t1.REDRESS_START_DATE is not null and exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by to_char(REDRESS_START_DATE,'yyyy')) a 
+  	where a.year>to_char(sysdate - interval '5' year,'yyyy') and a.year<=to_char(sysdate,'yyyy') order by a.year asc
+  	]]>
+  </select>
+  
+  <select id="statisticsCulpritByMonth" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultType="hashmap">
+  	   <![CDATA[
+  	    select CONCAT(replace(month,'-','年'),'月') as label,count from (select month,count(id) as count from (select to_char(REDRESS_START_DATE,'yyyy"-"mm') as month,t1.id from SF_CULPRIT t1 where t1.REDRESS_START_DATE is not null and exists ( select g.id from (select * from sys_group  start with id=#{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id)) group by month) a 
+  	    where a.month>=to_char(sysdate-interval'5'month,'yyyy-mm') and a.month<=to_char(sysdate,'yyyy-mm') order by a.month asc
+  		]]>
+  </select>
+  
+  <select id="statisticsCulpritByHjqk" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+  	select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+    (select count(t1.DIC_HKLX_KEY) penalTypeCount,t1.DIC_HKLX_KEY penalType from SF_CULPRIT t1 where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by t1.DIC_HKLX_KEY) a 
+    on a.penalType=t.key  where t.parent_key='12000' and a.penalTypeCount>0 and a.penalTypeCount is not null order by t.DIC_SORT
+  </select>
+  
+  <select id="statisticsCulpritByHyzk" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+  	select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+	  (select count(t1.DIC_HYZK_KEY) penalTypeCount,t1.DIC_HYZK_KEY penalType from SF_CULPRIT t1 where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by t1.DIC_HYZK_KEY) a 
+	  on a.penalType=t.key  where t.parent_key='11000' and a.penalTypeCount>0 and a.penalTypeCount is not null order by t.DIC_SORT
+  </select>
+  
+  <select id="statisticsCulpritByJsfs" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+  	select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+	  (select count(j.DIC_RECEIVE_TYPE_KEY) penalTypeCount,j.DIC_RECEIVE_TYPE_KEY penalType from SF_CULPRIT_JUDGMENT j left join SF_CULPRIT t1 on j.CULPRIT_ID=t1.id 
+	  where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id)
+	    group by j.DIC_RECEIVE_TYPE_KEY) a 
+	  on a.penalType=t.key  where t.parent_key='70000' and a.penalTypeCount>0 and a.penalTypeCount is not null order by t.DIC_SORT
+  </select>
+  
+  <select id="statisticsPenalType" resultMap="BaseResultMap">
+    <!--  select to_char(a.penalTypeCount*100/(select count(*) from SF_CULPRIT_JUDGMENT c where c.dic_penal_type_key is not null),'fm99') per,t.value typeName from SYS_DIC t left join--> 
+    select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+	(select count(j.DIC_PENAL_TYPE_KEY) penalTypeCount,j.DIC_PENAL_TYPE_KEY penalType from SF_CULPRIT_JUDGMENT j left join SF_CULPRIT t1 on j.CULPRIT_ID=t1.id
+	 where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by j.DIC_PENAL_TYPE_KEY) a 
+	on a.penalType=t.key  where t.parent_key='20000' and a.penalTypeCount>0 and a.penalTypeCount is not null order by t.DIC_SORT
+  </select>
+  
+  <select id="statisticsCrimeType" resultMap="BaseResultMap">
+    select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+	(select count(j.DIC_CRIME_TYPE_KEY) penalTypeCount,j.DIC_CRIME_TYPE_KEY penalType from SF_CULPRIT_JUDGMENT j left join SF_CULPRIT t1 on j.CULPRIT_ID=t1.id
+	 where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by j.DIC_CRIME_TYPE_KEY) a 
+	on a.penalType=t.key  where t.parent_key='26000' and a.penalTypeCount>0 and a.penalTypeCount is not null order by t.DIC_SORT
+  </select>
+  
+  <select id="statisticsCulpritByYzzmm" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+  	select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+    (select count(t1.DIC_YZZMM_KEY) penalTypeCount,t1.DIC_YZZMM_KEY penalType from SF_CULPRIT t1 where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by t1.DIC_YZZMM_KEY) a 
+    on a.penalType=t.key  where t.parent_key='65000' and a.penalTypeCount>0 and a.penalTypeCount is not null order by t.DIC_SORT
+  </select>
+  
+  <select id="statisticsCulpritByMonitorGradeKey" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+  	select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+    (select count(t1.DIC_MONITOR_GRADE_KEY) penalTypeCount,t1.DIC_MONITOR_GRADE_KEY penalType from SF_CULPRIT t1 where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by t1.DIC_MONITOR_GRADE_KEY) a 
+    on a.penalType=t.key  where t.parent_key='27000' and a.penalTypeCount>0 and a.penalTypeCount is not null
+  </select>
+  
+  <select id="statisticsCulpritBySex" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+  	select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+    (select count(t1.DIC_SEX_KEY) penalTypeCount,t1.DIC_SEX_KEY penalType from SF_CULPRIT t1 where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by t1.DIC_SEX_KEY) a 
+    on a.penalType=t.key  where t.parent_key='10000' and a.penalTypeCount>0 and a.penalTypeCount is not null order by t.DIC_SORT
+  </select>
+  
+  <select id="statisticsCulpritByWhcd" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+  	select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+    (select count(t1.DIC_WHCD_KEY) penalTypeCount,t1.DIC_WHCD_KEY penalType from SF_CULPRIT t1 where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by t1.DIC_WHCD_KEY) a 
+    on a.penalType=t.key  where t.parent_key='19000' and a.penalTypeCount>0 and a.penalTypeCount is not null order by t.DIC_SORT
+  </select>
+  
+  <select id="statisticsCulpritByArea" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+  	select a.areaCount count,t.areaname typeName from area t left join 
+	(select count(g.area) areaCount,g.area areaCode from SF_CULPRIT t1 left join SYS_GROUP g on t1.group_id=g.id where exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by g.area) a 
+	on a.areaCode=t.areacode where t.areacode like  #{areaCode,jdbcType=VARCHAR}||'%'  and a.areaCount>0 and a.areaCount is not null order by t.areacode
+  </select>
+
+  <select id="statisticsCulpritByStatus" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit" resultMap="BaseResultMap">
+	select a.penalTypeCount count,t.value typeName from SYS_DIC t left join 
+    (select count(t1.DIC_STATUS_KEY) penalTypeCount,t1.DIC_STATUS_KEY penalType from SF_CULPRIT t1 where t1.DIC_STATUS_KEY in ('13008','13010','13002','13006','13015','13016','13016','13003') and exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t1.group_id=g.id) group by t1.DIC_STATUS_KEY) a 
+    on a.penalType=t.key  where t.parent_key='13000' and a.penalTypeCount>0 and a.penalTypeCount is not null order by t.DIC_SORT
+  </select>
+
+  <select id="getFinishCountBy30Day"  resultType="int">
+  <![CDATA[
+  	select count(*) from SF_CULPRIT t where t.REDRESS_END_DATE>sysdate and t.REDRESS_END_DATE<(sysdate+30)
+  ]]>
+  </select>
+  
+  <select id="getStartCountByThisMonth"  resultType="int">
+  <![CDATA[
+  	select count(*) from SF_CULPRIT t where t.REDRESS_START_DATE>trunc(sysdate,'mm')
+  ]]>
+  </select>
+  
+  <select id="getStartCountByYesterday"  resultType="int">
+  <![CDATA[
+  	select count(*) from SF_CULPRIT t where t.REDRESS_END_DATE>(sysdate-1) and t.REDRESS_END_DATE<sysdate
+  ]]>
+  </select>
+  
+  <select id="getCulpritByStatus" parameterType="com.rowell.sifa.pojo.culpritinfo.Culprit"  resultType="int">
+  <![CDATA[
+  	select count(*) from SF_CULPRIT t where t.dic_status_key=#{dicStatusKey,jdbcType=VARCHAR}
+  ]]>
+  </select>
+</mapper>

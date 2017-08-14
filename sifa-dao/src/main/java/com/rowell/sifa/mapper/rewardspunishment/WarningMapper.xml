@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.rewardspunishment.WarningMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.rewardspunishment.Warning">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="FACT" jdbcType="VARCHAR" property="fact" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="PATH_NAME" jdbcType="VARCHAR" property="pathName" />
+    <result column="DIC_REASON_TYPE_KEY" jdbcType="VARCHAR" property="dicReasonTypeKey" />
+    <result column="WRIT_NUM" jdbcType="VARCHAR" property="writNum" />
+    <result column="REPENTANCE_PATH" jdbcType="VARCHAR" property="repentancePath" />
+    <result column="REPENTEANCE_PATH_NAME" jdbcType="VARCHAR" property="repenteancePathName" />
+    <result column="NOTE_PATH" jdbcType="VARCHAR" property="notePath" />
+    <result column="NOTE_PATH_NAME" jdbcType="VARCHAR" property="notePathName" />
+    <result column="LEGAL_BASIS" jdbcType="VARCHAR" property="legalBasis" />
+    <result column="LEGAL_BASIS_ITEMS" jdbcType="VARCHAR" property="legalBasisItems" />
+    <result column="PINGYI_PATH_NAME" jdbcType="VARCHAR" property="pingyiPathName" />
+    <result column="PINGYI_PATH" jdbcType="VARCHAR" property="pingyiPath" />
+    <result column="COP_ACCOUN_ID" jdbcType="VARCHAR" property="copAccounId" />
+    <result column="OPT_TIME" jdbcType="TIMESTAMP" property="optTime" />
+    <result column="DIC_BLANK_FLAG_KEY" jdbcType="VARCHAR" property="dicBlankFlagKey" />
+    <result column="FLAG_ACCOUNT_NAME" jdbcType="VARCHAR" property="flagAccountName" />
+    <result column="FLAG_ACCOUNT_ID" jdbcType="VARCHAR" property="flagAccountId" />
+    <result column="FLAG_TIME" jdbcType="TIMESTAMP" property="flagTime" />
+    <result column="FLAG_REASON_ID" jdbcType="VARCHAR" property="flagReasonId" />
+    <result column="FLAG_DETAIL_REASON" jdbcType="VARCHAR" property="flagDetailReason" />
+    <result column="FLAG_PATH" jdbcType="VARCHAR" property="flagPath" />
+    <result column="FLAG_PATH_NAME" jdbcType="VARCHAR" property="flagPathName" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROCESS_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="CULPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="IS_PRINTJYS" jdbcType="VARCHAR" property="isPrintJYS" />
+ 	<result column="IS_PRINTSHB" jdbcType="VARCHAR" property="isPrintSHB" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.CULPRIT_ID, t.FACT, t.NOTE, t.PATH, t.PATH_NAME, t.DIC_REASON_TYPE_KEY, t.WRIT_NUM, t.REPENTANCE_PATH, 
+    t.REPENTEANCE_PATH_NAME, t.NOTE_PATH, t.NOTE_PATH_NAME, t.LEGAL_BASIS, t.LEGAL_BASIS_ITEMS, 
+    t.PINGYI_PATH_NAME, t.PINGYI_PATH, t.COP_ACCOUN_ID, t.OPT_TIME, t.DIC_BLANK_FLAG_KEY, t.FLAG_ACCOUNT_NAME, 
+    t.FLAG_ACCOUNT_ID, t.FLAG_TIME, t.FLAG_REASON_ID, t.FLAG_DETAIL_REASON, t.FLAG_PATH, t.FLAG_PATH_NAME, 
+    t.CREATED, t.CREATER, t.UPDATED, t.UPDATER, t.DEL_FLAG,t.PROCESS_ID,t2.name as culprit_name,t3.name as group_name,t.IS_PRINTJYS,t.IS_PRINTSHB
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_WARNING t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_WARNING
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.rewardspunishment.Warning">
+    insert into SF_WARNING (ID, CULPRIT_ID, FACT, 
+      NOTE, PATH, PATH_NAME, 
+      DIC_REASON_TYPE_KEY, WRIT_NUM, REPENTANCE_PATH, 
+      REPENTEANCE_PATH_NAME, NOTE_PATH, NOTE_PATH_NAME, 
+      LEGAL_BASIS, LEGAL_BASIS_ITEMS, PINGYI_PATH_NAME, 
+      PINGYI_PATH, COP_ACCOUN_ID, OPT_TIME, 
+      DIC_BLANK_FLAG_KEY, FLAG_ACCOUNT_NAME, FLAG_ACCOUNT_ID, 
+      FLAG_TIME, FLAG_REASON_ID, FLAG_DETAIL_REASON, 
+      FLAG_PATH, FLAG_PATH_NAME, CREATED, 
+      CREATER, UPDATED, UPDATER, IS_PRINTJYS,IS_PRINTSHB,
+      DEL_FLAG,PROCESS_ID)
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{fact,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{pathName,jdbcType=VARCHAR}, 
+      #{dicReasonTypeKey,jdbcType=VARCHAR}, #{writNum,jdbcType=VARCHAR}, #{repentancePath,jdbcType=VARCHAR}, 
+      #{repenteancePathName,jdbcType=VARCHAR}, #{notePath,jdbcType=VARCHAR}, #{notePathName,jdbcType=VARCHAR}, 
+      #{legalBasis,jdbcType=VARCHAR}, #{legalBasisItems,jdbcType=VARCHAR}, #{pingyiPathName,jdbcType=VARCHAR}, 
+      #{pingyiPath,jdbcType=VARCHAR}, #{copAccounId,jdbcType=VARCHAR}, #{optTime,jdbcType=TIMESTAMP}, 
+      #{dicBlankFlagKey,jdbcType=VARCHAR}, #{flagAccountName,jdbcType=VARCHAR}, #{flagAccountId,jdbcType=VARCHAR}, 
+      #{flagTime,jdbcType=TIMESTAMP}, #{flagReasonId,jdbcType=VARCHAR}, #{flagDetailReason,jdbcType=VARCHAR}, 
+      #{flagPath,jdbcType=VARCHAR}, #{flagPathName,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{isPrintJYS,jdbcType=VARCHAR},#{isPrintSHB,jdbcType=VARCHAR},
+      #{delFlag,jdbcType=DECIMAL},#{processInstanceId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.Warning">
+    insert into SF_WARNING
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="fact != null">
+        FACT,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="pathName != null">
+        PATH_NAME,
+      </if>
+      <if test="dicReasonTypeKey != null">
+        DIC_REASON_TYPE_KEY,
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM,
+      </if>
+      <if test="repentancePath != null">
+        REPENTANCE_PATH,
+      </if>
+      <if test="repenteancePathName != null">
+        REPENTEANCE_PATH_NAME,
+      </if>
+      <if test="notePath != null">
+        NOTE_PATH,
+      </if>
+      <if test="notePathName != null">
+        NOTE_PATH_NAME,
+      </if>
+      <if test="legalBasis != null">
+        LEGAL_BASIS,
+      </if>
+      <if test="legalBasisItems != null">
+        LEGAL_BASIS_ITEMS,
+      </if>
+      <if test="pingyiPathName != null">
+        PINGYI_PATH_NAME,
+      </if>
+      <if test="pingyiPath != null">
+        PINGYI_PATH,
+      </if>
+      <if test="copAccounId != null">
+        COP_ACCOUN_ID,
+      </if>
+      <if test="optTime != null">
+        OPT_TIME,
+      </if>
+      <if test="dicBlankFlagKey != null">
+        DIC_BLANK_FLAG_KEY,
+      </if>
+      <if test="flagAccountName != null">
+        FLAG_ACCOUNT_NAME,
+      </if>
+      <if test="flagAccountId != null">
+        FLAG_ACCOUNT_ID,
+      </if>
+      <if test="flagTime != null">
+        FLAG_TIME,
+      </if>
+      <if test="flagReasonId != null">
+        FLAG_REASON_ID,
+      </if>
+      <if test="flagDetailReason != null">
+        FLAG_DETAIL_REASON,
+      </if>
+      <if test="flagPath != null">
+        FLAG_PATH,
+      </if>
+      <if test="flagPathName != null">
+        FLAG_PATH_NAME,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="fact != null">
+        #{fact,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="pathName != null">
+        #{pathName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicReasonTypeKey != null">
+        #{dicReasonTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="writNum != null">
+        #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="repentancePath != null">
+        #{repentancePath,jdbcType=VARCHAR},
+      </if>
+      <if test="repenteancePathName != null">
+        #{repenteancePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="notePath != null">
+        #{notePath,jdbcType=VARCHAR},
+      </if>
+      <if test="notePathName != null">
+        #{notePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalBasis != null">
+        #{legalBasis,jdbcType=VARCHAR},
+      </if>
+      <if test="legalBasisItems != null">
+        #{legalBasisItems,jdbcType=VARCHAR},
+      </if>
+      <if test="pingyiPathName != null">
+        #{pingyiPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="pingyiPath != null">
+        #{pingyiPath,jdbcType=VARCHAR},
+      </if>
+      <if test="copAccounId != null">
+        #{copAccounId,jdbcType=VARCHAR},
+      </if>
+      <if test="optTime != null">
+        #{optTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicBlankFlagKey != null">
+        #{dicBlankFlagKey,jdbcType=VARCHAR},
+      </if>
+      <if test="flagAccountName != null">
+        #{flagAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="flagAccountId != null">
+        #{flagAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="flagTime != null">
+        #{flagTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flagReasonId != null">
+        #{flagReasonId,jdbcType=VARCHAR},
+      </if>
+      <if test="flagDetailReason != null">
+        #{flagDetailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="flagPath != null">
+        #{flagPath,jdbcType=VARCHAR},
+      </if>
+      <if test="flagPathName != null">
+        #{flagPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.Warning">
+    update SF_WARNING
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="fact != null">
+        FACT = #{fact,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="pathName != null">
+        PATH_NAME = #{pathName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicReasonTypeKey != null">
+        DIC_REASON_TYPE_KEY = #{dicReasonTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="repentancePath != null">
+        REPENTANCE_PATH = #{repentancePath,jdbcType=VARCHAR},
+      </if>
+      <if test="repenteancePathName != null">
+        REPENTEANCE_PATH_NAME = #{repenteancePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="notePath != null">
+        NOTE_PATH = #{notePath,jdbcType=VARCHAR},
+      </if>
+      <if test="notePathName != null">
+        NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalBasis != null">
+        LEGAL_BASIS = #{legalBasis,jdbcType=VARCHAR},
+      </if>
+      <if test="legalBasisItems != null">
+        LEGAL_BASIS_ITEMS = #{legalBasisItems,jdbcType=VARCHAR},
+      </if>
+      <if test="pingyiPathName != null">
+        PINGYI_PATH_NAME = #{pingyiPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="pingyiPath != null">
+        PINGYI_PATH = #{pingyiPath,jdbcType=VARCHAR},
+      </if>
+      <if test="copAccounId != null">
+        COP_ACCOUN_ID = #{copAccounId,jdbcType=VARCHAR},
+      </if>
+      <if test="optTime != null">
+        OPT_TIME = #{optTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicBlankFlagKey != null">
+        DIC_BLANK_FLAG_KEY = #{dicBlankFlagKey,jdbcType=VARCHAR},
+      </if>
+      <if test="flagAccountName != null">
+        FLAG_ACCOUNT_NAME = #{flagAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="flagAccountId != null">
+        FLAG_ACCOUNT_ID = #{flagAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="flagTime != null">
+        FLAG_TIME = #{flagTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flagReasonId != null">
+        FLAG_REASON_ID = #{flagReasonId,jdbcType=VARCHAR},
+      </if>
+      <if test="flagDetailReason != null">
+        FLAG_DETAIL_REASON = #{flagDetailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="flagPath != null">
+        FLAG_PATH = #{flagPath,jdbcType=VARCHAR},
+      </if>
+      <if test="flagPathName != null">
+        FLAG_PATH_NAME = #{flagPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+       <if test="isPrintSHB != null">
+        IS_PRINTSHB=#{isPrintSHB,jdbcType=DECIMAL},
+      </if>
+       <if test="isPrintJYS != null">
+        IS_PRINTJYS=#{isPrintJYS,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.rewardspunishment.Warning">
+    update SF_WARNING
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      FACT = #{fact,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      PATH_NAME = #{pathName,jdbcType=VARCHAR},
+      DIC_REASON_TYPE_KEY = #{dicReasonTypeKey,jdbcType=VARCHAR},
+      WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      REPENTANCE_PATH = #{repentancePath,jdbcType=VARCHAR},
+      REPENTEANCE_PATH_NAME = #{repenteancePathName,jdbcType=VARCHAR},
+      NOTE_PATH = #{notePath,jdbcType=VARCHAR},
+      NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR},
+      LEGAL_BASIS = #{legalBasis,jdbcType=VARCHAR},
+      LEGAL_BASIS_ITEMS = #{legalBasisItems,jdbcType=VARCHAR},
+      PINGYI_PATH_NAME = #{pingyiPathName,jdbcType=VARCHAR},
+      PINGYI_PATH = #{pingyiPath,jdbcType=VARCHAR},
+      COP_ACCOUN_ID = #{copAccounId,jdbcType=VARCHAR},
+      OPT_TIME = #{optTime,jdbcType=TIMESTAMP},
+      DIC_BLANK_FLAG_KEY = #{dicBlankFlagKey,jdbcType=VARCHAR},
+      FLAG_ACCOUNT_NAME = #{flagAccountName,jdbcType=VARCHAR},
+      FLAG_ACCOUNT_ID = #{flagAccountId,jdbcType=VARCHAR},
+      FLAG_TIME = #{flagTime,jdbcType=TIMESTAMP},
+      FLAG_REASON_ID = #{flagReasonId,jdbcType=VARCHAR},
+      FLAG_DETAIL_REASON = #{flagDetailReason,jdbcType=VARCHAR},
+      FLAG_PATH = #{flagPath,jdbcType=VARCHAR},
+      FLAG_PATH_NAME = #{flagPathName,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      IS_PRINTJYS=#{isPrintJYS,jdbcType=VARCHAR},
+      IS_PRINTSHB=#{isPrintSHB,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.rewardspunishment.Warning" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_WARNING t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+  	 <if test="culpritId != null">
+      AND t.CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="culpritName != null and culpritName!=''">
+      AND t2.name LIKE CONCAT(CONCAT('%',#{culpritName}),'%')
+    </if>
+    <if test="groupId != null and groupId!=''">
+     <![CDATA[  
+     	 AND  exists ( select t4.id from (select * from sys_group start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) t4 where t3.ID=t4.id)
+     ]]> 
+     
+    </if>
+    <if test="note != null and note!=''">
+      AND t.NOTE = #{note,jdbcType=VARCHAR}
+    </if>
+    <if test="path != null and path!=''">
+      AND t.PATH = #{path,jdbcType=VARCHAR}
+    </if>
+    <if test="pathName != null and pathName!=''">
+      AND t.PATH_NAME = #{pathName,jdbcType=VARCHAR}
+    </if>
+    <if test="dicReasonTypeKey != null and dicReasonTypeKey!=''">
+      AND t.DIC_REASON_TYPE_KEY = #{dicReasonTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="writNum != null and writNum!=''">
+      AND t.WRIT_NUM = #{writNum,jdbcType=VARCHAR}
+    </if>
+    <if test="repentancePath != null and repentancePath!=''">
+      AND t.REPENTANCE_PATH = #{repentancePath,jdbcType=VARCHAR}
+    </if>
+    <if test="repenteancePathName != null and repenteancePathName!=''">
+      AND t.REPENTEANCE_PATH_NAME = #{repenteancePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="notePath != null and notePath!=''">
+      AND t.NOTE_PATH = #{notePath,jdbcType=VARCHAR}
+    </if>
+    <if test="notePathName != null and notePathName!=''">
+      AND t.NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="legalBasis != null and legalBasis!=''">
+      AND t.LEGAL_BASIS = #{legalBasis,jdbcType=VARCHAR}
+    </if>
+    <if test="legalBasisItems != null and legalBasisItems!=''">
+      AND t.LEGAL_BASIS_ITEMS = #{legalBasisItems,jdbcType=VARCHAR}
+    </if>
+    <if test="pingyiPathName != null and pingyiPathName!=''">
+      AND t.PINGYI_PATH_NAME = #{pingyiPathName,jdbcType=VARCHAR}
+    </if>
+    <if test="pingyiPath != null and pingyiPath!=''">
+      AND t.PINGYI_PATH = #{pingyiPath,jdbcType=VARCHAR}
+    </if>
+    <if test="copAccounId != null and copAccounId!=''">
+      AND t.COP_ACCOUN_ID = #{copAccounId,jdbcType=VARCHAR}
+    </if>
+   <!-- 
+    <if test="starOptTime != null and starOptTime !=''">
+    <![CDATA[
+       AND t.OPT_TIME >= #{starOptTime,jdbcType=TIMESTAMP}
+       ]]>
+    </if>
+    <if test="endOptTime != null and endOptTime !=''">
+    <![CDATA[
+       AND t.OPT_TIME <= #{endOptTime,jdbcType=TIMESTAMP}
+       ]]>
+    </if> 
+    -->
+    <if test="dicBlankFlagKey != null and dicBlankFlagKey!=''">
+      AND t.DIC_BLANK_FLAG_KEY = #{dicBlankFlagKey,jdbcType=VARCHAR}
+    </if>
+    <if test="flagAccountName != null and flagAccountName!=''">
+      AND t.FLAG_ACCOUNT_NAME = #{flagAccountName,jdbcType=VARCHAR}
+    </if>
+    <if test="flagAccountId != null and flagAccountId!=''">
+      AND t.FLAG_ACCOUNT_ID = #{flagAccountId,jdbcType=VARCHAR}
+    </if>
+    <if test="flagTime != null">
+      AND t.FLAG_TIME = #{flagTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="flagReasonId != null and flagReasonId!=''">
+      AND t.FLAG_REASON_ID = #{flagReasonId,jdbcType=VARCHAR}
+    </if>
+    <if test="flagDetailReason != null and flagDetailReason!=''">
+      AND t.FLAG_DETAIL_REASON = #{flagDetailReason,jdbcType=VARCHAR}
+    </if>
+    <if test="flagPath != null and flagPath!=''">
+      AND t.FLAG_PATH = #{flagPath,jdbcType=VARCHAR}
+    </if>
+    <if test="flagPathName != null and flagPathName!=''">
+      AND t.FLAG_PATH_NAME = #{flagPathName,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND t.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="searchStartDate != null and searchStartDate !=''">
+    	<![CDATA[
+       AND t.OPT_TIME >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]>
+    </if>
+    <if test="searchEndDate != null and searchEndDate !=''">
+    	<![CDATA[
+       AND t.OPT_TIME <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>
+    </if> 
+  </sql>
+</mapper>

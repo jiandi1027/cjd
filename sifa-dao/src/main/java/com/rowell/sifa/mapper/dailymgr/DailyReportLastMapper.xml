@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.dailymgr.DailyReportLastMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.dailymgr.DailyReportLast">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="REPORT_DATE" jdbcType="TIMESTAMP" property="reportDate" />
+    <result column="SHOULD_REPORT_DATE" jdbcType="TIMESTAMP" property="shouldReportDate" />
+    <result column="NEXT_SHOULD_REPORT_DATE" jdbcType="TIMESTAMP" property="nextShouldReportDate" />
+    <result column="REPORT_RESULT_ID" jdbcType="VARCHAR" property="reportResultId" />
+    <result column="DIC_TYPE_KEY" jdbcType="VARCHAR" property="dicTypeKey" />
+    <result column="DIC_ONSCHEDULE_KEY" jdbcType="VARCHAR" property="dicOnscheduleKey" />
+    <result column="DIC_SMS_ENABLED_KEY" jdbcType="VARCHAR" property="dicSmsEnabledKey" />
+    <result column="DIC_ENABLED_KEY" jdbcType="VARCHAR" property="dicEnabledKey" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="VOICE_PATH" jdbcType="VARCHAR" property="voicePath" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="DIC_REPORT_STATUS_KEY" jdbcType="VARCHAR" property="dicReportStatusKey" />
+    <result column="BGNR" jdbcType="VARCHAR" property="bgnr" />
+    <result column="JLR" jdbcType="VARCHAR" property="jlr" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, REPORT_DATE, SHOULD_REPORT_DATE, NEXT_SHOULD_REPORT_DATE, REPORT_RESULT_ID, DIC_TYPE_KEY, 
+    DIC_ONSCHEDULE_KEY, DIC_SMS_ENABLED_KEY, DIC_ENABLED_KEY, NOTE, VOICE_PATH, CULPRIT_ID, 
+    CREATED_TIME, DIC_REPORT_STATUS_KEY, BGNR, JLR, CREATED, CREATER, UPDATED, UPDATER, 
+    (select c.name from SF_CULPRIT c where c.id=CULPRIT_ID) culpritName,
+    (select c.DIC_MONITOR_GRADE_KEY from SF_CULPRIT c where c.id=CULPRIT_ID) dicMonitorGradeKey,
+    <!--  (select c.OLD_MONITOR_GRADE from SF_CULPRIT c where c.id=CULPRIT_ID) dicOldMonitorGradeKey,-->
+    DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_DAILY_REPORT_LAST
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_DAILY_REPORT_LAST
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.dailymgr.DailyReportLast">
+    insert into SF_DAILY_REPORT_LAST (ID, REPORT_DATE, SHOULD_REPORT_DATE, 
+      NEXT_SHOULD_REPORT_DATE, REPORT_RESULT_ID, 
+      DIC_TYPE_KEY, DIC_ONSCHEDULE_KEY, DIC_SMS_ENABLED_KEY, 
+      DIC_ENABLED_KEY, NOTE, VOICE_PATH, 
+      CULPRIT_ID, CREATED_TIME, DIC_REPORT_STATUS_KEY, 
+      BGNR, JLR, CREATED, 
+      CREATER, UPDATED, UPDATER, 
+      DEL_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{reportDate,jdbcType=TIMESTAMP}, #{shouldReportDate,jdbcType=TIMESTAMP}, 
+      #{nextShouldReportDate,jdbcType=TIMESTAMP}, #{reportResultId,jdbcType=VARCHAR}, 
+      #{dicTypeKey,jdbcType=VARCHAR}, #{dicOnscheduleKey,jdbcType=VARCHAR}, #{dicSmsEnabledKey,jdbcType=VARCHAR}, 
+      #{dicEnabledKey,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{voicePath,jdbcType=VARCHAR}, 
+      #{culpritId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{dicReportStatusKey,jdbcType=VARCHAR}, 
+      #{bgnr,jdbcType=VARCHAR}, #{jlr,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.dailymgr.DailyReportLast">
+    insert into SF_DAILY_REPORT_LAST
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="reportDate != null">
+        REPORT_DATE,
+      </if>
+      <if test="shouldReportDate != null">
+        SHOULD_REPORT_DATE,
+      </if>
+      <if test="nextShouldReportDate != null">
+        NEXT_SHOULD_REPORT_DATE,
+      </if>
+      <if test="reportResultId != null">
+        REPORT_RESULT_ID,
+      </if>
+      <if test="dicTypeKey != null">
+        DIC_TYPE_KEY,
+      </if>
+      <if test="dicOnscheduleKey != null">
+        DIC_ONSCHEDULE_KEY,
+      </if>
+      <if test="dicSmsEnabledKey != null">
+        DIC_SMS_ENABLED_KEY,
+      </if>
+      <if test="dicEnabledKey != null">
+        DIC_ENABLED_KEY,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="voicePath != null">
+        VOICE_PATH,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="dicReportStatusKey != null">
+        DIC_REPORT_STATUS_KEY,
+      </if>
+      <if test="bgnr != null">
+        BGNR,
+      </if>
+      <if test="jlr != null">
+        JLR,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null">
+        #{reportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shouldReportDate != null">
+        #{shouldReportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextShouldReportDate != null">
+        #{nextShouldReportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportResultId != null">
+        #{reportResultId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeKey != null">
+        #{dicTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicOnscheduleKey != null">
+        #{dicOnscheduleKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSmsEnabledKey != null">
+        #{dicSmsEnabledKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicEnabledKey != null">
+        #{dicEnabledKey,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="voicePath != null">
+        #{voicePath,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicReportStatusKey != null">
+        #{dicReportStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="bgnr != null">
+        #{bgnr,jdbcType=VARCHAR},
+      </if>
+      <if test="jlr != null">
+        #{jlr,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.dailymgr.DailyReportLast">
+    update SF_DAILY_REPORT_LAST
+    <set>
+      <if test="reportDate != null">
+        REPORT_DATE = #{reportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shouldReportDate != null">
+        SHOULD_REPORT_DATE = #{shouldReportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextShouldReportDate != null">
+        NEXT_SHOULD_REPORT_DATE = #{nextShouldReportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportResultId != null">
+        REPORT_RESULT_ID = #{reportResultId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeKey != null">
+        DIC_TYPE_KEY = #{dicTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicOnscheduleKey != null">
+        DIC_ONSCHEDULE_KEY = #{dicOnscheduleKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSmsEnabledKey != null">
+        DIC_SMS_ENABLED_KEY = #{dicSmsEnabledKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicEnabledKey != null">
+        DIC_ENABLED_KEY = #{dicEnabledKey,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="voicePath != null">
+        VOICE_PATH = #{voicePath,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicReportStatusKey != null">
+        DIC_REPORT_STATUS_KEY = #{dicReportStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="bgnr != null">
+        BGNR = #{bgnr,jdbcType=VARCHAR},
+      </if>
+      <if test="jlr != null">
+        JLR = #{jlr,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.dailymgr.DailyReportLast">
+    update SF_DAILY_REPORT_LAST
+    set REPORT_DATE = #{reportDate,jdbcType=TIMESTAMP},
+      SHOULD_REPORT_DATE = #{shouldReportDate,jdbcType=TIMESTAMP},
+      NEXT_SHOULD_REPORT_DATE = #{nextShouldReportDate,jdbcType=TIMESTAMP},
+      REPORT_RESULT_ID = #{reportResultId,jdbcType=VARCHAR},
+      DIC_TYPE_KEY = #{dicTypeKey,jdbcType=VARCHAR},
+      DIC_ONSCHEDULE_KEY = #{dicOnscheduleKey,jdbcType=VARCHAR},
+      DIC_SMS_ENABLED_KEY = #{dicSmsEnabledKey,jdbcType=VARCHAR},
+      DIC_ENABLED_KEY = #{dicEnabledKey,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=VARCHAR},
+      VOICE_PATH = #{voicePath,jdbcType=VARCHAR},
+      CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      DIC_REPORT_STATUS_KEY = #{dicReportStatusKey,jdbcType=VARCHAR},
+      BGNR = #{bgnr,jdbcType=VARCHAR},
+      JLR = #{jlr,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.dailymgr.DailyReportLast" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_DAILY_REPORT_LAST t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="reportDate != null">
+      AND REPORT_DATE = #{reportDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="shouldReportDate != null">
+      AND SHOULD_REPORT_DATE = #{shouldReportDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="nextShouldReportDate != null">
+      AND NEXT_SHOULD_REPORT_DATE = #{nextShouldReportDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="reportResultId != null and reportResultId!=''">
+      AND REPORT_RESULT_ID = #{reportResultId,jdbcType=VARCHAR}
+    </if>
+    <if test="dicTypeKey != null and dicTypeKey!=''">
+      AND DIC_TYPE_KEY = #{dicTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicOnscheduleKey != null and dicOnscheduleKey!=''">
+      AND DIC_ONSCHEDULE_KEY = #{dicOnscheduleKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSmsEnabledKey != null and dicSmsEnabledKey!=''">
+      AND DIC_SMS_ENABLED_KEY = #{dicSmsEnabledKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicEnabledKey != null and dicEnabledKey!=''">
+      AND DIC_ENABLED_KEY = #{dicEnabledKey,jdbcType=VARCHAR}
+    </if>
+    <if test="note != null and note!=''">
+      AND NOTE = #{note,jdbcType=VARCHAR}
+    </if>
+    <if test="voicePath != null and voicePath!=''">
+      AND VOICE_PATH = #{voicePath,jdbcType=VARCHAR}
+    </if>
+    <if test="culpritId != null and culpritId!=''">
+      AND CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="createdTime != null">
+      AND CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="dicReportStatusKey != null and dicReportStatusKey!=''">
+      AND DIC_REPORT_STATUS_KEY = #{dicReportStatusKey,jdbcType=VARCHAR}
+    </if>
+    <if test="bgnr != null and bgnr!=''">
+      AND BGNR = #{bgnr,jdbcType=VARCHAR}
+    </if>
+    <if test="jlr != null and jlr!=''">
+      AND JLR = #{jlr,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="nextShouldReportDateStartDate != null">
+       <![CDATA[  
+      AND t.NEXT_SHOULD_REPORT_DATE >= #{nextShouldReportDateStartDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="nextShouldReportDateEndDate != null">
+    	 <![CDATA[  
+      AND t.NEXT_SHOULD_REPORT_DATE <= #{nextShouldReportDateEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g left join SF_CULPRIT c on g.id=c.group_id where c.id=CULPRIT_ID)
+    </if> 
+    <if test="culpritName != null and culpritName!=''">
+       AND exists (select * from SF_CULPRIT c where c.id=t.CULPRIT_ID and c.name like '%'||#{culpritName,jdbcType=VARCHAR}||'%')
+      </if>
+    <if test="dicMonitorGradeKey != null and dicMonitorGradeKey!=''">
+       AND exists (select * from SF_CULPRIT c where c.id=CULPRIT_ID and c.DIC_MONITOR_GRADE_KEY= #{dicMonitorGradeKey,jdbcType=VARCHAR})
+    </if>
+    <if test="nextShouldReportDate != null">
+      AND t.BEGIN_DATE >= #{searchStartDate,jdbcType=TIMESTAMP}
+    </if>
+    
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND t.BEGIN_DATE <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+  </sql>
+  
+  
+  <select id="getNextReporCounttBy7Day"  resultType="int">
+  <![CDATA[
+  	select count(*) from SF_DAILY_REPORT_LAST t where t.next_should_report_date>sysdate and t.next_should_report_date<sysdate+7
+  ]]>
+  </select>
+</mapper>

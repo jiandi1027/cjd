@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.culpritinfo.CulpritJudgmentMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.culpritinfo.CulpritJudgment">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ADJUDGE_PERIOD" jdbcType="VARCHAR" property="adjudgePeriod" />
+    <result column="ADJUDGE_CHANGE" jdbcType="VARCHAR" property="adjudgeChange" />
+    <result column="ADJUDGE_STARTTIME" jdbcType="TIMESTAMP" property="adjudgeStartTime" />
+    <result column="ADJUDGE_ENDTIME" jdbcType="TIMESTAMP" property="adjudgeEndTime" />
+    <result column="DIC_PENAL_TYPE_KEY" jdbcType="VARCHAR" property="dicPenalTypeKey" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="CRIME_INFO" jdbcType="VARCHAR" property="crimeInfo" />
+    <result column="dic_ypxf_key" jdbcType="VARCHAR" property="dicYpxfKey" />
+    <result column="ACCESSORY_PUNISHMENT" jdbcType="VARCHAR" property="accessoryPunishment" />
+    <result column="DEPRIVE_POLITICAL" jdbcType="VARCHAR" property="deprivePolitical" />
+    <result column="DEPRIVE_POLITICAL_START_DATE" jdbcType="TIMESTAMP" property="deprivePoliticalStartDate" />
+    <result column="DEPRIVE_POLITICAL_END_DATE" jdbcType="TIMESTAMP" property="deprivePoliticalEndDate" />
+    <result column="RECIVE_SECURITY_ORG" jdbcType="VARCHAR" property="reciveSecurityOrg" />
+    <result column="RECIVE_SECURITY_PERSON" jdbcType="VARCHAR" property="reciveSecurityPerson" />
+    <result column="TRANSFER_DATE" jdbcType="TIMESTAMP" property="transferDate" />
+    <result column="dic_four_key" jdbcType="VARCHAR" property="dicFourKey" />
+    <result column="dic_tree_key" jdbcType="VARCHAR" property="dicTreeKey" />
+    <result column="dic_sfgtfz_key" jdbcType="VARCHAR" property="dicSfgtfzKey" />
+    <result column="DIC_IS_BAN_KEY" jdbcType="DECIMAL" property="dicIsBanKey" />
+    <result column="DIC_RECEIVE_TYPE_KEY" jdbcType="VARCHAR" property="dicReceiveTypeKey" />
+    <result column="ESCORT_DATE" jdbcType="TIMESTAMP" property="escortDate" />
+    <result column="NOTIFY_DATE" jdbcType="TIMESTAMP" property="notifyDate" />
+    <result column="TO_COUNTRY_REPORT_DATE" jdbcType="TIMESTAMP" property="toCountryReportDate" />
+    <result column="LIMIT_DATE" jdbcType="TIMESTAMP" property="limitDate" />
+    <result column="dic_sfjljzxz_key" jdbcType="DECIMAL" property="dicSfjljzxzKey" />
+    <result column="dic_memeber_key" jdbcType="VARCHAR" property="dicMemeberKey" />
+    <result column="DIC_IS_INF_MANAGE_KEY" jdbcType="VARCHAR" property="dicIsInfManageKey" />
+    <result column="DIC_HAVE_MOBILE_KEY" jdbcType="VARCHAR" property="dicHaveMobileKey" />
+    <result column="DIC_IS_FINISH_KEY" jdbcType="VARCHAR" property="dicIsFinishKey" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+   	<result column="DIC_CRIME_TYPE_KEY" jdbcType="VARCHAR" property="dicCrimeTypeKey" />
+    <result column="ADJUDGE_ORG" jdbcType="VARCHAR" property="adjudgeOrg" />
+    <result column="ADJUDGE_ID" jdbcType="VARCHAR" property="adjudgeId" />
+    <result column="ADJUDGE_DATE" jdbcType="TIMESTAMP" property="adjudgeDate" />
+    <result column="ADJUDGE_REDRESS_ORG" jdbcType="VARCHAR" property="adjudgeRedressOrg" />
+    <result column="ADJUDGE_REDRESS_T" jdbcType="TIMESTAMP" property="adjudgeRedressT" />
+    <result column="REDRESS_PERIOD" jdbcType="VARCHAR" property="redressPeriod" />
+    <result column="REDRESS_START_DATE" jdbcType="TIMESTAMP" property="redressStartDate" />
+	<result column="REDRESS_END_DATE" jdbcType="TIMESTAMP" property="redressEndDate" />
+	<result column="CRIME_FACT" jdbcType="VARCHAR" property="crimeFact" />
+	<result column="DIC_HAVE_TOGETHER_KEY" jdbcType="VARCHAR" property="dicHaveTogetherKey" />
+	<result column="DETAIN_PLACE" jdbcType="VARCHAR" property="detainPlace" />
+	<result column="TURN_OVER" jdbcType="TIMESTAMP" property="turnOver" />
+	<result column="DIC_OLD_LAG_KEY" jdbcType="VARCHAR" property="dicOldLagKey" />
+	<result column="START_BAN" jdbcType="TIMESTAMP" property="startBan" />
+	<result column="END_BAN" jdbcType="TIMESTAMP" property="endBan" />
+	<result column="TIME_BAN" jdbcType="VARCHAR" property="timeBan" />
+	<result column="CONTENT_BAN" jdbcType="VARCHAR" property="contentBan" />
+	<result column="FORFEIT" jdbcType="VARCHAR" property="forfeit" />
+	<result column="DISENTITLE" jdbcType="VARCHAR" property="disentitle" />
+	<result column="EXPROPRIATION" jdbcType="VARCHAR" property="expropriation" />
+	<result column="DIC_ADJUDGE_REDRESS_ORG_KEY" jdbcType="VARCHAR" property="dicAdjudgeRedressOrgKey" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ADJUDGE_PERIOD,ADJUDGE_CHANGE,ADJUDGE_STARTTIME,ADJUDGE_ENDTIME,DIC_PENAL_TYPE_KEY,
+    CULPRIT_ID, CRIME_INFO, dic_ypxf_key, ACCESSORY_PUNISHMENT, DEPRIVE_POLITICAL, 
+    DEPRIVE_POLITICAL_START_DATE, DEPRIVE_POLITICAL_END_DATE, RECIVE_SECURITY_ORG, RECIVE_SECURITY_PERSON, 
+    TRANSFER_DATE, dic_four_key, dic_tree_key, dic_sfgtfz_key, DIC_IS_BAN_KEY, DIC_RECEIVE_TYPE_KEY, 
+    ESCORT_DATE, NOTIFY_DATE, TO_COUNTRY_REPORT_DATE, LIMIT_DATE, dic_sfjljzxz_key, dic_memeber_key, 
+    DIC_IS_INF_MANAGE_KEY, DIC_HAVE_MOBILE_KEY, DIC_IS_FINISH_KEY, CREATED, CREATER, 
+    UPDATED, UPDATER, DEL_FLAG,  DIC_CRIME_TYPE_KEY,ADJUDGE_ORG,ADJUDGE_ID,ADJUDGE_DATE,
+    ADJUDGE_REDRESS_ORG,ADJUDGE_REDRESS_T,REDRESS_PERIOD,REDRESS_START_DATE,REDRESS_END_DATE,
+    CRIME_FACT,DIC_HAVE_TOGETHER_KEY, DETAIN_PLACE,TURN_OVER,DIC_OLD_LAG_KEY,START_BAN,END_BAN,
+    TIME_BAN,CONTENT_BAN,FORFEIT,DISENTITLE,EXPROPRIATION,DIC_ADJUDGE_REDRESS_ORG_KEY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT_JUDGMENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+   <select id="selectByCulpritId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT_JUDGMENT
+    where CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+  </select>
+   <select id="findByCulpritId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT_JUDGMENT
+    where CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_CULPRIT_JUDGMENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritJudgment">
+    insert into SF_CULPRIT_JUDGMENT (ID, CULPRIT_ID, ADJUDGE_PERIOD,CRIME_INFO,ADJUDGE_STARTTIME,ADJUDGE_ENDTIME, 
+      dic_ypxf_key, ACCESSORY_PUNISHMENT, DEPRIVE_POLITICAL, 
+      DEPRIVE_POLITICAL_START_DATE, DEPRIVE_POLITICAL_END_DATE, 
+      RECIVE_SECURITY_ORG, RECIVE_SECURITY_PERSON, 
+      TRANSFER_DATE, dic_four_key, dic_tree_key, 
+      dic_sfgtfz_key, DIC_IS_BAN_KEY, DIC_RECEIVE_TYPE_KEY, 
+      ESCORT_DATE, NOTIFY_DATE, TO_COUNTRY_REPORT_DATE, 
+      LIMIT_DATE, dic_sfjljzxz_key, dic_memeber_key, 
+      DIC_IS_INF_MANAGE_KEY, DIC_HAVE_MOBILE_KEY, DIC_IS_FINISH_KEY, 
+      CREATED, CREATER, UPDATED, 
+      UPDATER, DEL_FLAG,  DIC_CRIME_TYPE_KEY,ADJUDGE_ORG,ADJUDGE_ID,ADJUDGE_DATE,
+      ADJUDGE_REDRESS_ORG,ADJUDGE_REDRESS_T,REDRESS_PERIOD,REDRESS_START_DATE,REDRESS_END_DATE,
+      CRIME_FACT,DIC_HAVE_TOGETHER_KEY,DIC_PENAL_TYPE_KEY, DETAIN_PLACE,TURN_OVER,DIC_OLD_LAG_KEY,START_BAN,END_BAN,
+    TIME_BAN,CONTENT_BAN,FORFEIT,DISENTITLE,EXPROPRIATION,ADJUDGE_CHANGE,DIC_ADJUDGE_REDRESS_ORG_KEY)
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{adjudgePeriod,jdbcType=VARCHAR}, #{crimeInfo,jdbcType=VARCHAR},#{adjudgeStartTime,jdbcType=TIMESTAMP},
+    #{adjudgeEndTime,jdbcType=TIMESTAMP}, 
+      #{dicYpxfKey,jdbcType=VARCHAR}, #{accessoryPunishment,jdbcType=VARCHAR}, #{deprivePolitical,jdbcType=VARCHAR}, 
+      #{deprivePoliticalStartDate,jdbcType=TIMESTAMP}, #{deprivePoliticalEndDate,jdbcType=TIMESTAMP}, 
+      #{reciveSecurityOrg,jdbcType=VARCHAR}, #{reciveSecurityPerson,jdbcType=VARCHAR}, 
+      #{transferDate,jdbcType=TIMESTAMP}, #{dicFourKey,jdbcType=VARCHAR}, #{dicTreeKey,jdbcType=VARCHAR}, 
+      #{dicSfgtfzKey,jdbcType=VARCHAR}, #{dicIsBanKey,jdbcType=DECIMAL}, #{dicReceiveTypeKey,jdbcType=VARCHAR}, 
+      #{escortDate,jdbcType=TIMESTAMP}, #{notifyDate,jdbcType=TIMESTAMP}, #{toCountryReportDate,jdbcType=TIMESTAMP}, 
+      #{limitDate,jdbcType=TIMESTAMP}, #{dicSfjljzxzKey,jdbcType=DECIMAL}, #{dicMemeberKey,jdbcType=VARCHAR}, 
+      #{dicIsInfManageKey,jdbcType=VARCHAR}, #{dicHaveMobileKey,jdbcType=VARCHAR}, #{dicIsFinishKey,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL}, #{dicCrimeTypeKey,jdbcType=VARCHAR}
+      , #{adjudgeOrg,jdbcType=VARCHAR}, #{adjudgeId,jdbcType=VARCHAR}, #{adjudgeDate,jdbcType=TIMESTAMP}
+      , #{adjudgeRedressOrg,jdbcType=VARCHAR}, #{adjudgeRedressT,jdbcType=TIMESTAMP}, #{redressPeriod,jdbcType=VARCHAR}
+      , #{redressStartDate,jdbcType=TIMESTAMP}, #{redressEndDate,jdbcType=TIMESTAMP}, #{crimeFact,jdbcType=VARCHAR}, #{dicHaveTogetherKey,jdbcType=VARCHAR}, 
+      #{dicPenalTypeKey,jdbcType=VARCHAR},#{detainPlace,jdbcType=VARCHAR}, #{turnOver,jdbcType=TIMESTAMP}
+      ,#{dicOldLagKey,jdbcType=VARCHAR}, #{startBan,jdbcType=TIMESTAMP}, #{endBan,jdbcType=TIMESTAMP}
+      ,#{timeBan,jdbcType=VARCHAR},#{contentBan,jdbcType=VARCHAR},#{forfeit,jdbcType=VARCHAR}
+      ,#{disentitle,jdbcType=VARCHAR},#{expropriation,jdbcType=VARCHAR},#{adjudgeChange,jdbcType=VARCHAR},#{dicAdjudgeRedressOrgKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritJudgment">
+    insert into SF_CULPRIT_JUDGMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="crimeInfo != null">
+        CRIME_INFO,
+      </if>
+      <if test="dicYpxfKey != null">
+        dic_ypxf_key,
+      </if>
+      <if test="accessoryPunishment != null">
+        ACCESSORY_PUNISHMENT,
+      </if>
+      <if test="deprivePolitical != null">
+        DEPRIVE_POLITICAL,
+      </if>
+      <if test="deprivePoliticalStartDate != null">
+        DEPRIVE_POLITICAL_START_DATE,
+      </if>
+      <if test="deprivePoliticalEndDate != null">
+        DEPRIVE_POLITICAL_END_DATE,
+      </if>
+      <if test="reciveSecurityOrg != null">
+        RECIVE_SECURITY_ORG,
+      </if>
+      <if test="reciveSecurityPerson != null">
+        RECIVE_SECURITY_PERSON,
+      </if>
+      <if test="transferDate != null">
+        TRANSFER_DATE,
+      </if>
+      <if test="dicFourKey != null">
+        dic_four_key,
+      </if>
+      <if test="dicTreeKey != null">
+        dic_tree_key,
+      </if>
+      <if test="dicSfgtfzKey != null">
+        dic_sfgtfz_key,
+      </if>
+      <if test="dicIsBanKey != null">
+        DIC_IS_BAN_KEY,
+      </if>
+      <if test="dicReceiveTypeKey != null">
+        DIC_RECEIVE_TYPE_KEY,
+      </if>
+      <if test="escortDate != null">
+        ESCORT_DATE,
+      </if>
+      <if test="notifyDate != null">
+        NOTIFY_DATE,
+      </if>
+      <if test="toCountryReportDate != null">
+        TO_COUNTRY_REPORT_DATE,
+      </if>
+      <if test="limitDate != null">
+        LIMIT_DATE,
+      </if>
+      <if test="dicSfjljzxzKey != null">
+        dic_sfjljzxz_key,
+      </if>
+      <if test="dicMemeberKey != null">
+        dic_memeber_key,
+      </if>
+      <if test="dicIsInfManageKey != null">
+        DIC_IS_INF_MANAGE_KEY,
+      </if>
+      <if test="dicHaveMobileKey != null">
+        DIC_HAVE_MOBILE_KEY,
+      </if>
+      <if test="dicIsFinishKey != null">
+        DIC_IS_FINISH_KEY,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="dicCrimeTypeKey != null">
+        DIC_CRIME_TYPE_KEY,
+      </if>
+      <if test="adjudgeOrg != null">
+        ADJUDGE_ORG,
+      </if>
+      <if test="adjudgeId != null">
+        ADJUDGE_ID,
+      </if>
+      <if test="adjudgeDate != null">
+        ADJUDGE_DATE,
+      </if>
+      <if test="adjudgeRedressOrg != null">
+        ADJUDGE_REDRESS_ORG,
+      </if>
+      <if test="adjudgeRedressT != null">
+        ADJUDGE_REDRESS_T,
+      </if>
+      <if test="redressPeriod != null">
+        REDRESS_PERIOD,
+      </if>
+      <if test="redressStartDate != null">
+        REDRESS_START_DATE,
+      </if>
+      <if test="redressEndDate != null">
+        REDRESS_END_DATE,
+      </if>
+      <if test="crimeFact != null">
+        CRIME_FACT,
+      </if>
+      <if test="dicHaveTogetherKey != null">
+        DIC_HAVE_TOGETHER_KEY,
+      </if>
+      <if test="dicPenalTypeKey != null">
+        DIC_PENAL_TYPE_KEY,
+      </if>
+      <if test="detainPlace != null">
+        DETAIN_PLACE,
+      </if>
+      <if test="turnOver != null">
+        TURN_OVER,
+      </if>
+      <if test="dicOldLagKey != null">
+        DIC_OLD_LAG_KEY,
+      </if>
+      <if test="startBan != null">
+        START_BAN,
+      </if>
+      <if test="endBan != null">
+        END_BAN,
+      </if>
+      <if test="timeBan != null">
+       TIME_BAN,
+      </if>
+      <if test="contentBan != null">
+        CONTENT_BAN,
+      </if>
+      <if test="forfeit != null">
+        FORFEIT,
+      </if>
+      <if test="disentitle != null">
+        DISENTITLE,
+      </if>
+      <if test="expropriation != null">
+        EXPROPRIATION,
+      </if>
+      <if test="adjudgeChange != null">
+        ADJUDGE_CHANGE,
+      </if> 
+      <if test="dicAdjudgeRedressOrgKey!= null">
+         DIC_ADJUDGE_REDRESS_ORG_KEY,
+      </if>  
+      <if test="adjudgePeriod!= null">
+         ADJUDGE_PERIOD,
+      </if>  
+      <if test="adjudgeStartTime!= null">
+         ADJUDGE_STARTTIME,
+      </if>   
+      <if test="adjudgeEndTime!= null">
+         ADJUDGE_ENDTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="crimeInfo != null">
+        #{crimeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="dicYpxfKey != null">
+        #{dicYpxfKey,jdbcType=VARCHAR},
+      </if>
+      <if test="accessoryPunishment != null">
+        #{accessoryPunishment,jdbcType=VARCHAR},
+      </if>
+      <if test="deprivePolitical != null">
+        #{deprivePolitical,jdbcType=VARCHAR},
+      </if>
+      <if test="deprivePoliticalStartDate != null">
+        #{deprivePoliticalStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deprivePoliticalEndDate != null">
+        #{deprivePoliticalEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reciveSecurityOrg != null">
+        #{reciveSecurityOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="reciveSecurityPerson != null">
+        #{reciveSecurityPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="transferDate != null">
+        #{transferDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicFourKey != null">
+        #{dicFourKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTreeKey != null">
+        #{dicTreeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSfgtfzKey != null">
+        #{dicSfgtfzKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsBanKey != null">
+        #{dicIsBanKey,jdbcType=DECIMAL},
+      </if>
+      <if test="dicReceiveTypeKey != null">
+        #{dicReceiveTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="escortDate != null">
+        #{escortDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notifyDate != null">
+        #{notifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toCountryReportDate != null">
+        #{toCountryReportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitDate != null">
+        #{limitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicSfjljzxzKey != null">
+        #{dicSfjljzxzKey,jdbcType=DECIMAL},
+      </if>
+      <if test="dicMemeberKey != null">
+        #{dicMemeberKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsInfManageKey != null">
+        #{dicIsInfManageKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHaveMobileKey != null">
+        #{dicHaveMobileKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsFinishKey != null">
+        #{dicIsFinishKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="dicCrimeTypeKey != null">
+        #{dicCrimeTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeOrg != null">
+        #{adjudgeOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeId != null">
+        #{adjudgeId,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeDate != null">
+        #{adjudgeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adjudgeRedressOrg!= null">
+        #{adjudgeRedressOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeRedressT != null">
+        #{adjudgeRedressT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="redressPeriod != null">
+        #{redressPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="redressStartDate != null">
+        #{redressStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="redressEndDate != null">
+        #{redressEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crimeFact != null">
+        #{crimeFact,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHaveTogetherKey != null">
+        #{dicHaveTogetherKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicPenalTypeKey != null">
+        #{dicPenalTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="detainPlace != null">
+        #{detainPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOver != null">
+        #{turnOver,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicOldLagKey != null">
+       #{dicOldLagKey,jdbcType=VARCHAR},
+      </if>
+      <if test="startBan != null">
+        #{startBan,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endBan != null">
+        #{endBan,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeBan != null">
+        #{timeBan,jdbcType=VARCHAR},
+      </if>
+      <if test="contentBan != null">
+        #{contentBan,jdbcType=VARCHAR},
+      </if>
+      <if test="forfeit != null">
+        #{forfeit,jdbcType=VARCHAR},
+      </if>
+      <if test="disentitle != null">
+         #{disentitle,jdbcType=VARCHAR},
+      </if>
+      <if test="expropriation != null">
+         #{expropriation,jdbcType=VARCHAR},
+      </if>
+       <if test="adjudgeChange != null">
+         #{adjudgeChange,jdbcType=VARCHAR},
+      </if>  
+      <if test="dicAdjudgeRedressOrgKey!= null">
+         #{dicAdjudgeRedressOrgKey,jdbcType=VARCHAR},
+      </if> 
+       <if test="adjudgePeriod!= null">
+         #{adjudgePeriod,jdbcType=VARCHAR},
+      </if>  
+      <if test="adjudgePeriod!= null">
+       #{adjudgePeriod,jdbcType=VARCHAR},
+      </if>  
+      <if test="adjudgeStartTime!= null">
+       #{adjudgeStartTime,jdbcType=TIMESTAMP},
+      </if>   
+      <if test="adjudgeEndTime!= null">
+       #{adjudgeEndTime,jdbcType=TIMESTAMP},
+      </if>   
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritJudgment">
+    update SF_CULPRIT_JUDGMENT
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="crimeInfo != null">
+        CRIME_INFO = #{crimeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="dicYpxfKey != null">
+        dic_ypxf_key = #{dicYpxfKey,jdbcType=VARCHAR},
+      </if>
+      <if test="accessoryPunishment != null">
+        ACCESSORY_PUNISHMENT = #{accessoryPunishment,jdbcType=VARCHAR},
+      </if>
+      <if test="deprivePolitical != null">
+        DEPRIVE_POLITICAL = #{deprivePolitical,jdbcType=VARCHAR},
+      </if>
+      <if test="deprivePoliticalStartDate != null">
+        DEPRIVE_POLITICAL_START_DATE = #{deprivePoliticalStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deprivePoliticalEndDate != null">
+        DEPRIVE_POLITICAL_END_DATE = #{deprivePoliticalEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reciveSecurityOrg != null">
+        RECIVE_SECURITY_ORG = #{reciveSecurityOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="reciveSecurityPerson != null">
+        RECIVE_SECURITY_PERSON = #{reciveSecurityPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="transferDate != null">
+        TRANSFER_DATE = #{transferDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicFourKey != null">
+        dic_four_key = #{dicFourKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTreeKey != null">
+        dic_tree_key = #{dicTreeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSfgtfzKey != null">
+        dic_sfgtfz_key = #{dicSfgtfzKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsBanKey != null">
+        DIC_IS_BAN_KEY = #{dicIsBanKey,jdbcType=DECIMAL},
+      </if>
+      <if test="dicReceiveTypeKey != null">
+        DIC_RECEIVE_TYPE_KEY = #{dicReceiveTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="escortDate != null">
+        ESCORT_DATE = #{escortDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notifyDate != null">
+        NOTIFY_DATE = #{notifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toCountryReportDate != null">
+        TO_COUNTRY_REPORT_DATE = #{toCountryReportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitDate != null">
+        LIMIT_DATE = #{limitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicSfjljzxzKey != null">
+        dic_sfjljzxz_key = #{dicSfjljzxzKey,jdbcType=DECIMAL},
+      </if>
+      <if test="dicMemeberKey != null">
+        dic_memeber_key = #{dicMemeberKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsInfManageKey != null">
+        DIC_IS_INF_MANAGE_KEY = #{dicIsInfManageKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHaveMobileKey != null">
+        DIC_HAVE_MOBILE_KEY = #{dicHaveMobileKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsFinishKey != null">
+        DIC_IS_FINISH_KEY = #{dicIsFinishKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="dicCrimeTypeKey != null">
+        DIC_CRIME_TYPE_KEY = #{dicCrimeTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeOrg != null">
+        ADJUDGE_ORG = #{adjudgeOrg ,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeId != null">
+        ADJUDGE_ID = #{adjudgeId,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeDate != null">
+        ADJUDGE_DATE = #{adjudgeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adjudgeRedressOrg != null">
+      	ADJUDGE_REDRESS_ORG = #{adjudgeRedressOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="adjudgeRedressT != null">
+        ADJUDGE_REDRESS_T = #{adjudgeRedressT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="redressPeriod != null">
+        REDRESS_PERIOD = #{redressPeriod ,jdbcType=VARCHAR},
+      </if>
+      <if test="redressStartDate != null">
+       REDRESS_START_DATE = #{redressStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="redressEndDate != null">
+       REDRESS_END_DATE = #{redressEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crimeFact != null">
+        CRIME_FACT = #{crimeFact,jdbcType=VARCHAR},
+      </if>
+      <if test="dicHaveTogetherKey != null">
+        DIC_HAVE_TOGETHER_KEY = #{dicHaveTogetherKey,jdbcType=VARCHAR},
+      </if>
+      <if test="detainPlace != null">
+       DETAIN_PLACE= #{detainPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOver != null">
+       TURN_OVER= #{turnOver,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicOldLagKey != null">
+      DIC_OLD_LAG_KEY= #{dicOldLagKey,jdbcType=VARCHAR},
+      </if>
+      <if test="startBan != null">
+       START_BAN= #{startBan,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endBan != null">
+       END_BAN= #{endBan,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeBan != null">
+       TIME_BAN= #{timeBan,jdbcType=VARCHAR},
+      </if>
+      <if test="contentBan != null">
+       CONTENT_BAN= #{contentBan,jdbcType=VARCHAR},
+      </if>
+      <if test="forfeit != null">
+       FORFEIT= #{forfeit,jdbcType=VARCHAR},
+      </if>
+      <if test="disentitle != null">
+         DISENTITLE=#{disentitle,jdbcType=VARCHAR},
+      </if>
+      <if test="expropriation != null">
+        EXPROPRIATION= #{expropriation,jdbcType=VARCHAR},
+      </if> 
+      <if test="adjudgeChange != null">
+        ADJUDGE_CHANGE= #{adjudgeChange,jdbcType=VARCHAR},
+      </if> 
+      <if test="dicAdjudgeRedressOrgKey!= null">
+        DIC_ADJUDGE_REDRESS_ORG_KEY=#{dicAdjudgeRedressOrgKey,jdbcType=VARCHAR},
+      </if> 
+      <if test="adjudgePeriod!= null">
+        ADJUDGE_PERIOD=#{adjudgePeriod,jdbcType=VARCHAR},
+      </if>  
+      <if test="adjudgeStartTime!= null">
+         ADJUDGE_STARTTIME=#{adjudgeStartTime,jdbcType=TIMESTAMP},
+      </if>   
+      <if test="adjudgeEndTime!= null">
+       	ADJUDGE_ENDTIME=#{adjudgeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicPenalTypeKey != null">
+        DIC_PENAL_TYPE_KEY=#{dicPenalTypeKey,jdbcType=VARCHAR},
+      </if>      
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritJudgment">
+    update SF_CULPRIT_JUDGMENT
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      CRIME_INFO = #{crimeInfo,jdbcType=VARCHAR},
+      dic_ypxf_key = #{dicYpxfKey,jdbcType=VARCHAR},
+      ACCESSORY_PUNISHMENT = #{accessoryPunishment,jdbcType=VARCHAR},
+      DEPRIVE_POLITICAL = #{deprivePolitical,jdbcType=VARCHAR},
+      DEPRIVE_POLITICAL_START_DATE = #{deprivePoliticalStartDate,jdbcType=TIMESTAMP},
+      DEPRIVE_POLITICAL_END_DATE = #{deprivePoliticalEndDate,jdbcType=TIMESTAMP},
+      RECIVE_SECURITY_ORG = #{reciveSecurityOrg,jdbcType=VARCHAR},
+      RECIVE_SECURITY_PERSON = #{reciveSecurityPerson,jdbcType=VARCHAR},
+      TRANSFER_DATE = #{transferDate,jdbcType=TIMESTAMP},
+      dic_four_key = #{dicFourKey,jdbcType=VARCHAR},
+      dic_tree_key = #{dicTreeKey,jdbcType=VARCHAR},
+      dic_sfgtfz_key = #{dicSfgtfzKey,jdbcType=VARCHAR},
+      DIC_IS_BAN_KEY = #{dicIsBanKey,jdbcType=DECIMAL},
+      DIC_RECEIVE_TYPE_KEY = #{dicReceiveTypeKey,jdbcType=VARCHAR},
+      ESCORT_DATE = #{escortDate,jdbcType=TIMESTAMP},
+      NOTIFY_DATE = #{notifyDate,jdbcType=TIMESTAMP},
+      TO_COUNTRY_REPORT_DATE = #{toCountryReportDate,jdbcType=TIMESTAMP},
+      LIMIT_DATE = #{limitDate,jdbcType=TIMESTAMP},
+      dic_sfjljzxz_key = #{dicSfjljzxzKey,jdbcType=DECIMAL},
+      dic_memeber_key = #{dicMemeberKey,jdbcType=VARCHAR},
+      DIC_IS_INF_MANAGE_KEY = #{dicIsInfManageKey,jdbcType=VARCHAR},
+      DIC_HAVE_MOBILE_KEY = #{dicHaveMobileKey,jdbcType=VARCHAR},
+      DIC_IS_FINISH_KEY = #{dicIsFinishKey,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      DIC_CRIME_TYPE_KEY = #{dicCrimeTypeKey,jdbcType=VARCHAR},
+      ADJUDGE_ORG = #{adjudgeOrg,jdbcType=VARCHAR},
+      ADJUDGE_ID = #{adjudgeId,jdbcType=VARCHAR},
+      ADJUDGE_DATE = #{adjudgeDate,jdbcType=TIMESTAMP},
+      ADJUDGE_REDRESS_ORG = #{adjudgeRedressOrg,jdbcType=VARCHAR},
+      ADJUDGE_REDRESS_T = #{adjudgeRedressT,jdbcType=TIMESTAMP},
+      REDRESS_PERIOD = #{redressPeriod,jdbcType=VARCHAR},
+      REDRESS_START_DATE = #{redressStartDate,jdbcType=TIMESTAMP},
+      REDRESS_END_DATE = #{redressEndDate,jdbcType=TIMESTAMP},
+      CRIME_FACT = #{crimeFact,jdbcType=VARCHAR},
+      DIC_HAVE_TOGETHER_KEY = #{dicHaveTogetherKey,jdbcType=VARCHAR},
+       DETAIN_PLACE= #{detainPlace,jdbcType=VARCHAR},
+       TURN_OVER= #{turnOver,jdbcType=TIMESTAMP},
+      DIC_OLD_LAG_KEY= #{dicOldLagKey,jdbcType=VARCHAR},
+       START_BAN= #{startBan,jdbcType=TIMESTAMP},
+       END_BAN= #{endBan,jdbcType=TIMESTAMP},
+       TIME_BAN= #{timeBan,jdbcType=VARCHAR},
+       CONTENT_BAN= #{contentBan,jdbcType=VARCHAR},
+       FORFEIT= #{forfeit,jdbcType=VARCHAR},
+       DISENTITLE=#{disentitle,jdbcType=VARCHAR},
+       EXPROPRIATION= #{expropriation,jdbcType=VARCHAR},
+       ADJUDGE_CHANGE= #{adjudgeChange,jdbcType=VARCHAR},
+       DIC_ADJUDGE_REDRESS_ORG_KEY=#{dicAdjudgeRedressOrgKey,jdbcType=VARCHAR},
+       ADJUDGE_PERIOD=#{adjudgePeriod,jdbcType=VARCHAR},
+       ADJUDGE_STARTTIME=#{adjudgeStartTime,jdbcType=TIMESTAMP},
+       ADJUDGE_ENDTIME=#{adjudgeEndTime,jdbcType=TIMESTAMP},
+       DIC_PENAL_TYPE_KEY=#{dicPenalTypeKey,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritJudgment" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT_JUDGMENT t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="culpritId != null and culpritId!=''">
+      AND CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="crimeInfo != null and crimeInfo!=''">
+      AND CRIME_INFO = #{crimeInfo,jdbcType=VARCHAR}
+    </if>
+     <if test="adjudgeChange != null and adjudgeChange!=''">
+      AND ADJUDGE_CHANGE = #{adjudgeChange,jdbcType=VARCHAR}
+    </if>
+    <if test="dicYpxfKey != null and dicYpxfKey!=''">
+      AND dic_ypxf_key = #{dicYpxfKey,jdbcType=VARCHAR}
+    </if>
+    <if test="accessoryPunishment != null and accessoryPunishment!=''">
+      AND ACCESSORY_PUNISHMENT = #{accessoryPunishment,jdbcType=VARCHAR}
+    </if>
+    <if test="deprivePolitical != null and deprivePolitical!=''">
+      AND DEPRIVE_POLITICAL = #{deprivePolitical,jdbcType=VARCHAR}
+    </if>
+    <if test="deprivePoliticalStartDate != null">
+      AND DEPRIVE_POLITICAL_START_DATE = #{deprivePoliticalStartDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="deprivePoliticalEndDate != null">
+      AND DEPRIVE_POLITICAL_END_DATE = #{deprivePoliticalEndDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="reciveSecurityOrg != null and reciveSecurityOrg!=''">
+      AND RECIVE_SECURITY_ORG = #{reciveSecurityOrg,jdbcType=VARCHAR}
+    </if>
+    <if test="reciveSecurityPerson != null and reciveSecurityPerson!=''">
+      AND RECIVE_SECURITY_PERSON = #{reciveSecurityPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="transferDate != null">
+      AND TRANSFER_DATE = #{transferDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="dicFourKey != null and dicFourKey!=''">
+      AND dic_four_key = #{dicFourKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicTreeKey != null and dicTreeKey!=''">
+      AND dic_tree_key = #{dicTreeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSfgtfzKey != null and dicSfgtfzKey!=''">
+      AND dic_sfgtfz_key = #{dicSfgtfzKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicIsBanKey != null">
+      AND DIC_IS_BAN_KEY = #{dicIsBanKey,jdbcType=DECIMAL}
+    </if>
+    <if test="dicReceiveTypeKey != null and dicReceiveTypeKey!=''">
+      AND DIC_RECEIVE_TYPE_KEY = #{dicReceiveTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="escortDate != null">
+      AND ESCORT_DATE = #{escortDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="notifyDate != null">
+      AND NOTIFY_DATE = #{notifyDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="toCountryReportDate != null">
+      AND TO_COUNTRY_REPORT_DATE = #{toCountryReportDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="limitDate != null">
+      AND LIMIT_DATE = #{limitDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="dicSfjljzxzKey != null">
+      AND dic_sfjljzxz_key = #{dicSfjljzxzKey,jdbcType=DECIMAL}
+    </if>
+    <if test="dicMemeberKey != null and dicMemeberKey!=''">
+      AND dic_memeber_key = #{dicMemeberKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicIsInfManageKey != null and dicIsInfManageKey!=''">
+      AND DIC_IS_INF_MANAGE_KEY = #{dicIsInfManageKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicHaveMobileKey != null and dicHaveMobileKey!=''">
+      AND DIC_HAVE_MOBILE_KEY = #{dicHaveMobileKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicIsFinishKey != null and dicIsFinishKey!=''">
+      AND DIC_IS_FINISH_KEY = #{dicIsFinishKey,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+      <if test="dicCrimeTypeKey != null">
+        AND DIC_CRIME_TYPE_KEY = #{dicCrimeTypeKey,jdbcType=VARCHAR}
+      </if>
+      <if test="adjudgeOrg != null">
+        AND ADJUDGE_ORG = #{adjudgeOrg,jdbcType=VARCHAR}
+      </if>
+      <if test="adjudgeId != null">
+        AND ADJUDGE_ID = #{adjudgeId ,jdbcType=VARCHAR}
+      </if>
+      <if test="adjudgeDate != null">
+        AND ADJUDGE_DATE = #{adjudgeDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="adjudgeRedressOrg != null">
+      	AND ADJUDGE_REDRESS_ORG = #{adjudgeRedressOrg,jdbcType=VARCHAR}
+      </if>
+      <if test="adjudgeRedressT != null">
+        AND ADJUDGE_REDRESS_T = #{adjudgeRedressT,jdbcType=TIMESTAMP}
+      </if>
+      <if test="redressPeriod != null">
+        AND REDRESS_PERIOD = #{redressPeriod,jdbcType=VARCHAR}
+      </if>
+      <if test="redressStartDate != null">
+       AND REDRESS_START_DATE = #{redressStartDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="redressEndDate != null">
+       AND REDRESS_END_DATE = #{redressEndDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="crimeFact != null">
+        AND CRIME_FACT = #{crimeFact,jdbcType=VARCHAR}
+      </if>
+      <if test="dicHaveTogetherKey != null">
+        AND DIC_HAVE_TOGETHER_KEY = #{dicHaveTogetherKey,jdbcType=VARCHAR}
+      </if>
+       <if test="detainPlace != null">
+       AND DETAIN_PLACE= #{detainPlace,jdbcType=VARCHAR}
+      </if>
+      <if test="turnOver != null">
+       AND TURN_OVER= #{turnOver,jdbcType=TIMESTAMP}
+      </if>
+      <if test="dicOldLagKey != null">
+      AND DIC_OLD_LAG_KEY= #{dicOldLagKey,jdbcType=VARCHAR}
+      </if>
+      <if test="startBan != null">
+       AND START_BAN= #{startBan,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endBan != null">
+       AND END_BAN= #{endBan,jdbcType=TIMESTAMP}
+      </if>
+      <if test="timeBan != null">
+       AND TIME_BAN= #{timeBan,jdbcType=VARCHAR}
+      </if>
+      <if test="contentBan != null">
+       AND CONTENT_BAN= #{contentBan,jdbcType=VARCHAR}
+      </if>
+      <if test="forfeit != null">
+       AND FORFEIT= #{forfeit,jdbcType=VARCHAR}
+      </if>
+      <if test="disentitle != null">
+        AND  DISENTITLE=#{disentitle,jdbcType=VARCHAR}
+      </if>
+      <if test="expropriation != null">
+       AND  EXPROPRIATION= #{expropriation,jdbcType=VARCHAR}
+      </if>  
+      <if test="adjudgeStartTime != null">
+       AND ADJUDGE_STARTTIME = #{adjudgeStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="adjudgeEndTime != null">
+       AND ADJUDGE_ENDTIME = #{adjudgeEndTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="dicAdjudgeRedressOrgKey!= null">
+        AND DIC_ADJUDGE_REDRESS_ORG_KEY=#{dicAdjudgeRedressOrgKey,jdbcType=VARCHAR}
+      </if> 
+       <if test="dicPenalTypeKey != null">
+        AND DIC_PENAL_TYPE_KEY=#{dicPenalTypeKey,jdbcType=VARCHAR}
+      </if> 
+  </sql>
+  
+  
+</mapper>

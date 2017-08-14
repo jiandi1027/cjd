@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.rewardspunishment.WarningOralMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.rewardspunishment.WarningOral">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="FACT" jdbcType="VARCHAR" property="fact" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="REPENTANCE_PATH" jdbcType="VARCHAR" property="repentancePath" />
+    <result column="REPENTEANCE_PATH_NAME" jdbcType="VARCHAR" property="repenteancePathName" />
+    <result column="NOTE_PATH" jdbcType="VARCHAR" property="notePath" />
+    <result column="NOTE_PATH_NAME" jdbcType="VARCHAR" property="notePathName" />
+    <result column="TALK_TIME" jdbcType="TIMESTAMP" property="talkTime" />
+    <result column="TALKOR" jdbcType="VARCHAR" property="talkor" />
+    <result column="RECORDER" jdbcType="VARCHAR" property="recorder" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="DETAIL_INFO" jdbcType="VARCHAR" property="detailInfo" />
+    <result column="NOTE" jdbcType="CLOB" property="note" />
+    <result column="DIC_REASON_TYPE_KEY" jdbcType="VARCHAR" property="dicReasonTypeKey" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CULPRIT_ID, FACT, CREATED_TIME, MODIFIED_TIME, REPENTANCE_PATH, REPENTEANCE_PATH_NAME, 
+    NOTE_PATH, NOTE_PATH_NAME, TALK_TIME, TALKOR, RECORDER, CONTENT, DETAIL_INFO, NOTE, 
+    DIC_REASON_TYPE_KEY, CREATED, CREATER, UPDATED, UPDATER, DEL_FLAG,PROCESS_INSTANCE_ID,
+    (select g.name from SYS_GROUP g left join SF_CULPRIT c on g.id=c.GROUP_ID where c.id=t.CULPRIT_ID) groupName,
+    (select c.name from SF_CULPRIT c where c.id=t.CULPRIT_ID) culpritName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_WARNING_ORAL t
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_WARNING_ORAL
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.rewardspunishment.WarningOral">
+    insert into SF_WARNING_ORAL (ID, CULPRIT_ID, FACT, 
+      CREATED_TIME, MODIFIED_TIME, REPENTANCE_PATH, 
+      REPENTEANCE_PATH_NAME, NOTE_PATH, NOTE_PATH_NAME, 
+      TALK_TIME, TALKOR, RECORDER, 
+      CONTENT, DETAIL_INFO, NOTE, 
+      DIC_REASON_TYPE_KEY, CREATED, CREATER, 
+      UPDATED, UPDATER, DEL_FLAG,PROCESS_INSTANCE_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{fact,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{repentancePath,jdbcType=VARCHAR}, 
+      #{repenteancePathName,jdbcType=VARCHAR}, #{notePath,jdbcType=VARCHAR}, #{notePathName,jdbcType=VARCHAR}, 
+      #{talkTime,jdbcType=TIMESTAMP}, #{talkor,jdbcType=VARCHAR}, #{recorder,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{detailInfo,jdbcType=VARCHAR}, #{note,jdbcType=CLOB}, 
+      #{dicReasonTypeKey,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+      #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL},#{processInstanceId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.WarningOral">
+    insert into SF_WARNING_ORAL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="fact != null">
+        FACT,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="repentancePath != null">
+        REPENTANCE_PATH,
+      </if>
+      <if test="repenteancePathName != null">
+        REPENTEANCE_PATH_NAME,
+      </if>
+      <if test="notePath != null">
+        NOTE_PATH,
+      </if>
+      <if test="notePathName != null">
+        NOTE_PATH_NAME,
+      </if>
+      <if test="talkTime != null">
+        TALK_TIME,
+      </if>
+      <if test="talkor != null">
+        TALKOR,
+      </if>
+      <if test="recorder != null">
+        RECORDER,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="detailInfo != null">
+        DETAIL_INFO,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="dicReasonTypeKey != null">
+        DIC_REASON_TYPE_KEY,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="fact != null">
+        #{fact,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repentancePath != null">
+        #{repentancePath,jdbcType=VARCHAR},
+      </if>
+      <if test="repenteancePathName != null">
+        #{repenteancePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="notePath != null">
+        #{notePath,jdbcType=VARCHAR},
+      </if>
+      <if test="notePathName != null">
+        #{notePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="talkTime != null">
+        #{talkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="talkor != null">
+        #{talkor,jdbcType=VARCHAR},
+      </if>
+      <if test="recorder != null">
+        #{recorder,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="detailInfo != null">
+        #{detailInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=CLOB},
+      </if>
+      <if test="dicReasonTypeKey != null">
+        #{dicReasonTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.WarningOral">
+    update SF_WARNING_ORAL
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="fact != null">
+        FACT = #{fact,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repentancePath != null">
+        REPENTANCE_PATH = #{repentancePath,jdbcType=VARCHAR},
+      </if>
+      <if test="repenteancePathName != null">
+        REPENTEANCE_PATH_NAME = #{repenteancePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="notePath != null">
+        NOTE_PATH = #{notePath,jdbcType=VARCHAR},
+      </if>
+      <if test="notePathName != null">
+        NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="talkTime != null">
+        TALK_TIME = #{talkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="talkor != null">
+        TALKOR = #{talkor,jdbcType=VARCHAR},
+      </if>
+      <if test="recorder != null">
+        RECORDER = #{recorder,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="detailInfo != null">
+        DETAIL_INFO = #{detailInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=CLOB},
+      </if>
+      <if test="dicReasonTypeKey != null">
+        DIC_REASON_TYPE_KEY = #{dicReasonTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID=#{processInstanceId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.rewardspunishment.WarningOral">
+    update SF_WARNING_ORAL
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      FACT = #{fact,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      REPENTANCE_PATH = #{repentancePath,jdbcType=VARCHAR},
+      REPENTEANCE_PATH_NAME = #{repenteancePathName,jdbcType=VARCHAR},
+      NOTE_PATH = #{notePath,jdbcType=VARCHAR},
+      NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR},
+      TALK_TIME = #{talkTime,jdbcType=TIMESTAMP},
+      TALKOR = #{talkor,jdbcType=VARCHAR},
+      RECORDER = #{recorder,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      DETAIL_INFO = #{detailInfo,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=CLOB},
+      DIC_REASON_TYPE_KEY = #{dicReasonTypeKey,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      PROCESS_INSTANCE_ID=#{processInstanceId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.rewardspunishment.WarningOral" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_WARNING_ORAL t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="culpritId != null and culpritId!=''">
+      AND t.CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="fact != null and fact!=''">
+      AND t.FACT = #{fact,jdbcType=VARCHAR}
+    </if>
+    <if test="createdTime != null">
+      AND t.CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="modifiedTime != null">
+      AND t.MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="repentancePath != null and repentancePath!=''">
+      AND t.REPENTANCE_PATH = #{repentancePath,jdbcType=VARCHAR}
+    </if>
+    <if test="repenteancePathName != null and repenteancePathName!=''">
+      AND t.REPENTEANCE_PATH_NAME = #{repenteancePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="notePath != null and notePath!=''">
+      AND t.NOTE_PATH = #{notePath,jdbcType=VARCHAR}
+    </if>
+    <if test="notePathName != null and notePathName!=''">
+      AND t.NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="talkTime != null">
+      AND t.TALK_TIME = #{talkTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="talkor != null and talkor!=''">
+      AND t.TALKOR = #{talkor,jdbcType=VARCHAR}
+    </if>
+    <if test="recorder != null and recorder!=''">
+      AND t.RECORDER = #{recorder,jdbcType=VARCHAR}
+    </if>
+    <if test="content != null and content!=''">
+      AND t.CONTENT = #{content,jdbcType=VARCHAR}
+    </if>
+    <if test="detailInfo != null and detailInfo!=''">
+      AND t.DETAIL_INFO = #{detailInfo,jdbcType=VARCHAR}
+    </if>
+    <if test="note != null and note!=''">
+      AND t.NOTE = #{note,jdbcType=CLOB}
+    </if>
+    <if test="dicReasonTypeKey != null and dicReasonTypeKey!=''">
+      AND t.DIC_REASON_TYPE_KEY = #{dicReasonTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND t.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="processInstanceId != null">
+       AND PROCESS_INSTANCE_ID=#{processInstanceId,jdbcType=VARCHAR}
+      </if>
+     <if test="culpritName != null and culpritName!=''">
+       AND exists (select * from SF_CULPRIT c where c.id=t.CULPRIT_ID and c.name like '%'||#{culpritName,jdbcType=VARCHAR}||'%')
+      </if>
+      <if test="groupName != null and groupName!=''">
+       AND exists (select * from SF_CULPRIT c where c.id=t.CULPRIT_ID and c.GROUP_ID=#{groupName,jdbcType=VARCHAR})
+      </if>
+      <if test="searchStartDate != null">
+       <![CDATA[  
+      AND t.CREATED >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND t.CREATED <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g left join SF_CULPRIT c on g.id=c.group_id where c.id=CULPRIT_ID)
+    </if> 
+  </sql>
+</mapper>

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.endcorrect.RecidivismPerhapsMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.endcorrect.RecidivismPerhaps">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="NEW_CRIME" jdbcType="VARCHAR" property="newCrime" />
+    <result column="REGISTER_UNIT" jdbcType="VARCHAR" property="registerUnit" />
+    <result column="REGISTER_TIME" jdbcType="TIMESTAMP" property="registerTime" />
+    <result column="DIC_GRASP_TYPE_KEY" jdbcType="VARCHAR" property="dicGraspTypeKey" />
+    <result column="GRASP_TIME" jdbcType="TIMESTAMP" property="graspTime" />
+    <result column="JUDGMENT_TIME" jdbcType="TIMESTAMP" property="judgmentTime" />
+    <result column="JUDGMENT_COURT" jdbcType="VARCHAR" property="judgmentCourt" />
+    <result column="JUDGMENT_PATH" jdbcType="VARCHAR" property="judgmentPath" />
+    <result column="JUDGMENT_PATH_NAME" jdbcType="VARCHAR" property="judgmentPathName" />
+    <result column="UNGUILTY_REASON" jdbcType="VARCHAR" property="unguiltyReason" />
+    <result column="UNGUILTY_PATH" jdbcType="VARCHAR" property="unguiltyPath" />
+    <result column="UNGUILTY_PATH_NAME" jdbcType="VARCHAR" property="unguiltyPathName" />
+    <result column="REPORT_TIME" jdbcType="TIMESTAMP" property="reportTime" />
+    <result column="REPORT_PERSON" jdbcType="VARCHAR" property="reportPerson" />
+    <result column="REPORT_UNIT" jdbcType="VARCHAR" property="reportUnit" />
+    <result column="DIC_IS_TOCRIME_KEY" jdbcType="VARCHAR" property="dicIsTocrimeKey" />
+    <result column="CRIME_DETAILS" jdbcType="VARCHAR" property="crimeDetails" />
+    <result column="DIC_CHECK_TYPE_KEY" jdbcType="VARCHAR" property="dicCheckTypeKey" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="COERCIVE_MEASURE_KEY" jdbcType="VARCHAR" property="coerciveMeasureKey" />
+    <result column="COERCIVE_MEASURE_DATE" jdbcType="TIMESTAMP" property="coerciveMeasureDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CULPRIT_ID, NEW_CRIME, REGISTER_UNIT, REGISTER_TIME, DIC_GRASP_TYPE_KEY, GRASP_TIME, 
+    JUDGMENT_TIME, JUDGMENT_COURT, JUDGMENT_PATH, JUDGMENT_PATH_NAME, UNGUILTY_REASON, 
+    UNGUILTY_PATH, UNGUILTY_PATH_NAME, REPORT_TIME, REPORT_PERSON, REPORT_UNIT, DIC_IS_TOCRIME_KEY, 
+    CRIME_DETAILS, DIC_CHECK_TYPE_KEY, CREATED, CREATER, UPDATED, UPDATER, DEL_FLAG,PROCESS_INSTANCE_ID，
+    COERCIVE_MEASURE_KEY,COERCIVE_MEASURE_DATE,
+    (select g.name from SYS_GROUP g left join SF_CULPRIT c on g.id=c.GROUP_ID where c.id=CULPRIT_ID) groupName,
+    (select c.name from SF_CULPRIT c where c.id=CULPRIT_ID) culpritName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_RECIDIVISM_PERHAPS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_RECIDIVISM_PERHAPS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.endcorrect.RecidivismPerhaps">
+    insert into SF_RECIDIVISM_PERHAPS (ID, CULPRIT_ID, NEW_CRIME, 
+      REGISTER_UNIT, REGISTER_TIME, DIC_GRASP_TYPE_KEY, 
+      GRASP_TIME, JUDGMENT_TIME, JUDGMENT_COURT, 
+      JUDGMENT_PATH, JUDGMENT_PATH_NAME, UNGUILTY_REASON, 
+      UNGUILTY_PATH, UNGUILTY_PATH_NAME, REPORT_TIME, 
+      REPORT_PERSON, REPORT_UNIT, DIC_IS_TOCRIME_KEY, 
+      CRIME_DETAILS, DIC_CHECK_TYPE_KEY, CREATED, 
+      CREATER, UPDATED, UPDATER, PROCESS_INSTANCE_ID,
+      DEL_FLAG,COERCIVE_MEASURE_KEY,COERCIVE_MEASURE_DATE)
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{newCrime,jdbcType=VARCHAR}, 
+      #{registerUnit,jdbcType=VARCHAR}, #{registerTime,jdbcType=TIMESTAMP}, #{dicGraspTypeKey,jdbcType=VARCHAR}, 
+      #{graspTime,jdbcType=TIMESTAMP}, #{judgmentTime,jdbcType=TIMESTAMP}, #{judgmentCourt,jdbcType=VARCHAR}, 
+      #{judgmentPath,jdbcType=VARCHAR}, #{judgmentPathName,jdbcType=VARCHAR}, #{unguiltyReason,jdbcType=VARCHAR}, 
+      #{unguiltyPath,jdbcType=VARCHAR}, #{unguiltyPathName,jdbcType=VARCHAR}, #{reportTime,jdbcType=TIMESTAMP}, 
+      #{reportPerson,jdbcType=VARCHAR}, #{reportUnit,jdbcType=VARCHAR}, #{dicIsTocrimeKey,jdbcType=VARCHAR}, 
+      #{crimeDetails,jdbcType=VARCHAR}, #{dicCheckTypeKey,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{processInstanceId,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL},#{coerciveMeasureKey,jdbcType=TIMESTAMP},#{coerciveMeasureDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.endcorrect.RecidivismPerhaps">
+    insert into SF_RECIDIVISM_PERHAPS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="newCrime != null">
+        NEW_CRIME,
+      </if>
+      <if test="registerUnit != null">
+        REGISTER_UNIT,
+      </if>
+      <if test="registerTime != null">
+        REGISTER_TIME,
+      </if>
+      <if test="dicGraspTypeKey != null">
+        DIC_GRASP_TYPE_KEY,
+      </if>
+      <if test="graspTime != null">
+        GRASP_TIME,
+      </if>
+      <if test="judgmentTime != null">
+        JUDGMENT_TIME,
+      </if>
+      <if test="judgmentCourt != null">
+        JUDGMENT_COURT,
+      </if>
+      <if test="judgmentPath != null">
+        JUDGMENT_PATH,
+      </if>
+      <if test="judgmentPathName != null">
+        JUDGMENT_PATH_NAME,
+      </if>
+      <if test="unguiltyReason != null">
+        UNGUILTY_REASON,
+      </if>
+      <if test="unguiltyPath != null">
+        UNGUILTY_PATH,
+      </if>
+      <if test="unguiltyPathName != null">
+        UNGUILTY_PATH_NAME,
+      </if>
+      <if test="reportTime != null">
+        REPORT_TIME,
+      </if>
+      <if test="reportPerson != null">
+        REPORT_PERSON,
+      </if>
+      <if test="reportUnit != null">
+        REPORT_UNIT,
+      </if>
+      <if test="dicIsTocrimeKey != null">
+        DIC_IS_TOCRIME_KEY,
+      </if>
+      <if test="crimeDetails != null">
+        CRIME_DETAILS,
+      </if>
+      <if test="dicCheckTypeKey != null">
+        DIC_CHECK_TYPE_KEY,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>,
+      <if test="coerciveMeasureKey != null">
+        COERCIVE_MEASURE_KEY,
+      </if>
+      <if test="coerciveMeasureDate != null">
+        COERCIVE_MEASURE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="newCrime != null">
+        #{newCrime,jdbcType=VARCHAR},
+      </if>
+      <if test="registerUnit != null">
+        #{registerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicGraspTypeKey != null">
+        #{dicGraspTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="graspTime != null">
+        #{graspTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="judgmentTime != null">
+        #{judgmentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="judgmentCourt != null">
+        #{judgmentCourt,jdbcType=VARCHAR},
+      </if>
+      <if test="judgmentPath != null">
+        #{judgmentPath,jdbcType=VARCHAR},
+      </if>
+      <if test="judgmentPathName != null">
+        #{judgmentPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="unguiltyReason != null">
+        #{unguiltyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="unguiltyPath != null">
+        #{unguiltyPath,jdbcType=VARCHAR},
+      </if>
+      <if test="unguiltyPathName != null">
+        #{unguiltyPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportTime != null">
+        #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportPerson != null">
+        #{reportPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="reportUnit != null">
+        #{reportUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsTocrimeKey != null">
+        #{dicIsTocrimeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="crimeDetails != null">
+        #{crimeDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckTypeKey != null">
+        #{dicCheckTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+      	#{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="coerciveMeasureKey != null">
+      	#{coerciveMeasureKey,jdbcType=VARCHAR},
+      </if>
+      <if test="coerciveMeasureDate != null">
+        #{coerciveMeasureDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.endcorrect.RecidivismPerhaps">
+    update SF_RECIDIVISM_PERHAPS
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="newCrime != null">
+        NEW_CRIME = #{newCrime,jdbcType=VARCHAR},
+      </if>
+      <if test="registerUnit != null">
+        REGISTER_UNIT = #{registerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        REGISTER_TIME = #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicGraspTypeKey != null">
+        DIC_GRASP_TYPE_KEY = #{dicGraspTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="graspTime != null">
+        GRASP_TIME = #{graspTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="judgmentTime != null">
+        JUDGMENT_TIME = #{judgmentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="judgmentCourt != null">
+        JUDGMENT_COURT = #{judgmentCourt,jdbcType=VARCHAR},
+      </if>
+      <if test="judgmentPath != null">
+        JUDGMENT_PATH = #{judgmentPath,jdbcType=VARCHAR},
+      </if>
+      <if test="judgmentPathName != null">
+        JUDGMENT_PATH_NAME = #{judgmentPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="unguiltyReason != null">
+        UNGUILTY_REASON = #{unguiltyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="unguiltyPath != null">
+        UNGUILTY_PATH = #{unguiltyPath,jdbcType=VARCHAR},
+      </if>
+      <if test="unguiltyPathName != null">
+        UNGUILTY_PATH_NAME = #{unguiltyPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportTime != null">
+        REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportPerson != null">
+        REPORT_PERSON = #{reportPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="reportUnit != null">
+        REPORT_UNIT = #{reportUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="dicIsTocrimeKey != null">
+        DIC_IS_TOCRIME_KEY = #{dicIsTocrimeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="crimeDetails != null">
+        CRIME_DETAILS = #{crimeDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckTypeKey != null">
+        DIC_CHECK_TYPE_KEY = #{dicCheckTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+      	PROCESS_INSTANCE_ID=#{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="coerciveMeasureKey != null">
+      	COERCIVE_MEASURE_KEY=#{coerciveMeasureKey,jdbcType=VARCHAR},
+      </if>
+      <if test="coerciveMeasureDate != null">
+        COERCIVE_MEASURE_DATE=#{coerciveMeasureDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.endcorrect.RecidivismPerhaps">
+    update SF_RECIDIVISM_PERHAPS
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      NEW_CRIME = #{newCrime,jdbcType=VARCHAR},
+      REGISTER_UNIT = #{registerUnit,jdbcType=VARCHAR},
+      REGISTER_TIME = #{registerTime,jdbcType=TIMESTAMP},
+      DIC_GRASP_TYPE_KEY = #{dicGraspTypeKey,jdbcType=VARCHAR},
+      GRASP_TIME = #{graspTime,jdbcType=TIMESTAMP},
+      JUDGMENT_TIME = #{judgmentTime,jdbcType=TIMESTAMP},
+      JUDGMENT_COURT = #{judgmentCourt,jdbcType=VARCHAR},
+      JUDGMENT_PATH = #{judgmentPath,jdbcType=VARCHAR},
+      JUDGMENT_PATH_NAME = #{judgmentPathName,jdbcType=VARCHAR},
+      UNGUILTY_REASON = #{unguiltyReason,jdbcType=VARCHAR},
+      UNGUILTY_PATH = #{unguiltyPath,jdbcType=VARCHAR},
+      UNGUILTY_PATH_NAME = #{unguiltyPathName,jdbcType=VARCHAR},
+      REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP},
+      REPORT_PERSON = #{reportPerson,jdbcType=VARCHAR},
+      REPORT_UNIT = #{reportUnit,jdbcType=VARCHAR},
+      DIC_IS_TOCRIME_KEY = #{dicIsTocrimeKey,jdbcType=VARCHAR},
+      CRIME_DETAILS = #{crimeDetails,jdbcType=VARCHAR},
+      DIC_CHECK_TYPE_KEY = #{dicCheckTypeKey,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      COERCIVE_MEASURE_KEY=#{coerciveMeasureKey,jdbcType=VARCHAR},
+      COERCIVE_MEASURE_DATE=#{coerciveMeasureDate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.endcorrect.RecidivismPerhaps" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_RECIDIVISM_PERHAPS t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="culpritId != null and culpritId!=''">
+      AND CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="newCrime != null and newCrime!=''">
+      AND NEW_CRIME = #{newCrime,jdbcType=VARCHAR}
+    </if>
+    <if test="registerUnit != null and registerUnit!=''">
+      AND REGISTER_UNIT = #{registerUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="registerTime != null">
+      AND REGISTER_TIME = #{registerTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="dicGraspTypeKey != null and dicGraspTypeKey!=''">
+      AND DIC_GRASP_TYPE_KEY = #{dicGraspTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="graspTime != null">
+      AND GRASP_TIME = #{graspTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="judgmentTime != null">
+      AND JUDGMENT_TIME = #{judgmentTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="judgmentCourt != null and judgmentCourt!=''">
+      AND JUDGMENT_COURT = #{judgmentCourt,jdbcType=VARCHAR}
+    </if>
+    <if test="judgmentPath != null and judgmentPath!=''">
+      AND JUDGMENT_PATH = #{judgmentPath,jdbcType=VARCHAR}
+    </if>
+    <if test="judgmentPathName != null and judgmentPathName!=''">
+      AND JUDGMENT_PATH_NAME = #{judgmentPathName,jdbcType=VARCHAR}
+    </if>
+    <if test="unguiltyReason != null and unguiltyReason!=''">
+      AND UNGUILTY_REASON = #{unguiltyReason,jdbcType=VARCHAR}
+    </if>
+    <if test="unguiltyPath != null and unguiltyPath!=''">
+      AND UNGUILTY_PATH = #{unguiltyPath,jdbcType=VARCHAR}
+    </if>
+    <if test="unguiltyPathName != null and unguiltyPathName!=''">
+      AND UNGUILTY_PATH_NAME = #{unguiltyPathName,jdbcType=VARCHAR}
+    </if>
+    <if test="reportTime != null">
+      AND REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="reportPerson != null and reportPerson!=''">
+      AND REPORT_PERSON = #{reportPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="reportUnit != null and reportUnit!=''">
+      AND REPORT_UNIT = #{reportUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="dicIsTocrimeKey != null and dicIsTocrimeKey!=''">
+      AND DIC_IS_TOCRIME_KEY = #{dicIsTocrimeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="crimeDetails != null and crimeDetails!=''">
+      AND CRIME_DETAILS = #{crimeDetails,jdbcType=VARCHAR}
+    </if>
+    <if test="dicCheckTypeKey != null and dicCheckTypeKey!=''">
+      AND DIC_CHECK_TYPE_KEY = #{dicCheckTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="processInstanceId != null and processInstanceId!=''">
+      AND PROCESS_INSTANCE_ID=#{processInstanceId,jdbcType=VARCHAR},
+      </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="culpritName != null and culpritName!=''">
+       AND exists (select * from SF_CULPRIT c where c.id=t.CULPRIT_ID and c.name like '%'||#{culpritName,jdbcType=VARCHAR}||'%')
+      </if>
+      <if test="groupName != null and groupName!=''">
+       AND exists (select * from SF_CULPRIT c where c.id=t.CULPRIT_ID and c.GROUP_ID=#{groupName,jdbcType=VARCHAR})
+      </if>
+      <if test="searchStartDate != null">
+       <![CDATA[  
+      AND t.CREATED >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND t.CREATED <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g left join SF_CULPRIT c on g.id=c.group_id where c.id=CULPRIT_ID)
+    </if> 
+  </sql>
+</mapper>

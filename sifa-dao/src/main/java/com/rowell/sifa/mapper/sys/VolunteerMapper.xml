@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.sys.VolunteerMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.sys.Volunteer">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PATH" property="path" jdbcType="VARCHAR" />
+    <result column="PATH_NAME" property="pathName" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="JOB" property="job" jdbcType="VARCHAR" />
+    <result column="LINK_MOBILE" property="linkMobile" jdbcType="VARCHAR" />
+    <result column="DIC_SEX_KEY" property="dicSexKey" jdbcType="VARCHAR" />
+    <result column="CULPRIT_ID" property="culpritId" jdbcType="VARCHAR" />
+    <result column="LIMIT1" property="limit" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="END_DATE" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, PATH, 
+      PATH_NAME, ADDRESS, JOB, 
+      LINK_MOBILE, DIC_SEX_KEY, CULPRIT_ID, 
+      LIMIT1, START_DATE, END_DATE, 
+      CREATED, CREATER, UPDATED, 
+      UPDATER, DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_VOLUNTEER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SYS_VOLUNTEER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.sys.Volunteer">
+   insert into SYS_VOLUNTEER (ID, NAME, PATH, 
+      PATH_NAME, ADDRESS, JOB, 
+      LINK_MOBILE, DIC_SEX_KEY, CULPRIT_ID, 
+      LIMIT1, START_DATE, END_DATE, 
+      CREATED, CREATER, UPDATED, 
+      UPDATER, DEL_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{pathName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{linkMobile,jdbcType=VARCHAR}, #{dicSexKey,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, 
+      #{limit,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.sys.Volunteer">
+    insert into SYS_VOLUNTEER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="path != null" >
+        PATH,
+      </if>
+      <if test="pathName != null" >
+        PATH_NAME,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="job != null" >
+        JOB,
+      </if>
+      <if test="linkMobile != null" >
+        LINK_MOBILE,
+      </if>
+      <if test="dicSexKey != null" >
+        DIC_SEX_KEY,
+      </if>
+      <if test="culpritId != null" >
+        CULPRIT_ID,
+      </if>
+      <if test="limit != null" >
+        LIMIT1,
+      </if>
+      <if test="startDate != null" >
+        START_DATE,
+      </if>
+      <if test="endDate != null" >
+        END_DATE,
+      </if>
+      <if test="created != null" >
+        CREATED,
+      </if>
+      <if test="creater != null" >
+        CREATER,
+      </if>
+      <if test="updated != null" >
+        UPDATED,
+      </if>
+      <if test="updater != null" >
+        UPDATER,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="pathName != null" >
+        #{pathName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobile != null" >
+        #{linkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSexKey != null" >
+        #{dicSexKey,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null" >
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="limit != null" >
+        #{limit,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.sys.Volunteer">
+    update SYS_VOLUNTEER
+    <set>
+      <if test="name != null" >
+       NAME= #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+       PATH= #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="pathName != null" >
+       PATH_NAME= #{pathName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+       ADDRESS= #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+       JOB= #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobile != null" >
+       LINK_MOBILE= #{linkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSexKey != null" >
+       DIC_SEX_KEY= #{dicSexKey,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null and culpritId !='' " >
+        CULPRIT_ID=#{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="limit != null and  limit !=''" >
+       LIMIT1= #{limit,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+       START_DATE= #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        END_DATE=#{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null" >
+       CREATED= #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+       CREATER= #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null" >
+        UPDATED=#{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        UPDATER=#{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+       DEL_FLAG=#{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.sys.Volunteer">
+    update SYS_VOLUNTEER
+    set
+       NAME= #{name,jdbcType=VARCHAR},
+       PATH= #{path,jdbcType=VARCHAR},
+       PATH_NAME= #{pathName,jdbcType=VARCHAR},
+       ADDRESS= #{address,jdbcType=VARCHAR},
+       JOB= #{job,jdbcType=VARCHAR},
+       LINK_MOBILE= #{linkMobile,jdbcType=VARCHAR},
+       DIC_SEX_KEY= #{dicSexKey,jdbcType=VARCHAR},
+        CULPRIT_ID=#{culpritId,jdbcType=VARCHAR},
+       LIMIT1= #{limit,jdbcType=VARCHAR},
+       START_DATE= #{startDate,jdbcType=TIMESTAMP},
+        END_DATE=#{endDate,jdbcType=TIMESTAMP},
+       CREATED= #{created,jdbcType=TIMESTAMP},
+       CREATER= #{creater,jdbcType=VARCHAR},
+        UPDATED=#{updated,jdbcType=TIMESTAMP},
+        UPDATER=#{updater,jdbcType=VARCHAR},
+       DEL_FLAG #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.sys.Volunteer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_VOLUNTEER t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+      <if test="name != null" >
+      AND NAME= #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="path != null" >
+      AND PATH= #{path,jdbcType=VARCHAR}
+      </if>
+      <if test="pathName != null" >
+      AND PATH_NAME= #{pathName,jdbcType=VARCHAR}
+      </if>
+      <if test="address != null" >
+      AND ADDRESS= #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="job != null" >
+       AND JOB= #{job,jdbcType=VARCHAR}
+      </if>
+      <if test="linkMobile != null" >
+      AND LINK_MOBILE= #{linkMobile,jdbcType=VARCHAR}
+      </if>
+      <if test="dicSexKey != null" >
+      AND DIC_SEX_KEY= #{dicSexKey,jdbcType=VARCHAR}
+      </if>
+      <if test="culpritId != null" >
+      AND  CULPRIT_ID=#{culpritId,jdbcType=VARCHAR}
+      </if>
+      <if test="limit != null" >
+      AND LIMIT1= #{limit,jdbcType=VARCHAR}
+      </if>
+      <if test="startDate != null" >
+      AND START_DATE= #{startDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endDate != null" >
+      AND  END_DATE=#{endDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="created != null" >
+      AND CREATED= #{created,jdbcType=TIMESTAMP}
+      </if>
+      <if test="creater != null" >
+      AND CREATER= #{creater,jdbcType=VARCHAR
+      </if>
+      <if test="updated != null" >
+      AND  UPDATED=#{updated,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updater != null" >
+      AND  UPDATER=#{updater,jdbcType=VARCHAR}
+      </if>
+      <if test="delFlag != null" >
+      AND DEL_FLAG= #{delFlag,jdbcType=DECIMAL}
+      </if>
+  </sql>
+</mapper>

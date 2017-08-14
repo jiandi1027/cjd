@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.sys.QxjbMapper">
+	<resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.sys.Qxjb">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="datetime" jdbcType="VARCHAR" property="datetime" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="department" jdbcType="VARCHAR" property="department" />
+		<result column="leavetype" jdbcType="VARCHAR" property="leavetype" />
+		<result column="starttime1" jdbcType="VARCHAR" property="starttime1" />
+		<result column="starttime2" jdbcType="VARCHAR" property="starttime2" />
+		<result column="endtime1" jdbcType="VARCHAR" property="endtime1" />
+		<result column="endtime2" jdbcType="VARCHAR" property="endtime2" />
+		<result column="totalday" jdbcType="VARCHAR" property="totalday" />
+		<result column="reason" jdbcType="VARCHAR" property="reason" />
+		<result column="TIME" jdbcType="VARCHAR" property="time" />
+		<result column="ZUIDA" jdbcType="VARCHAR" property="zuida" />
+		<result column="JIHAO" jdbcType="VARCHAR" property="jihao" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, datetime, name, department, leavetype, starttime1, starttime2,
+		endtime1,
+		endtime2, totalday, reason, TIME, ZUIDA, JIHAO
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from QXJB
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from QXJB
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.rowell.sifa.pojo.sys.Qxjb">
+		insert into QXJB (ID, datetime, name,
+		department, leavetype, starttime1,
+		starttime2, endtime1, endtime2,
+		totalday, reason, TIME,
+		ZUIDA, JIHAO)
+		values (#{id,jdbcType=VARCHAR}, #{datetime,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{department,jdbcType=VARCHAR}, #{leavetype,jdbcType=VARCHAR}, #{starttime1,jdbcType=VARCHAR},
+		#{starttime2,jdbcType=VARCHAR}, #{endtime1,jdbcType=VARCHAR},
+		#{endtime2,jdbcType=VARCHAR},
+		#{totalday,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR},
+		#{zuida,jdbcType=VARCHAR}, #{jihao,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="findMax" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select max(to_number(zuida)) from QXJB t
+	</select>
+	<select id="findLast" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from QXJB t where zuida=(select max(to_number(zuida)) from QXJB t)
+	</select>
+
+	<update id="updatejihao" parameterType="String">
+		update QXJB set jihao= #{jihao,jdbcType=VARCHAR} where zuida=(select
+		max(to_number(zuida)) from QXJB t)
+	</update>
+
+	<delete id="deletejihao" parameterType="java.lang.String">
+		delete from QXJB where jihao=#{jihao,jdbcType=VARCHAR}
+	</delete>
+
+
+
+	<insert id="insertSelective" parameterType="com.rowell.sifa.pojo.sys.Qxjb">
+		insert into QXJB
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="datetime != null">
+				datetime,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="department != null">
+				department,
+			</if>
+			<if test="leavetype != null">
+				leavetype,
+			</if>
+			<if test="starttime1 != null">
+				starttime1,
+			</if>
+			<if test="starttime2 != null">
+				starttime2,
+			</if>
+			<if test="endtime1 != null">
+				endtime1,
+			</if>
+			<if test="endtime2 != null">
+				endtime2,
+			</if>
+			<if test="totalday != null">
+				totalday,
+			</if>
+			<if test="reason != null">
+				reason,
+			</if>
+			<if test="time != null">
+				TIME,
+			</if>
+			<if test="zuida != null">
+				ZUIDA,
+			</if>
+			<if test="jihao != null">
+				JIHAO,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="datetime != null">
+				#{datetime,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				#{department,jdbcType=VARCHAR},
+			</if>
+			<if test="leavetype != null">
+				#{leavetype,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime1 != null">
+				#{starttime1,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime2 != null">
+				#{starttime2,jdbcType=VARCHAR},
+			</if>
+			<if test="endtime1 != null">
+				#{endtime1,jdbcType=VARCHAR},
+			</if>
+			<if test="endtime2 != null">
+				#{endtime2,jdbcType=VARCHAR},
+			</if>
+			<if test="totalday != null">
+				#{totalday,jdbcType=VARCHAR},
+			</if>
+			<if test="reason != null">
+				#{reason,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=VARCHAR},
+			</if>
+			<if test="zuida != null">
+				#{zuida,jdbcType=VARCHAR},
+			</if>
+			<if test="jihao != null">
+				#{jihao,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.sys.Qxjb">
+		update QXJB
+		<set>
+			<if test="datetime != null">
+				datetime = #{datetime,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				department = #{department,jdbcType=VARCHAR},
+			</if>
+			<if test="leavetype != null">
+				leavetype = #{leavetype,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime1 != null">
+				starttime1 = #{starttime1,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime2 != null">
+				starttime2 = #{starttime2,jdbcType=VARCHAR},
+			</if>
+			<if test="endtime1 != null">
+				endtime1 = #{endtime1,jdbcType=VARCHAR},
+			</if>
+			<if test="endtime2 != null">
+				endtime2 = #{endtime2,jdbcType=VARCHAR},
+			</if>
+			<if test="totalday != null">
+				totalday = #{totalday,jdbcType=VARCHAR},
+			</if>
+			<if test="reason != null">
+				reason = #{reason,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				TIME = #{time,jdbcType=VARCHAR},
+			</if>
+			<if test="zuida != null">
+				ZUIDA = #{zuida,jdbcType=VARCHAR},
+			</if>
+			<if test="jihao != null">
+				JIHAO = #{jihao,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.sys.Qxjb">
+		update QXJB
+		set datetime = #{datetime,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		department = #{department,jdbcType=VARCHAR},
+		leavetype = #{leavetype,jdbcType=VARCHAR},
+		starttime1 = #{starttime1,jdbcType=VARCHAR},
+		starttime2 = #{starttime2,jdbcType=VARCHAR},
+		endtime1 = #{endtime1,jdbcType=VARCHAR},
+		endtime2 = #{endtime2,jdbcType=VARCHAR},
+		totalday = #{totalday,jdbcType=VARCHAR},
+		reason = #{reason,jdbcType=VARCHAR},
+		TIME = #{time,jdbcType=VARCHAR},
+		ZUIDA = #{zuida,jdbcType=VARCHAR},
+		JIHAO = #{jihao,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectAll" parameterType="com.rowell.sifa.pojo.sys.Qxjb"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from QXJB t
+		<where>
+			<include refid="findAllWhere" />
+		</where>
+		<if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+		</if>
+	</select>
+	<sql id="findAllWhere">
+		<if test="datetime != null and datetime!=''">
+			AND datetime = #{datetime,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="searchstart1 != null and searchstart1!=''">
+     <![CDATA[
+      AND to_date(datetime,'yyyy-MM-dd') >= #{searchstart1,jdbcType=TIMESTAMP}
+      ]]>
+		</if>
+		<if test="searchend1 != null and searchend1!=''">
+     <![CDATA[
+      AND to_date(datetime,'yyyy-MM-dd') <= #{searchend1,jdbcType=TIMESTAMP}
+      ]]>
+		</if>
+
+		<if test="searchstart2 != null and searchstart2!=''">
+     <![CDATA[
+      AND to_date(datetime,'yyyy-MM-dd') >= #{searchstart2,jdbcType=TIMESTAMP}
+      ]]>
+		</if>
+		<if test="searchend2 != null and searchend2!=''">
+     <![CDATA[
+      AND to_date(datetime,'yyyy-MM-dd') <= #{searchend2,jdbcType=TIMESTAMP}
+      ]]>
+		</if>
+
+
+		<if test="name != null and name!=''">
+			AND name like '%'||#{name,jdbcType=VARCHAR}||'%'
+		</if>
+		<if test="department != null and department!=''">
+			AND department like '%'||#{department,jdbcType=VARCHAR}||'%'
+		</if>
+		<if test="leavetype != null and leavetype!=''">
+			AND leavetype = #{leavetype,jdbcType=VARCHAR}
+		</if>
+		<if test="starttime1 != null and starttime1!=''">
+			AND starttime1 = #{starttime1,jdbcType=VARCHAR}
+		</if>
+		<if test="starttime2 != null and starttime2!=''">
+			AND starttime2 = #{starttime2,jdbcType=VARCHAR}
+		</if>
+		<if test="endtime1 != null and endtime1!=''">
+			AND endtime1 = #{endtime1,jdbcType=VARCHAR}
+		</if>
+		<if test="endtime2 != null and endtime2!=''">
+			AND endtime2 = #{endtime2,jdbcType=VARCHAR}
+		</if>
+		<if test="totalday != null and totalday!=''">
+			AND totalday = #{totalday,jdbcType=VARCHAR}
+		</if>
+		<if test="reason != null and reason!=''">
+			AND reason = #{reason,jdbcType=VARCHAR}
+		</if>
+		<if test="time != null and time!=''">
+			AND TIME = #{time,jdbcType=VARCHAR}
+		</if>
+		<if test="zuida != null and zuida!='' and zuida!='-1'">
+			AND ZUIDA = #{zuida,jdbcType=VARCHAR}
+		</if>
+		<if test="zuida == '-1'">
+			AND ZUIDA =(select max(to_number(zuida)) from QXJB t)
+		</if>
+
+
+		<if test="jihao != null and jihao!=''and jihao!='-1'">
+			AND JIHAO = #{jihao,jdbcType=VARCHAR}
+		</if>
+		<if test="jihao =='-1'">
+			AND JIHAO !=0
+		</if>
+	</sql>
+</mapper>

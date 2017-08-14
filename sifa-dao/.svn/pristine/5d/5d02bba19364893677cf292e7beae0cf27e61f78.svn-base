@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.culpritinfo.CulpritUpdateInfoMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.culpritinfo.CulpritUpdateInfo">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="UPDATE_INFO" jdbcType="CLOB" property="updateInfo" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="UPDATER_NAME" jdbcType="VARCHAR" property="updaterName" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    t1.ID, CULPRIT_ID, t1.GROUP_ID, t1.UPDATE_INFO, t1.NOTE,t1. CREATED,t1.CREATER, t1.UPDATED,t1. UPDATER, 
+    t1.DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT_UPDATE_INFO t1
+    where t1.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_CULPRIT_UPDATE_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritUpdateInfo">
+    insert into SF_CULPRIT_UPDATE_INFO (ID, CULPRIT_ID, GROUP_ID, 
+      UPDATE_INFO, NOTE, CREATED, 
+      CREATER, UPDATED, UPDATER, 
+      DEL_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, 
+      #{updateInfo,jdbcType=CLOB}, #{note,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritUpdateInfo">
+    insert into SF_CULPRIT_UPDATE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="updateInfo != null">
+        UPDATE_INFO,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateInfo != null">
+        #{updateInfo,jdbcType=CLOB},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritUpdateInfo">
+    update SF_CULPRIT_UPDATE_INFO
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateInfo != null">
+        UPDATE_INFO = #{updateInfo,jdbcType=CLOB},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+     where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritUpdateInfo">
+    update SF_CULPRIT_UPDATE_INFO
+    set 
+      CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      UPDATE_INFO = #{updateInfo,jdbcType=CLOB},
+      NOTE = #{note,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR},
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritUpdateInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,t2.ACCOUNTNAME as UPDATER_NAME
+    from SF_CULPRIT_UPDATE_INFO t1 left join SYS_ACCOUNT t2 on(t1.CREATER=t2.ID)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="culpritId != null and culpritId!=''">
+      AND t1.CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND t1.GROUP_ID = #{groupId,jdbcType=VARCHAR}
+    </if>
+    <if test="updateInfo != null and updateInfo!=''">
+      AND t1.UPDATE_INFO = #{updateInfo,jdbcType=CLOB}
+    </if>
+    <if test="note != null and note!=''">
+      AND t1.NOTE = #{note,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND t1.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t1.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t1.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t1.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t1.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+  </sql>
+</mapper>

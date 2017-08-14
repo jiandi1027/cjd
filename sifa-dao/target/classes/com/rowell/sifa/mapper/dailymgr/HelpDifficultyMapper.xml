@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.dailymgr.HelpDifficultyMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.dailymgr.HelpDifficulty">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DESCRIPTION" jdbcType="CLOB" property="description" />
+    <result column="SOLVE_DATE" jdbcType="TIMESTAMP" property="solveDate" />
+    <result column="SOLVE_HOW" jdbcType="CLOB" property="solveHow" />
+    <result column="SOLVE_UNIT" jdbcType="VARCHAR" property="solveUnit" />
+    <result column="MONITOR_SOLVE" jdbcType="VARCHAR" property="monitorSolve" />
+    <result column="DIC_SOLVE_STATUS_KEY" jdbcType="VARCHAR" property="dicSolveStatusKey" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="ACCOUNT_ID" jdbcType="VARCHAR" property="accountId" />
+    <result column="SUBSIDY" jdbcType="VARCHAR" property="subsidy" />
+    <result column="DIC_SOLVE_TYPE_KEY" jdbcType="VARCHAR" property="dicSolveTypeKey" />
+    <result column="NOTE" jdbcType="CLOB" property="note" />
+    <result column="BFDD" jdbcType="VARCHAR" property="bfdd" />
+    <result column="BFNR" jdbcType="VARCHAR" property="bfnr" />
+     <result column="CULPRIT_NAME" jdbcType="VARCHAR" property="culpritName1" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.DESCRIPTION, t.SOLVE_DATE, t.SOLVE_HOW, t.SOLVE_UNIT, t.MONITOR_SOLVE, t.DIC_SOLVE_STATUS_KEY, 
+    t.CULPRIT_ID, t.CREATED_TIME, t.MODIFIED_TIME, t.ACCOUNT_ID, t.SUBSIDY, t.DIC_SOLVE_TYPE_KEY, 
+    t.NOTE, t.BFDD, t.BFNR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,t2.name as culprit_name,t3.name as group_name
+    from SF_HELP_DIFFICULTY t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_HELP_DIFFICULTY
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.dailymgr.HelpDifficulty">
+    insert into SF_HELP_DIFFICULTY (ID, DESCRIPTION, SOLVE_DATE, 
+      SOLVE_HOW, SOLVE_UNIT, MONITOR_SOLVE, 
+      DIC_SOLVE_STATUS_KEY, CULPRIT_ID, CREATED_TIME, 
+      MODIFIED_TIME, ACCOUNT_ID, SUBSIDY, 
+      DIC_SOLVE_TYPE_KEY, NOTE, BFDD, 
+      BFNR)
+    values (#{id,jdbcType=VARCHAR}, #{description,jdbcType=CLOB}, #{solveDate,jdbcType=TIMESTAMP}, 
+      #{solveHow,jdbcType=CLOB}, #{solveUnit,jdbcType=VARCHAR}, #{monitorSolve,jdbcType=VARCHAR}, 
+      #{dicSolveStatusKey,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{accountId,jdbcType=VARCHAR}, #{subsidy,jdbcType=VARCHAR}, 
+      #{dicSolveTypeKey,jdbcType=VARCHAR}, #{note,jdbcType=CLOB}, #{bfdd,jdbcType=VARCHAR}, 
+      #{bfnr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.dailymgr.HelpDifficulty">
+    insert into SF_HELP_DIFFICULTY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        t.ID,
+      </if>
+      <if test="description != null">
+        t.DESCRIPTION,
+      </if>
+      <if test="solveDate != null">
+        t.SOLVE_DATE,
+      </if>
+      <if test="solveHow != null">
+        t.SOLVE_HOW,
+      </if>
+      <if test="solveUnit != null">
+        t.SOLVE_UNIT,
+      </if>
+      <if test="monitorSolve != null">
+        t.MONITOR_SOLVE,
+      </if>
+      <if test="dicSolveStatusKey != null">
+        t.DIC_SOLVE_STATUS_KEY,
+      </if>
+      <if test="culpritId != null">
+        t.CULPRIT_ID,
+      </if>
+      <if test="createdTime != null">
+        t.CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null">
+       t.MODIFIED_TIME,
+      </if>
+      <if test="accountId != null">
+        t.ACCOUNT_ID,
+      </if>
+      <if test="subsidy != null">
+        t.SUBSIDY,
+      </if>
+      <if test="dicSolveTypeKey != null">
+        t.DIC_SOLVE_TYPE_KEY,
+      </if>
+      <if test="note != null">
+        t.NOTE,
+      </if>
+      <if test="bfdd != null">
+        t.BFDD,
+      </if>
+      <if test="bfnr != null">
+        t.BFNR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=CLOB},
+      </if>
+      <if test="solveDate != null">
+        #{solveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="solveHow != null">
+        #{solveHow,jdbcType=CLOB},
+      </if>
+      <if test="solveUnit != null">
+        #{solveUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorSolve != null">
+        #{monitorSolve,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSolveStatusKey != null">
+        #{dicSolveStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidy != null">
+        #{subsidy,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSolveTypeKey != null">
+        #{dicSolveTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=CLOB},
+      </if>
+      <if test="bfdd != null">
+        #{bfdd,jdbcType=VARCHAR},
+      </if>
+      <if test="bfnr != null">
+        #{bfnr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.dailymgr.HelpDifficulty">
+    update SF_HELP_DIFFICULTY
+    <set>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=CLOB},
+      </if>
+      <if test="solveDate != null">
+        SOLVE_DATE = #{solveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="solveHow != null">
+        SOLVE_HOW = #{solveHow,jdbcType=CLOB},
+      </if>
+      <if test="solveUnit != null">
+        SOLVE_UNIT = #{solveUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorSolve != null">
+        MONITOR_SOLVE = #{monitorSolve,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSolveStatusKey != null">
+        DIC_SOLVE_STATUS_KEY = #{dicSolveStatusKey,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidy != null">
+        SUBSIDY = #{subsidy,jdbcType=VARCHAR},
+      </if>
+      <if test="dicSolveTypeKey != null">
+        DIC_SOLVE_TYPE_KEY = #{dicSolveTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=CLOB},
+      </if>
+      <if test="bfdd != null">
+        BFDD = #{bfdd,jdbcType=VARCHAR},
+      </if>
+      <if test="bfnr != null">
+        BFNR = #{bfnr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.dailymgr.HelpDifficulty">
+    update SF_HELP_DIFFICULTY
+    set DESCRIPTION = #{description,jdbcType=CLOB},
+      SOLVE_DATE = #{solveDate,jdbcType=TIMESTAMP},
+      SOLVE_HOW = #{solveHow,jdbcType=CLOB},
+      SOLVE_UNIT = #{solveUnit,jdbcType=VARCHAR},
+      MONITOR_SOLVE = #{monitorSolve,jdbcType=VARCHAR},
+      DIC_SOLVE_STATUS_KEY = #{dicSolveStatusKey,jdbcType=VARCHAR},
+      CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      SUBSIDY = #{subsidy,jdbcType=VARCHAR},
+      DIC_SOLVE_TYPE_KEY = #{dicSolveTypeKey,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=CLOB},
+      BFDD = #{bfdd,jdbcType=VARCHAR},
+      BFNR = #{bfnr,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.dailymgr.HelpDifficulty" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,t2.name as culprit_name,t3.name as group_name
+    from SF_HELP_DIFFICULTY t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+     
+      <![CDATA[
+           order by  MODIFIED_TIME desc
+      ]]>
+    
+  </select>
+  <sql id="findAllWhere">
+   <if test="culpritName1 != null and culpritName1!=''">
+      AND t2.name LIKE CONCAT(CONCAT('%',#{culpritName1}),'%')
+    </if>
+    <if test="groupName != null and groupName!=''">
+      AND t3.ID = #{groupName,jdbcType=VARCHAR}
+    </if>
+     <if test="searchStartDate != null and searchStartDate!=''">
+     <![CDATA[
+      AND t.SOLVE_DATE >= #{searchStartDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+     <if test="searchEndDate != null and searchEndDate!=''">
+     <![CDATA[
+      AND t.SOLVE_DATE <= #{searchEndDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+    <if test="description != null and description!=''">
+      AND DESCRIPTION = #{description,jdbcType=CLOB}
+    </if>
+    <if test="solveDate != null">
+      AND SOLVE_DATE = #{solveDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="solveHow != null and solveHow!=''">
+      AND SOLVE_HOW = #{solveHow,jdbcType=CLOB}
+    </if>
+    <if test="solveUnit != null and solveUnit!=''">
+      AND SOLVE_UNIT LIKE CONCAT(CONCAT('%',#{solveUnit}),'%')
+    </if>
+    <if test="monitorSolve != null and monitorSolve!=''">
+       AND MONITOR_SOLVE LIKE CONCAT(CONCAT('%',#{monitorSolve}),'%')
+    </if>
+    <if test="dicSolveStatusKey != null and dicSolveStatusKey!=''">
+      AND DIC_SOLVE_STATUS_KEY = #{dicSolveStatusKey,jdbcType=VARCHAR}
+    </if>
+    <if test="culpritId != null and culpritId!=''">
+      AND CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="createdTime != null">
+      AND CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="modifiedTime != null">
+      AND MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="accountId != null and accountId!=''">
+      AND ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+    </if>
+    <if test="subsidy != null and subsidy!=''">
+      AND SUBSIDY = #{subsidy,jdbcType=VARCHAR}
+    </if>
+    <if test="dicSolveTypeKey != null and dicSolveTypeKey!=''">
+      AND DIC_SOLVE_TYPE_KEY = #{dicSolveTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="note != null and note!=''">
+         <![CDATA[  
+     	 AND  exists ( select t4.id from (select * from sys_group start with id= #{note,jdbcType=VARCHAR} connect by prior id = parent_id) t4 where t3.ID=t4.id)
+     ]]> 
+    </if>
+    <if test="bfdd != null and bfdd!=''">
+      AND BFDD = #{bfdd,jdbcType=VARCHAR}
+    </if>
+    <if test="bfnr != null and bfnr!=''">
+      AND BFNR = #{bfnr,jdbcType=VARCHAR}
+    </if>
+  </sql>
+</mapper>

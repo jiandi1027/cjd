@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.rewardspunishment.GradeChangeMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.rewardspunishment.GradeChange">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="DIC_OLD_MONITOR_GRADE_KEY" jdbcType="VARCHAR" property="dicOldMonitorGradeKey" />
+    <result column="DIC_MONITOR_GRADE_KEY" jdbcType="VARCHAR" property="dicMonitorGradeKey" />
+    <result column="DIC_CHANGE_REASON_KEY" jdbcType="VARCHAR" property="dicChangeReasonKey" />
+    <result column="JC_SITUATION" jdbcType="VARCHAR" property="jcSituation" />
+    <result column="KF_SITUATION" jdbcType="VARCHAR" property="kfSituation" />
+    <result column="DIC_CHECK_TYPE_KEY" jdbcType="VARCHAR" property="dicCheckTypeKey" />
+    <result column="NOTE_PATH" jdbcType="VARCHAR" property="notePath" />
+    <result column="NOTE_PATH_NAME" jdbcType="VARCHAR" property="notePathName" />
+    <result column="REPORT_TIME" jdbcType="TIMESTAMP" property="reportTime" />
+    <result column="BLANK_FLAG" jdbcType="VARCHAR" property="blankFlag" />
+    <result column="FLAG_ACCOUNT_NAME" jdbcType="VARCHAR" property="flagAccountName" />
+    <result column="FLAG_ACCOUNT_ID" jdbcType="VARCHAR" property="flagAccountId" />
+    <result column="FLAG_TIME" jdbcType="TIMESTAMP" property="flagTime" />
+    <result column="FLAG_REASON_ID" jdbcType="VARCHAR" property="flagReasonId" />
+    <result column="FLAG_DETAIL_REASON" jdbcType="VARCHAR" property="flagDetailReason" />
+    <result column="FLAG_PATH" jdbcType="VARCHAR" property="flagPath" />
+    <result column="FLAG_PATH_NAME" jdbcType="VARCHAR" property="flagPathName" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="CUlPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    <result column="SYS_GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="DIC_CRIME_TYPE_KEY" jdbcType="VARCHAR" property="dicCrimeTypeKey" />
+    <result column="VALUE" jdbcType="VARCHAR" property="crimeType" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId"/>
+    <result column="ACCOUNT_OPINION" jdbcType="CLOB" property="accountOpinion"/>
+    <result column="SFS_OPINION" jdbcType="CLOB" property="SFSOpinion"/>
+    <result column="PRINT_STATUS" jdbcType="VARCHAR" property="printStatus"/>
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="LOGO" jdbcType="VARCHAR" property="logo" />
+    <result column="dicCrimeKey" jdbcType="VARCHAR" property="dicCrimeTypeKey1" />
+    <result column="dicPenalKey" jdbcType="VARCHAR" property="dicPenalTypeKey" />
+    <result column="dicMonitorGrade" jdbcType="VARCHAR" property="dicMonitorGrade" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CULPRIT_ID, DIC_OLD_MONITOR_GRADE_KEY, DIC_MONITOR_GRADE_KEY, DIC_CHANGE_REASON_KEY, 
+    JC_SITUATION, KF_SITUATION, DIC_CHECK_TYPE_KEY, NOTE_PATH, NOTE_PATH_NAME, REPORT_TIME, 
+    BLANK_FLAG, FLAG_ACCOUNT_NAME, FLAG_ACCOUNT_ID, FLAG_TIME, FLAG_REASON_ID, FLAG_DETAIL_REASON, 
+    FLAG_PATH, FLAG_PATH_NAME, CREATED, CREATER, UPDATED, UPDATER, DEL_FLAG,PROCESS_INSTANCE_ID,
+    ACCOUNT_OPINION,SFS_OPINION,PRINT_STATUS
+  </sql>
+  <sql id="Base_Column_List1">
+    t1.ID,t1. CULPRIT_ID,t1. DIC_OLD_MONITOR_GRADE_KEY,t1. DIC_MONITOR_GRADE_KEY,t1. DIC_CHANGE_REASON_KEY, 
+    t1.JC_SITUATION,t1. KF_SITUATION,t1. DIC_CHECK_TYPE_KEY,t1. NOTE_PATH,t1. NOTE_PATH_NAME,t1. REPORT_TIME, 
+    t1.BLANK_FLAG,t1. FLAG_ACCOUNT_NAME,t1. FLAG_ACCOUNT_ID,t1. FLAG_TIME,t1. FLAG_REASON_ID,t1. FLAG_DETAIL_REASON, 
+    t1.FLAG_PATH,t1. FLAG_PATH_NAME,t1. CREATED,t1. CREATER,t1. UPDATED,t1. UPDATER,t1. DEL_FLAG,t1.PROCESS_INSTANCE_ID,
+    t1.ACCOUNT_OPINION,t1.SFS_OPINION,t1.PRINT_STATUS,t2.GROUP_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_GRADE_CHANGE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_GRADE_CHANGE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.rewardspunishment.GradeChange">
+    insert into SF_GRADE_CHANGE (ID, CULPRIT_ID, DIC_OLD_MONITOR_GRADE_KEY, 
+      DIC_MONITOR_GRADE_KEY, DIC_CHANGE_REASON_KEY, 
+      JC_SITUATION, KF_SITUATION, DIC_CHECK_TYPE_KEY, 
+      NOTE_PATH, NOTE_PATH_NAME, REPORT_TIME, 
+      BLANK_FLAG, FLAG_ACCOUNT_NAME, FLAG_ACCOUNT_ID, 
+      FLAG_TIME, FLAG_REASON_ID, FLAG_DETAIL_REASON, 
+      FLAG_PATH, FLAG_PATH_NAME, CREATED, 
+      CREATER, UPDATED, UPDATER, 
+      DEL_FLAG,PROCESS_INSTANCE_ID,ACCOUNT_OPINION,SFS_OPINION,PRINT_STATUS,LOGO)
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{dicOldMonitorGradeKey,jdbcType=VARCHAR}, 
+      #{dicMonitorGradeKey,jdbcType=VARCHAR}, #{dicChangeReasonKey,jdbcType=VARCHAR}, 
+      #{jcSituation,jdbcType=VARCHAR}, #{kfSituation,jdbcType=VARCHAR}, #{dicCheckTypeKey,jdbcType=VARCHAR}, 
+      #{notePath,jdbcType=VARCHAR}, #{notePathName,jdbcType=VARCHAR}, #{reportTime,jdbcType=TIMESTAMP}, 
+      #{blankFlag,jdbcType=VARCHAR}, #{flagAccountName,jdbcType=VARCHAR}, #{flagAccountId,jdbcType=VARCHAR}, 
+      #{flagTime,jdbcType=TIMESTAMP}, #{flagReasonId,jdbcType=VARCHAR}, #{flagDetailReason,jdbcType=VARCHAR}, 
+      #{flagPath,jdbcType=VARCHAR}, #{flagPathName,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL},#{processInstanceId,jdbcType=VARCHAR},#{accountOpinion,jdbcType=CLOB},#{SFSOpinion,jdbcType=CLOB},
+      #{printStatus,jdbcType=VARCHAR},#{logo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.GradeChange">
+    insert into SF_GRADE_CHANGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="dicOldMonitorGradeKey != null">
+        DIC_OLD_MONITOR_GRADE_KEY,
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        DIC_MONITOR_GRADE_KEY,
+      </if>
+      <if test="dicChangeReasonKey != null">
+        DIC_CHANGE_REASON_KEY,
+      </if>
+      <if test="jcSituation != null">
+        JC_SITUATION,
+      </if>
+      <if test="kfSituation != null">
+        KF_SITUATION,
+      </if>
+      <if test="dicCheckTypeKey != null">
+        DIC_CHECK_TYPE_KEY,
+      </if>
+      <if test="notePath != null">
+        NOTE_PATH,
+      </if>
+      <if test="notePathName != null">
+        NOTE_PATH_NAME,
+      </if>
+      <if test="reportTime != null">
+        REPORT_TIME,
+      </if>
+      <if test="blankFlag != null">
+        BLANK_FLAG,
+      </if>
+      <if test="flagAccountName != null">
+        FLAG_ACCOUNT_NAME,
+      </if>
+      <if test="flagAccountId != null">
+        FLAG_ACCOUNT_ID,
+      </if>
+      <if test="flagTime != null">
+        FLAG_TIME,
+      </if>
+      <if test="flagReasonId != null">
+        FLAG_REASON_ID,
+      </if>
+      <if test="flagDetailReason != null">
+        FLAG_DETAIL_REASON,
+      </if>
+      <if test="flagPath != null">
+        FLAG_PATH,
+      </if>
+      <if test="flagPathName != null">
+        FLAG_PATH_NAME,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="accountOpinion!= null">
+        ACCOUNT_OPINION,
+      </if>
+      <if test="SFSOpinion != null">
+        SFS_OPINION,
+      </if>
+      <if test="printStatus != null">
+      	PRINT_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicOldMonitorGradeKey != null">
+        #{dicOldMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicChangeReasonKey != null">
+        #{dicChangeReasonKey,jdbcType=VARCHAR},
+      </if>
+      <if test="jcSituation != null">
+        #{jcSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="kfSituation != null">
+        #{kfSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckTypeKey != null">
+        #{dicCheckTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="notePath != null">
+        #{notePath,jdbcType=VARCHAR},
+      </if>
+      <if test="notePathName != null">
+        #{notePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportTime != null">
+        #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blankFlag != null">
+        #{blankFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="flagAccountName != null">
+        #{flagAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="flagAccountId != null">
+        #{flagAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="flagTime != null">
+        #{flagTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flagReasonId != null">
+        #{flagReasonId,jdbcType=VARCHAR},
+      </if>
+      <if test="flagDetailReason != null">
+        #{flagDetailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="flagPath != null">
+        #{flagPath,jdbcType=VARCHAR},
+      </if>
+      <if test="flagPathName != null">
+        #{flagPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+    <if test="accountOpinion != null">
+        #{accountOpinion,jdbcType=CLOB},
+      </if>
+     <if test="SFSOpinion != null">
+        #{SFSOpinion,jdbcType=CLOB},
+      </if>
+      <if test="printStatus != null">
+      	#{printStatus,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.GradeChange">
+    update SF_GRADE_CHANGE
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicOldMonitorGradeKey != null">
+        DIC_OLD_MONITOR_GRADE_KEY = #{dicOldMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicMonitorGradeKey != null">
+        DIC_MONITOR_GRADE_KEY = #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicChangeReasonKey != null">
+        DIC_CHANGE_REASON_KEY = #{dicChangeReasonKey,jdbcType=VARCHAR},
+      </if>
+      <if test="jcSituation != null">
+        JC_SITUATION = #{jcSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="kfSituation != null">
+        KF_SITUATION = #{kfSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCheckTypeKey != null">
+        DIC_CHECK_TYPE_KEY = #{dicCheckTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="notePath != null">
+        NOTE_PATH = #{notePath,jdbcType=VARCHAR},
+      </if>
+      <if test="notePathName != null">
+        NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportTime != null">
+        REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blankFlag != null">
+        BLANK_FLAG = #{blankFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="flagAccountName != null">
+        FLAG_ACCOUNT_NAME = #{flagAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="flagAccountId != null">
+        FLAG_ACCOUNT_ID = #{flagAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="flagTime != null">
+        FLAG_TIME = #{flagTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flagReasonId != null">
+        FLAG_REASON_ID = #{flagReasonId,jdbcType=VARCHAR},
+      </if>
+      <if test="flagDetailReason != null">
+        FLAG_DETAIL_REASON = #{flagDetailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="flagPath != null">
+        FLAG_PATH = #{flagPath,jdbcType=VARCHAR},
+      </if>
+      <if test="flagPathName != null">
+        FLAG_PATH_NAME = #{flagPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+    <if test="accountOpinion!= null">
+        ACCOUNT_OPINION = #{accountOpinion,jdbcType=CLOB},
+      </if>
+      <if test="SFSOpinion != null">
+        SFS_OPINION = #{SFSOpinion,jdbcType=CLOB},
+      </if>
+      <if test="printStatus != null">
+        PRINT_STATUS = #{printStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.rewardspunishment.GradeChange">
+    update SF_GRADE_CHANGE
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      DIC_OLD_MONITOR_GRADE_KEY = #{dicOldMonitorGradeKey,jdbcType=VARCHAR},
+      DIC_MONITOR_GRADE_KEY = #{dicMonitorGradeKey,jdbcType=VARCHAR},
+      DIC_CHANGE_REASON_KEY = #{dicChangeReasonKey,jdbcType=VARCHAR},
+      JC_SITUATION = #{jcSituation,jdbcType=VARCHAR},
+      KF_SITUATION = #{kfSituation,jdbcType=VARCHAR},
+      DIC_CHECK_TYPE_KEY = #{dicCheckTypeKey,jdbcType=VARCHAR},
+      NOTE_PATH = #{notePath,jdbcType=VARCHAR},
+      NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR},
+      REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP},
+      BLANK_FLAG = #{blankFlag,jdbcType=VARCHAR},
+      FLAG_ACCOUNT_NAME = #{flagAccountName,jdbcType=VARCHAR},
+      FLAG_ACCOUNT_ID = #{flagAccountId,jdbcType=VARCHAR},
+      FLAG_TIME = #{flagTime,jdbcType=TIMESTAMP},
+      FLAG_REASON_ID = #{flagReasonId,jdbcType=VARCHAR},
+      FLAG_DETAIL_REASON = #{flagDetailReason,jdbcType=VARCHAR},
+      FLAG_PATH = #{flagPath,jdbcType=VARCHAR},
+      FLAG_PATH_NAME = #{flagPathName,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+   ACCOUNT_OPINION = #{accountOpinion,jdbcType=CLOB},
+    SFS_OPINION = #{SFSOpinion,jdbcType=CLOB},
+    PRINT_STATUS = #{printStatus,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.rewardspunishment.GradeChange" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List1" />,t2.NAME as CUlPRIT_NAME,t3.NAME as SYS_GROUP_NAME ,t4.DIC_CRIME_TYPE_KEY as dicCrimeKey ,t4.DIC_PENAL_TYPE_KEY as dicPenalKey,t2.DIC_MONITOR_GRADE_KEY as dicMonitorGrade
+    from SF_GRADE_CHANGE t1 right join SF_CULPRIT t2 on (t1.CULPRIT_ID=t2.ID) 
+    left join sys_group t3 on (t2.group_id=t3.id)  left join SF_CULPRIT_JUDGMENT t4 on (t2.ID=t4.CULPRIT_ID)  left join sys_account t5 on(t2.ACCOUNT_ID=t5.ID)
+   
+    <where>
+      <include refid="findAllWhere" /> and t2.FINISH_INTO='1' 
+    </where>
+    
+     <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+   
+  </select>
+  <sql id="findAllWhere">
+ 	 <if test="groupName != null and groupName !=''">
+  		<![CDATA[  
+     	 AND  exists ( select tsg.id from (select * from sys_group  start with id= #{groupName,jdbcType=VARCHAR} connect by prior id = parent_id) tsg where t3.ID=tsg.id)
+       ]]>  
+  	</if>
+  	<if test="culpritName != null and culpritName !=''">
+  		 AND t2.name LIKE CONCAT(CONCAT('%',#{culpritName}),'%')
+  	</if>
+    <if test="culpritId != null and culpritId!=''">
+      AND t1.CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="dicOldMonitorGradeKey != null and dicOldMonitorGradeKey!=''">
+      AND t1.DIC_OLD_MONITOR_GRADE_KEY = #{dicOldMonitorGradeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicMonitorGradeKey != null and dicMonitorGradeKey!=''">
+      AND t1.DIC_MONITOR_GRADE_KEY = #{dicMonitorGradeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="dicChangeReasonKey != null and dicChangeReasonKey!=''">
+      AND t1.DIC_CHANGE_REASON_KEY = #{dicChangeReasonKey,jdbcType=VARCHAR}
+    </if>
+    <if test="jcSituation != null and jcSituation!=''">
+      AND t1.JC_SITUATION = #{jcSituation,jdbcType=VARCHAR}
+    </if>
+    <if test="kfSituation != null and kfSituation!=''">
+      AND t1.KF_SITUATION = #{kfSituation,jdbcType=VARCHAR}
+    </if>
+    <if test="dicCheckTypeKey != null and dicCheckTypeKey!=''">
+      AND t1.DIC_CHECK_TYPE_KEY = #{dicCheckTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="notePath != null and notePath!=''">
+      AND t1.NOTE_PATH = #{notePath,jdbcType=VARCHAR}
+    </if>
+    <if test="notePathName != null and notePathName!=''">
+      AND t1.NOTE_PATH_NAME = #{notePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="reportTime != null">
+      AND t1.REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="blankFlag != null and blankFlag!=''">
+      AND t1.BLANK_FLAG = #{blankFlag,jdbcType=VARCHAR}
+    </if>
+    <if test="flagAccountName != null and flagAccountName!=''">
+      AND t1.FLAG_ACCOUNT_NAME = #{flagAccountName,jdbcType=VARCHAR}
+    </if>
+    <if test="flagAccountId != null and flagAccountId!=''">
+      AND t1.FLAG_ACCOUNT_ID = #{flagAccountId,jdbcType=VARCHAR}
+    </if>
+    <if test="flagTime != null">
+      AND t1.FLAG_TIME = #{flagTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="flagReasonId != null and flagReasonId!=''">
+      AND t1.FLAG_REASON_ID = #{flagReasonId,jdbcType=VARCHAR}
+    </if>
+    <if test="flagDetailReason != null and flagDetailReason!=''">
+      AND t1.FLAG_DETAIL_REASON = #{flagDetailReason,jdbcType=VARCHAR}
+    </if>
+    <if test="flagPath != null and flagPath!=''">
+      AND t1.FLAG_PATH = #{flagPath,jdbcType=VARCHAR}
+    </if>
+    <if test="flagPathName != null and flagPathName!=''">
+      AND t1.FLAG_PATH_NAME = #{flagPathName,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND t1.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t1.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND t1.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t1.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="processInstanceId != null and processInstanceId!=''">
+      AND t1.PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+    </if>
+    <if test="accountOpinion != null and accountOpinion!=''">
+      AND t1.ACCOUNT_OPINION = #{accountOpinion,jdbcType=CLOB}
+    </if>
+    <if test="SFSOpinion!= null and SFSOpinion!=''">
+      AND t1.SFS_OPINION = #{SFSOpinion,jdbcType=CLOB}
+    </if>
+     <if test="printStatus!= null and printStatus!=''">
+    	 AND t1.PRINT_STATUS = #{printStatus,jdbcType=VARCHAR}
+     </if>
+     <if test="searchStartDate != null">
+       <![CDATA[  
+      AND t1.CREATED >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND t1.CREATED <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g where t2.group_id=g.id)
+    </if>
+    <if test="delFlag != null">
+      AND t1.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="logo != null and logo!=''">
+      AND t1.LOGO = #{logo,jdbcType=DECIMAL}
+    </if>
+     <if test="dicCrimeTypeKey1 != null and dicCrimeTypeKey1!=''">
+      AND t4.DIC_CRIME_TYPE_KEY = #{dicCrimeTypeKey1,jdbcType=VARCHAR}
+    </if>
+     <if test="dicPenalTypeKey != null and dicPenalTypeKey!=''">
+      AND t4.DIC_PENAL_TYPE_KEY = #{dicPenalTypeKey,jdbcType=VARCHAR} 
+    </if>
+     <if test="dicMonitorGrade != null and dicMonitorGrade!=''">
+      AND t2.DIC_MONITOR_GRADE_KEY = #{dicMonitorGrade,jdbcType=VARCHAR}
+    </if>
+  </sql>
+</mapper>

@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.rewardspunishment.ParoleMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.rewardspunishment.Parole">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="CULPRIT_ID" jdbcType="DECIMAL" property="culpritId" />
+    <result column="REDUCE_TIME" jdbcType="VARCHAR" property="reduceTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="ACTIONS" jdbcType="CLOB" property="actions" />
+    <result column="REASON" jdbcType="VARCHAR" property="reason" />
+    <result column="END_CASE_PATH" jdbcType="VARCHAR" property="endCasePath" />
+    <result column="END_CASE_PATH_NAME" jdbcType="VARCHAR" property="endCasePathName" />
+    <result column="EVIDENCE_PATH" jdbcType="VARCHAR" property="evidencePath" />
+    <result column="EVIDENCE_PATH_NAME" jdbcType="VARCHAR" property="evidencePathName" />
+    <result column="MONITOR_GRADE_ID" jdbcType="DECIMAL" property="monitorGradeId" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="PROCESS_INSTANCE_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="WRIT_NUM" jdbcType="VARCHAR" property="writNum" />
+    <result column="RECOMMEND_STATUS" jdbcType="VARCHAR" property="recommendStatus" />
+    <result column="RECOMMEND_STATUSS" jdbcType="VARCHAR" property="recommendStatuss" />
+    <result column="HAND_ON_UNIT" jdbcType="VARCHAR" property="handOnUnit" />
+    <result column="COPY_UNIT" jdbcType="VARCHAR" property="copyUnit" />
+    <result column="DIC_SHOW_RESULT_KEY" jdbcType="VARCHAR" property="showResult" />
+    <result column="SHOW_DETAIL" jdbcType="VARCHAR" property="showDetail" />
+    <result column="SHOW_ACTION" jdbcType="VARCHAR" property="showAction" />
+    <result column="DIC_PROCURATORATE_KEY" jdbcType="VARCHAR" property="procuratorate" />
+    <result column="PROCURATORATE_PATH" jdbcType="VARCHAR" property="procuratoratePath" />
+    <result column="PROCURATORATE_PATH_NAME" jdbcType="VARCHAR" property="procuratoratePathName" />
+    <result column="DIC_RESULT_KEY" jdbcType="VARCHAR" property="result" />
+    <result column="PAROLE_PATH" jdbcType="VARCHAR" property="parolePath" />
+    <result column="PAROLE_PATH_NAME" jdbcType="VARCHAR" property="parolePathName" />
+    <result column="UN_PAROLE_REASON" jdbcType="VARCHAR" property="unParoleReason" />
+    <result column="UN_PAROLE_PATH" jdbcType="VARCHAR" property="unParolePath" />
+    <result column="UN_PAROLE_PATH_NAME" jdbcType="VARCHAR" property="unParolePathName" />
+    <result column="CHECK_TYPE_ID" jdbcType="DECIMAL" property="checkTypeId" />
+    <result column="IS_AGREE" jdbcType="DECIMAL" property="isAgree" />
+    <result column="CUlPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    <result column="SYS_GROUP_NAME" jdbcType="VARCHAR" property="sysGroupName" />
+    <result column="SYS_GROUP_ID" jdbcType="VARCHAR" property="sysGroupId" />
+    <result column="DIC_SDFSKEY" jdbcType="VARCHAR" property="dicSdfsKey" />
+    <result column="IS_PRINTJYS" jdbcType="VARCHAR" property="isPrintJYS" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CULPRIT_ID, REDUCE_TIME, END_TIME, ACTIONS, REASON, END_CASE_PATH, END_CASE_PATH_NAME, 
+    EVIDENCE_PATH, EVIDENCE_PATH_NAME,MONITOR_GRADE_ID, CREATED,UPDATED,PROCESS_INSTANCE_ID,CREATER,
+    UPDATER,DEL_FLAG,WRIT_NUM,RECOMMEND_STATUS,RECOMMEND_STATUSS,HAND_ON_UNIT,COPY_UNIT,DIC_SHOW_RESULT_KEY,
+    SHOW_DETAIL,SHOW_ACTION,DIC_PROCURATORATE_KEY,PROCURATORATE_PATH,PROCURATORATE_PATH_NAME,DIC_RESULT_KEY,
+    PAROLE_PATH, PAROLE_PATH_NAME,UN_PAROLE_REASON,UN_PAROLE_PATH,UN_PAROLE_PATH_NAME,CHECK_TYPE_ID,IS_AGREE,
+    DIC_SDFSKEY,IS_PRINTJYS
+  </sql>
+  <sql id="Base_Column_List1">
+    t1.ID, t1.CULPRIT_ID, t1.REDUCE_TIME, t1.END_TIME, t1.ACTIONS, t1.REASON, t1.END_CASE_PATH, t1.END_CASE_PATH_NAME, 
+    t1.EVIDENCE_PATH, t1.EVIDENCE_PATH_NAME,t1.MONITOR_GRADE_ID,t1. CREATED,t1.UPDATED,t1.PROCESS_INSTANCE_ID,t1.CREATER,
+    t1.UPDATER,t1.DEL_FLAG,t1.WRIT_NUM,t1.RECOMMEND_STATUS,t1.RECOMMEND_STATUSS,t1.HAND_ON_UNIT,t1.COPY_UNIT,t1.DIC_SHOW_RESULT_KEY,
+    t1.SHOW_DETAIL,t1.SHOW_ACTION,t1.DIC_PROCURATORATE_KEY,t1.PROCURATORATE_PATH,t1.PROCURATORATE_PATH_NAME,t1.DIC_RESULT_KEY,
+    t1.PAROLE_PATH,t1. PAROLE_PATH_NAME,t1.UN_PAROLE_REASON,t1.UN_PAROLE_PATH,t1.UN_PAROLE_PATH_NAME,t1.CHECK_TYPE_ID,t1.IS_AGREE,
+    t1.DIC_SDFSKEY,t1.IS_PRINTJYS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_PAROLE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_PAROLE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.rewardspunishment.Parole">
+    insert into SF_PAROLE ( ID, CULPRIT_ID, REDUCE_TIME, END_TIME, ACTIONS, REASON, END_CASE_PATH, END_CASE_PATH_NAME, 
+    EVIDENCE_PATH, EVIDENCE_PATH_NAME,MONITOR_GRADE_ID, CREATED,UPDATED,PROCESS_INSTANCE_ID,CREATER,
+    UPDATER,DEL_FLAG,WRIT_NUM,RECOMMEND_STATUS,RECOMMEND_STATUSS,HAND_ON_UNIT,COPY_UNIT,DIC_SHOW_RESULT_KEY,
+    SHOW_DETAIL,SHOW_ACTION,DIC_PROCURATORATE_KEY,PROCURATORATE_PATH,PROCURATORATE_PATH_NAME,DIC_RESULT_KEY,
+    PAROLE_PATH, PAROLE_PATH_NAME,UN_PAROLE_REASON,UN_PAROLE_PATH,UN_PAROLE_PATH_NAME,CHECK_TYPE_ID,IS_AGREE,DIC_SDFSKEY,IS_PRINTJYS
+      )
+    values (#{id,jdbcType=DECIMAL}, #{culpritId,jdbcType=DECIMAL}, #{reduceTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{actions,jdbcType=CLOB}, #{reason,jdbcType=VARCHAR}, 
+      #{endCasePath,jdbcType=VARCHAR}, #{endCasePathName,jdbcType=VARCHAR}, #{evidencePath,jdbcType=VARCHAR}, 
+      #{evidencePathName,jdbcType=VARCHAR}, #{monitorGradeId,jdbcType=DECIMAL}, #{created,jdbcType=TIMESTAMP}, 
+      #{updated,jdbcType=TIMESTAMP}, #{processInstanceId,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL},#{writNum,jdbcType=VARCHAR}, 
+      #{recommendStatus,jdbcType=VARCHAR}, #{recommendStatuss,jdbcType=VARCHAR}, #{handOnUnit,jdbcType=VARCHAR}, 
+      #{copyUnit,jdbcType=VARCHAR}, #{showResult,jdbcType=VARCHAR}, #{showDetail,jdbcType=VARCHAR}, 
+      #{showAction,jdbcType=VARCHAR}, #{procuratorate,jdbcType=VARCHAR}, #{procuratoratePath,jdbcType=VARCHAR}, 
+      #{procuratoratePathName,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{parolePath,jdbcType=VARCHAR}, 
+      #{parolePathName,jdbcType=VARCHAR}, #{unParoleReason,jdbcType=VARCHAR}, #{unParolePath,jdbcType=VARCHAR}, 
+      #{unParolePathName,jdbcType=VARCHAR}, #{checkTypeId,jdbcType=DECIMAL}, #{isAgree,jdbcType=DECIMAL},
+      #{dicSdfsKey,jdbcType=VARCHAR},#{isPrintJYS,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.Parole">
+    insert into SF_PAROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="reduceTime != null">
+        REDUCE_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="actions != null">
+        ACTIONS,
+      </if>
+      <if test="reason != null">
+        REASON,
+      </if>
+      <if test="endCasePath != null">
+        END_CASE_PATH,
+      </if>
+      <if test="endCasePathName != null">
+        END_CASE_PATH_NAME,
+      </if>
+      <if test="evidencePath != null">
+        EVIDENCE_PATH,
+      </if>
+      <if test="evidencePathName != null">
+        EVIDENCE_PATH_NAME,
+      </if>
+      <if test="monitorGradeId != null">
+        MONITOR_GRADE_ID,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag!= null">
+        DEL_FLAG,
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM,
+      </if>
+      <if test="recommendStatus != null">
+        RECOMMEND_STATUS,
+      </if>
+      <if test="recommendStatuss != null">
+        RECOMMEND_STATUSS,
+      </if>
+      <if test="handOnUnit != null">
+        HAND_ON_UNIT,
+      </if>
+      <if test="copyUnit != null">
+        COPY_UNIT,
+      </if>
+      <if test="showResult != null">
+        DIC_SHOW_RESULT_KEY,
+      </if>
+      <if test="showDetail != null">
+        SHOW_DETAIL,
+      </if>
+      <if test="showAction != null">
+        SHOW_ACTION,
+      </if>
+      <if test="procuratorate != null">
+        DIC_PROCURATORATE_KEY,
+      </if>
+      <if test="procuratoratePath != null">
+        PROCURATORATE_PATH,
+      </if>
+      <if test="procuratoratePathName != null">
+        PROCURATORATE_PATH_NAME,
+      </if>
+      <if test="result != null">
+        DIC_RESULT_KEY,
+      </if>
+      <if test="parolePath != null">
+        PAROLE_PATH,
+      </if>
+      <if test="parolePathName != null">
+        PAROLE_PATH_NAME,
+      </if>
+      <if test="unParoleReason != null">
+        UN_PAROLE_REASON,
+      </if>
+      <if test="unParolePath != null">
+        UN_PAROLE_PATH,
+      </if>
+      <if test="unParolePathName != null">
+        UN_PAROLE_PATH_NAME,
+      </if>
+      <if test="checkTypeId != null">
+        CHECK_TYPE_ID,
+      </if>
+      <if test="isAgree != null">
+        IS_AGREE,
+      </if>
+      <if test="dicSdfsKey != null">
+        DIC_SDFSKEY，
+      </if>
+      <if test="isPrintJYS != null">
+        IS_PRINTJYS，
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=DECIMAL},
+      </if>
+      <if test="reduceTime != null">
+        #{reduceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actions != null">
+        #{actions,jdbcType=CLOB},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="endCasePath != null">
+        #{endCasePath,jdbcType=VARCHAR},
+      </if>
+      <if test="endCasePathName != null">
+        #{endCasePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePath != null">
+        #{evidencePath,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePathName != null">
+        #{evidencePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorGradeId != null">
+        #{monitorGradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+       #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="writNum != null">
+        #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendStatus != null">
+        #{recommendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendStatuss != null">
+        #{recommendStatuss,jdbcType=VARCHAR},
+      </if>
+      <if test="handOnUnit != null">
+        #{handOnUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="copyUnit != null">
+        #{copyUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="showResult != null">
+        #{showResult,jdbcType=VARCHAR},
+      </if>
+      <if test="showDetail != null">
+        #{showDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="showAction != null">
+        #{showAction,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratorate != null">
+        #{procuratorate,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratoratePath != null">
+        #{procuratoratePath,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratoratePathName != null">
+        #{procuratoratePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="parolePath != null">
+        #{parolePath,jdbcType=VARCHAR},
+      </if>
+      <if test="parolePathName != null">
+        #{parolePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="unParoleReason != null">
+        #{unParoleReason,jdbcType=VARCHAR},
+      </if>
+      <if test="unParolePath != null">
+        #{unParolePath,jdbcType=VARCHAR},
+      </if>
+      <if test="unParolePathName != null">
+        #{unParolePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTypeId != null">
+        #{checkTypeId,jdbcType=DECIMAL},
+      </if> 
+      <if test="isAgree != null">
+        #{isAgree,jdbcType=DECIMAL},
+      </if>
+      <if test="dicSdfsKey != null">
+       	#{dicSdfsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrintJYS != null">
+        #{isPrintJYS,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.rewardspunishment.Parole">
+    update SF_PAROLE
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=DECIMAL},
+      </if>
+      <if test="reduceTime != null">
+        REDUCE_TIME = #{reduceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actions != null">
+        ACTIONS = #{actions,jdbcType=CLOB},
+      </if>
+      <if test="reason != null">
+        REASON = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="endCasePath != null">
+        END_CASE_PATH = #{endCasePath,jdbcType=VARCHAR},
+      </if>
+      <if test="endCasePathName != null">
+        END_CASE_PATH_NAME = #{endCasePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePath != null">
+        EVIDENCE_PATH = #{evidencePath,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePathName != null">
+        EVIDENCE_PATH_NAME = #{evidencePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorGradeId != null">
+        MONITOR_GRADE_ID = #{monitorGradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        UPDATED =#{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processInstanceId != null">
+        PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater!= null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="writNum != null">
+        WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendStatus != null">
+        RECOMMEND_STATUS = #{recommendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendStatuss != null">
+        RECOMMEND_STATUSS = #{recommendStatuss,jdbcType=VARCHAR},
+      </if>
+      <if test="handOnUnit != null">
+        HAND_ON_UNIT = #{handOnUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="copyUnit != null">
+        COPY_UNIT = #{copyUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="showResult != null">
+        DIC_SHOW_RESULT_KEY = #{showResult,jdbcType=VARCHAR},
+      </if>
+      <if test="showDetail != null">
+        SHOW_DETAIL = #{showDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="showAction != null">
+        SHOW_ACTION = #{showAction,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratorate != null">
+        DIC_PROCURATORATE_KEY = #{procuratorate,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratoratePath != null">
+        PROCURATORATE_PATH = #{procuratoratePath,jdbcType=VARCHAR},
+      </if>
+      <if test="procuratoratePathName != null">
+        PROCURATORATE_PATH_NAME = #{procuratoratePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        DIC_RESULT_KEY = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="parolePath != null">
+        PAROLE_PATH = #{parolePath,jdbcType=VARCHAR},
+      </if>
+      <if test="parolePathName != null">
+        PAROLE_PATH_NAME = #{parolePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="unParoleReason != null">
+        UN_PAROLE_REASON = #{unParoleReason,jdbcType=VARCHAR},
+      </if>
+      <if test="unParolePath != null">
+        UN_PAROLE_PATH = #{unParolePath,jdbcType=VARCHAR},
+      </if>
+      <if test="unParolePathName != null">
+        UN_PAROLE_PATH_NAME = #{unParolePathName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTypeId != null">
+        CHECK_TYPE_ID = #{checkTypeId,jdbcType=DECIMAL},
+      </if>
+      <if test="isAgree != null">
+        IS_AGREE = #{isAgree,jdbcType=DECIMAL},
+      </if>
+      <if test="dicSdfsKey != null">
+        DIC_SDFSKEY = #{dicSdfsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrintJYS != null">
+        IS_PRINTJYS = #{isPrintJYS,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.rewardspunishment.Parole">
+    update SF_PAROLE
+    set CULPRIT_ID = #{culpritId,jdbcType=DECIMAL},
+      REDUCE_TIME = #{reduceTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      ACTIONS = #{actions,jdbcType=CLOB},
+      REASON = #{reason,jdbcType=VARCHAR},
+      END_CASE_PATH = #{endCasePath,jdbcType=VARCHAR},
+      END_CASE_PATH_NAME = #{endCasePathName,jdbcType=VARCHAR},
+      EVIDENCE_PATH = #{evidencePath,jdbcType=VARCHAR},
+      EVIDENCE_PATH_NAME = #{evidencePathName,jdbcType=VARCHAR},
+      MONITOR_GRADE_ID = #{monitorGradeId,jdbcType=DECIMAL},
+     CREATED = #{created,jdbcType=TIMESTAMP},
+       UPDATED =#{updated,jdbcType=TIMESTAMP},
+      PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      WRIT_NUM = #{writNum,jdbcType=VARCHAR},
+      RECOMMEND_STATUS = #{recommendStatus,jdbcType=VARCHAR},
+      RECOMMEND_STATUSS = #{recommendStatuss,jdbcType=VARCHAR},
+      HAND_ON_UNIT = #{handOnUnit,jdbcType=VARCHAR},
+      COPY_UNIT = #{copyUnit,jdbcType=VARCHAR},
+      DIC_SHOW_RESULT_KEY = #{showResult,jdbcType=VARCHAR},
+      SHOW_DETAIL = #{showDetail,jdbcType=VARCHAR},
+      SHOW_ACTION = #{showAction,jdbcType=VARCHAR},
+      DIC_PROCURATORATE_KEY = #{procuratorate,jdbcType=VARCHAR},
+      PROCURATORATE_PATH = #{procuratoratePath,jdbcType=VARCHAR},
+      PROCURATORATE_PATH_NAME = #{procuratoratePathName,jdbcType=VARCHAR},
+      DIC_RESULT_KEY = #{result,jdbcType=VARCHAR},
+      PAROLE_PATH = #{parolePath,jdbcType=VARCHAR},
+      PAROLE_PATH_NAME = #{parolePathName,jdbcType=VARCHAR},
+      UN_PAROLE_REASON = #{unParoleReason,jdbcType=VARCHAR},
+      UN_PAROLE_PATH = #{unParolePath,jdbcType=VARCHAR},
+      UN_PAROLE_PATH_NAME = #{unParolePathName,jdbcType=VARCHAR},
+      CHECK_TYPE_ID = #{checkTypeId,jdbcType=DECIMAL},
+      IS_AGREE = #{isAgree,jdbcType=DECIMAL}，
+      DIC_SDFSKEY = #{dicSdfsKey,jdbcType=VARCHAR},
+      IS_PRINTJYS = #{isPrintJYS,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.rewardspunishment.Parole" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List1" />,t2.NAME as CUlPRIT_NAME,t3.NAME as SYS_GROUP_NAME,t3.id as SYS_GROUP_ID
+    from SF_PAROLE t1 left join SF_CULPRIT t2 on (t1.CULPRIT_ID=t2.ID)
+    left join sys_group t3 on (t2.GROUP_ID=t3.id)
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+   <if test="culpritName != null and culpritName!=''">
+      AND t2.name LIKE CONCAT(CONCAT('%',#{culpritName}),'%')
+    </if>
+    <if test="culpritId != null">
+      AND t1.CULPRIT_ID = #{culpritId,jdbcType=DECIMAL}
+    </if>
+    <if test="reduceTime != null and reduceTime!=''">
+      <!-- AND t1.REDUCE_TIME = #{reduceTime,jdbcType=VARCHAR} -->
+      AND t1.REDUCE_TIME LIKE CONCAT(CONCAT('%',#{reduceTime}),'%')
+    </if>
+    <if test="endTime != null">
+      AND t1.END_TIME = #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="actions != null and actions!=''">
+      AND t1.ACTIONS = #{actions,jdbcType=CLOB}
+    </if>
+    <if test="reason != null and reason!=''">
+      AND t1.REASON = #{reason,jdbcType=VARCHAR}
+    </if>
+    <if test="endCasePath != null and endCasePath!=''">
+      AND t1.END_CASE_PATH = #{endCasePath,jdbcType=VARCHAR}
+    </if>
+    <if test="endCasePathName != null and endCasePathName!=''">
+      AND t1.END_CASE_PATH_NAME = #{endCasePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="evidencePath != null and evidencePath!=''">
+      AND t1.EVIDENCE_PATH = #{evidencePath,jdbcType=VARCHAR}
+    </if>
+    <if test="evidencePathName != null and evidencePathName!=''">
+      AND t1.EVIDENCE_PATH_NAME = #{evidencePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="monitorGradeId != null">
+      AND t1.MONITOR_GRADE_ID = #{monitorGradeId,jdbcType=DECIMAL}
+    </if>
+    <if test="searchStartDate != null and searchStartDate !=''">
+      	<![CDATA[
+  			AND  t1.CREATED >= #{searchStartDate,jdbcType=TIMESTAMP}
+  		]]>
+    </if>
+     <if test="searchEndDate != null and searchEndDate !=''">
+      	<![CDATA[
+  			AND  t1.CREATED <= #{searchEndDate,jdbcType=TIMESTAMP}
+  		]]>
+    </if>
+    <if test="updated != null">
+      AND t1.UPDATED =#{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="processInstanceId != null and processInstanceId!=''">
+      AND t1.PROCESS_INSTANCE_ID = #{processInstanceId,jdbcType=VARCHAR}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND  t1.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t1.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND t1.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="writNum != null and writNum!=''">
+      AND t1.WRIT_NUM = #{writNum,jdbcType=VARCHAR}
+    </if>
+    <if test="recommendStatus != null and recommendStatus!=''">
+      AND t1.RECOMMEND_STATUS = #{recommendStatus,jdbcType=VARCHAR}
+    </if>
+    <if test="recommendStatuss != null and recommendStatuss!=''">
+      AND t1.RECOMMEND_STATUSS = #{recommendStatuss,jdbcType=VARCHAR}
+    </if>
+    <if test="handOnUnit != null and handOnUnit!=''">
+      AND t1.HAND_ON_UNIT = #{handOnUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="copyUnit != null and copyUnit!=''">
+      AND t1.COPY_UNIT = #{copyUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="showResult != null and showResult!=''">
+      AND t1.DIC_SHOW_RESULT_KEY = #{showResult,jdbcType=VARCHAR}
+    </if>
+    <if test="showDetail != null and showDetail!=''">
+      AND t1.SHOW_DETAIL = #{showDetail,jdbcType=VARCHAR}
+    </if>
+    <if test="showAction != null and showAction!=''">
+      AND t1.SHOW_ACTION = #{showAction,jdbcType=VARCHAR}
+    </if>
+    <if test="procuratorate != null and procuratorate!=''">
+      AND t1.DIC_PROCURATORATE_KEY = #{procuratorate,jdbcType=VARCHAR}
+    </if>
+    <if test="procuratoratePath != null and procuratoratePath!=''">
+      AND t1.PROCURATORATE_PATH = #{procuratoratePath,jdbcType=VARCHAR}
+    </if>
+    <if test="procuratoratePathName != null and procuratoratePathName!=''">
+      AND t1.PROCURATORATE_PATH_NAME = #{procuratoratePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="result != null and result!=''">
+      AND t1.DIC_RESULT_KEY = #{result,jdbcType=VARCHAR}
+    </if>
+    <if test="parolePath != null and parolePath!=''">
+      AND t1.PAROLE_PATH = #{parolePath,jdbcType=VARCHAR}
+    </if>
+    <if test="parolePathName != null and parolePathName!=''">
+      AND t1.PAROLE_PATH_NAME = #{parolePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="unParoleReason != null and unParoleReason!=''">
+      AND t1.UN_PAROLE_REASON = #{unParoleReason,jdbcType=VARCHAR}
+    </if>
+    <if test="unParolePath != null and unParolePath!=''">
+      AND t1.UN_PAROLE_PATH = #{unParolePath,jdbcType=VARCHAR}
+    </if>
+    <if test="unParolePathName != null and unParolePathName!=''">
+      AND t1.UN_PAROLE_PATH_NAME = #{unParolePathName,jdbcType=VARCHAR}
+    </if>
+    <if test="checkTypeId != null">
+      AND t1.CHECK_TYPE_ID = #{checkTypeId,jdbcType=DECIMAL}
+    </if>
+    <if test="isAgree != null">
+      AND t1.IS_AGREE = #{isAgree,jdbcType=DECIMAL}
+    </if>
+    <if test="dicSdfsKey != null">
+      AND t1.DIC_SDFSKEY = #{dicSdfsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrintJYS != null">
+      AND t1.IS_PRINTJYS = #{isPrintJYS,jdbcType=VARCHAR},
+      </if>
+     <if test="sysGroupId != null and sysGroupId  !=''">
+   
+      <![CDATA[
+     	 AND  exists ( select tsg.id from (select * from sys_group  start with id= #{sysGroupId,jdbcType=VARCHAR} connect by prior id = parent_id) tsg where t3.ID=tsg.id)
+       ]]> 
+     </if>
+  </sql>
+</mapper>

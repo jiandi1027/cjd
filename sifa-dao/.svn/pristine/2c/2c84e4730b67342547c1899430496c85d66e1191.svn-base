@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.monitoring.DriftMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.monitoring.Drift">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="OLD_LON" jdbcType="VARCHAR" property="oldLon" />
+    <result column="OLD_LAT" jdbcType="VARCHAR" property="oldLat" />
+    <result column="OLD_LOCATION" jdbcType="VARCHAR" property="oldLocation" />
+    <result column="NEW_LON" jdbcType="VARCHAR" property="newLon" />
+    <result column="NEW_LAT" jdbcType="VARCHAR" property="newLat" />
+    <result column="NEW_LOCATION" jdbcType="VARCHAR" property="newLocation" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="GPSTIME" jdbcType="TIMESTAMP" property="gpstime" />
+    <result column="MOBILENUMBER" jdbcType="VARCHAR" property="mobilenumber" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="VARCHAR" property="delFlag" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="CULPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    <result column="CREATER_NAME" jdbcType="VARCHAR" property="createrName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.ID, t.NOTE, t.OLD_LON, t.OLD_LAT, t.OLD_LOCATION, t.NEW_LON, t.NEW_LAT, t.NEW_LOCATION, t.TYPE, t.GPSTIME, 
+    t.MOBILENUMBER, t.CULPRIT_ID, t.CREATED, t.UPDATED, t.CREATER, t.UPDATER, t.DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,c.name as "culprit_name", g.id as "group_id", g.name as "group_name", ac.accountname as "CREATER_NAME" 
+    from SF_DRIFT t 
+    left join sf_culprit c on c.id = t.culprit_id 
+    left join sys_group g on g.id = c. group_id 
+    left join sys_account ac on ac.id = t.creater 
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_DRIFT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.monitoring.Drift">
+    insert into SF_DRIFT (ID, NOTE, OLD_LON, 
+      OLD_LAT, OLD_LOCATION, NEW_LON, 
+      NEW_LAT, NEW_LOCATION, TYPE, 
+      GPSTIME, MOBILENUMBER, CULPRIT_ID, 
+      CREATED, UPDATED, CREATER, 
+      UPDATER, DEL_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{oldLon,jdbcType=VARCHAR}, 
+      #{oldLat,jdbcType=VARCHAR}, #{oldLocation,jdbcType=VARCHAR}, #{newLon,jdbcType=VARCHAR}, 
+      #{newLat,jdbcType=VARCHAR}, #{newLocation,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{gpstime,jdbcType=TIMESTAMP}, #{mobilenumber,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.monitoring.Drift">
+    insert into SF_DRIFT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="oldLon != null">
+        OLD_LON,
+      </if>
+      <if test="oldLat != null">
+        OLD_LAT,
+      </if>
+      <if test="oldLocation != null">
+        OLD_LOCATION,
+      </if>
+      <if test="newLon != null">
+        NEW_LON,
+      </if>
+      <if test="newLat != null">
+        NEW_LAT,
+      </if>
+      <if test="newLocation != null">
+        NEW_LOCATION,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="gpstime != null">
+        GPSTIME,
+      </if>
+      <if test="mobilenumber != null">
+        MOBILENUMBER,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="oldLon != null">
+        #{oldLon,jdbcType=VARCHAR},
+      </if>
+      <if test="oldLat != null">
+        #{oldLat,jdbcType=VARCHAR},
+      </if>
+      <if test="oldLocation != null">
+        #{oldLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="newLon != null">
+        #{newLon,jdbcType=VARCHAR},
+      </if>
+      <if test="newLat != null">
+        #{newLat,jdbcType=VARCHAR},
+      </if>
+      <if test="newLocation != null">
+        #{newLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="gpstime != null">
+        #{gpstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobilenumber != null">
+        #{mobilenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.monitoring.Drift">
+    update SF_DRIFT
+    <set>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="oldLon != null">
+        OLD_LON = #{oldLon,jdbcType=VARCHAR},
+      </if>
+      <if test="oldLat != null">
+        OLD_LAT = #{oldLat,jdbcType=VARCHAR},
+      </if>
+      <if test="oldLocation != null">
+        OLD_LOCATION = #{oldLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="newLon != null">
+        NEW_LON = #{newLon,jdbcType=VARCHAR},
+      </if>
+      <if test="newLat != null">
+        NEW_LAT = #{newLat,jdbcType=VARCHAR},
+      </if>
+      <if test="newLocation != null">
+        NEW_LOCATION = #{newLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="gpstime != null">
+        GPSTIME = #{gpstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobilenumber != null">
+        MOBILENUMBER = #{mobilenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.monitoring.Drift">
+    update SF_DRIFT
+    set NOTE = #{note,jdbcType=VARCHAR},
+      OLD_LON = #{oldLon,jdbcType=VARCHAR},
+      OLD_LAT = #{oldLat,jdbcType=VARCHAR},
+      OLD_LOCATION = #{oldLocation,jdbcType=VARCHAR},
+      NEW_LON = #{newLon,jdbcType=VARCHAR},
+      NEW_LAT = #{newLat,jdbcType=VARCHAR},
+      NEW_LOCATION = #{newLocation,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      GPSTIME = #{gpstime,jdbcType=TIMESTAMP},
+      MOBILENUMBER = #{mobilenumber,jdbcType=VARCHAR},
+      CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.monitoring.Drift" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />,c.name as "culprit_name", g.id as "group_id", g.name as "group_name", ac.accountname as "CREATER_NAME" 
+    from SF_DRIFT t 
+    left join sf_culprit c on c.id = t.culprit_id 
+    left join sys_group g on g.id = c. group_id 
+    left join sys_account ac on ac.id = t.creater 
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="groupId != null and groupId !=''">
+     <![CDATA[  
+     	 AND  exists ( select t2.id from (select * from sys_group start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) t2 where c.GROUP_ID=t2.id)
+     ]]> 
+    </if>
+    <if test="groupName != null and groupName !=''">
+      AND g.name = #{groupName,jdbcType=VARCHAR}
+    </if>
+    <if test="culpritName != null and culpritName !=''">
+      AND c.name like '%'||#{culpritName,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="createrName != null and createrName !=''">
+      AND ac.accountname like '%'||#{createrName,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="note != null and note!=''">
+      AND t.NOTE = #{note,jdbcType=VARCHAR}
+    </if>
+    <if test="oldLon != null and oldLon!=''">
+      AND t.OLD_LON = #{oldLon,jdbcType=VARCHAR}
+    </if>
+    <if test="oldLat != null and oldLat!=''">
+      AND t.OLD_LAT = #{oldLat,jdbcType=VARCHAR}
+    </if>
+    <if test="oldLocation != null and oldLocation!=''">
+      AND t.OLD_LOCATION = #{oldLocation,jdbcType=VARCHAR}
+    </if>
+    <if test="newLon != null and newLon!=''">
+      AND t.NEW_LON = #{newLon,jdbcType=VARCHAR}
+    </if>
+    <if test="newLat != null and newLat!=''">
+      AND t.NEW_LAT = #{newLat,jdbcType=VARCHAR}
+    </if>
+    <if test="newLocation != null and newLocation!=''">
+      AND t.NEW_LOCATION like '%'||#{newLocation,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="type != null and type!=''">
+      AND t.TYPE = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="gpstime != null">
+      AND t.GPSTIME = #{gpstime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="mobilenumber != null and mobilenumber!=''">
+      AND t.MOBILENUMBER = #{mobilenumber,jdbcType=VARCHAR}
+    </if>
+    <if test="culpritId != null and culpritId!=''">
+      AND t.CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND t.CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updated != null">
+      AND t.UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND t.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND t.UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null and delFlag!=''">
+      AND t.DEL_FLAG = #{delFlag,jdbcType=VARCHAR}
+    </if>
+    <if test="searchStartDate != null">
+      AND t.GPSTIME <![CDATA[ >= ]]> #{searchStartDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="searchEndDate != null">
+      AND t.GPSTIME <![CDATA[ <= ]]> #{searchEndDate,jdbcType=TIMESTAMP}
+    </if>
+  </sql>
+</mapper>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.sys.SysAccountStatisticsMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.sys.SysAccountStatistics">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="STATISTICS1" jdbcType="VARCHAR" property="statistics1" />
+    <result column="STATISTICS2" jdbcType="VARCHAR" property="statistics2" />
+    <result column="STATISTICS3" jdbcType="VARCHAR" property="statistics3" />
+    <result column="STATISTICS4" jdbcType="VARCHAR" property="statistics4" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+  </resultMap>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.sys.SysAccountStatistics">
+    insert into SYS_ACCOUNT_STATISTICS (ID, CREATER, STATISTICS1, 
+      STATISTICS2, STATISTICS3, STATISTICS4, 
+      CREATED, UPDATED, UPDATER, 
+      DEL_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{statistics1,jdbcType=VARCHAR}, 
+      #{statistics2,jdbcType=VARCHAR}, #{statistics3,jdbcType=VARCHAR}, #{statistics4,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.sys.SysAccountStatistics">
+    insert into SYS_ACCOUNT_STATISTICS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="statistics1 != null">
+        STATISTICS1,
+      </if>
+      <if test="statistics2 != null">
+        STATISTICS2,
+      </if>
+      <if test="statistics3 != null">
+        STATISTICS3,
+      </if>
+      <if test="statistics4 != null">
+        STATISTICS4,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="statistics1 != null">
+        #{statistics1,jdbcType=VARCHAR},
+      </if>
+      <if test="statistics2 != null">
+        #{statistics2,jdbcType=VARCHAR},
+      </if>
+      <if test="statistics3 != null">
+        #{statistics3,jdbcType=VARCHAR},
+      </if>
+      <if test="statistics4 != null">
+        #{statistics4,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+    <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.sys.SysGroup">
+    update SYS_ACCOUNT_STATISTICS
+    set creater = #{creater,jdbcType=VARCHAR},
+      statistics1 = #{statistics1,jdbcType=VARCHAR},
+      statistics2 = #{statistics2,jdbcType=VARCHAR},
+      statistics3 = #{statistics3,jdbcType=VARCHAR},
+      statistics4 = #{statistics4,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.sys.SysAccountStatistics" resultMap="BaseResultMap">
+    select 
+    t.*
+    from SYS_ACCOUNT_STATISTICS t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  
+  <sql id="findAllWhere">
+    <if test="creater != null">
+      AND t.CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+   </sql>
+</mapper>

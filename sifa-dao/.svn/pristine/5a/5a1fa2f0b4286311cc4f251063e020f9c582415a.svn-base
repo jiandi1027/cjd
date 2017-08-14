@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.endcorrect.OutOfMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.endcorrect.OutOf">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+	<result column="REASON" jdbcType="VARCHAR" property="reason" />
+	<result column="SIFA" jdbcType="VARCHAR" property="sifa" />
+	<result column="PLACE" jdbcType="VARCHAR" property="place" />
+	<result column="NOTE" jdbcType="VARCHAR" property="note" />
+	<result column="MOVE_TIME" jdbcType="TIMESTAMP" property="moveTime" />
+	<result column="DOCUMENT_ID" jdbcType="VARCHAR" property="documentId" />
+	<result column="DIC_IS_PRIVATE_KEY" jdbcType="VARCHAR" property="isPrivate" />
+	<result column="FOLK_NAME" jdbcType="VARCHAR" property="folkName" />
+	<result column="RELATION" jdbcType="VARCHAR" property="relation" />
+	<result column="JOB" jdbcType="VARCHAR" property="job" />
+	<result column="DIC_POLITIC_STATUS_KEY" jdbcType="VARCHAR" property="politicStatus" />
+	<result column="FOLK_ADDRESS" jdbcType="VARCHAR" property="folkAddress" />
+	<result column="SFS_VIEW" jdbcType="VARCHAR" property="sfsView" />
+	<result column="HOSPITALIZE" jdbcType="VARCHAR" property="hospitalize" />
+	<result column="LEAVE_REASON" jdbcType="VARCHAR" property="leaveReason" />
+	<result column="FILE_PATH" jdbcType="VARCHAR" property="filePath" />
+	<result column="JOB_INFO" jdbcType="VARCHAR" property="jobInfo" />
+	<result column="PATH1" jdbcType="VARCHAR" property="path1" />
+	<result column="PATH2" jdbcType="VARCHAR" property="path2" />
+	<result column="RESULT" jdbcType="VARCHAR" property="result" />
+	<result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+	<result column="CHECK_TYPE_ID" jdbcType="VARCHAR" property="checkTypeId" />
+	<result column="DIC_IS_AGREE_KEY" jdbcType="VARCHAR" property="isAgree" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROCESS_ID" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="CULPRIT_NAME" jdbcType="VARCHAR" property="culpritName" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="ISPRINT" jdbcType="VARCHAR" property="isPrint" />
+  </resultMap>
+  <sql id="Base_Column_List">
+	t.ID, t.CULPRIT_ID, t.REASON, t.SIFA, t.PLACE, t.NOTE, t.MOVE_TIME,
+	t.DOCUMENT_ID, t.DIC_IS_PRIVATE_KEY,
+	t.FOLK_NAME, t.RELATION, t.JOB, t.DIC_POLITIC_STATUS_KEY,
+	t.FOLK_ADDRESS,t.SFS_VIEW, t.HOSPITALIZE, t.LEAVE_REASON, t.FILE_PATH,
+	t.JOB_INFO, t.PATH1, t.PATH2, t.RESULT,
+	t.DESCRIPTION, t.CHECK_TYPE_ID, t.DIC_IS_AGREE_KEY, t.CREATED, t.CREATER, t.UPDATED,
+	t.UPDATER, t.DEL_FLAG,t.PROCESS_ID,t2.name as culprit_name,t3.name as group_name,t.ISPRINT
+  </sql>
+   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_MOVE_OUT t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.endcorrect.OutOf" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_MOVE_OUT t left join SF_CULPRIT t2 on (t.CULPRIT_ID=t2.id) left join sys_group t3 on (t2.group_id=t3.id)
+    <where>
+      <include refid="findAllWhere" />
+    </where> 
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  
+  <select id="getCount" parameterType="com.rowell.sifa.pojo.endcorrect.OutOf" resultType="int">
+    select 
+    count(*) 
+    from SF_MOVE_OUT t
+    <where>
+      <include refid="findAllWhere" />
+    </where> 
+  </select>
+  
+<insert id="insertSelective" parameterType="com.rowell.sifa.pojo.endcorrect.OutOf">
+    insert into SF_MOVE_OUT t
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        t.ID,
+      </if>
+      <if test="culpritId != null">
+        t.CULPRIT_ID,
+      </if>
+      <if test="reason != null">
+        t.REASON,
+      </if>
+      <if test="sifa != null">
+        t.SIFA,
+      </if>
+      <if test="place != null">
+        t.PLACE,
+      </if>
+      <if test="note != null">
+        t.NOTE,
+      </if>
+      <if test="moveTime != null">
+        t.MOVE_TIME,
+      </if>
+      <if test="documentId != null">
+        t.DOCUMENT_ID,
+      </if>
+      <if test="isPrivate != null">
+        t.DIC_IS_PRIVATE_KEY,
+      </if>
+      <if test="folkName != null">
+        t.FOLK_NAME,
+      </if>
+      <if test="relation != null">
+        t.RELATION,
+      </if>
+      <if test="job != null">
+        t.JOB,
+      </if>
+      <if test="politicStatus != null">
+        t.DIC_POLITIC_STATUS_KEY,
+      </if>
+      <if test="folkAddress != null">
+         t.FOLK_ADDRESS,
+      </if>
+      <if test="sfsView != null">
+        t.SFS_VIEW,
+      </if>
+      <if test="hospitalize != null">
+        t.HOSPITALIZE,
+      </if>
+      <if test="leaveReason != null">
+        t.LEAVE_REASON,
+      </if>
+      <if test="filePath != null">
+        t.FILE_PATH,
+      </if>
+      <if test="jobInfo != null">
+        t.JOB_INFO,
+      </if>
+      <if test="path1 != null">
+        t.PATH1,
+      </if>
+      <if test="path2 != null">
+        t.PATH2,
+      </if>
+      <if test="result != null">
+        t.RESULT,
+      </if>
+      <if test="description != null">
+        t.DESCRIPTION,
+      </if>
+       <if test="checkTypeId != null">
+        t.CHECK_TYPE_ID,
+      </if>
+       <if test="isAgree != null">
+       t.DIC_IS_AGREE_KEY,
+      </if>
+      <if test="created != null">
+       t.CREATED,
+      </if>
+       <if test="creater != null">
+       t.CREATER,
+      </if>
+       <if test="updated != null">
+       t.UPDATED,
+      </if>
+       <if test="updater != null">
+       t.UPDATER,
+      </if>
+      <if test="delFlag != null">
+        t.DEL_FLAG,
+      </if>
+      <if test="processInstanceId != null">
+        t.PROCESS_ID,
+      </if>
+      <if test="isPrint != null">
+      	t.ISPRINT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="sifa != null">
+        #{sifa,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=CLOB},
+      </if>
+      <if test="moveTime != null">
+        #{moveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="documentId != null">
+        #{documentId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrivate != null">
+        #{isPrivate,jdbcType=VARCHAR},
+      </if>
+      <if test="folkName != null">
+        #{folkName,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="politicStatus != null">
+        #{politicStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="folkAddress != null">
+        #{folkAddress,jdbcType=VARCHAR},
+      </if>
+       <if test="hospitalize != null">
+        #{hospitalize,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsView != null">
+        #{sfsView,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveReason != null">
+        #{leaveReason,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="jobInfo != null">
+        #{jobInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="path1 != null">
+        #{path1,jdbcType=VARCHAR},
+      </if>
+      <if test="path2 != null">
+        #{path2,jdbcType=VARCHAR},
+      </if>
+       <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+       <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+       <if test="checkTypeId != null">
+        #{checkTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgree != null">
+        #{isAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+       <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+       <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null">
+      	#{isPrint, jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+	  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.dailymgr.AskLeave">
+	  		<![CDATA[
+	    update SF_ASKLEAVE	set 
+		CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+		REASON = #{reason,jdbcType=VARCHAR},
+		SIFA = #{sifa,jdbcType=VARCHAR},
+		PLACE = #{place,jdbcType=VARCHAR},
+		NOTE = #{note,jdbcType=CLOB},
+		MOVE_TIME = #{moveTime,jdbcType=TIMESTAMP},
+		DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},
+		DIC_IS_PRIVATE_KEY = #{isPrivate,jdbcType=VARCHAR},
+		FOLK_NAME = #{folkName,jdbcType=VARCHAR},
+		RELATION = #{relation,jdbcType=VARCHAR},
+		JOB = #{job,jdbcType=VARCHAR},
+		DIC_POLITIC_STATUS_KEY = #{politicStatus,jdbcType=VARCHAR},
+		FOLK_ADDRESS = #{folkAddress,jdbcType=VARCHAR},
+		HOSPITALIZE =  #{hospitalize,jdbcType=VARCHAR},
+		SFS_VIEW = #{sfsView,jdbcType=VARCHAR},
+		LEAVE_REASON = #{leaveReason,jdbcType=VARCHAR},
+		FILE_PATH = #{filePath,jdbcType=VARCHAR},
+		JOB_INFO = #{jobInfo,jdbcType=VARCHAR},
+		PATH1 = #{path1,jdbcType=VARCHAR},
+		PATH2 = #{path2,jdbcType=VARCHAR},
+		RESULT = #{result,jdbcType=VARCHAR},
+		DESCRIPTION = #{description,jdbcType=VARCHAR},
+		CHECK_TYPE_ID = #{checkTypeId,jdbcType=VARCHAR},
+		DIC_IS_AGREE_KEY = #{isAgree,jdbcType=VARCHAR},
+		CREATED = #{created,jdbcType=TIMESTAMP},
+		CREATER = #{creater,jdbcType=VARCHAR},
+		UPDATED = #{updated,jdbcType=TIMESTAMP},
+		UPDATER = #{updater,jdbcType=VARCHAR},
+		DEL_FLAG =  #{delFlag,jdbcType=DECIMAL},
+		PROCESS_ID = #{processInstanceId,jdbcType=VARCHAR},
+      	ISPRINT = #{isPrint, jdbcType=VARCHAR}
+	    where ID = #{id,jdbcType=VARCHAR}
+	    	]]>
+	  </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.endcorrect.OutOf">
+    update SF_MOVE_OUT
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        REASON = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="sifa != null">
+        SIFA = #{sifa,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        PLACE = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=CLOB},
+      </if>
+      <if test="moveTime != null">
+        MOVE_TIME = #{moveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="documentId != null">
+        DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrivate != null">
+        DIC_IS_PRIVATE_KEY = #{isPrivate,jdbcType=VARCHAR},
+      </if>
+      <if test="folkName != null">
+        FOLK_NAME = #{folkName,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        RELATION = #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+       JOB = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="politicStatus != null">
+       DIC_POLITIC_STATUS_KEY = #{politicStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="folkAddress != null">
+       FOLK_ADDRESS = #{folkAddress,jdbcType=VARCHAR},
+      </if>
+       <if test="hospitalize != null">
+       HOSPITALIZE =  #{hospitalize,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsView != null">
+       SFS_VIEW = #{sfsView,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveReason != null">
+       LEAVE_REASON = #{leaveReason,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+       FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="jobInfo != null">
+       JOB_INFO = #{jobInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="path1 != null">
+       PATH1 = #{path1,jdbcType=VARCHAR},
+      </if>
+      <if test="path2 != null">
+       PATH2 = #{path2,jdbcType=VARCHAR},
+      </if>
+       <if test="result != null">
+       RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+       <if test="description != null">
+       DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+       <if test="checkTypeId != null">
+       CHECK_TYPE_ID = #{checkTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgree != null">
+       DIC_IS_AGREE_KEY = #{isAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+       CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+       <if test="creater != null">
+       CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+       UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+       UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+       DEL_FLAG =  #{delFlag,jdbcType=DECIMAL},
+      </if>
+       <if test="processInstanceId != null">
+       PROCESS_ID = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null">
+      	ISPRINT = #{isPrint, jdbcType=VARCHAR}
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="findAllWhere">
+   <if test="culpritName != null and culpritName!=''">
+   	
+     AND t2.name LIKE CONCAT(CONCAT('%',#{culpritName}),'%')
+    </if>
+     <if test="place != null and place!=''">
+       AND t.PLACE  LIKE CONCAT(CONCAT('%',#{place}),'%')
+    </if>
+    <if test="searchStartDate != null and searchStartDate != ''">
+     <![CDATA[
+      AND t.MOVE_TIME >= #{searchStartDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+    <if test="searchEndDate != null and searchEndDate != ''">
+    <![CDATA[
+      AND t.MOVE_TIME <= #{searchEndDate,jdbcType=TIMESTAMP}
+      ]]>
+    </if>
+    
+     <if test="isPrivate != null and isPrivate!=''">
+      AND t.DIC_IS_PRIVATE_KEY = #{isPrivate,jdbcType=VARCHAR}
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g left join SF_CULPRIT c on g.id=c.group_id where c.id=t.CULPRIT_ID)
+    </if> 
+  </sql>
+</mapper>

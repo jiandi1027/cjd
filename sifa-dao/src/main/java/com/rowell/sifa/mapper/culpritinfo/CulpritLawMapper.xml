@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.culpritinfo.CulpritLawMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.culpritinfo.CulpritLaw">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CULPRIT_ID" jdbcType="VARCHAR" property="culpritId" />
+    <result column="INVESTIGATE_ORG" jdbcType="VARCHAR" property="investigateOrg" />
+    <result column="DETAIN_DATE" jdbcType="TIMESTAMP" property="detainDate" />
+    <result column="REGISTER_DATE" jdbcType="TIMESTAMP" property="registerDate" />
+    <result column="ARREST_ORG" jdbcType="VARCHAR" property="arrestOrg" />
+    <result column="ARREST_DATE" jdbcType="TIMESTAMP" property="arrestDate" />
+    <result column="INVEST_OVER_DATE" jdbcType="TIMESTAMP" property="investOverDate" />
+    <result column="CHECK_ORG" jdbcType="VARCHAR" property="checkOrg" />
+    <result column="INDICTMENT_NUM" jdbcType="VARCHAR" property="indictmentNum" />
+    <result column="INDICTMENT_DATE" jdbcType="TIMESTAMP" property="indictmentDate" />
+    <result column="EXECUTE_NOTIFICATION_DATE" jdbcType="TIMESTAMP" property="executeNotificationDate" />
+    <result column="EXECUTE_NOTIFICATION_NUM" jdbcType="VARCHAR" property="executeNotificationNum" />
+    <result column="DELIVER_DATE" jdbcType="TIMESTAMP" property="deliverDate" />
+    <result column="LEGAL_DOCS_UPLOAD_DATE" jdbcType="TIMESTAMP" property="legalDocsUploadDate" />
+    <result column="DIC_WSLX_KEY" jdbcType="VARCHAR" property="dicWslxKey" />
+    <result column="LEGAL_DOCS_PATH" jdbcType="VARCHAR" property="legalDocsPath" />
+    <result column="LEGAL_DOCS_NAME" jdbcType="VARCHAR" property="legalDocsName" />
+    <result column="LEGAL_DOCS_START_DATE" jdbcType="TIMESTAMP" property="legalDocsStartDate" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="LEGAL_DOCS_RECEIVE_T" jdbcType="TIMESTAMP" property="legalDocsReceiveT" />
+    <result column="DISPATCH_DATE" jdbcType="TIMESTAMP" property="dispatchDate" />
+    <result column="MAIN_DEPT" jdbcType="VARCHAR" property="mainDept" />
+    <result column="COPY_DEPT" jdbcType="VARCHAR" property="copyDept" />
+    <result column="DRAFTER" jdbcType="VARCHAR" property="drafter" />
+    <result column="PASSER" jdbcType="VARCHAR" property="passer" />
+    <result column="OLD_ADMINISTRATION_RECORD" jdbcType="CLOB" property="oldAdministrationRecord" />
+    <result column="OLD_PENAL_RECORD" jdbcType="CLOB" property="oldPenalRecord" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CULPRIT_ID, INVESTIGATE_ORG, DETAIN_DATE, REGISTER_DATE, ARREST_ORG, ARREST_DATE, 
+    INVEST_OVER_DATE, CHECK_ORG, INDICTMENT_NUM, INDICTMENT_DATE, EXECUTE_NOTIFICATION_DATE, 
+    EXECUTE_NOTIFICATION_NUM, DELIVER_DATE, LEGAL_DOCS_UPLOAD_DATE, DIC_WSLX_KEY, LEGAL_DOCS_PATH, 
+    LEGAL_DOCS_NAME, LEGAL_DOCS_START_DATE, CREATED, CREATER, UPDATED, UPDATER, DEL_FLAG, 
+    LEGAL_DOCS_RECEIVE_T, DISPATCH_DATE, MAIN_DEPT, COPY_DEPT, DRAFTER, PASSER,OLD_ADMINISTRATION_RECORD, OLD_PENAL_RECORD
+  </sql>
+ 
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT_LAW
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_CULPRIT_LAW
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritLaw">
+    insert into SF_CULPRIT_LAW (ID, CULPRIT_ID, INVESTIGATE_ORG, 
+      DETAIN_DATE, REGISTER_DATE, ARREST_ORG, 
+      ARREST_DATE, INVEST_OVER_DATE, CHECK_ORG, 
+      INDICTMENT_NUM, INDICTMENT_DATE, EXECUTE_NOTIFICATION_DATE, 
+      EXECUTE_NOTIFICATION_NUM, DELIVER_DATE, 
+      LEGAL_DOCS_UPLOAD_DATE, DIC_WSLX_KEY, LEGAL_DOCS_PATH, 
+      LEGAL_DOCS_NAME, LEGAL_DOCS_START_DATE, CREATED, 
+      CREATER, UPDATED, UPDATER, 
+      DEL_FLAG, LEGAL_DOCS_RECEIVE_T, DISPATCH_DATE, 
+      MAIN_DEPT, COPY_DEPT, DRAFTER, 
+      PASSER, OLD_ADMINISTRATION_RECORD, OLD_PENAL_RECORD
+      )
+    values (#{id,jdbcType=VARCHAR}, #{culpritId,jdbcType=VARCHAR}, #{investigateOrg,jdbcType=VARCHAR}, 
+      #{detainDate,jdbcType=TIMESTAMP}, #{registerDate,jdbcType=TIMESTAMP}, #{arrestOrg,jdbcType=VARCHAR}, 
+      #{arrestDate,jdbcType=TIMESTAMP}, #{investOverDate,jdbcType=TIMESTAMP}, #{checkOrg,jdbcType=VARCHAR}, 
+      #{indictmentNum,jdbcType=VARCHAR}, #{indictmentDate,jdbcType=TIMESTAMP}, #{executeNotificationDate,jdbcType=TIMESTAMP}, 
+      #{executeNotificationNum,jdbcType=VARCHAR}, #{deliverDate,jdbcType=TIMESTAMP}, 
+      #{legalDocsUploadDate,jdbcType=TIMESTAMP}, #{dicWslxKey,jdbcType=VARCHAR}, #{legalDocsPath,jdbcType=VARCHAR}, 
+      #{legalDocsName,jdbcType=VARCHAR}, #{legalDocsStartDate,jdbcType=TIMESTAMP}, #{created,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL}, #{legalDocsReceiveT,jdbcType=TIMESTAMP}, #{dispatchDate,jdbcType=TIMESTAMP}, 
+      #{mainDept,jdbcType=VARCHAR}, #{copyDept,jdbcType=VARCHAR}, #{drafter,jdbcType=VARCHAR}, 
+      #{passer,jdbcType=VARCHAR}, #{oldAdministrationRecord,jdbcType=CLOB}, #{oldPenalRecord,jdbcType=CLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritLaw">
+    insert into SF_CULPRIT_LAW
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="culpritId != null">
+        CULPRIT_ID,
+      </if>
+      <if test="investigateOrg != null">
+        INVESTIGATE_ORG,
+      </if>
+      <if test="detainDate != null">
+        DETAIN_DATE,
+      </if>
+      <if test="registerDate != null">
+        REGISTER_DATE,
+      </if>
+      <if test="arrestOrg != null">
+        ARREST_ORG,
+      </if>
+      <if test="arrestDate != null">
+        ARREST_DATE,
+      </if>
+      <if test="investOverDate != null">
+        INVEST_OVER_DATE,
+      </if>
+      <if test="checkOrg != null">
+        CHECK_ORG,
+      </if>
+      <if test="indictmentNum != null">
+        INDICTMENT_NUM,
+      </if>
+      <if test="indictmentDate != null">
+        INDICTMENT_DATE,
+      </if>
+      <if test="executeNotificationDate != null">
+        EXECUTE_NOTIFICATION_DATE,
+      </if>
+      <if test="executeNotificationNum != null">
+        EXECUTE_NOTIFICATION_NUM,
+      </if>
+      <if test="deliverDate != null">
+        DELIVER_DATE,
+      </if>
+      <if test="legalDocsUploadDate != null">
+        LEGAL_DOCS_UPLOAD_DATE,
+      </if>
+      <if test="dicWslxKey != null">
+        DIC_WSLX_KEY,
+      </if>
+      <if test="legalDocsPath != null">
+        LEGAL_DOCS_PATH,
+      </if>
+      <if test="legalDocsName != null">
+        LEGAL_DOCS_NAME,
+      </if>
+      <if test="legalDocsStartDate != null">
+        LEGAL_DOCS_START_DATE,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="legalDocsReceiveT != null">
+        LEGAL_DOCS_RECEIVE_T,
+      </if>
+      <if test="dispatchDate != null">
+        DISPATCH_DATE,
+      </if>
+      <if test="mainDept != null">
+        MAIN_DEPT,
+      </if>
+      <if test="copyDept != null">
+        COPY_DEPT,
+      </if>
+      <if test="drafter != null">
+        DRAFTER,
+      </if>
+      <if test="passer != null">
+        PASSER,
+      </if>
+      <if test="oldAdministrationRecord != null">
+        OLD_ADMINISTRATION_RECORD,
+      </if>
+      <if test="oldPenalRecord != null">
+        OLD_PENAL_RECORD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritId != null">
+        #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="investigateOrg != null">
+        #{investigateOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="detainDate != null">
+        #{detainDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrestOrg != null">
+        #{arrestOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="arrestDate != null">
+        #{arrestDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="investOverDate != null">
+        #{investOverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkOrg != null">
+        #{checkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="indictmentNum != null">
+        #{indictmentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="indictmentDate != null">
+        #{indictmentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executeNotificationDate != null">
+        #{executeNotificationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executeNotificationNum != null">
+        #{executeNotificationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverDate != null">
+        #{deliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalDocsUploadDate != null">
+        #{legalDocsUploadDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicWslxKey != null">
+        #{dicWslxKey,jdbcType=VARCHAR},
+      </if>
+      <if test="legalDocsPath != null">
+        #{legalDocsPath,jdbcType=VARCHAR},
+      </if>
+      <if test="legalDocsName != null">
+        #{legalDocsName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalDocsStartDate != null">
+        #{legalDocsStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="legalDocsReceiveT != null">
+        #{legalDocsReceiveT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchDate != null">
+        #{dispatchDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainDept != null">
+        #{mainDept,jdbcType=VARCHAR},
+      </if>
+      <if test="copyDept != null">
+        #{copyDept,jdbcType=VARCHAR},
+      </if>
+      <if test="drafter != null">
+        #{drafter,jdbcType=VARCHAR},
+      </if>
+      <if test="passer != null">
+        #{passer,jdbcType=VARCHAR},
+      </if>
+      <if test="oldAdministrationRecord != null">
+        #{oldAdministrationRecord,jdbcType=CLOB},
+      </if>
+      <if test="oldPenalRecord != null">
+        #{oldPenalRecord,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritLaw">
+    update SF_CULPRIT_LAW
+    <set>
+      <if test="culpritId != null">
+        CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      </if>
+      <if test="investigateOrg != null">
+        INVESTIGATE_ORG = #{investigateOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="detainDate != null">
+        DETAIN_DATE = #{detainDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerDate != null">
+        REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrestOrg != null">
+        ARREST_ORG = #{arrestOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="arrestDate != null">
+        ARREST_DATE = #{arrestDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="investOverDate != null">
+        INVEST_OVER_DATE = #{investOverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkOrg != null">
+        CHECK_ORG = #{checkOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="indictmentNum != null">
+        INDICTMENT_NUM = #{indictmentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="indictmentDate != null">
+        INDICTMENT_DATE = #{indictmentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executeNotificationDate != null">
+        EXECUTE_NOTIFICATION_DATE = #{executeNotificationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executeNotificationNum != null">
+        EXECUTE_NOTIFICATION_NUM = #{executeNotificationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverDate != null">
+        DELIVER_DATE = #{deliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalDocsUploadDate != null">
+        LEGAL_DOCS_UPLOAD_DATE = #{legalDocsUploadDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dicWslxKey != null">
+        DIC_WSLX_KEY = #{dicWslxKey,jdbcType=VARCHAR},
+      </if>
+      <if test="legalDocsPath != null">
+        LEGAL_DOCS_PATH = #{legalDocsPath,jdbcType=VARCHAR},
+      </if>
+      <if test="legalDocsName != null">
+        LEGAL_DOCS_NAME = #{legalDocsName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalDocsStartDate != null">
+        LEGAL_DOCS_START_DATE = #{legalDocsStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="legalDocsReceiveT != null">
+        LEGAL_DOCS_RECEIVE_T = #{legalDocsReceiveT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchDate != null">
+        DISPATCH_DATE = #{dispatchDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainDept != null">
+        MAIN_DEPT = #{mainDept,jdbcType=VARCHAR},
+      </if>
+      <if test="copyDept != null">
+        COPY_DEPT = #{copyDept,jdbcType=VARCHAR},
+      </if>
+      <if test="drafter != null">
+        DRAFTER = #{drafter,jdbcType=VARCHAR},
+      </if>
+      <if test="passer != null">
+        PASSER = #{passer,jdbcType=VARCHAR},
+      </if>
+      <if test="oldAdministrationRecord != null">
+        OLD_ADMINISTRATION_RECORD = #{oldAdministrationRecord,jdbcType=CLOB},
+      </if>
+      <if test="oldPenalRecord != null">
+        OLD_PENAL_RECORD = #{oldPenalRecord,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritLaw">
+    update SF_CULPRIT_LAW
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      INVESTIGATE_ORG = #{investigateOrg,jdbcType=VARCHAR},
+      DETAIN_DATE = #{detainDate,jdbcType=TIMESTAMP},
+      REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      ARREST_ORG = #{arrestOrg,jdbcType=VARCHAR},
+      ARREST_DATE = #{arrestDate,jdbcType=TIMESTAMP},
+      INVEST_OVER_DATE = #{investOverDate,jdbcType=TIMESTAMP},
+      CHECK_ORG = #{checkOrg,jdbcType=VARCHAR},
+      INDICTMENT_NUM = #{indictmentNum,jdbcType=VARCHAR},
+      INDICTMENT_DATE = #{indictmentDate,jdbcType=TIMESTAMP},
+      EXECUTE_NOTIFICATION_DATE = #{executeNotificationDate,jdbcType=TIMESTAMP},
+      EXECUTE_NOTIFICATION_NUM = #{executeNotificationNum,jdbcType=VARCHAR},
+      DELIVER_DATE = #{deliverDate,jdbcType=TIMESTAMP},
+      LEGAL_DOCS_UPLOAD_DATE = #{legalDocsUploadDate,jdbcType=TIMESTAMP},
+      DIC_WSLX_KEY = #{dicWslxKey,jdbcType=VARCHAR},
+      LEGAL_DOCS_PATH = #{legalDocsPath,jdbcType=VARCHAR},
+      LEGAL_DOCS_NAME = #{legalDocsName,jdbcType=VARCHAR},
+      LEGAL_DOCS_START_DATE = #{legalDocsStartDate,jdbcType=TIMESTAMP},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      LEGAL_DOCS_RECEIVE_T = #{legalDocsReceiveT,jdbcType=TIMESTAMP},
+      DISPATCH_DATE = #{dispatchDate,jdbcType=TIMESTAMP},
+      MAIN_DEPT = #{mainDept,jdbcType=VARCHAR},
+      COPY_DEPT = #{copyDept,jdbcType=VARCHAR},
+      DRAFTER = #{drafter,jdbcType=VARCHAR},
+      PASSER = #{passer,jdbcType=VARCHAR},
+      OLD_ADMINISTRATION_RECORD = #{oldAdministrationRecord,jdbcType=CLOB},
+      OLD_PENAL_RECORD = #{oldPenalRecord,jdbcType=CLOB}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritLaw">
+    update SF_CULPRIT_LAW
+    set CULPRIT_ID = #{culpritId,jdbcType=VARCHAR},
+      INVESTIGATE_ORG = #{investigateOrg,jdbcType=VARCHAR},
+      DETAIN_DATE = #{detainDate,jdbcType=TIMESTAMP},
+      REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      ARREST_ORG = #{arrestOrg,jdbcType=VARCHAR},
+      ARREST_DATE = #{arrestDate,jdbcType=TIMESTAMP},
+      INVEST_OVER_DATE = #{investOverDate,jdbcType=TIMESTAMP},
+      CHECK_ORG = #{checkOrg,jdbcType=VARCHAR},
+      INDICTMENT_NUM = #{indictmentNum,jdbcType=VARCHAR},
+      INDICTMENT_DATE = #{indictmentDate,jdbcType=TIMESTAMP},
+      EXECUTE_NOTIFICATION_DATE = #{executeNotificationDate,jdbcType=TIMESTAMP},
+      EXECUTE_NOTIFICATION_NUM = #{executeNotificationNum,jdbcType=VARCHAR},
+      DELIVER_DATE = #{deliverDate,jdbcType=TIMESTAMP},
+      LEGAL_DOCS_UPLOAD_DATE = #{legalDocsUploadDate,jdbcType=TIMESTAMP},
+      DIC_WSLX_KEY = #{dicWslxKey,jdbcType=VARCHAR},
+      LEGAL_DOCS_PATH = #{legalDocsPath,jdbcType=VARCHAR},
+      LEGAL_DOCS_NAME = #{legalDocsName,jdbcType=VARCHAR},
+      LEGAL_DOCS_START_DATE = #{legalDocsStartDate,jdbcType=TIMESTAMP},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      LEGAL_DOCS_RECEIVE_T = #{legalDocsReceiveT,jdbcType=TIMESTAMP},
+      DISPATCH_DATE = #{dispatchDate,jdbcType=TIMESTAMP},
+      MAIN_DEPT = #{mainDept,jdbcType=VARCHAR},
+      COPY_DEPT = #{copyDept,jdbcType=VARCHAR},
+      DRAFTER = #{drafter,jdbcType=VARCHAR},
+      PASSER = #{passer,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.culpritinfo.CulpritLaw" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_CULPRIT_LAW t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="culpritId != null and culpritId!=''">
+      AND CULPRIT_ID = #{culpritId,jdbcType=VARCHAR}
+    </if>
+    <if test="investigateOrg != null and investigateOrg!=''">
+      AND INVESTIGATE_ORG = #{investigateOrg,jdbcType=VARCHAR}
+    </if>
+    <if test="detainDate != null">
+      AND DETAIN_DATE = #{detainDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="registerDate != null">
+      AND REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="arrestOrg != null and arrestOrg!=''">
+      AND ARREST_ORG = #{arrestOrg,jdbcType=VARCHAR}
+    </if>
+    <if test="arrestDate != null">
+      AND ARREST_DATE = #{arrestDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="investOverDate != null">
+      AND INVEST_OVER_DATE = #{investOverDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="checkOrg != null and checkOrg!=''">
+      AND CHECK_ORG = #{checkOrg,jdbcType=VARCHAR}
+    </if>
+    <if test="indictmentNum != null and indictmentNum!=''">
+      AND INDICTMENT_NUM = #{indictmentNum,jdbcType=VARCHAR}
+    </if>
+    <if test="indictmentDate != null">
+      AND INDICTMENT_DATE = #{indictmentDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="executeNotificationDate != null">
+      AND EXECUTE_NOTIFICATION_DATE = #{executeNotificationDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="executeNotificationNum != null and executeNotificationNum!=''">
+      AND EXECUTE_NOTIFICATION_NUM = #{executeNotificationNum,jdbcType=VARCHAR}
+    </if>
+    <if test="deliverDate != null">
+      AND DELIVER_DATE = #{deliverDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="legalDocsUploadDate != null">
+      AND LEGAL_DOCS_UPLOAD_DATE = #{legalDocsUploadDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="dicWslxKey != null and dicWslxKey!=''">
+      AND DIC_WSLX_KEY = #{dicWslxKey,jdbcType=VARCHAR}
+    </if>
+    <if test="legalDocsPath != null and legalDocsPath!=''">
+      AND LEGAL_DOCS_PATH = #{legalDocsPath,jdbcType=VARCHAR}
+    </if>
+    <if test="legalDocsName != null and legalDocsName!=''">
+      AND LEGAL_DOCS_NAME = #{legalDocsName,jdbcType=VARCHAR}
+    </if>
+    <if test="legalDocsStartDate != null">
+      AND LEGAL_DOCS_START_DATE = #{legalDocsStartDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="legalDocsReceiveT != null">
+      AND LEGAL_DOCS_RECEIVE_T = #{legalDocsReceiveT,jdbcType=TIMESTAMP}
+    </if>
+    <if test="dispatchDate != null">
+      AND DISPATCH_DATE = #{dispatchDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="mainDept != null and mainDept!=''">
+      AND MAIN_DEPT = #{mainDept,jdbcType=VARCHAR}
+    </if>
+    <if test="copyDept != null and copyDept!=''">
+      AND COPY_DEPT = #{copyDept,jdbcType=VARCHAR}
+    </if>
+    <if test="drafter != null and drafter!=''">
+      AND DRAFTER = #{drafter,jdbcType=VARCHAR}
+    </if>
+    <if test="passer != null and passer!=''">
+      AND PASSER = #{passer,jdbcType=VARCHAR}
+    </if>
+    <if test="oldAdministrationRecord != null and oldAdministrationRecord!=''">
+      AND OLD_ADMINISTRATION_RECORD = #{oldAdministrationRecord,jdbcType=CLOB}
+    </if>
+    <if test="oldPenalRecord != null and oldPenalRecord!=''">
+      AND OLD_PENAL_RECORD = #{oldPenalRecord,jdbcType=CLOB}
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g left join SF_CULPRIT c on g.id=c.group_id where c.id=CULPRIT_ID)
+    </if> 
+  </sql>
+</mapper>

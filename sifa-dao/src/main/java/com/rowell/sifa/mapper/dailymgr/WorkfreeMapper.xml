@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.dailymgr.WorkfreeMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.dailymgr.Workfree">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="WORK_DATE" jdbcType="TIMESTAMP" property="workDate" />
+    <result column="WORK_PLACE" jdbcType="VARCHAR" property="workPlace" />
+    <result column="WORK_CONTENT" jdbcType="CLOB" property="workContent" />
+    <result column="TASK_TIME" jdbcType="DECIMAL" property="taskTime" />
+    <result column="NOTE" jdbcType="CLOB" property="note" />
+    <result column="FILE_PATH" jdbcType="VARCHAR" property="filePath" />
+    <result column="ASSESS_MANAGER" jdbcType="VARCHAR" property="assessManager" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="NO_PART_PERSON" jdbcType="VARCHAR" property="noPartPerson" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="WORKFREE_TYPE" jdbcType="VARCHAR" property="workfreeType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, WORK_DATE, WORK_PLACE, WORK_CONTENT, TASK_TIME, NOTE, FILE_PATH, ASSESS_MANAGER, 
+    GROUP_ID, NO_PART_PERSON, CREATED, CREATER, UPDATED, UPDATER, DEL_FLAG,
+    (select g.name from SYS_GROUP g where g.id=GROUP_ID) groupName,WORKFREE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_WORKFREE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByWorkFreeId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_WORKFREE
+    where ID = #{workfreeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_WORKFREE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.dailymgr.Workfree">
+    insert into SF_WORKFREE (ID, WORK_DATE, WORK_PLACE, 
+      WORK_CONTENT, TASK_TIME, NOTE, 
+      FILE_PATH, ASSESS_MANAGER, GROUP_ID, 
+      NO_PART_PERSON, CREATED, CREATER, 
+      UPDATED, UPDATER, DEL_FLAG,WORKFREE_TYPE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{workDate,jdbcType=TIMESTAMP}, #{workPlace,jdbcType=VARCHAR}, 
+      #{workContent,jdbcType=CLOB}, #{taskTime,jdbcType=DECIMAL}, #{note,jdbcType=CLOB}, 
+      #{filePath,jdbcType=VARCHAR}, #{assessManager,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, 
+      #{noPartPerson,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+      #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL},#{workfreeType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.dailymgr.Workfree">
+    insert into SF_WORKFREE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="workDate != null">
+        WORK_DATE,
+      </if>
+      <if test="workPlace != null">
+        WORK_PLACE,
+      </if>
+      <if test="workContent != null">
+        WORK_CONTENT,
+      </if>
+      <if test="taskTime != null">
+        TASK_TIME,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="filePath != null">
+        FILE_PATH,
+      </if>
+      <if test="assessManager != null">
+        ASSESS_MANAGER,
+      </if>
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="noPartPerson != null">
+        NO_PART_PERSON,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="workfreeType != null">
+        WORKFREE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="workDate != null">
+        #{workDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workPlace != null">
+        #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="workContent != null">
+        #{workContent,jdbcType=CLOB},
+      </if>
+      <if test="taskTime != null">
+        #{taskTime,jdbcType=DECIMAL},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=CLOB},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="assessManager != null">
+        #{assessManager,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="noPartPerson != null">
+        #{noPartPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="workfreeType != null">
+        #{workfreeType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.dailymgr.Workfree">
+    update SF_WORKFREE
+    <set>
+      <if test="workDate != null">
+        WORK_DATE = #{workDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workPlace != null">
+        WORK_PLACE = #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="workContent != null">
+        WORK_CONTENT = #{workContent,jdbcType=CLOB},
+      </if>
+      <if test="taskTime != null">
+        TASK_TIME = #{taskTime,jdbcType=DECIMAL},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=CLOB},
+      </if>
+      <if test="filePath != null">
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="assessManager != null">
+        ASSESS_MANAGER = #{assessManager,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="noPartPerson != null">
+        NO_PART_PERSON = #{noPartPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="workfreeType != null">
+        WORKFREE_TYPE = #{workfreeType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.dailymgr.Workfree">
+    update SF_WORKFREE
+    set WORK_DATE = #{workDate,jdbcType=TIMESTAMP},
+      WORK_PLACE = #{workPlace,jdbcType=VARCHAR},
+      WORK_CONTENT = #{workContent,jdbcType=CLOB},
+      TASK_TIME = #{taskTime,jdbcType=DECIMAL},
+      NOTE = #{note,jdbcType=CLOB},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      ASSESS_MANAGER = #{assessManager,jdbcType=VARCHAR},
+      GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      NO_PART_PERSON = #{noPartPerson,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      WORKFREE_TYPE = #{workfreeType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.dailymgr.Workfree" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_WORKFREE t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="workDate != null">
+      AND WORK_DATE = #{workDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="workPlace != null and workPlace!=''">
+      AND WORK_PLACE = #{workPlace,jdbcType=VARCHAR}
+    </if>
+    <if test="workContent != null and workContent!=''">
+      AND to_char(WORK_CONTENT) = #{workContent,jdbcType=CLOB}
+    </if>
+    <if test="taskTime != null">
+      AND TASK_TIME = #{taskTime,jdbcType=DECIMAL}
+    </if>
+    <if test="note != null and note!=''">
+      AND NOTE = #{note,jdbcType=CLOB}
+    </if>
+    <if test="filePath != null and filePath!=''">
+      AND FILE_PATH = #{filePath,jdbcType=VARCHAR}
+    </if>
+    <if test="assessManager != null and assessManager!=''">
+      AND ASSESS_MANAGER = #{assessManager,jdbcType=VARCHAR}
+    </if>
+    <if test="noPartPerson != null and noPartPerson!=''">
+      AND NO_PART_PERSON = #{noPartPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="searchStartDate != null">
+       <![CDATA[  
+      AND t.CREATED >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND t.CREATED <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g left join SYS_ACCOUNT s on g.id=s.group_id where s.id=t.CREATER)
+    </if> 
+  </sql>
+</mapper>

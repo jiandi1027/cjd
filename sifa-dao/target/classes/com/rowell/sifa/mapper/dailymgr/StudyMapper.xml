@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.dailymgr.StudyMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.dailymgr.Study">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="STUDY_DATE" jdbcType="TIMESTAMP" property="studyDate" />
+    <result column="STUDY_CONTENT" jdbcType="VARCHAR" property="studyContent" />
+    <result column="DIC_STUDY_TYPE_KEY" jdbcType="VARCHAR" property="dicStudyTypeKey" />
+    <result column="STUDY_SHOW" jdbcType="VARCHAR" property="studyShow" />
+    <result column="NOTE" jdbcType="CLOB" property="note" />
+    <result column="STUDY_TIME" jdbcType="DECIMAL" property="studyTime" />
+    <result column="FILE_PATH" jdbcType="VARCHAR" property="filePath" />
+    <result column="ASSESS_MANAGER" jdbcType="VARCHAR" property="assessManager" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="PART_PERSON" jdbcType="VARCHAR" property="partPerson" />
+    <result column="NO_PART_PERSON" jdbcType="VARCHAR" property="noPartPerson" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="STUDY_TYPE" jdbcType="VARCHAR" property="studyType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, STUDY_DATE, STUDY_CONTENT, DIC_STUDY_TYPE_KEY, STUDY_SHOW, NOTE, STUDY_TIME, 
+    FILE_PATH, ASSESS_MANAGER, GROUP_ID, PART_PERSON, NO_PART_PERSON, CREATED, CREATER, 
+    UPDATED, UPDATER, DEL_FLAG,STUDY_TYPE,
+    (select g.name from SYS_GROUP g where g.id=GROUP_ID) groupName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_STUDY
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByGroupStudyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_STUDY
+    where ID = #{groupstudyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SF_STUDY
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.dailymgr.Study">
+    insert into SF_STUDY (ID, STUDY_DATE, STUDY_CONTENT, 
+      DIC_STUDY_TYPE_KEY, STUDY_SHOW, NOTE, 
+      STUDY_TIME, FILE_PATH, ASSESS_MANAGER, 
+      GROUP_ID, PART_PERSON, NO_PART_PERSON, 
+      CREATED, CREATER, UPDATED, STUDY_TYPE,
+      UPDATER, DEL_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{studyDate,jdbcType=TIMESTAMP}, #{studyContent,jdbcType=VARCHAR}, 
+      #{dicStudyTypeKey,jdbcType=VARCHAR}, #{studyShow,jdbcType=VARCHAR}, #{note,jdbcType=CLOB}, 
+      #{studyTime,jdbcType=DECIMAL}, #{filePath,jdbcType=VARCHAR}, #{assessManager,jdbcType=VARCHAR}, 
+      #{groupId,jdbcType=VARCHAR}, #{partPerson,jdbcType=VARCHAR}, #{noPartPerson,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{updated,jdbcType=TIMESTAMP},#{studyType,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.dailymgr.Study">
+    insert into SF_STUDY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="studyDate != null">
+        STUDY_DATE,
+      </if>
+      <if test="studyContent != null">
+        STUDY_CONTENT,
+      </if>
+      <if test="dicStudyTypeKey != null">
+        DIC_STUDY_TYPE_KEY,
+      </if>
+      <if test="studyShow != null">
+        STUDY_SHOW,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="studyTime != null">
+        STUDY_TIME,
+      </if>
+      <if test="filePath != null">
+        FILE_PATH,
+      </if>
+      <if test="assessManager != null">
+        ASSESS_MANAGER,
+      </if>
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="partPerson != null">
+        PART_PERSON,
+      </if>
+      <if test="noPartPerson != null">
+        NO_PART_PERSON,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="studyType != null">
+        STUDY_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="studyDate != null">
+        #{studyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="studyContent != null">
+        #{studyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dicStudyTypeKey != null">
+        #{dicStudyTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="studyShow != null">
+        #{studyShow,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=CLOB},
+      </if>
+      <if test="studyTime != null">
+        #{studyTime,jdbcType=DECIMAL},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="assessManager != null">
+        #{assessManager,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="partPerson != null">
+        #{partPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="noPartPerson != null">
+        #{noPartPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="studyType != null">
+        #{studyType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.dailymgr.Study">
+    update SF_STUDY
+    <set>
+      <if test="studyDate != null">
+        STUDY_DATE = #{studyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="studyContent != null">
+        STUDY_CONTENT = #{studyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dicStudyTypeKey != null">
+        DIC_STUDY_TYPE_KEY = #{dicStudyTypeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="studyShow != null">
+        STUDY_SHOW = #{studyShow,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=CLOB},
+      </if>
+      <if test="studyTime != null">
+        STUDY_TIME = #{studyTime,jdbcType=DECIMAL},
+      </if>
+      <if test="filePath != null">
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="assessManager != null">
+        ASSESS_MANAGER = #{assessManager,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="partPerson != null">
+        PART_PERSON = #{partPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="noPartPerson != null">
+        NO_PART_PERSON = #{noPartPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        UPDATED = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="studyType != null">
+        STUDY_TYPE = #{studyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.dailymgr.Study">
+    update SF_STUDY
+    set STUDY_DATE = #{studyDate,jdbcType=TIMESTAMP},
+      STUDY_CONTENT = #{studyContent,jdbcType=VARCHAR},
+      DIC_STUDY_TYPE_KEY = #{dicStudyTypeKey,jdbcType=VARCHAR},
+      STUDY_SHOW = #{studyShow,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=CLOB},
+      STUDY_TIME = #{studyTime,jdbcType=DECIMAL},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      ASSESS_MANAGER = #{assessManager,jdbcType=VARCHAR},
+      GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      PART_PERSON = #{partPerson,jdbcType=VARCHAR},
+      NO_PART_PERSON = #{noPartPerson,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATED = #{updated,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      STUDY_TYPE=#{studyType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.dailymgr.Study" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_STUDY t
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="studyDate != null">
+      AND STUDY_DATE = #{studyDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="studyContent != null and studyContent!=''">
+    	<![CDATA[
+			AND STUDY_CONTENT like '%'|| #{studyContent,jdbcType=VARCHAR}||'%'
+			]]>
+    </if>
+    <if test="dicStudyTypeKey != null and dicStudyTypeKey!=''">
+      AND DIC_STUDY_TYPE_KEY = #{dicStudyTypeKey,jdbcType=VARCHAR}
+    </if>
+    <if test="studyShow != null and studyShow!=''">
+      AND STUDY_SHOW = #{studyShow,jdbcType=VARCHAR}
+    </if>
+    <if test="note != null and note!=''">
+      AND NOTE = #{note,jdbcType=CLOB}
+    </if>
+    <if test="studyTime != null">
+      AND STUDY_TIME = #{studyTime,jdbcType=DECIMAL}
+    </if>
+    <if test="filePath != null and filePath!=''">
+      AND FILE_PATH = #{filePath,jdbcType=VARCHAR}
+    </if>
+    <if test="assessManager != null and assessManager!=''">
+      AND ASSESS_MANAGER = #{assessManager,jdbcType=VARCHAR}
+    </if>
+    <if test="partPerson != null and partPerson!=''">
+      AND PART_PERSON = #{partPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="noPartPerson != null and noPartPerson!=''">
+      AND NO_PART_PERSON = #{noPartPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="searchStartDate != null">
+       <![CDATA[  
+      AND t.study_Date >= #{searchStartDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="searchEndDate != null">
+    	 <![CDATA[  
+      AND t.study_Date <= #{searchEndDate,jdbcType=TIMESTAMP}
+       ]]>  
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND  exists ( select g.id from (select * from sys_group  start with id= #{groupId,jdbcType=VARCHAR} connect by prior id = parent_id) g left join SYS_ACCOUNT s on g.id=s.group_id where s.id=t.CREATER)
+    </if> 
+  </sql>
+</mapper>

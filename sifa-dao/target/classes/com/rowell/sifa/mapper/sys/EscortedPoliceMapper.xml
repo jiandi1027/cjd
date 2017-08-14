@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rowell.sifa.mapper.sys.EscortedPoliceMapper">
+  <resultMap id="BaseResultMap" type="com.rowell.sifa.pojo.sys.EscortedPolice">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="CULPRITI_D" jdbcType="VARCHAR" property="culpritiD" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="UPDATED" jdbcType="TIMESTAMP" property="updated" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="JOB" jdbcType="VARCHAR" property="job" />
+    <result column="ESCORT_DATE" jdbcType="TIMESTAMP" property="escortDate" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, NAME, CULPRITI_D, GROUP_ID, CREATED, CREATER, UPDATED, UPDATER, DEL_FLAG, JOB, 
+    ESCORT_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from SF_ESCORTED_POLICE
+  </select>
+  <insert id="insert" parameterType="com.rowell.sifa.pojo.sys.EscortedPolice">
+    insert into SF_ESCORTED_POLICE (ID, NAME, CULPRITI_D, 
+      GROUP_ID, CREATED, CREATER, 
+      UPDATED, UPDATER, DEL_FLAG, 
+      JOB, ESCORT_DATE)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{culpritiD,jdbcType=VARCHAR}, 
+      #{groupId,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+      #{updated,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL}, 
+      #{job,jdbcType=VARCHAR}, #{escortDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rowell.sifa.pojo.sys.EscortedPolice">
+    insert into SF_ESCORTED_POLICE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="culpritiD != null">
+        CULPRITI_D,
+      </if>
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="updated != null">
+        UPDATED,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="job != null">
+        JOB,
+      </if>
+      <if test="escortDate != null">
+        ESCORT_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="culpritiD != null">
+        #{culpritiD,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="escortDate != null">
+        #{escortDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rowell.sifa.pojo.sys.EscortedPolice">
+    update SF_ESCORTED_POLICE
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=},
+      </if>
+      <if test="record.culpritiD != null">
+        CULPRITI_D = #{record.culpritiD,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupId != null">
+        GROUP_ID = #{record.groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.created != null">
+        CREATED = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creater != null">
+        CREATER = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updated != null">
+        UPDATED = #{record.updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        DEL_FLAG = #{record.delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="record.job != null">
+        JOB = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.escortDate != null">
+        ESCORT_DATE = #{record.escortDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rowell.sifa.pojo.sys.EscortedPolice" >
+    update SF_ESCORTED_POLICE
+    set 
+      NAME = #{record.name,jdbcType=VARCHAR},
+      CULPRITI_D = #{record.culpritiD,jdbcType=VARCHAR},
+      GROUP_ID = #{record.groupId,jdbcType=VARCHAR},
+      CREATED = #{record.created,jdbcType=TIMESTAMP},
+      CREATER = #{record.creater,jdbcType=VARCHAR},
+      UPDATED = #{record.updated,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      DEL_FLAG = #{record.delFlag,jdbcType=DECIMAL},
+      JOB = #{record.job,jdbcType=VARCHAR},
+      ESCORT_DATE = #{record.escortDate,jdbcType=TIMESTAMP}
+     where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" parameterType="com.rowell.sifa.pojo.sys.EscortedPolice" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SF_ESCORTED_POLICE
+    <where>
+      <include refid="findAllWhere" />
+    </where>
+    <if test="orderStr!=null">
+      <![CDATA[
+           order by  ${orderStr}
+      ]]>
+    </if>
+  </select>
+  <sql id="findAllWhere">
+    <if test="id != null and id!=''">
+      AND ID = #{id,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null and name!=''">
+      AND NAME = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="culpritiD != null and culpritiD!=''">
+      AND CULPRITI_D = #{culpritiD,jdbcType=VARCHAR}
+    </if>
+    <if test="groupId != null and groupId!=''">
+      AND GROUP_ID = #{groupId,jdbcType=VARCHAR}
+    </if>
+    <if test="created != null">
+      AND CREATED = #{created,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creater != null and creater!=''">
+      AND CREATER = #{creater,jdbcType=VARCHAR}
+    </if>
+    <if test="updated != null">
+      AND UPDATED = #{updated,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updater != null and updater!=''">
+      AND UPDATER = #{updater,jdbcType=VARCHAR}
+    </if>
+    <if test="delFlag != null">
+      AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    </if>
+    <if test="job != null and job!=''">
+      AND JOB = #{job,jdbcType=VARCHAR}
+    </if>
+    <if test="escortDate != null">
+      AND ESCORT_DATE = #{escortDate,jdbcType=TIMESTAMP}
+    </if>
+  </sql>
+</mapper>
